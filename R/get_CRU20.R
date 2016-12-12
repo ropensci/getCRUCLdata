@@ -1,7 +1,8 @@
-#' @title Download, and Create a Raster Stack of CRU CL2.0 Weather Variables
+#' @title Download, and Create a Raster Stack Object of CRU CL2.0 Weather
+#' Variables
 #'
 #'@description This function automates downloading and importing CRU CL2.0
-#'weather data into R and calculates TMIN and TMAX for use as a raster::stack
+#'climate data into R and calculates TMIN and TMAX for use as a raster::stack
 #'object
 #'
 #'For more information see the description of the data provided by CRU,
@@ -65,9 +66,6 @@ create_CRU_raster <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE,
   wrld <- raster::raster(nrows = 900, ncols = 2160, ymn = -60, ymx = 90,
                          xmn = -180, xmx = 180)
 
-  months <- c("jan", "feb", "mar", "apr", "may", "jun",
-              "jul", "aug", "sep", "oct", "nov", "dec")
-
   # Create raster objects using cellFromXY and generate a raster stack
   # create.stack takes pre, tmp, tmn and tmx and creates a raster
   # object stack of 12 month data
@@ -94,10 +92,11 @@ create_CRU_raster <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE,
   return(CRU_stack)
 }
 
-#' @title Download, and Create a Data Frame of CRU CL2.0 Weather Variables
+#' @title Download and Create a Data Frame Object of CRU CL2.0 Weather
+#' Variables
 #'
 #'@description This function automates downloading and importing CRU CL2.0
-#'weather data into R and calculates minimum and maximum temperature for use
+#'climate data into R and calculates minimum and maximum temperature for use
 #'in an R session.
 #'
 #'For more information see the description of the data provided by CRU,
@@ -146,7 +145,7 @@ create_CRU_raster <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE,
 #'
 #' @examples
 #' # Download data and create a raster stack of precipitation and temperature
-#' create_CRU_df()
+#' create_CRU_df(pre = TRUE, tmp = TRUE)
 #'
 #' @export
 create_CRU_df <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE, tmp = FALSE,
@@ -159,90 +158,4 @@ create_CRU_df <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE, tmp = FALSE,
     data.table::rbindlist(CRU_list))
   names(CRU_df) <- c("dtr_C", "pre_mm", "pre_cv_%", "reh_%", "tmn_C", "tmp_C",
                      "tmx_C")
-}
-
-#' @noRd
-.get_CRU <- function(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv){
-  tf <- tempfile()
-
-  CRU_list <- NULL
-
-  if (dtr == TRUE | tmn == TRUE | tmx == TRUE) {
-    dtr <- data.table::data.table(readr::read_table(
-      "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_dtr.dat.gz",
-      col_names = FALSE))
-  }
-
-  if (tmp == TRUE | tmn == TRUE | tmx == TRUE) {
-   tmp <- data.table::data.table(readr::read_table(
-     "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz",
-           col_names = FALSE))
-  }
-
-  if (pre == TRUE) {
-    pre <- data.table::data.table(readr::read_table(
-      "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_pre.dat.gz",
-      col_names = FALSE))
-  }
-
-  if (reh == TRUE) {
-    reh <- data.table::data.table(readr::read_table(
-      "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_reh.dat.gz",
-      col_names = FALSE))
-  }
-
-  if (elv == TRUE) {
-    reh <- data.table::data.table(readr::read_table(
-      "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_elv.dat.gz",
-      col_names = FALSE))
-  }
-
-  if (sunp == TRUE) {
-    reh <- data.table::data.table(readr::read_table(
-      "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_sunp.dat.gz",
-      col_names = FALSE))
-  }
-
-  if (wnd == TRUE) {
-    reh <- data.table::data.table(readr::read_table(
-      "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_wnd.dat.gz",
-      col_names = FALSE))
-  }
-
-  if (frs == TRUE) {
-    reh <- data.table::data.table(readr::read_table(
-      "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_frs.dat.gz",
-      col_names = FALSE))
-  }
-
-  if (rd0 == TRUE) {
-    reh <- data.table::data.table(readr::read_table(
-      "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_rd0.dat.gz",
-      col_names = FALSE))
-  }
-
-  # calculate tmax and tmin from tmp and dtr
-  tmx <- tmp[, c(3:14)] + (0.5 * dtr[, c(3:14)])
-  tmx <- data.table::data.table(dplyr::bind_cols(tmp[, 1:2], tmx))
-  tmn <- tmp[, c(3:14)] - (0.5 * dtr[, c(3:14)])
-  tmn <- data.table::data.table(dplyr::bind_cols(tmp[, c(1:2)], tmn))
-
-  CRU_list <- list(dtr, pre, reh, tmn, tmp, tmx, rd0, elv, frs, wnd, sunp)
-  return(CRU_list)
-}
-
-#' @noRd
-.create_stack <- function(wvar, xy, wrld, months){
-  x <- wrld
-  cells <- raster::cellFromXY(x, wvar[, c(2, 1)])
-  for (i in 3:14) {
-    x[cells] <- wvar[, i]
-    if (i == 3) {
-      y <- x
-    } else
-      y <- raster::stack(y, x)
-  }
-  names(y) <- months
-  return(y)
-  rm(x)
 }

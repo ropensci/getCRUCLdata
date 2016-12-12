@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_CRU20.R
 \name{create_CRU_df}
 \alias{create_CRU_df}
-\title{Download, and Create a Data Frame of CRU CL2.0 Weather Variables}
+\title{Download and Create a Data Frame Object of CRU CL2.0 Weather
+Variables}
 \usage{
 create_CRU_df(pre = FALSE, pre_cv = FALSE, rd0 = FALSE, tmp = FALSE,
   dtr = FALSE, reh = FALSE, tmn = FALSE, tmx = FALSE, sunp = FALSE,
@@ -47,7 +48,7 @@ the data frame? Defaults to FALSE.}
 }
 \description{
 This function automates downloading and importing CRU CL2.0
-weather data into R and calculates minimum and maximum temperature for use
+climate data into R and calculates minimum and maximum temperature for use
 in an R session.
 
 For more information see the description of the data provided by CRU,
@@ -73,7 +74,7 @@ This function generates a data.frame object in R
 }
 \examples{
 # Download data and create a raster stack of precipitation and temperature
-create_CRU_df()
+create_CRU_df(pre = TRUE, tmp = TRUE)
 
 }
 

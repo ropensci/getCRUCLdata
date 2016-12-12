@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_CRU20.R
 \name{create_CRU_raster}
 \alias{create_CRU_raster}
-\title{Download, and Create a Raster Stack of CRU CL2.0 Weather Variables}
+\title{Download, and Create a Raster Stack Object of CRU CL2.0 Weather
+Variables}
 \usage{
 create_CRU_raster(pre = FALSE, pre_cv = FALSE, rd0 = FALSE, tmp = FALSE,
   dtr = FALSE, reh = FALSE, tmn = FALSE, tmx = FALSE, sunp = FALSE,
@@ -47,7 +48,7 @@ the raster stack? Defaults to FALSE.}
 }
 \description{
 This function automates downloading and importing CRU CL2.0
-weather data into R and calculates TMIN and TMAX for use as a raster::stack
+climate data into R and calculates TMIN and TMAX for use as a raster::stack
 object
 
 For more information see the description of the data provided by CRU,
