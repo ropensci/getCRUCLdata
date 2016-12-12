@@ -15,7 +15,7 @@ Imports:
     data.table,
     dplyr,
     raster,
-    utils
+    readr
 LazyData: TRUE
 RoxygenNote: 5.0.1
 ByteCompile: TRUE

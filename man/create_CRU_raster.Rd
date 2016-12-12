@@ -4,16 +4,46 @@
 \alias{create_CRU_raster}
 \title{Download, and Create a Raster Stack of CRU CL2.0 Weather Variables}
 \usage{
-create_CRU_raster(pre = TRUE, tmp = TRUE, dtr = TRUE, reh = TRUE,
-  tmn = TRUE, tmx = TRUE)
+create_CRU_raster(pre = FALSE, pre_cv = FALSE, rd0 = FALSE, tmp = FALSE,
+  dtr = FALSE, reh = FALSE, tmn = FALSE, tmx = FALSE, sunp = FALSE,
+  frs = FALSE, wnd = FALSE, elv = FALSE)
 }
 \arguments{
-\item{precipitation}{= pre,
-mean diurnal temprature range = drt,
-minimum temperature = tmn,
-maximum temperature = tmx,
-temperature = tmp,
-relative humidity = reh.}
+\item{pre}{Logical. Fetch precipitation (mm/month) from server and return in
+the raster stack? Defaults to FALSE.}
+
+\item{pre_cv}{Logical. Fetch cv of precipitation (percent) from server and
+return in the raster stack? Defaults to FALSE.}
+
+\item{rd0}{Logical. Fetch wet-days (number days with >0.1mm rain per month)
+and return in the raster stack? Defaults to FALSE.}
+
+\item{tmp}{Logical. Fetch temperature (degrees C) and return it in the data
+frame? Defaults to FALSE.}
+
+\item{dtr}{Logical. Fetch mean diurnal temperature range (degrees C) and
+return it in the raster stack? Defaults to FALSE.}
+
+\item{reh}{Logical. Fetch relative humidity and return it in the raster stack?
+Defaults to FALSE.}
+
+\item{tmn}{Logical. Create minimum temperature values (degrees C) and return
+it in the raster stack? Defaults to FALSE.}
+
+\item{tmx}{Logical. Create maxium temperature (degrees C) and return it in
+the raster stack? Defaults to FALSE.}
+
+\item{sunp}{Logical. Fetch sunshine, percent of maximum possible (percent of
+daylength) and return it in raster stack? Defaults to FALSE.}
+
+\item{frs}{Logical. Fetch ground-frost records (number of days with ground-
+frost per month) and return it in raster stack? Defaults to FALSE.}
+
+\item{wnd}{Logical. Fetch 10m windspeed (m/s) and return it in the data
+frame? Defaults to FALSE.}
+
+\item{elv}{Logical. Fetch elevation (converted to metres) and return it in
+the raster stack? Defaults to FALSE.}
 }
 \description{
 This function automates downloading and importing CRU CL2.0
@@ -23,7 +53,6 @@ object
 For more information see the description of the data provided by CRU,
 \url{http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 
-Nomenclature and units from readme.txt:
 Nomenclature and Units
 ----------------------
 pre	precipitation		mm/month
