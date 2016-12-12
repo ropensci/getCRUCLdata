@@ -45,17 +45,17 @@
 #' frost per month) and return it in raster stack? Defaults to FALSE.
 #' @param wnd Logical. Fetch 10m windspeed (m/s) and return it in the data
 #' frame? Defaults to FALSE.
-#' @param elv Logical. Fetch elevation (converted to metres) and return it in
-#' the raster stack? Defaults to FALSE.
+#' @param elv Logical. Fetch elevation (converted to metres from kilometres) and
+#' return it in the raster stack? Defaults to FALSE.
 #' @examples
 #' # Download data and create a raster stack of precipitation and temperature
 #' CRU_raster()
 #'
 #' @export
-create_CRU_raster <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE,
-                              tmp = FALSE, dtr = FALSE, reh = FALSE,
-                              tmn = FALSE, tmx = FALSE, sunp = FALSE,
-                              frs = FALSE, wnd = FALSE, elv = FALSE){
+create_CRU_stack <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE,
+                             tmp = FALSE, dtr = FALSE, reh = FALSE,
+                             tmn = FALSE, tmx = FALSE, sunp = FALSE,
+                             frs = FALSE, wnd = FALSE, elv = FALSE){
   xy <- NULL
   if (!isTRUE(pre) | !isTRUE(pre_cv) | !isTRUE(rd0) | !isTRUE(tmp) |
       !isTRUE(dtr) | !isTRUE(reh) | !isTRUE(tmn) | !isTRUE(tmn) | !isTRUE(tmx) |
@@ -140,8 +140,8 @@ create_CRU_raster <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE,
 #' frost per month) and return it in data frame? Defaults to FALSE.
 #' @param wnd Logical. Fetch 10m windspeed (m/s) and return it in the data
 #' frame? Defaults to FALSE.
-#' @param elv Logical. Fetch elevation (converted to metres) and return it in
-#' the data frame? Defaults to FALSE.
+#' @param elv Logical. Fetch elevation (converted to metres from kilometres) and
+#' return it in the data frame? Defaults to FALSE.
 #'
 #' @examples
 #' # Download data and create a raster stack of precipitation and temperature
@@ -151,6 +151,12 @@ create_CRU_raster <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE,
 create_CRU_df <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE, tmp = FALSE,
                           dtr = FALSE, reh = FALSE, tmn = FALSE, tmx = FALSE,
                           sunp = FALSE, frs = FALSE, wnd = FALSE, elv = FALSE){
+
+  if (!isTRUE(pre) | !isTRUE(pre_cv) | !isTRUE(rd0) | !isTRUE(tmp) |
+      !isTRUE(dtr) | !isTRUE(reh) | !isTRUE(tmn) | !isTRUE(tmn) | !isTRUE(tmx) |
+      !isTRUE(sunp) | !isTRUE(frs) | !isTRUE(wnd) | !isTRUE(elv)) {
+    stop("You must select at least one parameter for download.")
+  }
 
   CRU_list <- .get_CRU(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)
 
