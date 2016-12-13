@@ -57,9 +57,9 @@ create_CRU_stack <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE,
                              tmn = FALSE, tmx = FALSE, sunp = FALSE,
                              frs = FALSE, wnd = FALSE, elv = FALSE){
   xy <- NULL
-  if (!isTRUE(pre) | !isTRUE(pre_cv) | !isTRUE(rd0) | !isTRUE(tmp) |
-      !isTRUE(dtr) | !isTRUE(reh) | !isTRUE(tmn) | !isTRUE(tmn) | !isTRUE(tmx) |
-      !isTRUE(sunp) | !isTRUE(frs) | !isTRUE(wnd) | !isTRUE(elv)) {
+  if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
+      !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmn) & !isTRUE(tmx) &
+      !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
     stop("You must select at least one parameter for download.")
   }
 
@@ -152,16 +152,20 @@ create_CRU_df <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE, tmp = FALSE,
                           dtr = FALSE, reh = FALSE, tmn = FALSE, tmx = FALSE,
                           sunp = FALSE, frs = FALSE, wnd = FALSE, elv = FALSE){
 
-  if (!isTRUE(pre) | !isTRUE(pre_cv) | !isTRUE(rd0) | !isTRUE(tmp) |
-      !isTRUE(dtr) | !isTRUE(reh) | !isTRUE(tmn) | !isTRUE(tmn) | !isTRUE(tmx) |
-      !isTRUE(sunp) | !isTRUE(frs) | !isTRUE(wnd) | !isTRUE(elv)) {
+  if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
+      !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmn) & !isTRUE(tmx) &
+      !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
     stop("You must select at least one parameter for download.")
   }
 
   CRU_list <- .get_CRU(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)
 
-  CRU_df <- as.data.frame(
-    data.table::rbindlist(CRU_list))
+  CRU_df <-
+    plyr::join_all(
+      CRU_list,
+      by = c("lat", "lon"),
+      type = "left"
+    )
   names(CRU_df) <- c("dtr_C", "pre_mm", "pre_cv_%", "reh_%", "tmn_C", "tmp_C",
-                     "tmx_C")
+                     "tmx_C", "rd0", "elv_m", "frs", "wnd", "sunp")
 }

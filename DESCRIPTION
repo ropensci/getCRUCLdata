@@ -14,9 +14,11 @@ Description: This function automates downloading and importing CRU CL2.0 weather
 License: MIT + file LICENSE
 Imports:
     dplyr,
+    plyr,
     raster,
     readr,
     tidyr
 LazyData: TRUE
 RoxygenNote: 5.0.1
 ByteCompile: TRUE
+Suggests: testthat

@@ -1,3 +1,4 @@
+#' @importFrom dplyr %>%
 #' @noRd
 .get_CRU <-
   function(pre,
@@ -11,7 +12,8 @@
            frs,
            wnd,
            elv) {
-    CRU_list <- NULL
+    lat <- lon <- dtr_df <- pre_df <- reh_df <- tmn_df <- tmp_df <- tmx_df <-
+      rd0_df <- elv_df <- frs_df <- wnd_df <- sunp_df <- CRU_list <- NULL
     month_names <-
       c("jan",
         "feb",
@@ -25,9 +27,9 @@
         "oct",
         "nov",
         "dec")
- # dtr -------------------------------------------------------------------------
+    # dtr -------------------------------------------------------------------------
     if (dtr == TRUE | tmn == TRUE | tmx == TRUE) {
-      dtr <- readr::read_table(
+      dtr_df <- readr::read_table(
         "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_dtr.dat.gz",
         col_names = FALSE
       )
@@ -160,17 +162,15 @@
     # calculate tmx ------------------------------------------------------------
     if (isTRUE(tmx)) {
       # calculate tmax and tmin from tmp and dtr
-      tmx <- tmp[, c(3:14)] + (0.5 * dtr[, c(3:14)])
-      tmx <- dplyr::bind_cols(tmp[, 1:2], tmx)
+      tmx_df <- tmp_df[, c(3:14)] + (0.5 * dtr_df[, c(3:14)])
+      tmx_df <- dplyr::bind_cols(tmp_df[, 1:2], tmx_df)
     }
     # calculate tmn ------------------------------------------------------------
     if (isTRUE(tmn)) {
-      tmn <- tmp[, c(3:14)] - (0.5 * dtr[, c(3:14)])
-      tmn <- dplyr::bind_cols(tmp[, c(1:2)], tmn)
+      tmn_df <- tmp_df[, c(3:14)] - (0.5 * dtr_df[, c(3:14)])
+      tmn_df <- dplyr::bind_cols(tmp_df[, c(1:2)], tmn_df)
     }
-
-    # create list of data frames -----------------------------------------------
-
+    # create data frame of all variables ---------------------------------------
     CRU_list <-
       list(
         dtr_df,
