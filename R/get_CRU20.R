@@ -52,44 +52,66 @@
 #' CRU_raster()
 #'
 #' @export
-create_CRU_stack <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE,
-                             tmp = FALSE, dtr = FALSE, reh = FALSE,
-                             tmn = FALSE, tmx = FALSE, sunp = FALSE,
-                             frs = FALSE, wnd = FALSE, elv = FALSE){
-  xy <- NULL
-  if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
-      !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmn) & !isTRUE(tmx) &
-      !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
-    stop("You must select at least one parameter for download.")
+create_CRU_stack <-
+  function(pre = FALSE,
+           pre_cv = FALSE,
+           rd0 = FALSE,
+           tmp = FALSE,
+           dtr = FALSE,
+           reh = FALSE,
+           tmn = FALSE,
+           tmx = FALSE,
+           sunp = FALSE,
+           frs = FALSE,
+           wnd = FALSE,
+           elv = FALSE) {
+    xy <- NULL
+    if (!isTRUE(pre) &
+        !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
+        !isTRUE(dtr) &
+        !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmn) & !isTRUE(tmx) &
+        !isTRUE(sunp) &
+        !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
+      stop("You must select at least one parameter for download.")
+    }
+
+    wrld <-
+      raster::raster(
+        nrows = 900,
+        ncols = 2160,
+        ymn = -60,
+        ymx = 90,
+        xmn = -180,
+        xmx = 180
+      )
+
+    # Create raster objects using cellFromXY and generate a raster stack
+    # create.stack takes pre, tmp, tmn and tmx and creates a raster
+    # object stack of 12 month data
+
+    CRU_list <-
+      .get_CRU(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)
+
+    if (pre == TRUE) {
+      pre_stack <- .create_stack(CRU_list$pre, xy, wrld, months)
+    }
+
+    if (tmn == TRUE) {
+      tmn_stack <- .create_stack(CRU_list$tmn, xy, wrld, months)
+    }
+
+    if (tmx == TRUE) {
+      tmx_stack <- .create_stack(CRU_list$tmx, xy, wrld, months)
+    }
+
+    if (tmp == TRUE) {
+      tmp_stack <- .create_stack(CRU_list$tmp, xy, wrld, months)
+    }
+    # stack all object and return
+    CRU_stack <-
+      raster::stack(pre_stack, tmn_stack, tmx_stack, tmp_stack)
+    return(CRU_stack)
   }
-
-  wrld <- raster::raster(nrows = 900, ncols = 2160, ymn = -60, ymx = 90,
-                         xmn = -180, xmx = 180)
-
-  # Create raster objects using cellFromXY and generate a raster stack
-  # create.stack takes pre, tmp, tmn and tmx and creates a raster
-  # object stack of 12 month data
-
-  CRU_list <- .get_CRU(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)
-
-  if (pre == TRUE) {
-    pre_stack <- .create_stack(CRU_list$pre, xy, wrld, months)
-  }
-
-  if (tmn == TRUE) {
-    tmn_stack <- .create_stack(CRU_list$tmn, xy, wrld, months)
-  }
-
-  if (tmx == TRUE) {
-    tmx_stack <- .create_stack(CRU_list$tmx, xy, wrld, months)
-  }
-
-  if (tmp == TRUE) {
-    tmp_stack <- .create_stack(CRU_list$tmp, xy, wrld, months)
-  }
-  # stack all object and return
-  CRU_stack <- raster::stack(pre_stack, tmn_stack, tmx_stack, tmp_stack)
-  return(CRU_stack)
 }
 
 #' @title Download and Create a Data Frame Object of CRU CL2.0 Weather
@@ -148,24 +170,45 @@ create_CRU_stack <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE,
 #' create_CRU_df(pre = TRUE, tmp = TRUE)
 #'
 #' @export
-create_CRU_df <- function(pre = FALSE, pre_cv =FALSE, rd0 = FALSE, tmp = FALSE,
-                          dtr = FALSE, reh = FALSE, tmn = FALSE, tmx = FALSE,
-                          sunp = FALSE, frs = FALSE, wnd = FALSE, elv = FALSE){
-
+create_CRU_df <- function(pre = FALSE,
+                          pre_cv = FALSE,
+                          rd0 = FALSE,
+                          tmp = FALSE,
+                          dtr = FALSE,
+                          reh = FALSE,
+                          tmn = FALSE,
+                          tmx = FALSE,
+                          sunp = FALSE,
+                          frs = FALSE,
+                          wnd = FALSE,
+                          elv = FALSE) {
   if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
-      !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmn) & !isTRUE(tmx) &
-      !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
+      !isTRUE(dtr) &
+      !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmn) & !isTRUE(tmx) &
+      !isTRUE(sunp) &
+      !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
     stop("You must select at least one parameter for download.")
   }
 
-  CRU_list <- .get_CRU(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)
+  CRU_list <-
+    .get_CRU(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)
+  # remove NULL values from list, found on SO: -------------------------------
+  # http://stackoverflow.com/questions/36661094
+  .is_NullOb <-
+    function(CRU_list)
+      is.null(CRU_list) | all(sapply(CRU_list, is.null))
 
-  CRU_df <-
-    plyr::join_all(
-      CRU_list,
-      by = c("lat", "lon"),
-      type = "left"
-    )
-  names(CRU_df) <- c("dtr_C", "pre_mm", "pre_cv_%", "reh_%", "tmn_C", "tmp_C",
-                     "tmx_C", "rd0", "elv_m", "frs", "wnd", "sunp")
+  .rmNullObs <- function(CRU_list) {
+    x <- Filter(Negate(is.NullOb), x)
+    lapply(x, function(CRU_list)
+      if (is.list(CRU_list))
+        rmNullObs(x)
+      else
+        CRU_list)
+  }
+
+  CRU_list <- .rmNullObs(CRU_list)
+
+  CRU_df <- plyr::ldply(CRU_list, data.frame)
+  return(CRU_df)
 }
