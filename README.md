@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/getCRUCL2.0?branch=master&svg=true)](https://ci.appveyor.com/projects/status/github/adamhsparks/getCRUCL2.0)
+[![Travis-CI Build Status](https://travis-ci.org/.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/getCRUCL2.0?branch=master&svg=true)](https://ci.appveyor.com/project/adamhsparks/getCRUCL2.0)
 
 getCRUCL2.0
 ===========
