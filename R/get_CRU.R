@@ -30,77 +30,116 @@
     if (dtr == TRUE | tmn == TRUE | tmx == TRUE) {
       dtr <- readr::read_table(
         "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_dtr.dat.gz",
-        col_names = c("lat", "lon", month_names)
-      )
+        col_names = FALSE)
+      dtr_df <-
+        dtr_df %>%
+        tidyr::gather(key = "month", value = "tmp", dplyr::everything(), -c(lat, lon))
     }
 
     if (tmp == TRUE | tmn == TRUE | tmx == TRUE) {
-      tmp <- readr::read_table(
+      tmp_df <- readr::read_table(
         "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz",
-        col_names = c("lat", "lon", month_names)
-      )
-    }
+        col_names = FALSE)
+      tmp_df <-
+        tmp_df %>%
+        tidyr::gather(key = "month", value = "tmp", dplyr::everything(), -c(lat, lon))
+        }
 
     if (pre == TRUE) {
-      pre <- readr::read_table(
+      pre_df <- readr::read_table(
         "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_pre.dat.gz",
-        col_names = c("lat", "lon", month_names, paste0(month_names, "_cv"))
-      )
+        col_names = FALSE)
+      pre_df1 <- pre_df[, c(1:14)]
+      pre_df2 <- pre_df[, c(1:2, 15:26)]
+      names(pre_df1) <- names(pre_df2) <- c("lat", "lon", month_names)
+      pre_df1 <-
+        pre_df1 %>%
+        tidyr::gather(key = "month", value = "pre", dplyr::everything(), -c(lat, lon))
+      pre_df2 <-
+        pre_df2 %>%
+        tidyr::gather(key = "month", value = "pre_cv", dplyr::everything(), -c(lat, lon))
+      pre_df <- dplyr::bind_cols(pre_df1, pre_df2[, 4])
     }
 
     if (reh == TRUE) {
-      reh <- readr::read_table(
+      reh_df <- readr::read_table(
         "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_reh.dat.gz",
-        col_names = c("lat", "lon", month_names)
-      )
+        col_names = FALSE)
+
+      reh_df <-
+        reh_df %>%
+        tidyr::gather(key = "month", value = "tmp", dplyr::everything(), -c(lat, lon))
     }
 
     if (elv == TRUE) {
-      reh <- readr::read_table(
+      elv_df <- readr::read_table(
         "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_elv.dat.gz",
-        col_names = c("lat", "lon", month_names)
-      )
+        col_names = FALSE)
+
+      elv_df <-
+        elv_df %>%
+        tidyr::gather(key = "month", value = "tmp", dplyr::everything(), -c(lat, lon))
     }
 
     if (sunp == TRUE) {
-      reh <- readr::read_table(
+      sunp_df <- readr::read_table(
         "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_sunp.dat.gz",
-        col_names = c("lat", "lon", month_names)
-      )
+        col_names = FALSE)
+
+      sunp_df <-
+        sunp_df %>%
+        tidyr::gather(key = "month", value = "tmp", dplyr::everything(), -c(lat, lon))
     }
 
     if (wnd == TRUE) {
-      reh <- readr::read_table(
+      wnd_df <- readr::read_table(
         "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_wnd.dat.gz",
-        col_names = c("lat", "lon", month_names)
-      )
+        col_names = FALSE)
+
+      wnd_df <-
+        wnd_df %>%
+        tidyr::gather(key = "month", value = "tmp", dplyr::everything(), -c(lat, lon))
     }
 
     if (frs == TRUE) {
-      reh <- readr::read_table(
+      frs_df <- readr::read_table(
         "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_frs.dat.gz",
-        col_names = c("lat", "lon", month_names)
-      )
+        col_names = FALSE)
+
+      frs_df <-
+        frs_df %>%
+        tidyr::gather(key = "month", value = "tmp", dplyr::everything(), -c(lat, lon))
     }
 
     if (rd0 == TRUE) {
-      reh <- readr::read_table(
+      rd0_df <- readr::read_table(
         "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/grid_10min_rd0.dat.gz",
-        col_names = c("lat", "lon", month_names)
-      )
+        col_names = FALSE)
+
+      rd0_df <-
+        rd0_df %>%
+        tidyr::gather(key = "month", value = "tmp", dplyr::everything(), -c(lat, lon))
     }
 
-    # calculate tmax and tmin from tmp and dtr
-    tmx <- tmp[, c(3:14)] + (0.5 * dtr[, c(3:14)])
-    tmx <- dplyr::bind_cols(tmp[, 1:2], tmx)
-    tmn <- tmp[, c(3:14)] - (0.5 * dtr[, c(3:14)])
-    tmn <- dplyr::bind_cols(tmp[, c(1:2)], tmn)
+    if (isTRUE(tmx)) {
+      # calculate tmax and tmin from tmp and dtr
+      tmx <- tmp[, c(3:14)] + (0.5 * dtr[, c(3:14)])
+      tmx <- dplyr::bind_cols(tmp[, 1:2], tmx)
+    }
 
-    # convert elevation to metres
-    elv <- elv / 1000
+    if (isTRUE(tmn)) {
+      tmn <- tmp[, c(3:14)] - (0.5 * dtr[, c(3:14)])
+      tmn <- dplyr::bind_cols(tmp[, c(1:2)], tmn)
+    }
+
+    if (isTRUE(elv)) {
+      # convert elevation to metres
+      elv <- elv / 1000
+    }
 
     CRU_list <-
-      list(dtr, pre, reh, tmn, tmp, tmx, rd0, elv, frs, wnd, sunp)
+      list(dtr_df, pre_df, reh_df, tmn_df, tmp_df, tmx_df, rd0_df, elv_df,
+           frs_df, wnd_df, sunp_df)
     return(CRU_list)
   }
 
