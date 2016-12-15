@@ -14,7 +14,9 @@ Description: This function automates downloading and importing CRU CL2.0 weather
 License: MIT + file LICENSE
 Imports:
     dplyr,
+    httr,
     plyr,
+    purrr,
     raster,
     readr,
     tidyr

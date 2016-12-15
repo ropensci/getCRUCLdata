@@ -112,7 +112,6 @@ create_CRU_stack <-
       raster::stack(pre_stack, tmn_stack, tmx_stack, tmp_stack)
     return(CRU_stack)
   }
-}
 
 #' @title Download and Create a Data Frame Object of CRU CL2.0 Weather
 #' Variables
@@ -167,7 +166,7 @@ create_CRU_stack <-
 #'
 #' @examples
 #' # Download data and create a raster stack of precipitation and temperature
-#' create_CRU_df(pre = TRUE, tmp = TRUE)
+#' CRU_pre_tmp <- create_CRU_df(pre = TRUE, tmp = TRUE)
 #'
 #' @export
 create_CRU_df <- function(pre = FALSE,
@@ -190,6 +189,8 @@ create_CRU_df <- function(pre = FALSE,
     stop("You must select at least one parameter for download.")
   }
 
+  object_list <- c(dtr, tmp, reh, elv, pre, sunp, wnd, frs, rd0)
+
   CRU_list <-
     .get_CRU(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)
   # remove NULL values from list, found on SO: -------------------------------
@@ -199,10 +200,10 @@ create_CRU_df <- function(pre = FALSE,
       is.null(CRU_list) | all(sapply(CRU_list, is.null))
 
   .rmNullObs <- function(CRU_list) {
-    x <- Filter(Negate(is.NullOb), x)
+    x <- Filter(Negate(.is_NullOb), x)
     lapply(x, function(CRU_list)
       if (is.list(CRU_list))
-        rmNullObs(x)
+        .rmNullObs(x)
       else
         CRU_list)
   }

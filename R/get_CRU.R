@@ -1,7 +1,9 @@
 #' @importFrom dplyr %>%
+
 #' @noRd
 .get_CRU <-
   function(pre,
+           pre_cv,
            rd0,
            tmp,
            dtr,
@@ -12,11 +14,8 @@
            frs,
            wnd,
            elv) {
-    lat <-
-      lon <-
-      dtr_df <- pre_df <- reh_df <- tmn_df <- tmp_df <- tmx_df <-
-      rd0_df <-
-      elv_df <- frs_df <- wnd_df <- sunp_df <- CRU_list <- NULL
+    lat <- lon <- dtr_df <- pre_df <- reh_df <- tmn_df <- tmp_df <- tmx_df <-
+      rd0_df <- elv_df <- frs_df <- wnd_df <- sunp_df <- CRU_list <- NULL
     month_names <-
       c("jan",
         "feb",
@@ -30,6 +29,56 @@
         "oct",
         "nov",
         "dec")
+    cache_dir <- tempdir()
+
+    CRU_url <- "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/"
+    dtr_url <- paste0(CRU_url, "grid_10min_dtr.dat.gz")
+    tmp_url <- paste0(CRU_url, "grid_10min_tmp.dat.gz")
+    reh_url <- paste0(CRU_url, "grid_10min_reh.dat.gz")
+    elv_url <- paste0(CRU_url, "grid_10min_elv.dat.gz")
+    pre_url <- paste0(CRU_url, "grid_10min_pre.dat.gz")
+    sun_url <- paste0(CRU_url, "grid_10min_sunp.dat.gz")
+    wnd_url <- paste0(CRU_url, "grid_10min_wnd.dat.gz")
+    frs_url <- paste0(CRU_url, "grid_10min_frs.dat.gz")
+    rd0_url <- paste0(CRU_url, "grid_10min_rd0.dat.gz")
+
+    files <-
+      c(dtr_url,
+        tmp_url,
+        reh_url,
+        elv_url,
+        pre_url,
+        sun_url,
+        wnd_url,
+        frs_url,
+        rd0_url)
+    names(files) <-
+      names(object_list) <-
+      c(
+        "dtr_url",
+        "tmp_url",
+        "reh_url",
+        "elv_url",
+        "pre_url",
+        "sun_url",
+        "wnd_url",
+        "frs_url",
+        "rd0_url"
+      )
+
+    files <- files[object_list %in% !isTRUE(files)]
+
+    message("\nDownloading requested data files.\n")
+    pb <- dplyr::progress_estimated(length(files))
+    purrr::walk(files, function(f) {
+      purrr::walk(paste0(f), httr::RETRY(httr::GET))
+      # progress bar
+      pb$tick()$print()
+    })
+  }
+
+
+
     # dtr -------------------------------------------------------------------------
     if (dtr == TRUE | tmn == TRUE | tmx == TRUE) {
       dtr_df <- readr::read_table(
