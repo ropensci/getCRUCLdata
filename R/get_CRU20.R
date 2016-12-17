@@ -67,6 +67,7 @@ create_CRU_stack <-
            frs = FALSE,
            wnd = FALSE,
            elv = FALSE) {
+    cache_dir <- tempdir()
     xy <- NULL
     if (!isTRUE(pre) &
         !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
@@ -92,7 +93,18 @@ create_CRU_stack <-
     # object stack of 12 month data
 
     CRU_list <-
-      .get_CRU(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)
+      .get_CRU(pre,
+               pre_cv,
+               rd0,
+               tmp,
+               dtr,
+               reh,
+               tmn,
+               tmx,
+               sunp,
+               frs,
+               wnd,
+               elv)
 
     if (pre == TRUE) {
       pre_stack <- .create_stack(CRU_list$pre, xy, wrld, months)
@@ -190,8 +202,24 @@ create_CRU_df <- function(pre = FALSE,
     stop("You must select at least one parameter for download.")
   }
 
-  CRU_list <-
-    .get_CRU(pre,
+  cache_dir <- tempdir()
+
+  .get_CRU(pre,
+           pre_cv,
+           rd0,
+           tmp,
+           dtr,
+           reh,
+           tmn,
+           tmx,
+           sunp,
+           frs,
+           wnd,
+           elv,
+           cache_dir)
+
+  CRU_df <-
+    .tidy_df(pre,
              pre_cv,
              rd0,
              tmp,
@@ -202,8 +230,8 @@ create_CRU_df <- function(pre = FALSE,
              sunp,
              frs,
              wnd,
-             elv)
+             elv,
+             cache_dir)
 
-  CRU_df <- plyr::ldply(CRU_list, data.frame)
   return(CRU_df)
 }
