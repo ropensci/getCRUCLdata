@@ -25,7 +25,6 @@
       "dec")
   x <- wrld
   cells <- raster::cellFromXY(x, wvar[, c(2, 1)])
-
   for (i in 3:14) {
     x[cells] <- wvar[, i]
     if (i == 3) {

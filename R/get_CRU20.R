@@ -68,41 +68,44 @@ create_CRU_stack <-
            wnd = FALSE,
            elv = FALSE) {
     cache_dir <- tempdir()
-
-    if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
-        !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
-        !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
+    xy <- NULL
+    if (!isTRUE(pre) &
+        !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
+        !isTRUE(dtr) &
+        !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmn) & !isTRUE(tmx) &
+        !isTRUE(sunp) &
+        !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
       stop("You must select at least one parameter for download.")
     }
 
-    .get_CRU(pre,
-             pre_cv,
-             rd0,
-             tmp,
-             dtr,
-             reh,
-             tmn,
-             tmx,
-             sunp,
-             frs,
-             wnd,
-             elv,
-             cache_dir)
+    wrld <-
+      raster::raster(
+        nrows = 900,
+        ncols = 2160,
+        ymn = -60,
+        ymx = 90,
+        xmn = -180,
+        xmx = 180
+      )
+
+    # Create raster objects using cellFromXY and generate a raster stack
+    # create.stack takes pre, tmp, tmn and tmx and creates a raster
+    # object stack of 12 month data
 
     CRU_list <-
-      .create_df_list(pre,
-                      pre_cv,
-                      rd0,
-                      tmp,
-                      dtr,
-                      reh,
-                      tmn,
-                      tmx,
-                      sunp,
-                      frs,
-                      wnd,
-                      elv,
-                      cache_dir)
+      .get_CRU(pre,
+               pre_cv,
+               rd0,
+               tmp,
+               dtr,
+               reh,
+               tmn,
+               tmx,
+               sunp,
+               frs,
+               wnd,
+               elv,
+               cache_dir)
 
     if (pre == TRUE) {
       pre_stack <- .create_stack(CRU_list$pre_df)
@@ -216,20 +219,20 @@ create_CRU_df <- function(pre = FALSE,
            elv,
            cache_dir)
 
-  CRU_list <-
-    .create_df_list(pre,
-                    pre_cv,
-                    rd0,
-                    tmp,
-                    dtr,
-                    reh,
-                    tmn,
-                    tmx,
-                    sunp,
-                    frs,
-                    wnd,
-                    elv,
-                    cache_dir)
-  CRU_df <- plyr::ldply(CRU_list, data.frame)
+  CRU_df <-
+    .tidy_df(pre,
+             pre_cv,
+             rd0,
+             tmp,
+             dtr,
+             reh,
+             tmn,
+             tmx,
+             sunp,
+             frs,
+             wnd,
+             elv,
+             cache_dir)
+
   return(CRU_df)
 }

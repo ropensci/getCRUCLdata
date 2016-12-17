@@ -1,6 +1,6 @@
 #' @importFrom dplyr %>%
 #' @noRd
-.create_df_list <- function(dtr, tmp, tmn, tmx, pre, pre_cv, reh, elv, sunp, wnd, frs,
+.tidy_df <- function(dtr, tmp, tmn, tmx, pre, pre_cv, reh, elv, sunp, wnd, frs,
                      rd0, cache_dir){
 
   month_names <-
@@ -167,6 +167,7 @@
       wnd_df,
       sunp_df
     )
-  return(CRU_list)
-}
 
+  CRU_df <- plyr::ldply(CRU_list, data.frame)
+  return(CRU_df)
+}
