@@ -17,6 +17,7 @@
       "nov",
       "dec")
   # dtr -------------------------------------------------------------------------
+
   if (isTRUE(dtr) | isTRUE(tmn) | isTRUE(tmx)) {
     dtr_df <-
       readr::read_table(paste0(cache_dir, "/grid_10min_dtr.dat.gz"),

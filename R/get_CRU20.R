@@ -105,19 +105,19 @@ create_CRU_stack <-
                       cache_dir)
 
     if (pre == TRUE) {
-      pre_stack <- .create_stack(CRU_list$pre, xy, wrld, months)
+      pre_stack <- .create_stack(CRU_list$pre_df)
     }
 
     if (tmn == TRUE) {
-      tmn_stack <- .create_stack(CRU_list$tmn, xy, wrld, months)
+      tmn_stack <- .create_stack(CRU_list$tmn_df)
     }
 
     if (tmx == TRUE) {
-      tmx_stack <- .create_stack(CRU_list$tmx, xy, wrld, months)
+      tmx_stack <- .create_stack(CRU_list$tmx_df)
     }
 
     if (tmp == TRUE) {
-      tmp_stack <- .create_stack(CRU_list$tmp, xy, wrld, months)
+      tmp_stack <- .create_stack(CRU_list$tmp_df)
     }
     # stack all object and return
     CRU_stack <-
