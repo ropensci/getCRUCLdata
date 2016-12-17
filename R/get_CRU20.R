@@ -104,7 +104,8 @@ create_CRU_stack <-
                sunp,
                frs,
                wnd,
-               elv)
+               elv,
+               cache_dir)
 
     if (pre == TRUE) {
       pre_stack <- .create_stack(CRU_list$pre, xy, wrld, months)

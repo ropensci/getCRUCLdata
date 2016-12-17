@@ -142,17 +142,15 @@
                     dplyr::everything(),
                     -c(lat, lon))
   }
-  # calculate tmx ------------------------------------------------------------
+
+  # calculate tmn/tmx
   if (isTRUE(tmx)) {
-    # calculate tmax and tmin from tmp and dtr
-    tmx_df <- tmp_df[, c(3:14)] + (0.5 * dtr_df[, c(3:14)])
-    tmx_df <- dplyr::bind_cols(tmp_df[, 1:2], tmx_df)
+    tmx_df <- .calculate_tmx(tmp_df, dtr_df)
   }
-  # calculate tmn ------------------------------------------------------------
   if (isTRUE(tmn)) {
-    tmn_df <- tmp_df[, c(3:14)] - (0.5 * dtr_df[, c(3:14)])
-    tmn_df <- dplyr::bind_cols(tmp_df[, c(1:2)], tmn_df)
+    tmn_df <- .calculate_tmn(tmp_df, dtr_df)
   }
+
   # create data frame of all variables ---------------------------------------
   CRU_list <-
     list(
