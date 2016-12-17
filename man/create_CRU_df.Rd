@@ -74,7 +74,8 @@ This function generates a data.frame object in R
 }
 \examples{
 # Download data and create a raster stack of precipitation and temperature
-create_CRU_df(pre = TRUE, tmp = TRUE)
-
+\dontrun{
+CRU_pre_tmp <- create_CRU_df(pre = TRUE, tmp = TRUE)
+}
 }
 

@@ -13,6 +13,7 @@ Description: This function automates downloading and importing CRU CL2.0 weather
     <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 License: MIT + file LICENSE
 Imports:
+    curl,
     dplyr,
     httr,
     plyr,

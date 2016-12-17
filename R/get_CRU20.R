@@ -49,7 +49,9 @@
 #' return it in the raster stack? Defaults to FALSE.
 #' @examples
 #' # Download data and create a raster stack of precipitation and temperature
-#' CRU_raster()
+#' \dontrun{
+#' create_CRU_stack()
+#' }
 #'
 #' @export
 create_CRU_stack <-
@@ -166,8 +168,9 @@ create_CRU_stack <-
 #'
 #' @examples
 #' # Download data and create a raster stack of precipitation and temperature
+#' \dontrun{
 #' CRU_pre_tmp <- create_CRU_df(pre = TRUE, tmp = TRUE)
-#'
+#'}
 #' @export
 create_CRU_df <- function(pre = FALSE,
                           pre_cv = FALSE,

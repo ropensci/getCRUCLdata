@@ -73,7 +73,9 @@ This function generates a raster::stack object in R
 }
 \examples{
 # Download data and create a raster stack of precipitation and temperature
-CRU_raster()
+\dontrun{
+create_CRU_stack()
+}
 
 }
 
