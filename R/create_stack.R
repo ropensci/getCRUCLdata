@@ -1,5 +1,15 @@
 #' @noRd
-.create_stack <- function(wvar, xy, wrld, months) {
+.create_stack <- function(wvar, xy) {
+  wrld <-
+    raster::raster(
+      nrows = 900,
+      ncols = 2160,
+      ymn = -60,
+      ymx = 90,
+      xmn = -180,
+      xmx = 180
+    )
+
   month_names <-
     c("jan",
       "feb",
@@ -15,6 +25,7 @@
       "dec")
   x <- wrld
   cells <- raster::cellFromXY(x, wvar[, c(2, 1)])
+
   for (i in 3:14) {
     x[cells] <- wvar[, i]
     if (i == 3) {
