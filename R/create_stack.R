@@ -1,5 +1,5 @@
 #' @noRd
-.create_stack <- function(wvar, xy) {
+.create_stack <- function(wvar) {
   wrld <-
     raster::raster(
       nrows = 900,
