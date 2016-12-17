@@ -182,33 +182,24 @@ create_CRU_df <- function(pre = FALSE,
                           wnd = FALSE,
                           elv = FALSE) {
   if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
-      !isTRUE(dtr) &
-      !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmn) & !isTRUE(tmx) &
-      !isTRUE(sunp) &
-      !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
+      !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
+      !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
     stop("You must select at least one parameter for download.")
   }
 
-  object_list <- c(dtr, tmp, reh, elv, pre, sunp, wnd, frs, rd0)
-
   CRU_list <-
-    .get_CRU(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)
-  # remove NULL values from list, found on SO: -------------------------------
-  # http://stackoverflow.com/questions/36661094
-  .is_NullOb <-
-    function(CRU_list)
-      is.null(CRU_list) | all(sapply(CRU_list, is.null))
-
-  .rmNullObs <- function(CRU_list) {
-    x <- Filter(Negate(.is_NullOb), x)
-    lapply(x, function(CRU_list)
-      if (is.list(CRU_list))
-        .rmNullObs(x)
-      else
-        CRU_list)
-  }
-
-  CRU_list <- .rmNullObs(CRU_list)
+    .get_CRU(pre,
+             pre_cv,
+             rd0,
+             tmp,
+             dtr,
+             reh,
+             tmn,
+             tmx,
+             sunp,
+             frs,
+             wnd,
+             elv)
 
   CRU_df <- plyr::ldply(CRU_list, data.frame)
   return(CRU_df)

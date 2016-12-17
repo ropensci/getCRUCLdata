@@ -56,7 +56,6 @@
     frs_url <- paste0(CRU_url, "grid_10min_frs.dat.gz")
     rd0_url <- paste0(CRU_url, "grid_10min_rd0.dat.gz")
 
-
     object_list <- c(dtr, tmp, reh, elv, pre, sunp, wnd, frs, rd0)
 
     files <-
