@@ -13,7 +13,6 @@
            wnd,
            elv,
            cache_dir) {
-
     CRU_url <- "http://www.cru.uea.ac.uk/cru/data/hrg/tmc/"
     dtr_url <- paste0(CRU_url, "grid_10min_dtr.dat.gz")
     tmp_url <- paste0(CRU_url, "grid_10min_tmp.dat.gz")
