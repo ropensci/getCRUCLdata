@@ -88,8 +88,9 @@ return it in the raster stack? Defaults to FALSE.}
 }
 \description{
 This function automates downloading and importing CRU CL2.0
-climate data into R and calculates TMIN and TMAX for use as a raster::stack
-object
+climate data into R and can calculate TMIN and TMAX. Data are returned as a
+list of raster stack objects with stack layers being the monthly
+data
 
 For more information see the description of the data provided by CRU,
 \url{http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
@@ -137,7 +138,7 @@ This function generates a raster::stack object in R
 \examples{
 # Download data and create a raster stack of precipitation and temperature
 \dontrun{
-create_CRU_stack()
+create_CRU_stack(pre = TRUE, tmn = TRUE, tmx = TRUE)
 }
 
 # Download data and create a raster stack of precipitation and temperature
