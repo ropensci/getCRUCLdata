@@ -46,6 +46,8 @@
 
 #' @noRd
 .read_cache <- function(files, pre_cv) {
+  lat <- NULL
+  lon <- NULL
   month_names <-
     c("jan",
       "feb",
@@ -60,7 +62,7 @@
       "nov",
       "dec")
 
-  x <- read.table(files, header = FALSE, colClasses = "numeric")
+  x <- utils::read.table(files, header = FALSE, colClasses = "numeric")
 
                   if (ncol(x) == 14) {
                     names(x) <- c("lat", "lon", month_names)

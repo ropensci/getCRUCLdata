@@ -7,7 +7,7 @@ Maintainer: Adam Sparks <adamhsparks@gmail.com>
 Description: This function automates downloading and importing CRU CL2.0 weather
     data into R, facilitates the calculation of minimum temperature and
     maximum temperature, converts elevation from kilometres to metres and
-    formats the data into a list of tidy data frames or raster stack object for 
+    formats the data into a tidy data frame or a list raster stack objects for 
     use in an R session. For more information see the description of the data
     provided by the University of East Anglia Climate Research Unit (CRU),
     <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
@@ -19,8 +19,8 @@ Imports:
     plyr,
     purrr,
     raster,
-    readr,
-    tidyr
+    tidyr,
+    utils
 LazyData: TRUE
 RoxygenNote: 5.0.1
 ByteCompile: TRUE
