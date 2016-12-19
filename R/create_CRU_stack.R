@@ -1,5 +1,5 @@
 #' @title Download and Create a List of Raster Stack Objects From CRU CL2.0
-#'Weather Variables
+#'Climate Variables
 #'
 #'
 #'@description This function automates downloading and importing CRU CL2.0
