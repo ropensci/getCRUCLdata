@@ -68,13 +68,10 @@ create_CRU_stack <-
            wnd = FALSE,
            elv = FALSE) {
     cache_dir <- tempdir()
-    xy <- NULL
-    if (!isTRUE(pre) &
-        !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
-        !isTRUE(dtr) &
-        !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmn) & !isTRUE(tmx) &
-        !isTRUE(sunp) &
-        !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
+
+    if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
+        !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
+        !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
       stop("You must select at least one parameter for download.")
     }
 
@@ -88,81 +85,60 @@ create_CRU_stack <-
         xmx = 180
       )
 
+    month_names <-
+      c("jan",
+        "feb",
+        "mar",
+        "apr",
+        "may",
+        "jun",
+        "jul",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec")
+
     # Create raster objects using cellFromXY and generate a raster stack
     # create.stack takes pre, tmp, tmn and tmx and creates a raster
     # object stack of 12 month data
 
-    CRU_list <-
-      .get_CRU(pre,
-               pre_cv,
-               rd0,
-               tmp,
-               dtr,
-               reh,
-               tmn,
-               tmx,
-               sunp,
-               frs,
-               wnd,
-               elv,
-               cache_dir)
+    .get_CRU(pre,
+             pre_cv,
+             rd0,
+             tmp,
+             dtr,
+             reh,
+             tmn,
+             tmx,
+             sunp,
+             frs,
+             wnd,
+             elv,
+             cache_dir)
 
-    if (pre == TRUE) {
-      pre_stack <- .create_stack(CRU_list$pre_df)
-    }
+    files <-
+      list.files(cache_dir, pattern = ".dat.gz$", full.names = TRUE)
 
-    if (tmn == TRUE) {
-      tmn_stack <- .create_stack(CRU_list$tmn_df)
-    }
-
-    if (tmx == TRUE) {
-      tmx_stack <- .create_stack(CRU_list$tmx_df)
-    }
-
-    if (tmp == TRUE) {
-      tmp_stack <- .create_stack(CRU_list$tmp_df)
-    }
-    # stack all object and return
-    CRU_stack <-
-      raster::stack(pre_stack, tmn_stack, tmx_stack, tmp_stack)
-    return(CRU_stack)
+    CRU_stack_list <-
+      plyr::llply(.fun = .create_stack,
+                  files,
+                  wrld,
+                  month_names,
+                  .progress = "text")
+    return(CRU_stack_list)
   }
 
-
-.create_stack <- function(wvar) {
-  wrld <-
-    raster::raster(
-      nrows = 900,
-      ncols = 2160,
-      ymn = -60,
-      ymx = 90,
-      xmn = -180,
-      xmx = 180
-    )
-
-  month_names <-
-    c("jan",
-      "feb",
-      "mar",
-      "apr",
-      "may",
-      "jun",
-      "jul",
-      "aug",
-      "sep",
-      "oct",
-      "nov",
-      "dec")
+.create_stack <- function(i, wrld, month_names){
   x <- wrld
+  y <- NULL
+  wvar <- read.table(i, header = FALSE, colClasses = "numeric")
   cells <- raster::cellFromXY(x, wvar[, c(2, 1)])
-  for (i in 3:14) {
-    x[cells] <- wvar[, i]
-    if (i == 3) {
-      y <- x
-    } else
-      y <- raster::stack(y, x)
+  for (j in 3:14) {
+    x[cells] <- wvar[, j]
+    if (j == 3) {y <- x} else y <- raster::stack(y, x)
   }
   names(y) <- month_names
   return(y)
-  rm(x)
 }
+

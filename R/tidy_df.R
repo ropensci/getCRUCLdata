@@ -18,7 +18,7 @@
       list.files(cache_dir, pattern = ".dat.gz$", full.names = TRUE)
 
     # internal function to read files from cache directory and tidy them -------
-    read_cache <- function(files, pre_cv) {
+    .read_cache <- function(files, pre_cv) {
       month_names <-
         c("jan",
           "feb",
@@ -33,7 +33,7 @@
           "nov",
           "dec")
 
-      x <- readr::read_table(files, col_names = FALSE)
+      x <- read.table(files, header = FALSE, colClasses = "numeric"
 
       if (ncol(x) == 14) {
         names(x) <- c("lat", "lon", month_names)
@@ -53,9 +53,8 @@
                         value = "pre",
                         dplyr::everything(),
                         -c(lat, lon))
-        x_df2 <- x[, c(1:2, 15:26)]
-
         # if pre_cv is set TRUE, include it in final data frame
+        x_df2 <- x[, c(1:2, 15:26)]
         if (isTRUE(pre_cv)) {
           names(x_df2) <- c("lat", "lon", month_names)
           x_df2 <-
@@ -74,7 +73,7 @@
     # create list of tidied data frames ----------------------------------------
     CRU_list <-
       plyr::llply(.data = files,
-                  .fun = read_cache,
+                  .fun = .read_cache,
                   .progress = "text")
 
     # name the items in the list for the data that they contain ----------------
