@@ -5,12 +5,12 @@
 getCRUCL2.0
 ===========
 
-Download, and create a tidy data frame or raster stack object of CRU CL2.0 weather variables
---------------------------------------------------------------------------------------------
+Download and create a tidy data frame or list of raster stacks of CRU CL2.0 climate variables
+---------------------------------------------------------------------------------------------
 
 Author/Maintainer: Adam Sparks
 
-This function automates downloading and importing CRU CL2.0 weather data into R, facilitates the calculation of minimum temperature and maximum temperature, converts elevation from kilometres to metres and formats the data into a list of tidy data frames or raster stack object for use in an R session. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
+This function automates downloading and importing CRU CL2.0 climate data into R, facilitates the calculation of minimum temperature and maximum temperature, converts elevation from kilometres to metres and formats the data into a list of tidy data frames or raster stack object for use in an R session. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
 License: MIT + file LICENSE
 
