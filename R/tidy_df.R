@@ -14,61 +14,9 @@
            frs,
            rd0,
            cache_dir) {
-    files <-
-      list.files(cache_dir, pattern = ".dat.gz$", full.names = TRUE)
+    files <- list.files(cache_dir, pattern = ".dat.gz$", full.names = TRUE)
 
     # internal function to read files from cache directory and tidy them -------
-    .read_cache <- function(files, pre_cv) {
-      month_names <-
-        c("jan",
-          "feb",
-          "mar",
-          "apr",
-          "may",
-          "jun",
-          "jul",
-          "aug",
-          "sep",
-          "oct",
-          "nov",
-          "dec")
-
-      x <- read.table(files, header = FALSE, colClasses = "numeric"
-
-      if (ncol(x) == 14) {
-        names(x) <- c("lat", "lon", month_names)
-        x_df <-
-          x %>%
-          tidyr::gather(key = "month",
-                        value = "wvar",
-                        dplyr::everything(),
-                        -c(lat, lon))
-      } else if (ncol(x) == 26) {
-        # split the data frame into two, else we get errors on C stack usage
-        x_df1 <- x[, c(1:14)]
-        names(x_df1) <- c("lat", "lon", month_names)
-        x_df1 <-
-          x_df1 %>%
-          tidyr::gather(key = "month",
-                        value = "pre",
-                        dplyr::everything(),
-                        -c(lat, lon))
-        # if pre_cv is set TRUE, include it in final data frame
-        x_df2 <- x[, c(1:2, 15:26)]
-        if (isTRUE(pre_cv)) {
-          names(x_df2) <- c("lat", "lon", month_names)
-          x_df2 <-
-            x_df2 %>%
-            tidyr::gather(key = "month",
-                          value = "pre_cv",
-                          dplyr::everything(),
-                          -c(lat, lon))
-          x_df <- dplyr::bind_cols(x_df1, x_df2[, 4])
-        } else {
-          x_df <- x_df1
-        }
-      }
-    }
 
     # create list of tidied data frames ----------------------------------------
     CRU_list <-
@@ -95,3 +43,57 @@
     # cleanup before we go -----------------------------------------------------
     rm(c(CRU_list, files))
   }
+
+#' @noRd
+.read_cache <- function(files, pre_cv) {
+  month_names <-
+    c("jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec")
+
+  x <- read.table(files, header = FALSE, colClasses = "numeric")
+
+                  if (ncol(x) == 14) {
+                    names(x) <- c("lat", "lon", month_names)
+                    x_df <-
+                      x %>%
+                      tidyr::gather(key = "month",
+                                    value = "wvar",
+                                    dplyr::everything(),
+                                    -c(lat, lon))
+                  } else
+                    if (ncol(x) == 26) {
+                      # split the data frame in 2, else errors on C stack usage
+                      x_df1 <- x[, c(1:14)]
+                      names(x_df1) <- c("lat", "lon", month_names)
+                      x_df1 <-
+                        x_df1 %>%
+                        tidyr::gather(key = "month",
+                                      value = "pre",
+                                      dplyr::everything(),
+                                      -c(lat, lon))
+                      # if pre_cv is set TRUE, include it in final data frame
+                      x_df2 <- x[, c(1:2, 15:26)]
+                      if (isTRUE(pre_cv)) {
+                        names(x_df2) <- c("lat", "lon", month_names)
+                        x_df2 <-
+                          x_df2 %>%
+                          tidyr::gather(key = "month",
+                                        value = "pre_cv",
+                                        dplyr::everything(),
+                                        -c(lat, lon))
+                        x_df <- dplyr::bind_cols(x_df1, x_df2[, 4])
+                      } else {
+                        x_df <- x_df1
+                      }
+                    }
+}

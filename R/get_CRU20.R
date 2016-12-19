@@ -68,7 +68,6 @@ create_CRU_stack <-
            wnd = FALSE,
            elv = FALSE) {
     cache_dir <- tempdir()
-    xy <- NULL
     if (!isTRUE(pre) &
         !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
         !isTRUE(dtr) &
