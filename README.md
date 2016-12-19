@@ -5,12 +5,12 @@
 getCRUCL2.0
 ===========
 
-Download and create a tidy data frame or list of raster stacks of CRU CL2.0 climate variables
----------------------------------------------------------------------------------------------
+Download and create a tidy data frame or list of raster stacks of CRU CL2.0 climatology variables
+-------------------------------------------------------------------------------------------------
 
 Author/Maintainer: Adam Sparks
 
-The getCRUCL2.0 package provides functions that automate downloading and importing CRU CL2.0 climate data into R, facilitates the calculation of minimum temperature and maximum temperature, converts elevation from kilometres to metres and formats the data into a tidy data frame or a list of raster stack objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc-second resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
+The getCRUCL2.0 package provides functions that automate downloading and importing CRU CL2.0 climatology data into R, facilitates the calculation of minimum temperature and maximum temperature, converts elevation from kilometres to metres and formats the data into a tidy data frame or a list of raster stack objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc-second resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
 License: MIT + file LICENSE
 

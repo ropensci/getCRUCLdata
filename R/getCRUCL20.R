@@ -1,6 +1,6 @@
-#' getCRUCL2.0: Download and Create a Data Frame or Raster Stack Object of CRU CL2.0 Climate Variables
+#' getCRUCL2.0: Download and Create a Data Frame or Raster Stack Object of CRU CL2.0 Climatology Variables
 #' The getCRUCL2.0 package provides functions that automate downloading and
-#' importing CRU CL2.0 climate data into R, facilitates the calculation of
+#' importing CRU CL2.0 climatology data into R, facilitates the calculation of
 #' minimum temperature and maximum temperature, converts elevation from
 #' kilometres to metres and formats the data into a tidy data frame or a list
 #' of raster stack objects for use in an R session. CRU CL2.0 data are a

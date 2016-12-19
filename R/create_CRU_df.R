@@ -1,7 +1,7 @@
-#' @title Download and Create a Tidy Data Frame of CRU CL2.0 Climate Variables
+#' @title Download and Create a Tidy Data Frame of CRU CL2.0 Climatology Variables
 #'
 #'@description This function automates downloading and importing CRU CL2.0
-#'climate data into R and creates a tidy data frame of the data. If requested,
+#'climatology data into R and creates a tidy data frame of the data. If requested,
 #'minimum and maximum temperature may also be automatically calculated as
 #'described in the data readme.txt file.
 #'

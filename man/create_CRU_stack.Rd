@@ -3,7 +3,7 @@
 \name{create_CRU_stack}
 \alias{create_CRU_stack}
 \title{Download and Create a List of Raster Stack Objects From CRU CL2.0
-Climate Variables}
+Climatology Variables}
 \usage{
 create_CRU_stack(pre = FALSE, pre_cv = FALSE, rd0 = FALSE, tmp = FALSE,
   dtr = FALSE, reh = FALSE, tmn = FALSE, tmx = FALSE, sunp = FALSE,
@@ -48,7 +48,7 @@ return it in a raster stack? Defaults to FALSE.}
 }
 \description{
 This function automates downloading and importing CRU CL2.0
-climate data into R and creates a list of raster stacks of the data. If
+climatology data into R and creates a list of raster stacks of the data. If
 requested, minimum and maximum temperature may also be automatically
 calculated as described in the data readme.txt file.
 
