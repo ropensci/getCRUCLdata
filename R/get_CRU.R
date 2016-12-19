@@ -71,7 +71,6 @@
           return()
       }
     }
-
     purrr::walk(files, function(f) {
       purrr::walk(files, retry_cfd)
     })
