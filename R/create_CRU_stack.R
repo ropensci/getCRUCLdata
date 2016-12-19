@@ -56,6 +56,9 @@
 #' \dontrun{
 #' CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE)
 #'}
+#' @seealso
+#' \code{\link{create_CRU_df}}
+#'
 #' @export
 create_CRU_stack <-
   function(pre = FALSE,

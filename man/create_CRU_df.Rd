@@ -78,5 +78,9 @@ possible fields as specified by the user:
 \dontrun{
 CRU_pre_tmp <- create_CRU_df(pre = TRUE, tmp = TRUE)
 }
+
+}
+\seealso{
+\code{\link{create_CRU_stack}}
 }
 
