@@ -55,7 +55,7 @@
 #' @examples
 #' # Download data and create a raster stack of precipitation and temperature
 #' \dontrun{
-#' CRU_pre_tmp <- create_CRU_df(pre = TRUE, tmp = TRUE)
+#' CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE)
 #'}
 #' @export
 create_CRU_stack <-
@@ -129,6 +129,7 @@ create_CRU_stack <-
                   files,
                   wrld,
                   month_names,
+                  pre_cv,
                   .progress = "text")
     return(CRU_stack_list)
   }
@@ -143,14 +144,14 @@ create_CRU_stack <-
       } else
         y <- raster::stack(y, wrld)
   }
-  if (ncol(wvar == 26 & pre_cv == TRUE))
-    for (j in 15:26) {
-      wrld[cells] <- wvar[, j]
-      if (j == 3) {
+  if (ncol(wvar == 26) & pre_cv == TRUE)
+    for (k in 15:26) {
+      wrld[cells] <- wvar[, k]
+      if (k == 15) {
         y <- wrld
         } else
           y <- raster::stack(y, wrld)
     }
-  names(y) <- month_names
+  #names(y) <- month_names
   return(y)
 }

@@ -77,7 +77,7 @@ possible fields as specified by the user:
 \examples{
 # Download data and create a raster stack of precipitation and temperature
 \dontrun{
-CRU_pre_tmp <- create_CRU_df(pre = TRUE, tmp = TRUE)
+CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE)
 }
 }
 

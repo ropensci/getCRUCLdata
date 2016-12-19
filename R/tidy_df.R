@@ -22,6 +22,7 @@
     CRU_list <-
       plyr::llply(.data = files,
                   .fun = .read_cache,
+                  pre_cv,
                   .progress = "text")
 
     # name the items in the list for the data that they contain ----------------
