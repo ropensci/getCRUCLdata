@@ -35,10 +35,10 @@
 #' and return it in the data frame? Defaults to FALSE.
 #' @param tmp Logical. Fetch temperature (degrees Celsius) and return it in the
 #' data frame? Defaults to FALSE.
-#' @param tmn Logical. Create minimum temperature values (degrees Celsius) and
-#' return it in the data frame? Defaults to FALSE.
-#' @param tmx Logical. Create maxium temperature (degrees Celsius) and return it
-#' in the data frame? Defaults to FALSE.
+#' @param tmn Logical. Calculate minimum temperature values (degrees Celsius)
+#' and return it in the data frame? Defaults to FALSE.
+#' @param tmx Logical. Calculate maxium temperature (degrees Celsius) and return
+#' it in the data frame? Defaults to FALSE.
 #' @param reh Logical. Fetch relative humidity and return it in the data frame?
 #' Defaults to FALSE.
 #' @param sunp Logical. Fetch sunshine, percent of maximum possible (percent of
