@@ -152,6 +152,6 @@ create_CRU_stack <-
         } else
           y <- raster::stack(y, wrld)
     }
-  #names(y) <- month_names
+  names(y) <- month_names
   return(y)
 }
