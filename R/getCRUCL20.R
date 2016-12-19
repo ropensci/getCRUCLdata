@@ -9,7 +9,7 @@
 #' land areas (excluding Antarctica) at 10 arc-second resolution. For more
 #' information see the description of the data provided by the University of
 #' East Anglia Climate Research Unit (CRU),
-#' <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
+#' \url{http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt}.
 #'
 #' @docType package
 #'
