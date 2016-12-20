@@ -1,0 +1,9 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "{GETCRUCL2.0}: Download and Use CRU CL2.0 Climatology Variables in R,
+         author = c(person("Adam", "Sparks")
+         year = year,
+         note = note,
+         url = "https://github.com/adamhsparks/getCRUCL2.0")

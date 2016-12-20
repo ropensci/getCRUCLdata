@@ -43,8 +43,8 @@ frost per month) and return it in raster stack? Defaults to FALSE.}
 \item{wnd}{Logical. Fetch 10m windspeed (metres/second) and return it in the
 raster stack? Defaults to FALSE.}
 
-\item{elv}{Logical. Fetch elevation (converted to metres from kilometres) and
-return it in a raster stack? Defaults to FALSE.}
+\item{elv}{Logical. Fetch elevation (kilometres) and return it in a raster
+stack? Defaults to FALSE.}
 }
 \description{
 This function automates downloading and importing CRU CL2.0

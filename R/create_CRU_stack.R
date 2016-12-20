@@ -48,8 +48,8 @@
 #' frost per month) and return it in raster stack? Defaults to FALSE.
 #' @param wnd Logical. Fetch 10m windspeed (metres/second) and return it in the
 #' raster stack? Defaults to FALSE.
-#' @param elv Logical. Fetch elevation (converted to metres from kilometres) and
-#' return it in a raster stack? Defaults to FALSE.
+#' @param elv Logical. Fetch elevation (kilometres) and return it in a raster
+#' stack? Defaults to FALSE.
 #'
 #' @examples
 #' # Download data and create a raster stack of precipitation and temperature
