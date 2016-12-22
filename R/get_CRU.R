@@ -24,6 +24,16 @@
     frs_url <- paste0(CRU_url, "grid_10min_frs.dat.gz")
     rd0_url <- paste0(CRU_url, "grid_10min_rd0.dat.gz")
 
+    # check if pre_cv or tmx/tmn (derived) are true, make sure proper ----------
+    # parameters set TRUE
+    if (is.TRUE(pre_cv)) {
+      pre <- TRUE
+    }
+
+    if (is.TRUE(tmn) | is.TRUE(tmx)) {
+      dtr <- tmp <- TRUE
+    }
+    # create object list to filter downloads -----------------------------------
     object_list <- c(dtr, tmp, reh, elv, pre, sunp, wnd, frs, rd0)
 
     files <-
@@ -50,8 +60,11 @@
         "rd0_url"
       )
 
+    # filter downloads ---------------------------------------------------------
+
     files <- as.list(files[object_list %in% !isTRUE(files)])
 
+    # Download files -----------------------------------------------------------
     # adapted from my question on SO,
     # http://stackoverflow.com/questions/40715370/
     message(" \nDownloading requested data files.\n ")
