@@ -17,7 +17,6 @@ License: MIT + file LICENSE
 Imports:
     curl,
     dplyr,
-    httr,
     plyr,
     purrr,
     raster,

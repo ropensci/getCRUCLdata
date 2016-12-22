@@ -32,15 +32,7 @@ East Anglia Climate Research Unit (CRU),
     
 License: MIT + file LICENSE
 
-Imports:
-    curl,
-    dplyr,
-    httr,
-    plyr,
-    purrr,
-    raster,
-    tidyr,
-    utils
+Imports: curl, dplyr, plyr, purrr, raster, tidyr, utils
 
 ### Notes    
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
