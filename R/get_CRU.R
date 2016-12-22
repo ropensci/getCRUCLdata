@@ -26,11 +26,11 @@
 
     # check if pre_cv or tmx/tmn (derived) are true, make sure proper ----------
     # parameters set TRUE
-    if (is.TRUE(pre_cv)) {
+    if (isTRUE(pre_cv)) {
       pre <- TRUE
     }
 
-    if (is.TRUE(tmn) | is.TRUE(tmx)) {
+    if (isTRUE(tmn) | isTRUE(tmx)) {
       dtr <- tmp <- TRUE
     }
     # create object list to filter downloads -----------------------------------
