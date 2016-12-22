@@ -1,0 +1,136 @@
+---
+title: "getCRUCL2.0"
+author: "Adam H. Sparks"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction to getCRUCL2.0
+
+The getCRUCL2.0 package provides two functions that automate downloading and
+importing CRU CL2.0 climatology data into R, facilitate the calculation of
+minimum temperature and maximum temperature, and formats the data into a tidy
+data frame or a list of raster stack objects for use in an R session. CRU CL2.0
+data are a gridded climatology of 1961-1990 monthly means released in 2002 and
+cover all land areas (excluding Antarctica) at 10 arc-second resolution. For
+more information see the description of the data provided by the University of
+East Anglia Climate Research Unit (CRU),
+<http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
+
+# Using getCRUCL2.0
+Both functions, `create_CRU_df` and `create_CRU_stack` take the same arguments
+but return different types of objects in the R session. Logical arguments are
+used to specify the data to retrieve and parse. The arguments for selecting the
+climatology elements for download are:  
+
+* **pre** Logical. Fetch precipitation (milimetres/month) from server and
+return in the data frame? Defaults to FALSE.  
+* **pre_cv** Logical. Fetch cv of precipitation (percent) from server and
+return in the data frame? Defaults to FALSE.  
+* **rd0** Logical. Fetch wet-days (number days with >0.1milimetres rain per
+month) and return in the data frame? Defaults to FALSE.  
+* **dtr** Logical. Fetch mean diurnal temperature range (degrees Celsius)
+and return it in the data frame? Defaults to FALSE.  
+* **tmp** Logical. Fetch temperature (degrees Celsius) and return it in the
+data frame? Defaults to FALSE.  
+* **tmn** Logical. Calculate minimum temperature values (degrees Celsius)
+and return it in the data frame? Defaults to FALSE.  
+* **tmx** Logical. Calculate maxium temperature (degrees Celsius) and return
+it in the data frame? Defaults to FALSE.  
+* **reh** Logical. Fetch relative humidity and return it in the data frame?
+Defaults to FALSE.  
+* **sunp** Logical. Fetch sunshine, percent of maximum possible (percent of
+daylength) and return it in data frame? Defaults to FALSE.  
+* **frs** Logical. Fetch ground-frost records (number of days with ground-
+frost per month) and return it in data frame? Defaults to FALSE.  
+* **wnd** Logical. Fetch 10m windspeed (metres/second) and return it in the
+data frame? Defaults to FALSE.  
+* **elv** Logical. Fetch elevation (kilometres) and return it in the data
+frame? Defaults to FALSE.  
+
+## Generating tidy data frames for use in R
+Create a tidy data frame of all CRU CL2.0 climatology elements available.
+
+```{r, eval=FALSE}
+create_CRU_df(pre = TRUE,
+              pre_cv = TRUE,
+              rd0 = TRUE,
+              tmp = TRUE,
+              dtr = TRUE,
+              reh = TRUE,
+              tmn = TRUE,
+              tmx = TRUE,
+              sunp = TRUE,
+              frs = TRUE,
+              wnd = TRUE,
+              elv = TRUE)
+```
+
+Create a tidy data frame of mean temperature and relative humidity.
+```{r, eval=FALSE}
+create_CRU_df(tmp = TRUE,
+              reh = TRUE)
+```
+
+## Generating raster stacks for use in R
+The `create_CRU_stack` function provides functionality for producing a list of
+[raster](https://CRAN.R-project.org/package=raster) stack objects for use in an
+R session.
+
+Create a list of raster stacks of all CRU CL2.0 climatology elements available.
+
+```{r, eval = FALSE}
+create_CRU_stack(pre = TRUE,
+                 pre_cv = TRUE,
+                 rd0 = TRUE,
+                 tmp = TRUE,
+                 dtr = TRUE,
+                 reh = TRUE,
+                 tmn = TRUE,
+                 tmx = TRUE,
+                 sunp = TRUE,
+                 frs = TRUE,
+                 wnd = TRUE,
+                 elv = TRUE)
+```
+
+Create a list of raster stacks of maximum and minimum temperature.
+```{r, eval=FALSE}
+create_CRU_stack(tmn = TRUE,
+                 tmx = TRUE)
+```
+
+# Reference and abstract
+
+> Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)  
+A high-resolution data set of surface climate over global land areas
+Climate Research, 2000, Vol 21, pg 1-25  
+(1) School of Geography and the Environment, University of Oxford, 
+    Mansfield Road, Oxford OX1 3TB, United Kingdom  
+(2) Climatic Research Unit, and (3) Tyndall Centre for Climate Change Research,
+    both at School of Environmental Sciences, University of East Anglia,
+    Norwich NR4 7TJ, United Kingdom  
+(4) International Water Management Institute, PO Box 2075, Colombo, Sri Lanka
+
+> **ABSTRACT:** We describe the construction of a 10-minute latitude/longitude data
+set of mean monthly surface climate over global land areas, excluding Antarctica.
+The climatology includes 8 climate elements - precipitation, wet-day frequency,
+temperature, diurnal temperature range, relative humidity,sunshine duration,
+ground frost frequency and windspeed - and was interpolated from a data set
+of station means for the period centred on 1961 to 1990. Precipitation was first
+defined in terms of the parameters of the Gamma distribution, enabling the 
+calculation of monthly precipitation at any given return period. The data are
+compared to an earlier data set at 0.5 degrees latitude/longitude resolution and
+show added value over most regions. The data will have many applications in
+applied climatology, biogeochemical modelling, hydrology and agricultural
+meteorology and are available through the School of Geography Oxford 
+(http://www.geog.ox.ac.uk), the International Water Management Institute
+"World Water and Climate Atlas" (http://www.iwmi.org) and the Climatic
+Research Unit (http://www.cru.uea.ac.uk).
+
+
+

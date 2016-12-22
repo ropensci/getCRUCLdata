@@ -25,6 +25,9 @@ Imports:
 LazyData: TRUE
 RoxygenNote: 5.0.1
 ByteCompile: TRUE
-Suggests: testthat
+Suggests: testthat,
+    knitr,
+    rmarkdown
 URL: https://github.com/adamhsparks/getCRUCL2.0
 BugReports: https://github.com/adamhsparks/getCRUCL2.0/issues
+VignetteBuilder: knitr
