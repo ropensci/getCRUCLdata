@@ -5,3 +5,5 @@
 ^CONDUCT\.md$
 ^\.travis\.yml$
 ^appveyor\.yml$
+^revdep$
+^cran-comments\.md$

@@ -38,15 +38,15 @@
 #' raster stack? Defaults to FALSE.
 #' @param tmn Logical. Calculate minimum temperature values (degrees Celsius)
 #' and return it in a raster stack? Defaults to FALSE.
-#' @param tmx Logical. Calculate maxium temperature (degrees Celsius) and return
+#' @param tmx Logical. Calculate maximum temperature (degrees Celsius) and return
 #' it in a raster stack? Defaults to FALSE.
 #' @param reh Logical. Fetch relative humidity and return it in a raster stack?
 #' Defaults to FALSE.
 #' @param sunp Logical. Fetch sunshine, percent of maximum possible (percent of
-#' daylength) and return it in raster stack? Defaults to FALSE.
+#' day length) and return it in raster stack? Defaults to FALSE.
 #' @param frs Logical. Fetch ground-frost records (number of days with ground-
 #' frost per month) and return it in raster stack? Defaults to FALSE.
-#' @param wnd Logical. Fetch 10m windspeed (metres/second) and return it in the
+#' @param wnd Logical. Fetch 10m wind speed (metres/second) and return it in the
 #' raster stack? Defaults to FALSE.
 #' @param elv Logical. Fetch elevation (kilometres) and return it in a raster
 #' stack? Defaults to FALSE.
@@ -133,6 +133,7 @@ create_CRU_stack <-
                   month_names,
                   pre_cv,
                   .progress = "text")
+    names(CRU_stack_list) <- substr(files, 73, 75)
     return(CRU_stack_list)
   }
 

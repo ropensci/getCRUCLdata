@@ -31,16 +31,16 @@ Defaults to FALSE.}
 \item{tmn}{Logical. Calculate minimum temperature values (degrees Celsius)
 and return it in a raster stack? Defaults to FALSE.}
 
-\item{tmx}{Logical. Calculate maxium temperature (degrees Celsius) and return
+\item{tmx}{Logical. Calculate maximum temperature (degrees Celsius) and return
 it in a raster stack? Defaults to FALSE.}
 
 \item{sunp}{Logical. Fetch sunshine, percent of maximum possible (percent of
-daylength) and return it in raster stack? Defaults to FALSE.}
+day length) and return it in raster stack? Defaults to FALSE.}
 
 \item{frs}{Logical. Fetch ground-frost records (number of days with ground-
 frost per month) and return it in raster stack? Defaults to FALSE.}
 
-\item{wnd}{Logical. Fetch 10m windspeed (metres/second) and return it in the
+\item{wnd}{Logical. Fetch 10m wind speed (metres/second) and return it in the
 raster stack? Defaults to FALSE.}
 
 \item{elv}{Logical. Fetch elevation (kilometres) and return it in a raster

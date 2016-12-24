@@ -28,7 +28,8 @@
 #' @param pre Logical. Fetch precipitation (milimetres/month) from server and
 #'  return in the data frame? Defaults to FALSE.
 #' @param pre_cv Logical. Fetch cv of precipitation (percent) from server and
-#' return in the data frame? Defaults to FALSE.
+#' return in the data frame? Defaults to FALSE. NOTE. Setting this to TRUE
+#' will always results in \strong{pre} being set to TRUE and returned as well.
 #' @param rd0 Logical. Fetch wet-days (number days with >0.1milimetres rain per
 #' month) and return in the data frame? Defaults to FALSE.
 #' @param dtr Logical. Fetch mean diurnal temperature range (degrees Celsius)
@@ -37,15 +38,15 @@
 #' data frame? Defaults to FALSE.
 #' @param tmn Logical. Calculate minimum temperature values (degrees Celsius)
 #' and return it in the data frame? Defaults to FALSE.
-#' @param tmx Logical. Calculate maxium temperature (degrees Celsius) and return
+#' @param tmx Logical. Calculate maximum temperature (degrees Celsius) and return
 #' it in the data frame? Defaults to FALSE.
 #' @param reh Logical. Fetch relative humidity and return it in the data frame?
 #' Defaults to FALSE.
 #' @param sunp Logical. Fetch sunshine, percent of maximum possible (percent of
-#' daylength) and return it in data frame? Defaults to FALSE.
+#' day length) and return it in data frame? Defaults to FALSE.
 #' @param frs Logical. Fetch ground-frost records (number of days with ground-
 #' frost per month) and return it in data frame? Defaults to FALSE.
-#' @param wnd Logical. Fetch 10m windspeed (metres/second) and return it in the
+#' @param wnd Logical. Fetch 10m wind speed (metres/second) and return it in the
 #' data frame? Defaults to FALSE.
 #' @param elv Logical. Fetch elevation (kilometres) and return it in the data
 #' frame? Defaults to FALSE.
@@ -95,19 +96,29 @@ create_CRU_df <- function(pre = FALSE,
            cache_dir)
 
   CRU_df <-
-    .tidy_df(pre,
-             pre_cv,
-             rd0,
-             tmp,
-             dtr,
-             reh,
-             tmn,
-             tmx,
-             sunp,
-             frs,
-             wnd,
-             elv,
-             cache_dir)
+    .tidy_df(pre_cv, tmn, tmx, cache_dir)
 
+  if (isTRUE(tmx)) {
+    tmx_df <- .calculate_tmx(CRU_df[, "tmp"], CRU_df[, "dtr"])
+    CRU_df <- data.frame(CRU_df, tmx_df)
+    names(CRU_df)[names(CRU_df) == "tmx_df"] <- "tmx"
+  }
+
+  if (isTRUE(tmn)) {
+    tmn_df <- .calculate_tmn(CRU_df[, "tmp"], CRU_df[, "dtr"])
+    CRU_df <- data.frame(CRU_df, tmn_df)
+    names(CRU_df)[names(CRU_df) == "tmn_df"] <- "tmn"
+  }
+
+  # Remove tmp/dtr if they aren't specified (necessary for tmn/tmx)
+  if (isTRUE(tmx) | isTRUE(tmn)) {
+    if (!isTRUE(tmp)) {
+      CRU_df <- subset(CRU_df, select = -tmp)
+    }
+
+    if (!isTRUE(dtr)) {
+      CRU_df <- subset(CRU_df, select = -dtr)
+    }
+  }
   return(CRU_df)
 }

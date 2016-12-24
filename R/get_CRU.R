@@ -48,8 +48,7 @@
         rd0_url)
     names(files) <-
       names(object_list) <-
-      c(
-        "dtr_url",
+      c("dtr_url",
         "tmp_url",
         "reh_url",
         "elv_url",

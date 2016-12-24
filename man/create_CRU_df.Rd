@@ -13,7 +13,8 @@ create_CRU_df(pre = FALSE, pre_cv = FALSE, rd0 = FALSE, tmp = FALSE,
 return in the data frame? Defaults to FALSE.}
 
 \item{pre_cv}{Logical. Fetch cv of precipitation (percent) from server and
-return in the data frame? Defaults to FALSE.}
+return in the data frame? Defaults to FALSE. NOTE. Setting this to TRUE
+will always results in \strong{pre} being set to TRUE and returned as well.}
 
 \item{rd0}{Logical. Fetch wet-days (number days with >0.1milimetres rain per
 month) and return in the data frame? Defaults to FALSE.}
@@ -30,16 +31,16 @@ Defaults to FALSE.}
 \item{tmn}{Logical. Calculate minimum temperature values (degrees Celsius)
 and return it in the data frame? Defaults to FALSE.}
 
-\item{tmx}{Logical. Calculate maxium temperature (degrees Celsius) and return
+\item{tmx}{Logical. Calculate maximum temperature (degrees Celsius) and return
 it in the data frame? Defaults to FALSE.}
 
 \item{sunp}{Logical. Fetch sunshine, percent of maximum possible (percent of
-daylength) and return it in data frame? Defaults to FALSE.}
+day length) and return it in data frame? Defaults to FALSE.}
 
 \item{frs}{Logical. Fetch ground-frost records (number of days with ground-
 frost per month) and return it in data frame? Defaults to FALSE.}
 
-\item{wnd}{Logical. Fetch 10m windspeed (metres/second) and return it in the
+\item{wnd}{Logical. Fetch 10m wind speed (metres/second) and return it in the
 data frame? Defaults to FALSE.}
 
 \item{elv}{Logical. Fetch elevation (kilometres) and return it in the data
