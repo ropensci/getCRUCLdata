@@ -134,6 +134,26 @@ create_CRU_stack <-
                   pre_cv,
                   .progress = "text")
     names(CRU_stack_list) <- substr(files, 73, 75)
+
+    # cacluate tmn -------------------------------------------------------------
+    if (isTRUE(tmn)) {
+      CRU_stack_list$tmn <- CRU_stack_list$tmp - (0.5 * CRU_stack_list$dtr)
+    }
+    # cacluate tmx -------------------------------------------------------------
+    if (isTRUE(tmx)) {
+      CRU_stack_list$tmx <- CRU_stack_list$tmp + (0.5 * CRU_stack_list$dtr)
+    }
+
+    # cleanup if tmn/tmx specified but tmp/dtr not -----------------------------
+    if (!isTRUE(tmp) | !isTRUE(dtr) & isTRUE(tmx) | isTRUE(tmn)) {
+      CRU_stack_list[which(names(CRU_stack_list) %in% c("tmp", "dtr"))] <- NULL
+    }
+    if (!isTRUE(dtr) & isTRUE(tmx) | isTRUE(tmn)) {
+      CRU_stack_list[which(names(CRU_stack_list) %in% c("dtr"))] <- NULL
+    }
+    if (!isTRUE(tmp) & isTRUE(tmx) | isTRUE(tmn)) {
+      CRU_stack_list[which(names(CRU_stack_list) %in% c("tmp"))] <- NULL
+    }
     return(CRU_stack_list)
   }
 
