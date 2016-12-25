@@ -43,12 +43,12 @@ test_that("create_CRU_stack creates a list of raster stacks of pre and tmp", {
       "dec"
     )
   )
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 test_that("create_CRU_stack creates stacks of tmn and tmx", {
   stacks <- create_CRU_stack(tmn = TRUE, tmx = TRUE)
   expect_true(is.list(stacks))
   expect_named(stacks, c("tmn", "tmx"))
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))s
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))s
 })

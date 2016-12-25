@@ -14,7 +14,7 @@ test_that("create_CRU_df creates a tidy data frame of precipitation", {
   expect_is(pre_df$lon, "numeric")
   expect_is(pre_df$month, "character")
   expect_is(pre_df$pre, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 test_that("create_CRU_df creates a tidy data frame of precipitation cv", {
@@ -26,7 +26,7 @@ test_that("create_CRU_df creates a tidy data frame of precipitation cv", {
   expect_is(pre_cv_df$lon, "numeric")
   expect_is(pre_cv_df$month, "character")
   expect_is(pre_cv_df$pre, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 test_that("create_CRU_df creates a tidy data frame of wet days", {
@@ -38,7 +38,7 @@ test_that("create_CRU_df creates a tidy data frame of wet days", {
   expect_is(rd0_df$lon, "numeric")
   expect_is(rd0_df$month, "character")
   expect_is(rd0_df$rd0, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 test_that("create_CRU_df creates a tidy data frame of diurnal temp days", {
@@ -50,7 +50,7 @@ test_that("create_CRU_df creates a tidy data frame of diurnal temp days", {
   expect_is(dtr_df$lon, "numeric")
   expect_is(dtr_df$month, "character")
   expect_is(dtr_df$dtr, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 
@@ -63,7 +63,7 @@ test_that("create_CRU_df creates a tidy data frame of temperature", {
   expect_is(tmp_df$lon, "numeric")
   expect_is(tmp_df$month, "character")
   expect_is(tmp_df$tmp, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 
@@ -76,7 +76,7 @@ test_that("create_CRU_df creates a tidy data frame of min temperature", {
   expect_is(tmn_df$lon, "numeric")
   expect_is(tmn_df$month, "character")
   expect_is(tmn_df$tmn, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 test_that("create_CRU_df creates a tidy data frame of max temperature", {
@@ -88,7 +88,7 @@ test_that("create_CRU_df creates a tidy data frame of max temperature", {
   expect_is(tmx_df$lon, "numeric")
   expect_is(tmx_df$month, "character")
   expect_is(tmx_df$tmx, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 
@@ -101,7 +101,7 @@ test_that("create_CRU_df creates a tidy data frame of RH", {
   expect_is(reh_df$lon, "numeric")
   expect_is(reh_df$month, "character")
   expect_is(reh_df$reh, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 test_that("create_CRU_df creates a tidy data frame of sunp", {
@@ -113,7 +113,7 @@ test_that("create_CRU_df creates a tidy data frame of sunp", {
   expect_is(sunp_df$lon, "numeric")
   expect_is(sunp_df$month, "character")
   expect_is(sunp_df$sun, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 
@@ -126,7 +126,7 @@ test_that("create_CRU_df creates a tidy data frame of ground frost days", {
   expect_is(frs_df$lon, "numeric")
   expect_is(frs_df$month, "character")
   expect_is(frs_df$frs, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 
@@ -139,7 +139,7 @@ test_that("create_CRU_df creates a tidy data frame of wind", {
   expect_is(wnd_df$lon, "numeric")
   expect_is(wnd_df$month, "character")
   expect_is(wnd_df$wnd, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
 
 
@@ -151,5 +151,5 @@ test_that("create_CRU_df creates a tidy data frame of elevation", {
   expect_is(elv_df$lat, "numeric")
   expect_is(elv_df$lon, "numeric")
   expect_is(elv_df$elv, "numeric")
-  unlink(list.files(path=tempdir(), pattern="^dat.gz.", full.names=TRUE))
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz", full.names = TRUE))
 })
