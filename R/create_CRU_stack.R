@@ -149,10 +149,10 @@ create_CRU_stack <-
       CRU_stack_list[which(names(CRU_stack_list) %in% c("tmp", "dtr"))] <- NULL
     }
     if (!isTRUE(dtr) & isTRUE(tmx) | isTRUE(tmn)) {
-      CRU_stack_list[which(names(CRU_stack_list) %in% c("dtr"))] <- NULL
+      CRU_stack_list[which(names(CRU_stack_list) %in% "dtr")] <- NULL
     }
     if (!isTRUE(tmp) & isTRUE(tmx) | isTRUE(tmn)) {
-      CRU_stack_list[which(names(CRU_stack_list) %in% c("tmp"))] <- NULL
+      CRU_stack_list[which(names(CRU_stack_list) %in% "tmp")] <- NULL
     }
     return(CRU_stack_list)
   }
