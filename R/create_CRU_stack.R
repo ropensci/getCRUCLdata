@@ -48,8 +48,8 @@
 #' frost per month) and return it in raster stack? Defaults to FALSE.
 #' @param wnd Logical. Fetch 10m wind speed (metres/second) and return it in the
 #' raster stack? Defaults to FALSE.
-#' @param elv Logical. Fetch elevation (kilometres) and return it in a raster
-#' stack? Defaults to FALSE.
+#' @param elv Logical. Fetch elevation (converted to metres) and return it in a
+#' raster layer object? Defaults to FALSE.
 #'
 #' @examples
 #' # Download data and create a raster stack of precipitation and temperature
@@ -157,23 +157,27 @@ create_CRU_stack <-
     return(CRU_stack_list)
   }
 
-.create_stack <- function(i, wrld, month_names, pre_cv){
-  wvar <- utils::read.table(i, header = FALSE, colClasses = "numeric")
+.create_stack <- function(files, wrld, month_names, pre_cv){
+  wvar <- utils::read.table(files, header = FALSE, colClasses = "numeric")
   cells <- raster::cellFromXY(wrld, wvar[, c(2, 1)])
-  for (j in 3:14) {
-    wrld[cells] <- wvar[, j]
-    if (j == 3) {
-      y <- wrld
+  if (ncol(wvar == 14)) {
+    for (j in 3:14) {
+      wrld[cells] <- wvar[, j]
+      if (j == 3) {
+        y <- wrld
       } else
         y <- raster::stack(y, wrld)
-  }
-  if (ncol(wvar == 26) & pre_cv == TRUE)
+    }
+  } else if (ncol(wvar == 26) & pre_cv == TRUE)
     for (k in 15:26) {
       wrld[cells] <- wvar[, k]
       if (k == 15) {
         y <- wrld
-        } else
-          y <- raster::stack(y, wrld)
+      } else
+        y <- raster::stack(y, wrld)
+    } else if (ncol(wvar == 3)) {
+      wrld[cells] <- wvar[, 3] * 1000
+      y <- wrld
     }
   names(y) <- month_names
   return(y)
