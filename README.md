@@ -14,14 +14,7 @@ The getCRUCL2.0 package provides two functions that automate downloading and imp
 
 License: MIT + file LICENSE
 
-Imports: curl,
-dplyr,
-httr,
-plyr,
-purrr,
-raster,
-tidyr,
-utils
+Imports: curl, dplyr, plyr, purrr, raster, tidyr, utils
 
 ### Notes
 
