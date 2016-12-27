@@ -94,7 +94,7 @@
   }
   else if (ncol(x) == 3) {
     names(x) <- c("lat", "lon", "elv")
-    x_df <- x
+    x_df <- x * 1000
   }
   return(x_df)
 }

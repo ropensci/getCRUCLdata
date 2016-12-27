@@ -43,8 +43,8 @@ frost per month) and return it in data frame? Defaults to FALSE.}
 \item{wnd}{Logical. Fetch 10m wind speed (metres/second) and return it in the
 data frame? Defaults to FALSE.}
 
-\item{elv}{Logical. Fetch elevation (kilometres) and return it in the data
-frame? Defaults to FALSE.}
+\item{elv}{Logical. Fetch elevation (converted to metres) and return it in
+the data frame? Defaults to FALSE.}
 }
 \description{
 This function automates downloading and importing CRU CL2.0
