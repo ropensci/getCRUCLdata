@@ -1,6 +1,9 @@
 context("create_CRU_stack")
 
 test_that("create_CRU_stack fails if no parameters are TRUE", {
+  skip_on_cran()
+  skip_on_appveyor()
+  skip_on_travis()
   expect_error(create_CRU_stack(),
                "You must select at least one parameter for download.")
 })
@@ -45,17 +48,20 @@ test_that("create_CRU_stack creates a list of raster stacks of pre and tmp", {
   )
   unlink(list.files(
     path = tempdir(),
-    pattern = ".dat.gz",
+    pattern = ".dat.gz$",
     full.names = TRUE
   ))
 })
 
 test_that("create_CRU_stack creates stacks of tmn and tmx", {
+  skip_on_cran()
+  skip_on_appveyor()
+  skip_on_travis()
   stacks <- create_CRU_stack(tmn = TRUE, tmx = TRUE)
   expect_true(is.list(stacks))
   expect_named(stacks, c("tmn", "tmx"))
   expect_equal(
-    cellStats(stacks$tmx, max),
+    raster::cellStats(stacks$tmx, max),
     c(
       39.70,
       38.40,
@@ -72,7 +78,7 @@ test_that("create_CRU_stack creates stacks of tmn and tmx", {
     )
   )
   expect_equal(
-    cellStats(stacks$tmx, min),
+    raster::cellStats(stacks$tmx, min),
     c(
       -48.20,
       -43.35,
@@ -89,7 +95,7 @@ test_that("create_CRU_stack creates stacks of tmn and tmx", {
     )
   )
   expect_equal(
-    cellStats(stacks$tmn, max),
+    raster::cellStats(stacks$tmn, max),
     c(
       26.30,
       26.25,
@@ -106,7 +112,7 @@ test_that("create_CRU_stack creates stacks of tmn and tmx", {
     )
   )
   expect_equal(
-    cellStats(stacks$tmn, min),
+    raster::cellStats(stacks$tmn, min),
     c(
       -55.05,
       -52.95,
@@ -125,7 +131,7 @@ test_that("create_CRU_stack creates stacks of tmn and tmx", {
 
   unlink(list.files(
     path = tempdir(),
-    pattern = ".dat.gz",
+    pattern = ".dat.gz$",
     full.names = TRUE
   ))
 })

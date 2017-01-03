@@ -5,8 +5,8 @@
 getCRUCL2.0
 ===========
 
-Download and Use CRU CL2.0 Climatology Variables in R
------------------------------------------------------
+Download and Use CRU CL2.0 Climatology Data in R
+------------------------------------------------
 
 Author/Maintainer: Adam Sparks
 
