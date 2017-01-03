@@ -157,7 +157,7 @@ create_CRU_stack <-
     return(CRU_stack_list)
   }
 
-.create_stack <- function(files, wrld, month_names, pre_cv){
+.create_stack <- function(files, wrld, month_names, pre_cv) {
   wvar <- utils::read.table(files, header = FALSE, colClasses = "numeric")
   cells <- raster::cellFromXY(wrld, wvar[, c(2, 1)])
   if (ncol(wvar == 14)) {
@@ -168,17 +168,28 @@ create_CRU_stack <-
       } else
         y <- raster::stack(y, wrld)
     }
-  } else if (ncol(wvar == 26) & pre_cv == TRUE)
-    for (k in 15:26) {
-      wrld[cells] <- wvar[, k]
-      if (k == 15) {
-        y <- wrld
-      } else
-        y <- raster::stack(y, wrld)
-    } else if (ncol(wvar == 3)) {
-      wrld[cells] <- wvar[, 3] * 1000
-      y <- wrld
+  } else if (ncol(wvar == 26)) {
+    if (isTRUE(pre_cv)) {
+      for (k in 15:26) {
+        wrld[cells] <- wvar[, k]
+        if (k == 15) {
+          y <- wrld
+        } else
+          y <- raster::stack(y, wrld)
+      } else {
+        for (j in 3:14) {
+          wrld[cells] <- wvar[, j]
+          if (j == 3) {
+            y <- wrld
+          } else
+            y <- raster::stack(y, wrld)
+        }
+      }
     }
+  } else if (ncol(wvar == 3)) {
+    wrld[cells] <- wvar[, 3] * 1000
+    y <- wrld
+  }
   names(y) <- month_names
   return(y)
 }
