@@ -9,6 +9,9 @@ test_that("create_CRU_stack fails if no parameters are TRUE", {
 })
 
 test_that("create_CRU_stack creates a list of raster stacks of pre and tmp", {
+  skip_on_cran()
+  skip_on_appveyor()
+  skip_on_travis()
   stacks <- create_CRU_stack(pre = TRUE, tmp = TRUE)
   expect_true(is.list(stacks))
   expect_named(stacks, c("pre", "tmp"))
