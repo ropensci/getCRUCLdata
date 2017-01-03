@@ -7,8 +7,6 @@ test_that("create_CRU_df fails if no parameters are TRUE", {
 
 test_that("create_CRU_df creates a tidy data frame of precipitation", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   pre_df <- create_CRU_df(pre = TRUE)
   expect_true(is.data.frame(pre_df))
   expect_named(pre_df, c("lat", "lon", "month", "pre"))
@@ -21,8 +19,6 @@ test_that("create_CRU_df creates a tidy data frame of precipitation", {
 
 test_that("create_CRU_df creates a tidy data frame of precipitation cv", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   pre_cv_df <- create_CRU_df(pre_cv = TRUE)
   expect_true(is.data.frame(pre_cv_df))
   expect_named(pre_cv_df, c("lat", "lon", "month", "pre", "pre_cv"))
@@ -35,8 +31,6 @@ test_that("create_CRU_df creates a tidy data frame of precipitation cv", {
 
 test_that("create_CRU_df creates a tidy data frame of wet days", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   rd0_df <- create_CRU_df(rd0 = TRUE)
   expect_true(is.data.frame(rd0_df))
   expect_named(rd0_df, c("lat", "lon", "month", "rd0"))
@@ -64,8 +58,6 @@ test_that("create_CRU_df creates a tidy data frame of diurnal temp days", {
 
 test_that("create_CRU_df creates a tidy data frame of temperature", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   tmp_df <- create_CRU_df(tmp = TRUE)
   expect_true(is.data.frame(tmp_df))
   expect_named(tmp_df, c("lat", "lon", "month", "tmp"))
@@ -79,8 +71,6 @@ test_that("create_CRU_df creates a tidy data frame of temperature", {
 
 test_that("create_CRU_df creates a tidy data frame of min temperature", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   tmn_df <- create_CRU_df(tmn = TRUE)
   expect_true(is.data.frame(tmn_df))
   expect_named(tmn_df, c("lat", "lon", "month", "tmn"))
@@ -93,8 +83,6 @@ test_that("create_CRU_df creates a tidy data frame of min temperature", {
 
 test_that("create_CRU_df creates a tidy data frame of max temperature", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   tmx_df <- create_CRU_df(tmx = TRUE)
   expect_true(is.data.frame(tmx_df))
   expect_named(tmx_df, c("lat", "lon", "month", "tmx"))
@@ -108,8 +96,6 @@ test_that("create_CRU_df creates a tidy data frame of max temperature", {
 
 test_that("create_CRU_df creates a tidy data frame of RH", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   reh_df <- create_CRU_df(reh = TRUE)
   expect_true(is.data.frame(reh_df))
   expect_named(reh_df, c("lat", "lon", "month", "reh"))
@@ -122,8 +108,6 @@ test_that("create_CRU_df creates a tidy data frame of RH", {
 
 test_that("create_CRU_df creates a tidy data frame of sunp", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   sunp_df <- create_CRU_df(sunp = TRUE)
   expect_true(is.data.frame(sunp_df))
   expect_named(sunp_df, c("lat", "lon", "month", "sun"))
@@ -137,8 +121,6 @@ test_that("create_CRU_df creates a tidy data frame of sunp", {
 
 test_that("create_CRU_df creates a tidy data frame of ground frost days", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   frs_df <- create_CRU_df(frs = TRUE)
   expect_true(is.data.frame(frs_df))
   expect_named(frs_df, c("lat", "lon", "month", "frs"))
@@ -152,8 +134,6 @@ test_that("create_CRU_df creates a tidy data frame of ground frost days", {
 
 test_that("create_CRU_df creates a tidy data frame of wind", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   wnd_df <- create_CRU_df(wnd = TRUE)
   expect_true(is.data.frame(wnd_df))
   expect_named(wnd_df, c("lat", "lon", "month", "wnd"))
@@ -167,8 +147,6 @@ test_that("create_CRU_df creates a tidy data frame of wind", {
 
 test_that("create_CRU_df creates a tidy data frame of elevation", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   elv_df <- create_CRU_df(elv = TRUE)
   expect_true(is.data.frame(elv_df))
   expect_named(elv_df, c("lat", "lon", "elv"))
