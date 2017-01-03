@@ -14,11 +14,11 @@
                 .progress = "text")
 
   # name the items in the list for the data that they contain ----------------
-  names(CRU_list) <- substr(files, 73, 75)
+  names(CRU_list) <- substr(basename(files), 12, 14)
 
   # rename the columns in the data frames within the list --------------------
   for (i in 1:length(CRU_list)) {
-    wvars <- as.list(substr(files, 73, 75))
+    wvars <- as.list(substr(basename(files), 12, 14))
     names(CRU_list[[i]])[names(CRU_list[[i]]) == "wvar"] <-
       wvars[[i]]
   }

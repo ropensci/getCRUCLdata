@@ -133,7 +133,7 @@ create_CRU_stack <-
                   month_names,
                   pre_cv,
                   .progress = "text")
-    names(CRU_stack_list) <- substr(files, 73, 75)
+    names(CRU_stack_list) <- substr(basename(files), 12, 14)
 
     # cacluate tmn -------------------------------------------------------------
     if (isTRUE(tmn)) {
