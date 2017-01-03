@@ -2,7 +2,8 @@
 % Please edit documentation in R/create_CRU_df.R
 \name{create_CRU_df}
 \alias{create_CRU_df}
-\title{Download and Create a Tidy Data Frame of CRU CL2.0 Climatology Variables}
+\title{Download and Create a Tidy Data Frame of CRU CL2.0 Climatology
+Variables}
 \usage{
 create_CRU_df(pre = FALSE, pre_cv = FALSE, rd0 = FALSE, tmp = FALSE,
   dtr = FALSE, reh = FALSE, tmn = FALSE, tmx = FALSE, sunp = FALSE,
