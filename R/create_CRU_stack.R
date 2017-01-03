@@ -75,9 +75,11 @@ create_CRU_stack <-
            elv = FALSE) {
     cache_dir <- tempdir()
 
-    if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
+    if (!isTRUE(pre) &
+        !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
         !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
-        !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
+        !isTRUE(sunp) &
+        !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
       stop("You must select at least one parameter for download.")
     }
 
@@ -123,6 +125,33 @@ create_CRU_stack <-
              elv,
              cache_dir)
 
+    elements <- c(pre,
+                  pre_cv,
+                  rd0,
+                  tmp,
+                  dtr,
+                  reh,
+                  tmn,
+                  tmx,
+                  sunp,
+                  frs,
+                  wnd,
+                  elv)
+
+    element_names <-
+      c("pre",
+        "pre_cv",
+        "rd0",
+        "tmp",
+        "dtr",
+        "reh",
+        "tmn",
+        "tmx",
+        "sunp",
+        "frs",
+        "wnd",
+        "elv")
+
     files <-
       list.files(cache_dir, pattern = ".dat.gz$", full.names = TRUE)
 
@@ -133,20 +162,26 @@ create_CRU_stack <-
                   month_names,
                   pre_cv,
                   .progress = "text")
-    names(CRU_stack_list) <- substr(basename(files), 12, 14)
+
+    elements_ <- which(sapply(elements, function(x)
+      isTRUE(x)))
+    names(CRU_stack_list) <- element_names[elements_]
 
     # cacluate tmn -------------------------------------------------------------
     if (isTRUE(tmn)) {
-      CRU_stack_list$tmn <- CRU_stack_list$tmp - (0.5 * CRU_stack_list$dtr)
+      CRU_stack_list$tmn <-
+        CRU_stack_list$tmp - (0.5 * CRU_stack_list$dtr)
     }
     # cacluate tmx -------------------------------------------------------------
     if (isTRUE(tmx)) {
-      CRU_stack_list$tmx <- CRU_stack_list$tmp + (0.5 * CRU_stack_list$dtr)
+      CRU_stack_list$tmx <-
+        CRU_stack_list$tmp + (0.5 * CRU_stack_list$dtr)
     }
 
     # cleanup if tmn/tmx specified but tmp/dtr not -----------------------------
     if (!isTRUE(tmp) | !isTRUE(dtr) & isTRUE(tmx) | isTRUE(tmn)) {
-      CRU_stack_list[which(names(CRU_stack_list) %in% c("tmp", "dtr"))] <- NULL
+      CRU_stack_list[which(names(CRU_stack_list) %in% c("tmp", "dtr"))] <-
+        NULL
     }
     if (!isTRUE(dtr) & isTRUE(tmx) | isTRUE(tmn)) {
       CRU_stack_list[which(names(CRU_stack_list) %in% "dtr")] <- NULL
@@ -157,8 +192,11 @@ create_CRU_stack <-
     return(CRU_stack_list)
   }
 
-.create_stack <- function(files, wrld, month_names, pre_cv) {
-  wvar <- utils::read.table(files, header = FALSE, colClasses = "numeric")
+#' @noRd
+.create_stack <- function(files, wrld, month_names, pre, pre_cv) {
+  z <- NULL
+  wvar <-
+    utils::read.table(files, header = FALSE, colClasses = "numeric")
   cells <- raster::cellFromXY(wrld, wvar[, c(2, 1)])
   if (ncol(wvar == 14)) {
     for (j in 3:14) {
@@ -168,28 +206,35 @@ create_CRU_stack <-
       } else
         y <- raster::stack(y, wrld)
     }
+    names(y) <- month_names
   } else if (ncol(wvar == 26)) {
-    if (isTRUE(pre_cv)) {
-      for (k in 15:26) {
-        wrld[cells] <- wvar[, k]
-        if (k == 15) {
+    if (isTRUE(pre)) {
+      for (j in 3:14) {
+        wrld[cells] <- wvar[, j]
+        if (j == 3) {
           y <- wrld
         } else
           y <- raster::stack(y, wrld)
-      } else {
-        for (j in 3:14) {
-          wrld[cells] <- wvar[, j]
-          if (j == 3) {
-            y <- wrld
-          } else
-            y <- raster::stack(y, wrld)
-        }
       }
+      names(y) <- month_names
+    }
+    if (isTRUE(pre_cv)) {
+      for (j in 15:26) {
+        wrld[cells] <- wvar[, j]
+        if (j == 15) {
+          z <- wrld
+        } else
+          z <- raster::stack(z, wrld)
+      }
+      names(z) <- paste0("pre_cv_", month_names)
+    }
+    if (isTRUE(pre) & isTRUE(pre_cv)) {
+      y <- raster::stack(y, z)
     }
   } else if (ncol(wvar == 3)) {
     wrld[cells] <- wvar[, 3] * 1000
     y <- wrld
+    names(y) <- month_names
   }
-  names(y) <- month_names
   return(y)
 }
