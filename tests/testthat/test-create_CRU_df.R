@@ -1,5 +1,7 @@
 context("create_CRU_df")
 
+unlink(list.files(path = tempdir(), pattern = ".dat.gz$", full.names = TRUE))
+
 test_that("create_CRU_df fails if no parameters are TRUE", {
   expect_error(create_CRU_df(),
                "You must select at least one parameter for download.")
@@ -43,8 +45,6 @@ test_that("create_CRU_df creates a tidy data frame of wet days", {
 
 test_that("create_CRU_df creates a tidy data frame of diurnal temp days", {
   skip_on_cran()
-  skip_on_appveyor()
-  skip_on_travis()
   dtr_df <- create_CRU_df(dtr = TRUE)
   expect_true(is.data.frame(dtr_df))
   expect_named(dtr_df, c("lat", "lon", "month", "dtr"))
