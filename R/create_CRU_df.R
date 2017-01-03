@@ -7,18 +7,18 @@
 #'
 #'Nomenclature and units from readme.txt:
 #'\describe{
-#'\item{pre}{precipitation (milimetres/month)}
+#'\item{pre}{precipitation (millimetres/month)}
 #'  \describe{
 #'    \item{cv}{cv of precipitation (percent)}
 #'  }
 #'\item{rd0}{wet-days (no days with >0.1mm rain per month)}
-#'\item{tmp}{mean temperature (Degrees Celsius)}
-#'\item{dtr}{mean diurnal temperature range (Degrees Celsius)}
+#'\item{tmp}{mean temperature (degrees Celsius)}
+#'\item{dtr}{mean diurnal temperature range (degrees Celsius)}
 #'\item{reh}{relative humidity (percent)}
 #'\item{sunp}{sunshine (percent of maximum possible (percent of daylength))}
 #'\item{frs}{ground-frost (number of days with ground-frost per month)}
 #'\item{wnd}{10 metre windspeed (metres/second)}
-#'\item{elv}{elevation (kilometres)}
+#'\item{elv}{elevation (automatically converted to metres)}
 #'}
 #'For more information see the description of the data provided by CRU,
 #'\url{http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
