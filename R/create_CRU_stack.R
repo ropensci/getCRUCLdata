@@ -125,33 +125,6 @@ create_CRU_stack <-
              elv,
              cache_dir)
 
-    elements <- c(pre,
-                  pre_cv,
-                  rd0,
-                  tmp,
-                  dtr,
-                  reh,
-                  tmn,
-                  tmx,
-                  sunp,
-                  frs,
-                  wnd,
-                  elv)
-
-    element_names <-
-      c("pre",
-        "pre_cv",
-        "rd0",
-        "tmp",
-        "dtr",
-        "reh",
-        "tmn",
-        "tmx",
-        "sunp",
-        "frs",
-        "wnd",
-        "elv")
-
     files <-
       list.files(cache_dir, pattern = ".dat.gz$", full.names = TRUE)
 
@@ -163,9 +136,7 @@ create_CRU_stack <-
                   pre_cv,
                   .progress = "text")
 
-    elements_ <- which(sapply(elements, function(x)
-      isTRUE(x)))
-    names(CRU_stack_list) <- element_names[elements_]
+    names(CRU_stack_list) <- substr(basename(files), 12, 14)
 
     # cacluate tmn -------------------------------------------------------------
     if (isTRUE(tmn)) {
@@ -228,7 +199,7 @@ create_CRU_stack <-
       }
       names(z) <- paste0("pre_cv_", month_names)
     }
-    if (isTRUE(pre) & isTRUE(pre_cv)) {
+    if (!is.null(c(pre, pre_cv))) {
       y <- raster::stack(y, z)
     }
   } else if (ncol(wvar == 3)) {
