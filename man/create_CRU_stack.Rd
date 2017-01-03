@@ -31,8 +31,8 @@ Defaults to FALSE.}
 \item{tmn}{Logical. Calculate minimum temperature values (degrees Celsius)
 and return it in a raster stack? Defaults to FALSE.}
 
-\item{tmx}{Logical. Calculate maximum temperature (degrees Celsius) and return
-it in a raster stack? Defaults to FALSE.}
+\item{tmx}{Logical. Calculate maximum temperature (degrees Celsius) and
+return it in a raster stack? Defaults to FALSE.}
 
 \item{sunp}{Logical. Fetch sunshine, percent of maximum possible (percent of
 day length) and return it in raster stack? Defaults to FALSE.}

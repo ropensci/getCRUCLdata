@@ -38,8 +38,8 @@
 #' raster stack? Defaults to FALSE.
 #' @param tmn Logical. Calculate minimum temperature values (degrees Celsius)
 #' and return it in a raster stack? Defaults to FALSE.
-#' @param tmx Logical. Calculate maximum temperature (degrees Celsius) and return
-#' it in a raster stack? Defaults to FALSE.
+#' @param tmx Logical. Calculate maximum temperature (degrees Celsius) and
+#' return it in a raster stack? Defaults to FALSE.
 #' @param reh Logical. Fetch relative humidity and return it in a raster stack?
 #' Defaults to FALSE.
 #' @param sunp Logical. Fetch sunshine, percent of maximum possible (percent of
