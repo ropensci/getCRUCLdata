@@ -56,24 +56,26 @@ return it in the data? Defaults to FALSE.
 Create a tidy data frame of all CRU CL2.0 climatology elements available.
 
 ```{r, eval=FALSE}
-create_CRU_df(pre = TRUE,
-              pre_cv = TRUE,
-              rd0 = TRUE,
-              tmp = TRUE,
-              dtr = TRUE,
-              reh = TRUE,
-              tmn = TRUE,
-              tmx = TRUE,
-              sunp = TRUE,
-              frs = TRUE,
-              wnd = TRUE,
-              elv = TRUE)
+library(getCRUCL2.0)
+
+CRU_data <- create_CRU_df(pre = TRUE,
+                          pre_cv = TRUE,
+                          rd0 = TRUE,
+                          tmp = TRUE,
+                          dtr = TRUE,
+                          reh = TRUE,
+                          tmn = TRUE,
+                          tmx = TRUE,
+                          sunp = TRUE,
+                          frs = TRUE,
+                          wnd = TRUE,
+                          elv = TRUE)
 ```
 
 Create a tidy data frame of mean temperature and relative humidity.
 ```{r, eval=FALSE}
-create_CRU_df(tmp = TRUE,
-              reh = TRUE)
+t_rh <- create_CRU_df(tmp = TRUE,
+                      reh = TRUE)
 ```
 
 ## Creating raster stacks for use in R
@@ -84,24 +86,24 @@ R session.
 Create a list of raster stacks of all CRU CL2.0 climatology elements available.
 
 ```{r, eval = FALSE}
-create_CRU_stack(pre = TRUE,
-                 pre_cv = TRUE,
-                 rd0 = TRUE,
-                 tmp = TRUE,
-                 dtr = TRUE,
-                 reh = TRUE,
-                 tmn = TRUE,
-                 tmx = TRUE,
-                 sunp = TRUE,
-                 frs = TRUE,
-                 wnd = TRUE,
-                 elv = TRUE)
+CRU_stack <- create_CRU_stack(pre = TRUE,
+                              pre_cv = TRUE,
+                              rd0 = TRUE,
+                              tmp = TRUE,
+                              dtr = TRUE,
+                              reh = TRUE,
+                              tmn = TRUE,
+                              tmx = TRUE,
+                              sunp = TRUE,
+                              frs = TRUE,
+                              wnd = TRUE,
+                              elv = TRUE)
 ```
 
 Create a list of raster stacks of maximum and minimum temperature.
 ```{r, eval=FALSE}
-create_CRU_stack(tmn = TRUE,
-                 tmx = TRUE)
+tmn_tmx <- create_CRU_stack(tmn = TRUE,
+                            tmx = TRUE)
 ```
 
 # Reference and abstract
