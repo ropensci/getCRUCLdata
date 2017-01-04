@@ -31,6 +31,10 @@ more information see the description of the data provided by the University of
 East Anglia Climate Research Unit (CRU),
 <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
+License: MIT + file LICENSE
+
+Imports: curl, dplyr, plyr, purrr, raster, tidyr, utils
+
 ## Changes to original data
 
 This package automatically converts elevation values from kilometres to metres.
@@ -39,9 +43,7 @@ This package crops all spatial outputs to an extent of ymin = -60, ymax = 85,
 xmin = -180, xmax = 180. Note that the original wind data include land area for
 parts of Antarctica.
     
-License: MIT + file LICENSE
 
-Imports: curl, dplyr, plyr, purrr, raster, tidyr, utils
 
 Quick Start
 ===========
