@@ -211,7 +211,7 @@ create_CRU_stack <-
   } else if (ncol(wvar) == 3) {
     wrld[cells] <- wvar[, 3] * 1000
     y <- wrld
-    names(y) <- month_names
+    names(y) <- "elv"
   }
   return(y)
 }
