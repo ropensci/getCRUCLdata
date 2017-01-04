@@ -61,6 +61,10 @@
 #' @seealso
 #' \code{\link{create_CRU_stack}}
 #'
+#' @note
+#' This package automatically converts elevation values from kilometres to
+#' metres.
+#'
 #' @export
 create_CRU_df <- function(pre = FALSE,
                           pre_cv = FALSE,

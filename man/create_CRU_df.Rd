@@ -75,6 +75,10 @@ For more information see the description of the data provided by CRU,
 This function generates a data.frame object in R with the following
 possible fields as specified by the user:
 }
+\note{
+This package automatically converts elevation values from kilometres to
+metres.
+}
 \examples{
 # Download data and create a raster stack of precipitation and temperature
 \dontrun{
