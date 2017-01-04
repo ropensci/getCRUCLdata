@@ -133,6 +133,7 @@ create_CRU_stack <-
                   files,
                   wrld,
                   month_names,
+                  pre,
                   pre_cv,
                   .progress = "text")
 
@@ -165,11 +166,10 @@ create_CRU_stack <-
 
 #' @noRd
 .create_stack <- function(files, wrld, month_names, pre, pre_cv) {
-  z <- NULL
   wvar <-
     utils::read.table(files, header = FALSE, colClasses = "numeric")
   cells <- raster::cellFromXY(wrld, wvar[, c(2, 1)])
-  if (ncol(wvar == 14)) {
+  if (ncol(wvar) == 14) {
     for (j in 3:14) {
       wrld[cells] <- wvar[, j]
       if (j == 3) {
@@ -178,31 +178,37 @@ create_CRU_stack <-
         y <- raster::stack(y, wrld)
     }
     names(y) <- month_names
-  } else if (ncol(wvar == 26)) {
-    if (isTRUE(pre)) {
-      for (j in 3:14) {
-        wrld[cells] <- wvar[, j]
-        if (j == 3) {
+  } else if (ncol(wvar) == 26) {
+    if (isTRUE(pre) & isTRUE(pre_cv)) {
+      for (k in 3:26) {
+        wrld[cells] <- wvar[, k]
+        if (k == 3) {
+          y <- wrld
+        } else
+          y <- raster::stack(y, wrld)
+      }
+      names(y) <- c(month_names, paste0("pre_cv_", month_names))
+    } else if (isTRUE(pre)) {
+      for (k in 3:14) {
+        wrld[cells] <- wvar[, k]
+        if (k == 3) {
           y <- wrld
         } else
           y <- raster::stack(y, wrld)
       }
       names(y) <- month_names
-    }
-    if (isTRUE(pre_cv)) {
-      for (j in 15:26) {
-        wrld[cells] <- wvar[, j]
-        if (j == 15) {
-          z <- wrld
+    } else if (isTRUE(pre_cv)) {
+      for (k in 15:26) {
+        wrld[cells] <- wvar[, k]
+        if (k == 15) {
+          y <- wrld
         } else
-          z <- raster::stack(z, wrld)
+          y <- raster::stack(y, wrld)
       }
-      names(z) <- paste0("pre_cv_", month_names)
+      names(y) <- paste0("pre_cv_", month_names)
     }
-    if (!is.null(c(pre, pre_cv))) {
-      y <- raster::stack(y, z)
-    }
-  } else if (ncol(wvar == 3)) {
+
+  } else if (ncol(wvar) == 3) {
     wrld[cells] <- wvar[, 3] * 1000
     y <- wrld
     names(y) <- month_names

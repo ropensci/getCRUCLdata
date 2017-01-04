@@ -57,12 +57,12 @@ test_that("create_CRU_stack creates a list containing only pre", {
 
 test_that("create_CRU_stack creates a list containing only pre_cv", {
   skip_on_cran()
-  stacks <- create_CRU_stack(pre = TRUE, pre_cv = TRUE)
+  stacks <- create_CRU_stack(pre_cv = TRUE)
   expect_true(is.list(stacks))
   expect_named(stacks, "pre")
-  expect_named(stacks$pre, c("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"))
-  #expect_equal(raster::cellStats(stacks$pre_cv, max), c())
-  #expect_equal(raster::cellStats(stacks$pre_cv, min), c())
+  expect_named(stacks$pre, c("pre_cv_jan", "pre_cv_feb", "pre_cv_mar", "pre_cv_apr", "pre_cv_may", "pre_cv_jun", "pre_cv_jul", "pre_cv_aug", "pre_cv_sep", "pre_cv_oct", "pre_cv_nov", "pre_cv_dec"))
+  expect_equal(raster::cellStats(stacks$pre_cv, max), c(496.2, 495.5, 482.0, 493.6, 490.4, 573.8, 546.3, 567.6, 507.2, 504.6, 517.8, 493.7))
+  expect_equal(raster::cellStats(stacks$pre_cv, min), c(0.0, -10.5, 5.8, 5.1, 0.0, -7.5, 11.1, 2.6, -11.9, 0.0, 0.0, 0.0 ))
   unlink(list.files(
     path = tempdir(),
     pattern = ".dat.gz$",
