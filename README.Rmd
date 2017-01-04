@@ -123,14 +123,16 @@ tmn_tmx <- create_CRU_stack(tmn = TRUE,
 # Reference and abstract
 
 > Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)  
-A high-resolution data set of surface climate over global land areas
+
+> A high-resolution data set of surface climate over global land areas 
 Climate Research, 2000, Vol 21, pg 1-25  
-(1) School of Geography and the Environment, University of Oxford, 
+
+> (1) School of Geography and the Environment, University of Oxford, 
     Mansfield Road, Oxford OX1 3TB, United Kingdom  
-(2) Climatic Research Unit, and (3) Tyndall Centre for Climate Change Research,
+> (2) Climatic Research Unit, and (3) Tyndall Centre for Climate Change Research,
     both at School of Environmental Sciences, University of East Anglia,
     Norwich NR4 7TJ, United Kingdom  
-(4) International Water Management Institute, PO Box 2075, Colombo, Sri Lanka
+> (4) International Water Management Institute, PO Box 2075, Colombo, Sri Lanka
 
 > **ABSTRACT:** We describe the construction of a 10-minute latitude/longitude data
 set of mean monthly surface climate over global land areas, excluding Antarctica.
