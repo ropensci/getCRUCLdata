@@ -10,14 +10,14 @@ create_CRU_stack(pre = FALSE, pre_cv = FALSE, rd0 = FALSE, tmp = FALSE,
   frs = FALSE, wnd = FALSE, elv = FALSE)
 }
 \arguments{
-\item{pre}{Logical. Fetch precipitation (milimetres/month) from server and
+\item{pre}{Logical. Fetch precipitation (millimetres/month) from server and
 return in a raster stack? Defaults to FALSE.}
 
 \item{pre_cv}{Logical. Fetch cv of precipitation (percent) from server and
 return in a raster stack? Defaults to FALSE.}
 
-\item{rd0}{Logical. Fetch wet-days (number days with >0.1milimetres rain per
-month) and return in a raster stack? Defaults to FALSE.}
+\item{rd0}{Logical. Fetch wet-days (number days with >0.1 millimetres rain
+per month) and return in a raster stack? Defaults to FALSE.}
 
 \item{tmp}{Logical. Fetch temperature (degrees Celsius) and return it in the
 raster stack? Defaults to FALSE.}
@@ -62,7 +62,7 @@ Nomenclature and units from readme.txt:
 \item{tmp}{mean temperature (degrees Celsius)}
 \item{dtr}{mean diurnal temperature range (degrees Celsius)}
 \item{reh}{relative humidity (percent)}
-\item{sunp}{sunshine (percent of maximum possible (percent of daylength))}
+\item{sunp}{sunshine (percent of maximum possible (percent of day length))}
 \item{frs}{ground-frost (number of days with ground-frost per month)}
 \item{wnd}{10 metre windspeed (metres/second)}
 \item{elv}{elevation (automatically converted to metres)}

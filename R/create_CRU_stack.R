@@ -16,7 +16,7 @@
 #'\item{tmp}{mean temperature (degrees Celsius)}
 #'\item{dtr}{mean diurnal temperature range (degrees Celsius)}
 #'\item{reh}{relative humidity (percent)}
-#'\item{sunp}{sunshine (percent of maximum possible (percent of daylength))}
+#'\item{sunp}{sunshine (percent of maximum possible (percent of day length))}
 #'\item{frs}{ground-frost (number of days with ground-frost per month)}
 #'\item{wnd}{10 metre windspeed (metres/second)}
 #'\item{elv}{elevation (automatically converted to metres)}
@@ -26,12 +26,12 @@
 #'
 #' @details This function generates a data.frame object in R with the following
 #' possible fields as specified by the user:
-#' @param pre Logical. Fetch precipitation (milimetres/month) from server and
+#' @param pre Logical. Fetch precipitation (millimetres/month) from server and
 #' return in a raster stack? Defaults to FALSE.
 #' @param pre_cv Logical. Fetch cv of precipitation (percent) from server and
 #' return in a raster stack? Defaults to FALSE.
-#' @param rd0 Logical. Fetch wet-days (number days with >0.1milimetres rain per
-#' month) and return in a raster stack? Defaults to FALSE.
+#' @param rd0 Logical. Fetch wet-days (number days with >0.1 millimetres rain
+#' per month) and return in a raster stack? Defaults to FALSE.
 #' @param dtr Logical. Fetch mean diurnal temperature range (degrees Celsius)
 #' and return it in a raster stack? Defaults to FALSE.
 #' @param tmp Logical. Fetch temperature (degrees Celsius) and return it in the
