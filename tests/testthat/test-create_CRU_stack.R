@@ -100,6 +100,67 @@ test_that("create_CRU_stack creates a list containing only tmp", {
   ))
 })
 
+
+test_that("create_CRU_stack creates a list containing only RH", {
+  skip_on_cran()
+  stacks <- create_CRU_stack(reh = TRUE)
+  expect_true(is.list(stacks))
+  expect_named(stacks, "reh")
+  expect_named(stacks$sun, "reh")
+  expect_equal(raster::cellStats(stacks$reh, min), c(18.4,  14.6,  13.5,  13.4,  15.5,  10.2,  10.8,  10.1,  11.0,  14.2,  19.0,  19.7))
+  expect_equal(raster::cellStats(stacks$reh, max), c(100.0, 100.0, 100.0, 100.0,  96.9,  95.1,  96.9,  97.1,  95.5, 100.0, 100.0, 100.0))
+  unlink(list.files(
+    path = tempdir(),
+    pattern = ".dat.gz$",
+    full.names = TRUE
+  ))
+})
+
+test_that("create_CRU_stack creates a list containing only sun days", {
+  skip_on_cran()
+  stacks <- create_CRU_stack(sunp = TRUE)
+  expect_true(is.list(stacks))
+  expect_named(stacks, "sun")
+  expect_named(stacks$sun, "sun")
+  expect_equal(raster::cellStats(stacks$sun, min), c(0.0, 0.0, 3.3, 4.3, 8.1, 6.6, 5.3, 8.4, 4.5, 0.8, 0.0, 0.0))
+  expect_equal(raster::cellStats(stacks$sun, max), c(92.8, 93.0, 90.2, 93.1, 94.0, 98.9, 98.8, 98.8, 99.1, 95.8, 94.6, 93.1))
+  unlink(list.files(
+    path = tempdir(),
+    pattern = ".dat.gz$",
+    full.names = TRUE
+  ))
+})
+
+test_that("create_CRU_stack creates a list containing only frost days", {
+  skip_on_cran()
+  stacks <- create_CRU_stack(frs = TRUE)
+  expect_true(is.list(stacks))
+  expect_named(stacks, "frs")
+  expect_named(stacks$frs, "frs")
+  expect_equal(raster::cellStats(stacks$frs, min), c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+  expect_equal(raster::cellStats(stacks$frs, max), c(31.0, 28.3, 31.0, 30.0, 31.0, 30.0, 31.0, 31.0, 30.0, 31.0, 30.0, 31.0))
+  unlink(list.files(
+    path = tempdir(),
+    pattern = ".dat.gz$",
+    full.names = TRUE
+  ))
+})
+
+test_that("create_CRU_stack creates a list containing only wnd", {
+  skip_on_cran()
+  stacks <- create_CRU_stack(wnd = TRUE)
+  expect_true(is.list(stacks))
+  expect_named(stacks, "wnd")
+  expect_named(stacks$wnd, "wnd")
+  expect_equal(raster::cellStats(stacks$wnd, max), c(9.8, 9.6, 9.4, 9.0, 8.7, 8.6, 9.1, 9.3, 9.3, 9.7, 9.6, 9.4))
+  expect_equal(raster::cellStats(stacks$wnd, min), c(0.1, 0.1, 0.3, 0.4, 0.3, 0.2, 0.3, 0.4, 0.5, 0.4, 0.2, 0.2))
+  unlink(list.files(
+    path = tempdir(),
+    pattern = ".dat.gz$",
+    full.names = TRUE
+  ))
+})
+
 test_that("create_CRU_stack creates a list containing only elv", {
   skip_on_cran()
   stacks <- create_CRU_stack(elv = TRUE)
