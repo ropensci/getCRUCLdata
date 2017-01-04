@@ -101,8 +101,8 @@ tmn_tmx <- create_CRU_stack(tmn = TRUE,
                             tmx = TRUE)
 ```
 
-Reference and abstract
-======================
+Data reference and abstract
+===========================
 
 > Mark New (1,\*), David Lister (2), Mike Hulme (3), Ian Makin (4)
 
