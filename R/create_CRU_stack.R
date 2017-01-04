@@ -95,7 +95,7 @@ create_CRU_stack <-
 
     wrld <-
       raster::raster(
-        nrows = 900,
+        nrows = 930,
         ncols = 2160,
         ymn = -65,
         ymx = 90,
