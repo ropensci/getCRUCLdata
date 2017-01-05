@@ -8,7 +8,11 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new release.
+* This is the second submission to CRAN of a new release with the following
+changes as suggested by CRAN maintainers:
+  * Renamed to "getCRUCLdata" for a cleaner package name and possiblity of supporting future CRU data releases
+  * Revised DESCRIPTION:Description to read: "Provides functions that ..."
+  
 * Check logs from local MacOS, Travis, Appveyor and win-builder are all available from https://github.com/adamhsparks/checkresults/tree/master/getCRUCL2.0
 
 ## Reverse dependencies
