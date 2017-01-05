@@ -1,17 +1,17 @@
 ---
-title: "getCRUCL2.0"
+title: "getCRUCLdata"
 author: "Adam H. Sparks"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{getCRUCL2.0}
+  %\VignetteIndexEntry{getCRUCLdata}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-# Introduction to getCRUCL2.0
+# Introduction to getCRUCLdata
 
-The getCRUCL2.0 package provides two functions that automate downloading and
+The getCRUCLdata package provides two functions that automate downloading and
 importing CRU CL2.0 climatology data into R, facilitate the calculation of
 minimum temperature and maximum temperature, and formats the data into a tidy
 data frame or a list of raster stack objects for use in an R session. CRU CL2.0
@@ -21,7 +21,7 @@ more information see the description of the data provided by the University of
 East Anglia Climate Research Unit (CRU),
 <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
-# Using getCRUCL2.0
+# Using getCRUCLdata
 Both functions, `create_CRU_df` and `create_CRU_stack` take the same arguments
 but return different types of objects in the R session. Logical arguments are
 used to specify the data to retrieve and parse. The arguments for selecting the
@@ -56,7 +56,7 @@ return it in the data? Defaults to FALSE.
 Create a tidy data frame of all CRU CL2.0 climatology elements available.
 
 ```{r, eval=FALSE}
-library(getCRUCL2.0)
+library(getCRUCLdata)
 
 CRU_data <- create_CRU_df(pre = TRUE,
                           pre_cv = TRUE,

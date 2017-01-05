@@ -1,16 +1,16 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/adamhsparks/getCRUCL2.0.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/getCRUCL2.0?branch=master&svg=true)](https://ci.appveyor.com/project/adamhsparks/getCRUCL2.0) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCL2.0)](https://cran.r-project.org/package=getCRUCL2.0)
+[![Travis-CI Build Status](https://travis-ci.org/adamhsparks/getCRUCLdata.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/adamhsparks/getCRUCLdata) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata)
 
-getCRUCL2.0
-===========
+getCRUCLdata
+============
 
 Download and Use CRU CL2.0 Climatology Data in R
 ------------------------------------------------
 
 Author/Maintainer: Adam Sparks
 
-The getCRUCL2.0 package provides two functions that automate downloading and importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a tidy data frame or a list of raster stack objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc-second resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
+The getCRUCLdata package provides two functions that automate downloading and importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a tidy data frame or a list of raster stack objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc-second resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
 License: MIT + file LICENSE
 
@@ -33,15 +33,15 @@ Install
 
 A development version is available from from GitHub. If you wish to install the development version that may have new features (but also may not work properly), install the [devtools package](https://CRAN.R-project.org/package=devtools), available from CRAN. I strive to keep the master branch on GitHub functional and working properly, although this may not always happen.
 
-If you find bugs, please file a [report as an issue](https://github.com/adamhsparks/getCRUCL2.0/issues).
+If you find bugs, please file a [report as an issue](https://github.com/adamhsparks/getCRUCLdata/issues).
 
 ``` r
 install.packages("devtools")
-devtools::install_github("adamhsparks/getCRUCL2.0", build_vignettes = TRUE)
+devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
 ```
 
-Using getCRUCL2.0
------------------
+Using getCRUCLdata
+------------------
 
 Creating tidy data frames for use in R
 --------------------------------------
@@ -49,7 +49,7 @@ Creating tidy data frames for use in R
 Create a tidy data frame of all CRU CL2.0 climatology elements available.
 
 ``` r
-library(getCRUCL2.0)
+library(getCRUCLdata)
 
 CRU_data <- create_CRU_df(pre = TRUE,
                           pre_cv = TRUE,
