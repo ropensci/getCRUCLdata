@@ -103,6 +103,8 @@ create_CRU_stack <-
         xmx = 180
       )
 
+    wrld[] <- NA
+
     month_names <-
       c("jan",
         "feb",
