@@ -1,7 +1,7 @@
 Package: getCRUCLdata
 Type: Package
 Title: Download and Use CRU CL2.0 Climatology Data in R
-Version: 0.1.1
+Version: 0.1.2
 Author: person("Adam", "Sparks", role = c("aut", "cre"))
 Maintainer: Adam Sparks <adamhsparks@gmail.com>
 Description: Provides functions that automate downloading and importing
@@ -10,7 +10,7 @@ Description: Provides functions that automate downloading and importing
     temperature and formats the data into a tidy data frame or a list of raster
     stack objects for use in an R session. CRU CL2.0 data are a gridded
     climatology of 1961-1990 monthly means released in 2002 and cover all land
-    areas (excluding Antarctica) at 10 arc-second resolution. For more
+    areas (excluding Antarctica) at 10-minute resolution. For more
     information see the description of the data provided by the University of
     East Anglia Climate Research Unit,
     <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
