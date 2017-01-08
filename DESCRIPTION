@@ -15,6 +15,7 @@ Description: Provides functions that automate downloading and importing
     East Anglia Climate Research Unit,
     <http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 License: MIT + file LICENSE
+Depends: R (>= 3.0.0)
 Imports:
     curl,
     dplyr,
