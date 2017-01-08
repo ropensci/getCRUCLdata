@@ -29,6 +29,14 @@ Quick Start
 Install
 -------
 
+### Stable version
+
+A stable version of GSODR is available from [CRAN](https://cran.r-project.org/package=getCRUdata).
+
+``` r
+install.packages("getCRUdata")
+```
+
 ### Development version
 
 A development version is available from from GitHub. If you wish to install the development version that may have new features (but also may not work properly), install the [devtools package](https://CRAN.R-project.org/package=devtools), available from CRAN. I strive to keep the master branch on GitHub functional and working properly, although this may not always happen.

@@ -19,14 +19,15 @@ Imports:
     curl,
     dplyr,
     plyr,
-    purrr,
+    purrr (>= 0.2.0),
     raster,
     tidyr,
     utils
 LazyData: TRUE
 RoxygenNote: 5.0.1
 ByteCompile: TRUE
-Suggests: testthat,
+Suggests:
+    testthat,
     knitr,
     rmarkdown
 URL: https://github.com/adamhsparks/getCRUCL2.0
