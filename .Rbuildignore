@@ -7,3 +7,4 @@
 ^appveyor\.yml$
 ^revdep$
 ^cran-comments\.md$
+^docs$
