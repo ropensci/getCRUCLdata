@@ -13,7 +13,7 @@
   - Revised description file as requested by CRAN maintainers  
   - Enhanced vignette  
 
-# getCRUCLdata 0.1.0
+# getCRUCL2.0 0.1.0
 
 ## Minor Changes
 
