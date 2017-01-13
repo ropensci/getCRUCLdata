@@ -30,6 +30,6 @@ Suggests:
     testthat,
     knitr,
     rmarkdown
-URL: https://github.com/adamhsparks/getCRUCL2.0
-BugReports: https://github.com/adamhsparks/getCRUCL2.0/issues
+URL: https://github.com/adamhsparks/getCRUCLdata
+BugReports: https://github.com/adamhsparks/getCRUCLdata/issues
 VignetteBuilder: knitr
