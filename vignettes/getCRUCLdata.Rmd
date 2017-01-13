@@ -52,8 +52,12 @@ data? Defaults to FALSE.
 * **elv** Logical. Fetch elevation (and convert to metres from kilometres) and
 return it in the data? Defaults to FALSE.  
 
+Using getCRUCLdata
+-----------
+
 ## Creating tidy data frames for use in R
-Create a tidy data frame of all CRU CL2.0 climatology elements available.
+
+The `create_CRU_df()` function creates tidy data frames of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.
 
 ```{r, eval=FALSE}
 library(getCRUCLdata)
@@ -73,15 +77,14 @@ CRU_data <- create_CRU_df(pre = TRUE,
 ```
 
 Create a tidy data frame of mean temperature and relative humidity.
+
 ```{r, eval=FALSE}
 t_rh <- create_CRU_df(tmp = TRUE,
                       reh = TRUE)
 ```
 
 ## Creating raster stacks for use in R
-The `create_CRU_stack` function provides functionality for producing a list of
-[raster](https://CRAN.R-project.org/package=raster) stack objects for use in an
-R session.
+The `create_CRU_stack()` function provides functionality for producing a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
 
 Create a list of raster stacks of all CRU CL2.0 climatology elements available.
 
