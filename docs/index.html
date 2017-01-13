@@ -98,7 +98,7 @@
 <a href="#development-version" class="anchor"> </a>Development version</h3>
 <p>A development version is available from from GitHub. If you wish to install the development version that may have new features (but also may not work properly), install the <a href="https://CRAN.R-project.org/package=devtools">devtools package</a>, available from CRAN. I strive to keep the master branch on GitHub functional and working properly, although this may not always happen.</p>
 <p>If you find bugs, please file a <a href="https://github.com/adamhsparks/getCRUCLdata/issues">report as an issue</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages("devtools")</span>
 devtools::<span class="kw">install_github</span>(<span class="st">"adamhsparks/getCRUCLdata"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 </div>
@@ -109,7 +109,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"adamhsparks/g
 <div id="creating-tidy-data-frames-for-use-in-r" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-tidy-data-frames-for-use-in-r" class="anchor"> </a>Creating tidy data frames for use in R</h2>
-<p>Create a tidy data frame of all CRU CL2.0 climatology elements available.</p>
+<p>The <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> function creates tidy data frames of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(getCRUCLdata)
 
 CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,
@@ -131,7 +131,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/creat
 <div id="creating-raster-stacks-for-use-in-r" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-raster-stacks-for-use-in-r" class="anchor"> </a>Creating raster stacks for use in R</h2>
-<p>The <code>create_CRU_stack</code> function provides functionality for producing a list of <a href="https://CRAN.R-project.org/package=raster">raster</a> stack objects for use in an R session.</p>
+<p>The <code><a href="reference/create_CRU_stack.html">create_CRU_stack()</a></code> function provides functionality for producing a list of <a href="https://CRAN.R-project.org/package=raster">raster</a> stack objects for use in an R session.</p>
 <p>Create a list of raster stacks of all CRU CL2.0 climatology elements available.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CRU_stack &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,
                               <span class="dt">pre_cv =</span> <span class="ot">TRUE</span>,
@@ -148,6 +148,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/creat
 <p>Create a list of raster stacks of maximum and minimum temperature.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmn_tmx &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,
                             <span class="dt">tmx =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<hr>
 </div>
 </div>
 <div id="data-reference-and-abstract" class="section level1">

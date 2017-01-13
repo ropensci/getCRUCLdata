@@ -44,7 +44,7 @@ A development version is available from from GitHub. If you wish to install the 
 If you find bugs, please file a [report as an issue](https://github.com/adamhsparks/getCRUCLdata/issues).
 
 ``` r
-install.packages("devtools")
+#install.packages("devtools")
 devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
 ```
 
@@ -54,7 +54,7 @@ Using getCRUCLdata
 Creating tidy data frames for use in R
 --------------------------------------
 
-Create a tidy data frame of all CRU CL2.0 climatology elements available.
+The `create_CRU_df()` function creates tidy data frames of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.
 
 ``` r
 library(getCRUCLdata)
@@ -83,7 +83,7 @@ t_rh <- create_CRU_df(tmp = TRUE,
 Creating raster stacks for use in R
 -----------------------------------
 
-The `create_CRU_stack` function provides functionality for producing a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
+The `create_CRU_stack()` function provides functionality for producing a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
 
 Create a list of raster stacks of all CRU CL2.0 climatology elements available.
 
@@ -108,6 +108,8 @@ Create a list of raster stacks of maximum and minimum temperature.
 tmn_tmx <- create_CRU_stack(tmn = TRUE,
                             tmx = TRUE)
 ```
+
+------------------------------------------------------------------------
 
 Data reference and abstract
 ===========================
