@@ -4,6 +4,9 @@
 ## Minor Changes
 
   - Correct documentation to read that the data resolution is 10 minute, not 10 seconds  
+  - Correct URLs in DESCRIPTION file
+  - Add required version for PURRR
+  - Add required version for R
 
 # getCRUCLdata 0.1.1
 
