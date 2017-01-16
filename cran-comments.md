@@ -10,8 +10,11 @@
 
 * This is minor release with the following changes
   * Correct documentation to read that the data resolution is 10 minute, not 10 seconds
+  * Correct URLs in DESCRIPTION file  
+  * Add required version for PURRR  
+  * Add required version for R  
   
-* Check logs from local MacOS, Travis, Appveyor and win-builder are all available from https://github.com/adamhsparks/checkresults/tree/master/getCRUCL2.0
+* Check logs from local MacOS, Travis, Appveyor and win-builder are all available from https://github.com/adamhsparks/checkresults/tree/master/getCRUCLdata
 
 ## Reverse dependencies
 
