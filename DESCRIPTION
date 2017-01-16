@@ -2,7 +2,7 @@ Package: getCRUCLdata
 Type: Package
 Title: Download and Use CRU CL2.0 Climatology Data in R
 Version: 0.1.2
-Authors@R: as.person("Adam Sparks <adamhsparks@gmail.com> [aut, cre]")
+Authors@R: person(given = "Adam", family = "Sparks", email = "adamhsparks@gmail.com", role = c("aut", "cre"))
 Description: Provides functions that automate downloading and importing
     University of East Anglia Climate Research Unit (CRU) CL2.0 climatology data
     into R, facilitates the calculation of minimum temperature and maximum
