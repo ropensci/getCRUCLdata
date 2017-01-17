@@ -7,6 +7,7 @@
   - Correct URLs in DESCRIPTION file  
   - Add required version for PURRR  
   - Add required version for R  
+  - Corrected URL pointing to CRU readme.txt file  
 
 # getCRUCLdata 0.1.1
 

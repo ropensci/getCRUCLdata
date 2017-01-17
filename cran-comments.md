@@ -13,6 +13,7 @@
   * Correct URLs in DESCRIPTION file  
   * Add required version for PURRR  
   * Add required version for R  
+  * Corrected URL pointing to CRU readme.txt file  
   
 * Check logs from local OSX, Travis, Appveyor and win-builder are all available from https://github.com/adamhsparks/checkresults/tree/master/getCRUCLdata
 

@@ -68,7 +68,7 @@ Nomenclature and units from readme.txt:
 \item{elv}{elevation (automatically converted to metres)}
 }
 For more information see the description of the data provided by CRU,
-\url{http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
+\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 }
 \details{
 This function generates a data.frame object in R with the following

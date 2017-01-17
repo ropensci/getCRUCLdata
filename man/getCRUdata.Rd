@@ -15,7 +15,7 @@ gridded climatology of 1961-1990 monthly means released in 2002 and cover all
 land areas (excluding Antarctica) at 10 arc-second resolution. For more
 information see the description of the data provided by the University of
 East Anglia Climate Research Unit (CRU),
-\url{http://www.cru.uea.ac.uk/cru/data/hrg/tmc/readme.txt}.
+\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}.
 }
 \author{
 Adam H Sparks
