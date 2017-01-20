@@ -29,7 +29,8 @@ ByteCompile: TRUE
 Suggests:
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr
 URL: https://github.com/adamhsparks/getCRUCLdata
 BugReports: https://github.com/adamhsparks/getCRUCLdata/issues
 VignetteBuilder: knitr
