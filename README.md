@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/adamhsparks/getCRUCLdata.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/adamhsparks/getCRUCLdata) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata)
+[![Travis-CI Build Status](https://travis-ci.org/adamhsparks/getCRUCLdata.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/adamhsparks/getCRUCLdata) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app) [![Coverage Status](https://img.shields.io/codecov/c/github/adamhsparks/getCRUCLdata/master.svg)](https://codecov.io/github/adamhsparks/getCRUCLdata?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata)
 
 getCRUCLdata
 ============

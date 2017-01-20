@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 [![Travis-CI Build Status](https://travis-ci.org/adamhsparks/getCRUCLdata.svg?branch=master)](https://travis-ci.org/)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/adamhsparks/getCRUCLdata)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app)
-[![Coverage Status](https://img.shields.io/codecov/c/github/adamhsparks/getCRUCL2.0/master.svg)](https://codecov.io/github/adamhsparks/getCRUCL2.0?branch=master)
+[![Coverage Status](https://img.shields.io/codecov/c/github/adamhsparks/getCRUCLdata/master.svg)](https://codecov.io/github/adamhsparks/getCRUCLdata?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata)
 
 
