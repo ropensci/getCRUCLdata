@@ -17,7 +17,7 @@
   names(CRU_list) <- substr(basename(files), 12, 14)
 
   # rename the columns in the data frames within the list --------------------
-  for (i in 1:length(CRU_list)) {
+  for (i in seq_along(CRU_list)) {
     wvars <- as.list(substr(basename(files), 12, 14))
     names(CRU_list[[i]])[names(CRU_list[[i]]) == "wvar"] <-
       wvars[[i]]
