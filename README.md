@@ -109,6 +109,9 @@ tmn_tmx <- create_CRU_stack(tmn = TRUE,
 
 ------------------------------------------------------------------------
 
+Meta
+====
+
 Data reference and abstract
 ---------------------------
 
@@ -127,10 +130,10 @@ Contributors
 
 -   [Adam H. Sparks](https://github.com/adamhsparks)
 
-Meta
-----
+Other
+-----
 
 -   Please [report any issues or bugs](https://github.com/adamhsparks/getCRUCLdata/issues).
 -   License: MIT
--   Get citation information for `getCRUCLdata` in R doing `citation(package = 'getCRUCLdata')`
+-   Get citation information for `getCRUCLdata` in R typing `citation(package = "getCRUCLdata")`
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
