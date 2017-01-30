@@ -12,10 +12,6 @@ Author/Maintainer: Adam Sparks
 
 The getCRUCLdata package provides two functions that automate downloading and importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a tidy data frame or a list of raster stack objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10-minute resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
-License: MIT + file LICENSE
-
-Imports: curl, dplyr, plyr, purrr, raster, tidyr, utils
-
 Changes to original data
 ------------------------
 
@@ -29,7 +25,8 @@ Quick Start
 Install
 -------
 
-### Stable version
+Stable version
+--------------
 
 A stable version of GSODR is available from [CRAN](https://cran.r-project.org/package=getCRUCLdata).
 
@@ -37,7 +34,8 @@ A stable version of GSODR is available from [CRAN](https://cran.r-project.org/pa
 install.packages("getCRUdata")
 ```
 
-### Development version
+Development version
+-------------------
 
 A development version is available from from GitHub. If you wish to install the development version that may have new features (but also may not work properly), install the [devtools package](https://CRAN.R-project.org/package=devtools), available from CRAN. I strive to keep the master branch on GitHub functional and working properly, although this may not always happen.
 
@@ -112,7 +110,7 @@ tmn_tmx <- create_CRU_stack(tmn = TRUE,
 ------------------------------------------------------------------------
 
 Data reference and abstract
-===========================
+---------------------------
 
 > Mark New (1,\*), David Lister (2), Mike Hulme (3), Ian Makin (4)
 
@@ -124,7 +122,15 @@ Data reference and abstract
 
 > **ABSTRACT:** We describe the construction of a 10-minute latitude/longitude data set of mean monthly surface climate over global land areas, excluding Antarctica. The climatology includes 8 climate elements - precipitation, wet-day frequency, temperature, diurnal temperature range, relative humidity,sunshine duration, ground frost frequency and windspeed - and was interpolated from a data set of station means for the period centred on 1961 to 1990. Precipitation was first defined in terms of the parameters of the Gamma distribution, enabling the calculation of monthly precipitation at any given return period. The data are compared to an earlier data set at 0.5 degrees latitude/longitude resolution and show added value over most regions. The data will have many applications in applied climatology, biogeochemical modelling, hydrology and agricultural meteorology and are available through the School of Geography Oxford (<http://www.geog.ox.ac.uk>), the International Water Management Institute "World Water and Climate Atlas" (<http://www.iwmi.org>) and the Climatic Research Unit (<http://www.cru.uea.ac.uk>).
 
-Notes
-=====
+Contributors
+------------
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+-   [Adam H. Sparks](https://github.com/adamhsparks)
+
+Meta
+----
+
+-   Please [report any issues or bugs](https://github.com/adamhsparks/getCRUCLdata/issues).
+-   License: MIT
+-   Get citation information for `getCRUCLdata` in R doing `citation(package = 'getCRUCLdata')`
+-   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

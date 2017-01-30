@@ -1,12 +1,23 @@
-
 language: r
 sudo: false
 dist: trusty
 cache: packages
 
+## Set up the matrix of different runs
 env:
   matrix:
-    - NOT_CRAN=true
+  - r: release
+    not_cran: true
+    r_check_args: "--no-manual"
+  - r: release
+    not_cran: false
+    r_check_args: "--no-manual --as--cran"
+  - r: devel
+    not_cran: true
+    r_check_args: "--no-manual"
+  - r: devel
+    not_cran: false
+    r_check_args: "--no-manual --as--cran"
 
 after_failure:
   - ./pkg-build.sh dump_logs
@@ -18,4 +29,3 @@ notifications:
 
 after_success:
   - Rscript -e 'covr::codecov()'
-

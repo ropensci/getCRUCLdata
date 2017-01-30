@@ -71,8 +71,6 @@
 <a href="#download-and-use-cru-cl2-0-climatology-data-in-r" class="anchor"> </a>Download and Use CRU CL2.0 Climatology Data in R</h2>
 <p>Author/Maintainer: Adam Sparks</p>
 <p>The getCRUCLdata package provides two functions that automate downloading and importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a tidy data frame or a list of raster stack objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10-minute resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <a href="https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt" class="uri">https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a>.</p>
-<p>License: MIT + file LICENSE</p>
-<p>Imports: curl, dplyr, plyr, purrr, raster, tidyr, utils</p>
 </div>
 <div id="changes-to-original-data" class="section level2">
 <h2 class="hasAnchor">
@@ -87,20 +85,20 @@
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"> </a>Install</h2>
-<div id="stable-version" class="section level3">
-<h3 class="hasAnchor">
-<a href="#stable-version" class="anchor"> </a>Stable version</h3>
+</div>
+<div id="stable-version" class="section level2">
+<h2 class="hasAnchor">
+<a href="#stable-version" class="anchor"> </a>Stable version</h2>
 <p>A stable version of GSODR is available from <a href="https://cran.r-project.org/package=getCRUCLdata">CRAN</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"getCRUdata"</span>)</code></pre></div>
 </div>
-<div id="development-version" class="section level3">
-<h3 class="hasAnchor">
-<a href="#development-version" class="anchor"> </a>Development version</h3>
+<div id="development-version" class="section level2">
+<h2 class="hasAnchor">
+<a href="#development-version" class="anchor"> </a>Development version</h2>
 <p>A development version is available from from GitHub. If you wish to install the development version that may have new features (but also may not work properly), install the <a href="https://CRAN.R-project.org/package=devtools">devtools package</a>, available from CRAN. I strive to keep the master branch on GitHub functional and working properly, although this may not always happen.</p>
 <p>If you find bugs, please file a <a href="https://github.com/adamhsparks/getCRUCLdata/issues">report as an issue</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages("devtools")</span>
 devtools::<span class="kw">install_github</span>(<span class="st">"adamhsparks/getCRUCLdata"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
-</div>
 </div>
 <div id="using-getcrucldata" class="section level2">
 <h2 class="hasAnchor">
@@ -150,10 +148,9 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/creat
                             <span class="dt">tmx =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <hr>
 </div>
-</div>
-<div id="data-reference-and-abstract" class="section level1">
-<h1 class="hasAnchor">
-<a href="#data-reference-and-abstract" class="anchor"> </a>Data reference and abstract</h1>
+<div id="data-reference-and-abstract" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-reference-and-abstract" class="anchor"> </a>Data reference and abstract</h2>
 <blockquote>
 <p>Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)</p>
 </blockquote>
@@ -173,10 +170,24 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/creat
 <p><strong>ABSTRACT:</strong> We describe the construction of a 10-minute latitude/longitude data set of mean monthly surface climate over global land areas, excluding Antarctica. The climatology includes 8 climate elements - precipitation, wet-day frequency, temperature, diurnal temperature range, relative humidity,sunshine duration, ground frost frequency and windspeed - and was interpolated from a data set of station means for the period centred on 1961 to 1990. Precipitation was first defined in terms of the parameters of the Gamma distribution, enabling the calculation of monthly precipitation at any given return period. The data are compared to an earlier data set at 0.5 degrees latitude/longitude resolution and show added value over most regions. The data will have many applications in applied climatology, biogeochemical modelling, hydrology and agricultural meteorology and are available through the School of Geography Oxford (<a href="http://www.geog.ox.ac.uk" class="uri">http://www.geog.ox.ac.uk</a>), the International Water Management Institute “World Water and Climate Atlas” (<a href="http://www.iwmi.org" class="uri">http://www.iwmi.org</a>) and the Climatic Research Unit (<a href="http://www.cru.uea.ac.uk" class="uri">http://www.cru.uea.ac.uk</a>).</p>
 </blockquote>
 </div>
-<div id="notes" class="section level1">
-<h1 class="hasAnchor">
-<a href="#notes" class="anchor"> </a>Notes</h1>
-<p>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+<div id="contributors" class="section level2">
+<h2 class="hasAnchor">
+<a href="#contributors" class="anchor"> </a>Contributors</h2>
+<ul>
+<li><a href="https://github.com/adamhsparks">Adam H. Sparks</a></li>
+</ul>
+</div>
+<div id="meta" class="section level2">
+<h2 class="hasAnchor">
+<a href="#meta" class="anchor"> </a>Meta</h2>
+<ul>
+<li>Please <a href="https://github.com/adamhsparks/getCRUCLdata/issues">report any issues or bugs</a>.</li>
+<li>License: MIT</li>
+<li>Get citation information for <code>getCRUCLdata</code> in R doing <code>citation(package = 'getCRUCLdata')</code>
+</li>
+<li>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</li>
+</ul>
+</div>
 </div>
 </div>
   </div>

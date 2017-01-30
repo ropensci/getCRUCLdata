@@ -47,7 +47,7 @@ raster layer object? Defaults to FALSE.}
 }
 \description{
 This function automates downloading and importing CRU CL2.0
-climatology data into R and creates a list of raster stacks of the data. If
+climatology data into R and creates a list of raster stacks of the data.  If
 requested, minimum and maximum temperature may also be automatically
 calculated as described in the data readme.txt file.
 
