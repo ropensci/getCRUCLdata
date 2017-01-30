@@ -112,10 +112,6 @@
 <li>
 <strong>elv</strong> Logical. Fetch elevation (and convert to metres from kilometres) and return it in the data? Defaults to FALSE.</li>
 </ul>
-<div id="using-getcrucldata-1" class="section level2">
-<h2 class="hasAnchor">
-<html><body><a href="#using-getcrucldata-1" class="anchor"> </a></body></html>Using getCRUCLdata</h2>
-</div>
 <div id="creating-tidy-data-frames-for-use-in-r" class="section level2">
 <h2 class="hasAnchor">
 <html><body><a href="#creating-tidy-data-frames-for-use-in-r" class="anchor"> </a></body></html>Creating tidy data frames for use in R</h2>
@@ -138,9 +134,9 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t_rh &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>,
                       <span class="dt">reh =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
-<div id="creating-raster-stacks-for-use-in-r" class="section level2">
+<div id="creating-raster-stacks-for-use-in-r-or-saving-for-use-in-a-gis" class="section level2">
 <h2 class="hasAnchor">
-<html><body><a href="#creating-raster-stacks-for-use-in-r" class="anchor"> </a></body></html>Creating raster stacks for use in R</h2>
+<html><body><a href="#creating-raster-stacks-for-use-in-r-or-saving-for-use-in-a-gis" class="anchor"> </a></body></html>Creating raster stacks for use in R or saving for use in a GIS</h2>
 <p>The <code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code> function provides functionality for producing a list of <a href="https://CRAN.R-project.org/package=raster">raster</a> stack objects for use in an R session.</p>
 <p>Create a list of raster stacks of all CRU CL2.0 climatology elements available.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CRU_stack &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,
@@ -158,6 +154,11 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <p>Create a list of raster stacks of maximum and minimum temperature.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmn_tmx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,
                             <span class="dt">tmx =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Saving raster format files to a local disk as geotiff files in the <code>tmp</code> directory with a tmn or tmx prefix to the month for a filename.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="kw">file.path</span>(<span class="st">"~/tmp"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
+<span class="kw">writeRaster</span>(tmn_tmx$tmn, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/tmp/tmn_"</span>, <span class="kw">names</span>(tmn_tmx$tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
+
+<span class="kw">writeRaster</span>(tmn_tmx$tmx, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/tmp/tmx_"</span>, <span class="kw">names</span>(tmn_tmx$tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
 </div>
 </div>
 <div id="reference-and-abstract" class="section level1">
@@ -184,9 +185,8 @@ A high-resolution data set of surface climate over global land areas Climate Res
 <li><a href="#introduction-to-getcrucldata">Introduction to getCRUCLdata</a></li>
       <li>
 <a href="#using-getcrucldata">Using getCRUCLdata</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#using-getcrucldata-1">Using getCRUCLdata</a></li>
-      <li><a href="#creating-tidy-data-frames-for-use-in-r">Creating tidy data frames for use in R</a></li>
-      <li><a href="#creating-raster-stacks-for-use-in-r">Creating raster stacks for use in R</a></li>
+<li><a href="#creating-tidy-data-frames-for-use-in-r">Creating tidy data frames for use in R</a></li>
+      <li><a href="#creating-raster-stacks-for-use-in-r-or-saving-for-use-in-a-gis">Creating raster stacks for use in R or saving for use in a GIS</a></li>
       </ul>
 </li>
       <li><a href="#reference-and-abstract">Reference and abstract</a></li>
