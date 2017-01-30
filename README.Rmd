@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app)
 [![Research software impact](http://depsy.org/api/package/cran/getCRUCLdata/badge.svg)](http://depsy.org/package/r/getCRUCLdata)
+[![DOI](https://zenodo.org/badge/71445587.svg)](https://zenodo.org/badge/latestdoi/71445587)
 
 # getCRUCLdata
 ## Download and Use CRU CL2.0 Climatology Data in R
