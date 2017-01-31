@@ -42,3 +42,15 @@ test_that("create_CRU_df creates a tidy data frame of min temperature", {
   expect_is(tmn_df$tmn, "numeric")
   unlink(list.files(path = tempdir(), pattern = ".dat.gz$", full.names = TRUE))
 })
+
+-test_that("create_CRU_df creates a tidy data frame of max temperature", {
+  skip_on_cran()
+  tmx_df <- create_CRU_df(tmx = TRUE)
+  expect_true(is.data.frame(tmx_df))
+  expect_named(tmx_df, c("lat", "lon", "month", "tmx"))
+  expect_is(tmx_df$lat, "numeric")
+  expect_is(tmx_df$lon, "numeric")
+  expect_is(tmx_df$month, "character")
+  expect_is(tmx_df$tmx, "numeric")
+  unlink(list.files(path = tempdir(), pattern = ".dat.gz$", full.names = TRUE))
+  -})
