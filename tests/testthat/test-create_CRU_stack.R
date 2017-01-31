@@ -69,3 +69,18 @@ test_that("create_CRU_stack creates a list containing only pre_cv", {
     full.names = TRUE
   ))
 })
+
+test_that("create_CRU_stack creates a list containing only elv", {
+  skip_on_cran()
+  stacks <- create_CRU_stack(elv = TRUE)
+  expect_true(is.list(stacks))
+  expect_named(stacks, "elv")
+  expect_named(stacks$elv, "elv")
+  expect_equal(raster::cellStats(stacks$elv, max), 6242)
+  expect_equal(raster::cellStats(stacks$elv, min), -361)
+  unlink(list.files(
+      path = tempdir(),
+      pattern = ".dat.gz$",
+      full.names = TRUE
+    ))
+  })
