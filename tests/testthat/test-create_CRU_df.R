@@ -1,5 +1,6 @@
 
 
+
 context("create_CRU_df")
 
 unlink(list.files(
@@ -493,20 +494,89 @@ pre <- TRUE
 tmn <- FALSE
 tmx <- FALSE
 
-CRU_df <-
-  .tidy_df(pre_cv, tmn, tmx, tempdir())
+test_that("Test that .tidy_df creates a tidy dataframe of pre, pre_cv and tmp", {
+  CRU_df <-
+    .tidy_df(pre_cv, tmn, tmx, tempdir())
 
-expect_true(is.data.frame(CRU_df))
-expect_named(CRU_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
-expect_is(CRU_df$lat, "numeric")
-expect_is(CRU_df$lon, "numeric")
-expect_is(CRU_df$month, "character")
-expect_is(CRU_df$pre, "numeric")
-expect_is(CRU_df$pre_cv, "numeric")
-expect_is(CRU_df$tmp, "numeric")
+  expect_true(is.data.frame(CRU_df))
+  expect_named(CRU_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
+  expect_is(CRU_df$lat, "numeric")
+  expect_is(CRU_df$lon, "numeric")
+  expect_is(CRU_df$month, "character")
+  expect_is(CRU_df$pre, "numeric")
+  expect_is(CRU_df$pre_cv, "numeric")
+  expect_is(CRU_df$tmp, "numeric")
+})
+
+  unlink(list.files(
+    path = tempdir(),
+    pattern = ".dat.gz$",
+    full.names = TRUE
+  ))
+
+
+# These data are taken from the raw elevation data file
+elv_data <- cbind(
+  c(
+    -59.083,
+    -58.417,
+    -58.417,
+    -55.917,
+    -55.750,
+    -55.750,
+    -55.750,
+    -55.583,
+    -55.583,
+    -55.583
+  ),
+  c(
+    -26.583,
+    -26.417,
+    -26.250,
+    -67.250,
+    -67.583,
+    -67.417,
+    -67.250,
+    -68.250,
+    -68.083,
+    -67.583
+  ),
+  c(
+    0.193,
+    0.239,
+    0.194,
+    0.064,
+    0.032,
+    0.103,
+    0.063,
+    0.062,
+    0.123,
+    0.019
+  )
+)
+
+utils::write.table(
+  elv_data,
+  file = paste0(tempdir(), "/grid_10min_elv.dat.gz"),
+  col.names = FALSE,
+  row.names = FALSE
+)
+
+test_that("Test that .tidy_df creates a tidy dataframe of elv", {
+  skip_on_cran()
+
+  CRU_df <-
+    .tidy_df(pre_cv, tmn, tmx, tempdir())
+
+  expect_true(is.data.frame(CRU_df))
+  expect_named(CRU_df, c("lat", "lon", "elv"))
+  expect_is(CRU_df$lat, "numeric")
+  expect_is(CRU_df$lon, "numeric")
+  expect_is(CRU_df$elv, "numeric")
+})
 
 unlink(list.files(
   path = tempdir(),
-  pattern = ".txt$",
+  pattern = ".dat.gz$",
   full.names = TRUE
 ))
