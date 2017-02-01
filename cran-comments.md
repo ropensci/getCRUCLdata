@@ -12,7 +12,7 @@
   * Update documentation with ROxygen 6.0.0  
   * Minor edits to documentation for clarity  
   
-* Check logs from local OSX, Travis, Appveyor and win-builder are all available from https://github.com/adamhsparks/checkresults/tree/master/getCRUCLdata
+* Check logs from local OSX, Appveyor and win-builder are all available from https://github.com/adamhsparks/checkresults/tree/master/getCRUCLdata
 
 ## Reverse dependencies
 
