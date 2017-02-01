@@ -225,9 +225,9 @@ create_CRU_stack <-
     names(y) <- "elv"
   }
 
-  y <- raster::crop(y, raster::extent(-60,
-                                      85,
-                                      -180,
-                                      180))
+  y <- raster::crop(y, raster::extent(-180,
+                                      180,
+                                      -60,
+                                      85))
   return(y)
 }

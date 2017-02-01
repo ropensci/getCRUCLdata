@@ -24,7 +24,7 @@ Imports:
     tidyr,
     utils
 LazyData: TRUE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.0
 ByteCompile: TRUE
 Suggests:
     testthat,

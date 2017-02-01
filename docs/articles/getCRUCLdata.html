@@ -60,7 +60,7 @@
       <h1>getCRUCLdata</h1>
                         <h4 class="author">Adam H. Sparks</h4>
             
-            <h4 class="date">2017-01-31</h4>
+            <h4 class="date">2017-02-01</h4>
           </div>
 
     
@@ -156,9 +156,9 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
                             <span class="dt">tmx =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Saving raster format files to a local disk as geotiff files in the <code>tmp</code> directory with a tmn or tmx prefix to the month for a filename.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="kw">file.path</span>(<span class="st">"~/tmp"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
-<span class="kw">writeRaster</span>(tmn_tmx$tmn, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/tmp/tmn_"</span>, <span class="kw">names</span>(tmn_tmx$tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
+<span class="kw">writeRaster</span>(tmn_tmx<span class="op">$</span>tmn, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/tmp/tmn_"</span>, <span class="kw">names</span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
 
-<span class="kw">writeRaster</span>(tmn_tmx$tmx, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/tmp/tmx_"</span>, <span class="kw">names</span>(tmn_tmx$tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
+<span class="kw">writeRaster</span>(tmn_tmx<span class="op">$</span>tmx, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/tmp/tmx_"</span>, <span class="kw">names</span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
 </div>
 </div>
 <div id="reference-and-abstract" class="section level1">
