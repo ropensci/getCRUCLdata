@@ -1,3 +1,10 @@
+# getCRUCLdata 0.1.3
+
+## Minor Changes
+
+  * Correct fix bug in raster object generation where the objects were incorrectly cropped  
+  * Update documentation with ROxygen 6.0.0  
+  * Minor edits to documentation for clarity  
 
 # getCRUCLdata 0.1.2
 

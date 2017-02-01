@@ -1,6 +1,5 @@
 ## Test environments
 * local macOS install, R 3.3.2
-* Ubuntu 12.04 (on travis-ci), R 3.3.2
 * Windows (on Appveyor), R 3.3.2
 * win-builder (devel and release)
 
@@ -9,11 +8,9 @@
 0 errors | 0 warnings | 1 note
 
 * This is minor release with the following changes
-  * Correct documentation to read that the data resolution is 10 minute, not 10 seconds
-  * Correct URLs in DESCRIPTION file  
-  * Add required version for PURRR  
-  * Add required version for R  
-  * Corrected URL pointing to CRU readme.txt file  
+  * Correct fix bug in raster object generation where the objects were incorrectly cropped  
+  * Update documentation with ROxygen 6.0.0  
+  * Minor edits to documentation for clarity  
   
 * Check logs from local OSX, Travis, Appveyor and win-builder are all available from https://github.com/adamhsparks/checkresults/tree/master/getCRUCLdata
 
