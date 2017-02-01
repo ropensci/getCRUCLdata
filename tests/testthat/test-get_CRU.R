@@ -6,42 +6,6 @@ unlink(list.files(
   full.names = TRUE
 ))
 
-test_that("get_CRU will retrieve only precipitation file when pre TRUE", {
-  skip_on_cran()
-
-  # be sure to start with a clean directory
-  cache_dir <- tempdir()
-  unlink(list.files(
-    path = cache_dir,
-    pattern = ".dat.gz$",
-    full.names = TRUE
-  ))
-
-  .get_CRU(
-    pre = TRUE,
-    pre_cv = FALSE,
-    rd0 = FALSE,
-    tmp = FALSE,
-    dtr = FALSE,
-    reh = FALSE,
-    tmn = FALSE,
-    tmx = FALSE,
-    sunp = FALSE,
-    frs = FALSE,
-    wnd = FALSE,
-    elv = FALSE,
-    cache_dir
-  )
-  files <- list.files(cache_dir, pattern = ".dat.gz$")
-  expect_identical(files, "grid_10min_pre.dat.gz")
-  unlink(list.files(
-    path = cache_dir,
-    pattern = ".dat.gz$",
-    full.names = TRUE
-  ))
-})
-
-
 test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
   skip_on_cran()
   skip_on_appveyor()
