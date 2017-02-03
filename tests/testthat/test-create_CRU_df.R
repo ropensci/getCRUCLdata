@@ -549,6 +549,33 @@ utils::write.table(
 
 elv <- TRUE
 
+test_that("Test that .tidy_df creates a tidy dataframe of pre, pre_cv, tmp, elv", {
+  skip_on_cran()
+
+  CRU_df <-
+    .tidy_df(pre_cv, elv, tmn, tmx, tempdir())
+
+  expect_true(is.data.frame(CRU_df))
+  expect_named(CRU_df, c("lat", "lon", "pre", "pre_cv", "tmp", "elv"))
+  expect_is(CRU_df$lat, "numeric")
+  expect_is(CRU_df$lon, "numeric")
+  expect_is(CRU_df$elv, "numeric")
+})
+
+unlink(list.files(
+  path = tempdir(),
+  pattern = ".dat.gz$",
+  full.names = TRUE
+))
+
+
+utils::write.table(
+  elv_data,
+  file = paste0(tempdir(), "/grid_10min_elv.dat.gz"),
+  col.names = FALSE,
+  row.names = FALSE
+)
+
 test_that("Test that .tidy_df creates a tidy dataframe of elv", {
   skip_on_cran()
 

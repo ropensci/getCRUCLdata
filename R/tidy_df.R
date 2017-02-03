@@ -36,7 +36,7 @@
     CRU_df <- Reduce(function(...)
       dplyr::full_join(..., by = c("lat", "lon", "month")), CRU_list)
     CRU_df <- dplyr::left_join(CRU_df, elv_df, by = c("lat", "lon"))
-  } else {
+  } else if (isTRUE(elv)) {
     CRU_df <- as.data.frame(CRU_list["elv"])
     names(CRU_df) <- c("lat", "lon", "elv")
   }
