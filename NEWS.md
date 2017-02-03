@@ -1,3 +1,9 @@
+# getCRUCLdata 0.1.4
+
+## Minor Changes
+
+  * Correct fix bug in data frame object generation where elevation was improperly handled and function would stop  
+
 # getCRUCLdata 0.1.3
 
 ## Minor Changes

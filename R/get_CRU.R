@@ -63,7 +63,7 @@
 
     files <- as.list(files[object_list %in% !isTRUE(files)])
 
-    # Download files -----------------------------------------------------------
+    # download files -----------------------------------------------------------
     # adapted from my question on SO,
     # http://stackoverflow.com/questions/40715370/
     message(" \nDownloading requested data files.\n ")

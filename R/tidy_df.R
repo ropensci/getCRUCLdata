@@ -1,6 +1,6 @@
 #' @importFrom dplyr %>%
 #' @noRd
-.tidy_df <- function(pre_cv, tmn, tmx, cache_dir) {
+.tidy_df <- function(pre_cv, elv, tmn, tmx, cache_dir) {
   files <-
     list.files(cache_dir, pattern = ".dat.gz$", full.names = TRUE)
 
@@ -8,10 +8,12 @@
 
   # create list of tidied data frames ----------------------------------------
   CRU_list <-
-    plyr::llply(.data = files,
-                .fun = .read_cache,
-                .pre_cv = pre_cv,
-                .progress = "text")
+    plyr::llply(
+      .data = files,
+      .fun = .read_cache,
+      .pre_cv = pre_cv,
+      .progress = "text"
+    )
 
   # name the items in the list for the data that they contain ----------------
   names(CRU_list) <- substr(basename(files), 12, 14)
@@ -23,10 +25,21 @@
       wvars[[i]]
   }
 
-  # lastly merge the data frames into one tidy (large) data frame ------------
-  CRU_df <- Reduce(function(...)
-    dplyr::full_join(..., by = c("lat", "lon", "month")), CRU_list)
-
+  # lastly merge the data frames into one tidy (large) data frame --------------
+  if (!isTRUE(elv)) {
+    CRU_df <- Reduce(function(...)
+      dplyr::full_join(..., by = c("lat", "lon", "month")), CRU_list)
+  } else if (isTRUE(elv) & length(CRU_list) > 1) {
+    elv_df <- as.data.frame(CRU_list["elv"])
+    names(elv_df) <- c("lat", "lon", "elv")
+    CRU_list[which(names(CRU_list) %in% c("elv"))] <- NULL
+    CRU_df <- Reduce(function(...)
+      dplyr::full_join(..., by = c("lat", "lon", "month")), CRU_list)
+    CRU_df <- dplyr::left_join(CRU_df, elv_df, by = c("lat", "lon"))
+  } else if (isTRUE(elv)) {
+    CRU_df <- as.data.frame(CRU_list["elv"])
+    names(CRU_df) <- c("lat", "lon", "elv")
+  }
   return(CRU_df)
 
   # cleanup before we go -----------------------------------------------------
@@ -80,7 +93,8 @@
                       value = "pre_cv",
                       dplyr::everything(),
                       -c(lat, lon))
-      x_df <- dplyr::left_join(x_df1, x_df2, by = c("lat", "lon", "month"))
+      x_df <-
+        dplyr::left_join(x_df1, x_df2, by = c("lat", "lon", "month"))
     } else {
       x_df <- x[, c(1:14)]
       names(x_df) <- c("lat", "lon", month_names)
@@ -93,8 +107,7 @@
     }
   }
   else if (ncol(x) == 3) {
-    names(x) <- c("lat", "lon", "elv")
-    x_df <- x * 1000
+    x_df <- data.frame(x[, c(1, 2)], x[, 3] * 1000)
   }
   return(x_df)
 }
