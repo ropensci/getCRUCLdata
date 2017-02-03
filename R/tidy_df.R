@@ -23,9 +23,14 @@
       wvars[[i]]
   }
 
-  # lastly merge the data frames into one tidy (large) data frame ------------
+  # lastly merge the data frames into one tidy (large) data frame --------------
+  elv_df <- as.data.frame(CRU_list["elv"])
+  names(elv_df) <- c("lat", "lon", "elv")
+  CRU_list[which(names(CRU_list) %in% c("elv"))] <- NULL
   CRU_df <- Reduce(function(...)
     dplyr::full_join(..., by = c("lat", "lon", "month")), CRU_list)
+
+  CRU_df <- dplyr::left_join(CRU_df, elv_df, by = c("lat", "lon"))
 
   return(CRU_df)
 
@@ -94,7 +99,7 @@
   }
   else if (ncol(x) == 3) {
     names(x) <- c("lat", "lon", "elv")
-    x_df <- x * 1000
+    x_df <- data.frame(x[, c(1, 2)], x[, 3] * 1000)
   }
   return(x_df)
 }
