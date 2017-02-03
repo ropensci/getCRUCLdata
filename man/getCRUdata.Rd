@@ -17,9 +17,6 @@ information see the description of the data provided by the University of
 East Anglia Climate Research Unit (CRU),
 \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}.
 }
-\author{
-Adam H Sparks
-}
 \references{
 \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/}
 
@@ -34,4 +31,6 @@ set of surface climate over global land areas. \emph{Climate Research}
 
 \code{\link{create_CRU_stack}}
 }
-
+\author{
+Adam H Sparks
+}
