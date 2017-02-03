@@ -100,7 +100,7 @@ create_CRU_df <- function(pre = FALSE,
            cache_dir)
 
   CRU_df <-
-    .tidy_df(pre_cv, tmn, tmx, cache_dir)
+    .tidy_df(pre_cv, elv, tmn, tmx, cache_dir)
 
   if (isTRUE(tmx)) {
     tmx_df <- .calculate_tmx(CRU_df[, "tmp"], CRU_df[, "dtr"])

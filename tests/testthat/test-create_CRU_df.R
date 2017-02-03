@@ -1,6 +1,4 @@
 
-
-
 context("create_CRU_df")
 
 unlink(list.files(
@@ -13,20 +11,6 @@ test_that("create_CRU_df fails if no parameters are TRUE", {
   expect_error(create_CRU_df(),
                "You must select at least one parameter for download.")
 })
-
-month_names <-
-  c("jan",
-    "feb",
-    "mar",
-    "apr",
-    "may",
-    "jun",
-    "jul",
-    "aug",
-    "sep",
-    "oct",
-    "nov",
-    "dec")
 
 # create files for testing, these data are the first 10 lines of pre and tmp
 # from the CRU CL2.0 data
@@ -493,10 +477,11 @@ pre_cv <- TRUE
 pre <- TRUE
 tmn <- FALSE
 tmx <- FALSE
+elv <- FALSE
 
 test_that("Test that .tidy_df creates a tidy dataframe of pre, pre_cv and tmp", {
   CRU_df <-
-    .tidy_df(pre_cv, tmn, tmx, tempdir())
+    .tidy_df(pre_cv, elv, tmn, tmx, tempdir())
 
   expect_true(is.data.frame(CRU_df))
   expect_named(CRU_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
@@ -562,11 +547,13 @@ utils::write.table(
   row.names = FALSE
 )
 
+elv <- TRUE
+
 test_that("Test that .tidy_df creates a tidy dataframe of elv", {
   skip_on_cran()
 
   CRU_df <-
-    .tidy_df(pre_cv, tmn, tmx, tempdir())
+    .tidy_df(pre_cv, elv, tmn, tmx, tempdir())
 
   expect_true(is.data.frame(CRU_df))
   expect_named(CRU_df, c("lat", "lon", "elv"))

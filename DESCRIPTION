@@ -14,7 +14,8 @@ Description: Provides functions that automate downloading and importing
     East Anglia Climate Research Unit,
     <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 License: MIT + file LICENSE
-Depends: R (>= 3.0.0)
+Depends:
+    R (>= 3.0.0)
 Imports:
     curl,
     dplyr,
@@ -24,7 +25,7 @@ Imports:
     tidyr,
     utils
 LazyData: TRUE
-RoxygenNote: 6.0.0
+RoxygenNote: 5.0.1
 ByteCompile: TRUE
 Suggests:
     testthat,
