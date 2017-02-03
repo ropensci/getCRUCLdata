@@ -556,7 +556,7 @@ test_that("Test that .tidy_df creates a tidy dataframe of pre, pre_cv, tmp, elv"
     .tidy_df(pre_cv, elv, tmn, tmx, tempdir())
 
   expect_true(is.data.frame(CRU_df))
-  expect_named(CRU_df, c("lat", "lon", "pre", "pre_cv", "tmp", "elv"))
+  expect_named(CRU_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp", "elv"))
   expect_is(CRU_df$lat, "numeric")
   expect_is(CRU_df$lon, "numeric")
   expect_is(CRU_df$elv, "numeric")
