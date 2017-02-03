@@ -493,13 +493,6 @@ test_that("Test that .tidy_df creates a tidy dataframe of pre, pre_cv and tmp", 
   expect_is(CRU_df$tmp, "numeric")
 })
 
-  unlink(list.files(
-    path = tempdir(),
-    pattern = ".dat.gz$",
-    full.names = TRUE
-  ))
-
-
 # These data are taken from the raw elevation data file
 elv_data <- cbind(
   c(
