@@ -48,7 +48,8 @@
         rd0_url)
     names(files) <-
       names(object_list) <-
-      c("dtr_url",
+      c(
+        "dtr_url",
         "tmp_url",
         "reh_url",
         "elv_url",
@@ -64,26 +65,10 @@
     files <- as.list(files[object_list %in% !isTRUE(files)])
 
     # download files -----------------------------------------------------------
-    # adapted from my question on SO,
-    # http://stackoverflow.com/questions/40715370/
     message(" \nDownloading requested data files.\n ")
-    s_curl_fetch_disk <- purrr::safely(curl::curl_fetch_disk)
-    retry_cfd <- function(url, path) {
-      cache_file <- paste0(cache_dir, "/", basename(url))
-      if (file.exists(cache_file))
-        return()
-      i <- 0
-      repeat {
-        i <- i + 1
-        if (i == 6) {
-          stop("Too many retries...server may be under load")
-        }
-        res <- s_curl_fetch_disk(url, cache_file)
-        if (!is.null(res$result))
-          return()
-      }
+    for (f in files) {
+      httr::GET(url = f, httr::write_disk(paste0(cache_dir, "/",
+                                                 basename(f)),
+                                          overwrite = TRUE))
     }
-    purrr::walk(files, function(f) {
-      purrr::walk(files, retry_cfd)
-    })
   }
