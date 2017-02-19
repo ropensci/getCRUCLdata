@@ -66,9 +66,17 @@
 
     # download files -----------------------------------------------------------
     message(" \nDownloading requested data files.\n ")
-    for (f in files) {
-      httr::GET(url = f, httr::write_disk(paste0(cache_dir, "/",
-                                                 basename(f)),
+    pb <-
+      utils::txtProgressBar(
+        min = 0,
+        max = length(files),
+        initial = 0,
+        style = 3
+      )
+    for (f in 1:length(files)) {
+      httr::GET(url = files[[f]], httr::write_disk(paste0(cache_dir, "/",
+                                                 basename(files[[f]])),
                                           overwrite = TRUE))
+      utils::setTxtProgressBar(pb, f)
     }
   }

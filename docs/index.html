@@ -107,7 +107,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <div id="creating-tidy-data-frames-for-use-in-r" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-tidy-data-frames-for-use-in-r" class="anchor"> </a>Creating tidy data frames for use in R</h2>
-<p>The <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> function creates tidy data frames of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.</p>
+<p>The <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> function returns a tidy data frames, as a <a href="https://github.com/tidyverse/tibble"><code>tibble</code></a> object, of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(getCRUCLdata)
 
 CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,

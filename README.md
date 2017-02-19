@@ -52,7 +52,7 @@ Using getCRUCLdata
 Creating tidy data frames for use in R
 --------------------------------------
 
-The `create_CRU_df()` function creates tidy data frames of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.
+The `create_CRU_df()` function returns a tidy data frames, as a [`tibble`](https://github.com/tidyverse/tibble) object, of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.
 
 ``` r
 library(getCRUCLdata)

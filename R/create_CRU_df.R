@@ -124,5 +124,5 @@ create_CRU_df <- function(pre = FALSE,
       CRU_df <- subset(CRU_df, select = -dtr)
     }
   }
-  return(CRU_df)
+  return(tibble::as_tibble(CRU_df))
 }
