@@ -65,40 +65,7 @@
       "dec")
 
   x <-
-    readr::read_fwf(files,
-                    col_positions = readr::fwf_widths(
-                      c(9,
-                        9,
-                        7,
-                        7,
-                        7,
-                        7,
-                        7,
-                        7,
-                        7,
-                        7,
-                        7,
-                        7,
-                        7,
-                        7),
-                      col_names = c(
-                        "lat",
-                        "lon",
-                        "jan",
-                        "feb",
-                        "mar",
-                        "apr",
-                        "may",
-                        "jun",
-                        "jul",
-                        "aug",
-                        "sep",
-                        "oct",
-                        "nov",
-                        "dec"
-                      )
-                    )
-    )
+    data.table::fread(paste0("gzip -dc ", files), header = FALSE)
 
   if (ncol(x) == 14) {
     names(x) <- c("lat", "lon", month_names)
