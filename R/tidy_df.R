@@ -65,7 +65,40 @@
       "dec")
 
   x <-
-    utils::read.table(files, header = FALSE, colClasses = "numeric")
+    readr::read_fwf(files,
+                    col_positions = readr::fwf_widths(
+                      c(9,
+                        9,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7,
+                        7),
+                      col_names = c(
+                        "lat",
+                        "lon",
+                        "jan",
+                        "feb",
+                        "mar",
+                        "apr",
+                        "may",
+                        "jun",
+                        "jul",
+                        "aug",
+                        "sep",
+                        "oct",
+                        "nov",
+                        "dec"
+                      )
+                    )
+    )
 
   if (ncol(x) == 14) {
     names(x) <- c("lat", "lon", month_names)
