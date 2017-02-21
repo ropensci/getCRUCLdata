@@ -9,9 +9,9 @@ Description: Provides functions that automate downloading and importing
     temperature and formats the data into a tidy data frame as a tibble or a 
     list of raster stack objects for use in an R session.  CRU CL2.0 data are a
     gridded climatology of 1961-1990 monthly means released in 2002 and cover
-    all land areas (excluding Antarctica) at 10-minute resolution.  For more
-    information see the description of the data provided by the University of
-    East Anglia Climate Research Unit,
+    all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree)
+    resolution.  For more information see the description of the data provided
+    by the University of East Anglia Climate Research Unit,
     <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 License: MIT + file LICENSE
 Depends:
