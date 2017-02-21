@@ -28,7 +28,7 @@ Install
 Stable version
 --------------
 
-A stable version of GSODR is available from [CRAN](https://cran.r-project.org/package=getCRUCLdata).
+A stable version of getCRUCLdata is available from [CRAN](https://cran.r-project.org/package=getCRUCLdata).
 
 ``` r
 install.packages("getCRUCLdata")
