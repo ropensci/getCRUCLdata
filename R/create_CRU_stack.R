@@ -139,6 +139,8 @@ create_CRU_stack <-
     files <-
       list.files(cache_dir, pattern = ".dat.gz$", full.names = TRUE)
 
+    message("\nCreating raster stack now.\n")
+
     CRU_stack_list <-
       plyr::llply(.fun = .create_stack,
                   files,

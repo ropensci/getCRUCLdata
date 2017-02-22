@@ -99,6 +99,8 @@ create_CRU_df <- function(pre = FALSE,
            elv,
            cache_dir)
 
+  message("\nCreating data frame now.\n")
+
   CRU_df <-
     .tidy_df(pre_cv, elv, tmn, tmx, cache_dir)
 

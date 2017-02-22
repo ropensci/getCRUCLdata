@@ -65,7 +65,8 @@
       "dec")
 
   x <-
-    as.data.frame(data.table::fread(paste0("gzip -dc ", files), header = FALSE))
+    tibble::as_tibble(data.table::fread(paste0("gzip -dc ", files),
+                                        header = FALSE))
 
   if (ncol(x) == 14) {
     names(x) <- c("lat", "lon", month_names)
