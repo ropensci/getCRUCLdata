@@ -133,6 +133,10 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <p>Create a tidy data frame of mean temperature and relative humidity.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t_rh &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>,
                       <span class="dt">reh =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Save the resulting tidy data frame to local disk as a comma separated (CSV) file to local disk.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
+
+<span class="kw">write_csv</span>(t_rh, <span class="dt">path =</span> <span class="st">"~/"</span>)</code></pre></div>
 </div>
 <div id="creating-raster-stacks-for-use-in-r-or-saving-for-use-in-a-gis" class="section level2">
 <h2 class="hasAnchor">
@@ -155,7 +159,9 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmn_tmx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,
                             <span class="dt">tmx =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Saving raster format files to a local disk as geotiff files in the <code>tmp</code> directory with a tmn or tmx prefix to the month for a filename.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="kw">file.path</span>(<span class="st">"~/tmp"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
+
+<span class="kw">dir.create</span>(<span class="kw">file.path</span>(<span class="st">"~/tmp"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
 <span class="kw">writeRaster</span>(tmn_tmx<span class="op">$</span>tmn, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/tmp/tmn_"</span>, <span class="kw">names</span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
 
 <span class="kw">writeRaster</span>(tmn_tmx<span class="op">$</span>tmx, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/tmp/tmx_"</span>, <span class="kw">names</span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
