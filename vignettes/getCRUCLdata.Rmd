@@ -80,6 +80,14 @@ t_rh <- create_CRU_df(tmp = TRUE,
                       reh = TRUE)
 ```
 
+Save the resulting tidy data frame to local disk as a comma separated (CSV) file to local disk.
+
+```{r, eval=FALSE}
+library(readr)
+
+write_csv(t_rh, path = "~/")
+```
+
 ## Creating raster stacks for use in R or saving for use in a GIS
 The `create_CRU_stack()` function provides functionality for producing a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
 
@@ -109,6 +117,8 @@ tmn_tmx <- create_CRU_stack(tmn = TRUE,
 Saving raster format files to a local disk as geotiff files in the `tmp` directory with a tmn or tmx prefix to the month for a filename.
 
 ```{r, eval=FALSE}
+library(raster)
+
 dir.create(file.path("~/tmp"), showWarnings = FALSE)
 writeRaster(tmn_tmx$tmn, filename = paste0("~/tmp/tmn_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
 
