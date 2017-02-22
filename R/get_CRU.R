@@ -67,11 +67,20 @@
     # check to see, did we already download these data, if so don't redownload--
     cache_dir_contents <-
       list.files(cache_dir, pattern = ".dat.gz$")
-    cache_dir_contents <- paste0(CRU_url, cache_dir_contents)
 
     # if there are files already locally available;
-    # check against the newly requested files and update list to download
+    # check against the newly requested files and update list to download ------
+
     if (length(cache_dir_contents) > 0) {
+
+      # remove files that are not requested a second time around ---------------
+      rm_files <- basename(unlist(files))
+      rm_files <- cache_dir_contents[!(cache_dir_contents %in% rm_files)]
+      rm_files <- paste0(cache_dir, "/", rm_files)
+      file.remove(rm_files)
+
+      # create list of files that do need to be downloaded ---------------------
+      cache_dir_contents <- paste0(CRU_url, cache_dir_contents)
       files <- as.list(files[!(files %in% cache_dir_contents)])
     }
 
