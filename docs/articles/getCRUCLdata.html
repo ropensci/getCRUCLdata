@@ -133,17 +133,6 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <p>Create a tidy data frame of mean temperature and relative humidity.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t_rh &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>,
                       <span class="dt">reh =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## 
-  |                                                                       
-  |                                                                 |   0%
-  |                                                                       
-  |=================================================================| 100%
-  |                                                                       
-  |                                                                 |   0%
-  |                                                                       
-  |================================                                 |  50%
-  |                                                                       
-  |=================================================================| 100%</code></pre>
 <p>Save the resulting tidy data frame to local disk as a comma separated (CSV) file to local disk.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
 
@@ -169,12 +158,16 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <span class="st">  </span><span class="kw">coord_quickmap</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Global Mean Monthly Temperature 1961-1990"</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>month, <span class="dt">nrow =</span> <span class="dv">4</span>)</code></pre></div>
-<p><img src="getCRUCLdata_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
+<div class="figure">
+<img src="README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperature 1961-1990"><p class="caption">Plot of global mean monthly temperature 1961-1990</p>
+</div>
 <p>We can generate a violin plot of the same data to look at global relative humidity.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t_rh, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Global Monthly Mean Land Surface Relative Humidity From 1960-1991"</span>)</code></pre></div>
-<p><img src="getCRUCLdata_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
+<div class="figure">
+<img src="README-unnamed-chunk-7-1.png" alt="Plot of global mean relative humidity 1961-1990"><p class="caption">Plot of global mean relative humidity 1961-1990</p>
+</div>
 </div>
 <div id="creating-raster-stacks-for-use-in-r-or-saving-for-use-in-a-gis" class="section level2">
 <h2 class="hasAnchor">
@@ -196,6 +189,14 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <p>Create a list of raster stacks of maximum and minimum temperature.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmn_tmx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,
                             <span class="dt">tmx =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Plot raster stacks of tmin and tmax</p>
+<p>Because the stacks are in a list, we need to access each element of the list individually to plot them, that’s what the <code>[[1]]</code> or <code>[[2]]</code> is, the first or second element of the list.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
+
+<span class="kw">plot</span>(tmn_tmx[[<span class="dv">1</span>]])</code></pre></div>
+<div class="figure">
+<img src="README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
+</div>
 <p>Saving raster format files to a local disk as geotiff files in the <code>tmp</code> directory with a tmn or tmx prefix to the month for a filename.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
@@ -205,9 +206,9 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <span class="kw">writeRaster</span>(tmn_tmx<span class="op">$</span>tmx, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/tmp/tmx_"</span>, <span class="kw">names</span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
 </div>
 </div>
-<div id="reference-and-abstract" class="section level1">
+<div id="cru-cl2-0-reference-and-abstract" class="section level1">
 <h1 class="hasAnchor">
-<html><body><a href="#reference-and-abstract" class="anchor"> </a></body></html>Reference and abstract</h1>
+<html><body><a href="#cru-cl2-0-reference-and-abstract" class="anchor"> </a></body></html>CRU CL2.0 reference and abstract</h1>
 <blockquote>
 <p>Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)<br>
 A high-resolution data set of surface climate over global land areas Climate Research, 2000, Vol 21, pg 1-25<br>
@@ -234,7 +235,7 @@ A high-resolution data set of surface climate over global land areas Climate Res
       <li><a href="#creating-raster-stacks-for-use-in-r-or-saving-for-use-in-a-gis">Creating raster stacks for use in R or saving for use in a GIS</a></li>
       </ul>
 </li>
-      <li><a href="#reference-and-abstract">Reference and abstract</a></li>
+      <li><a href="#cru-cl2.0-reference-and-abstract">CRU CL2.0 reference and abstract</a></li>
       </ul>
 </div>
       </div>

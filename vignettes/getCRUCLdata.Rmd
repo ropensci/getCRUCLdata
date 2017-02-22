@@ -75,7 +75,7 @@ CRU_data <- create_CRU_df(pre = TRUE,
 
 Create a tidy data frame of mean temperature and relative humidity.
 
-```{r, eval=TRUE, message=FALSE}
+```{r, eval=FALSE}
 t_rh <- create_CRU_df(tmp = TRUE,
                       reh = TRUE)
 ```
@@ -93,7 +93,7 @@ write_csv(t_rh, path = "~/")
 Now that we have the data, we can plot it easily using [`ggplot2`](http://ggplot2.org) and
 the fantastic [`viridis`](https://cran.r-project.org/web/packages/viridis/) package for the colour scale.
 
-```{r, eval=TRUE, message=FALSE}
+```{r, eval=FALSE}
 if (!require("ggplot2")) {
   install.packages(ggplot2)
 }
@@ -107,7 +107,7 @@ library(viridis)
 
 Now that the required packages are installed and loaded, we can generate a figure of temperature ranges using `ggplot2` to map the 12 months.
 
-```{r, eval=TRUE}
+```{r, eval=FALSE}
 ggplot(data = t_rh, aes(x = lon, y = lat)) +
   geom_raster(aes(fill = tmp)) +
   scale_fill_viridis(option = "inferno") +
@@ -116,13 +116,18 @@ ggplot(data = t_rh, aes(x = lon, y = lat)) +
   facet_wrap(~ month, nrow = 4)
 ```
 
+![Plot of global mean monthly temperature 1961-1990](README-unnamed-chunk-6-1.png)
+
+
 We can generate a violin plot of the same data to look at global relative humidity.
 
-```{r, eval=TRUE}
+```{r, eval=FALSE}
 ggplot(data = t_rh, aes(x = month, y = tmp)) +
   geom_violin() +
   ggtitle("Global Monthly Mean Land Surface Relative Humidity From 1960-1991")
 ```
+
+![Plot of global mean relative humidity 1961-1990](README-unnamed-chunk-7-1.png)
 
 ## Creating raster stacks for use in R or saving for use in a GIS
 The `create_CRU_stack()` function provides functionality for producing a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
@@ -144,11 +149,22 @@ CRU_stack <- create_CRU_stack(pre = TRUE,
                               elv = TRUE)
 ```
 
+
 Create a list of raster stacks of maximum and minimum temperature.
 ```{r, eval=FALSE}
 tmn_tmx <- create_CRU_stack(tmn = TRUE,
                             tmx = TRUE)
 ```
+
+Plot raster stacks of tmin and tmax
+
+Because the stacks are in a list, we need to access each element of the list individually to plot them, that's what the `[[1]]` or `[[2]]` is, the first or second element of the list.
+```{r, eval=FALSE}
+library(raster)
+
+plot(tmn_tmx[[1]])
+```
+![Plot of raster layers from minimum temperature stack](README-unnamed-chunk-10-1.png)
 
 Saving raster format files to a local disk as geotiff files in the `tmp` directory with a tmn or tmx prefix to the month for a filename.
 
@@ -161,7 +177,7 @@ writeRaster(tmn_tmx$tmn, filename = paste0("~/tmp/tmn_", names(tmn_tmx$tmn)), by
 writeRaster(tmn_tmx$tmx, filename = paste0("~/tmp/tmx_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
 ```
 
-# Reference and abstract
+# CRU CL2.0 reference and abstract
 
 > Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)  
 A high-resolution data set of surface climate over global land areas

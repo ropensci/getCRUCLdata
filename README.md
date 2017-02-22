@@ -172,8 +172,8 @@ plot(tmn_tmx[[1]])
 Meta
 ====
 
-Data reference and abstract
----------------------------
+CRU CL2.0 reference and abstract
+--------------------------------
 
 > Mark New (1,\*), David Lister (2), Mike Hulme (3), Ian Makin (4)
 

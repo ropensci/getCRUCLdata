@@ -139,10 +139,9 @@ ggplot(data = t_rh, aes(x = lon, y = lat)) +
 
 ![Plot of global mean monthly temperature 1961-1990](README-unnamed-chunk-6-1.png)
 
-
 We can generate a violin plot of the same data to look at global relative humidity.
 
-```{r, eval=}
+```{r, eval=FALSE}
 ggplot(data = t_rh, aes(x = month, y = tmp)) +
   geom_violin() +
   ggtitle("Global Monthly Mean Land Surface Relative Humidity From 1960-1991")
@@ -189,7 +188,7 @@ plot(tmn_tmx[[1]])
 ------
 # Meta
 
-## Data reference and abstract
+## CRU CL2.0 reference and abstract
 
 > Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)  
 
