@@ -42,8 +42,13 @@ A development version is available from from GitHub. If you wish to install the 
 If you find bugs, please file a [report as an issue](https://github.com/adamhsparks/getCRUCLdata/issues).
 
 ``` r
-#install.packages("devtools")
+if (!require("devtools")) {
+  install.packages("devtools")
+}
+
 devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
+
+library(getCRUCLdata)
 ```
 
 Using getCRUCLdata
@@ -55,8 +60,6 @@ Creating tidy data frames for use in R
 The `create_CRU_df()` function returns a tidy data frames, as a [`tibble`](https://github.com/tidyverse/tibble) object, of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.
 
 ``` r
-library(getCRUCLdata)
-
 CRU_data <- create_CRU_df(pre = TRUE,
                           pre_cv = TRUE,
                           rd0 = TRUE,
@@ -72,11 +75,54 @@ CRU_data <- create_CRU_df(pre = TRUE,
 ```
 
 Create a tidy data frame of mean temperature and relative humidity.
+-------------------------------------------------------------------
+
+Perhaps you don't need all of the data available from CRU CL2.0, you can specify the necessary data to retrieve. Here we will fetch temperature and relative humidity only.
 
 ``` r
 t_rh <- create_CRU_df(tmp = TRUE,
                       reh = TRUE)
 ```
+
+Plotting data from the tidy dataframe
+-------------------------------------
+
+Now that we have the data, we can plot it easily using [`ggplot2`](http://ggplot2.org) and the fantastic [`viridis`](https://cran.r-project.org/web/packages/viridis/) package for the colour scale.
+
+``` r
+if (!require("ggplot2")) {
+  install.packages(ggplot2)
+}
+if (!require("viridis")) {
+  install.packages("viridis")
+}
+
+library(ggplot2)
+library(viridis)
+```
+
+Now that the required packages are installed and loaded, we can generate a figure of temperature ranges using `ggplot2` to map the 12 months.
+
+``` r
+ggplot(data = t_rh, aes(x = lon, y = lat)) +
+  geom_raster(aes(fill = tmp)) +
+  scale_fill_viridis(option = "inferno") +
+  coord_quickmap() +
+  ggtitle("Global Mean Monthly Temperature 1961-1990") +
+  facet_wrap(~ month, nrow = 4)
+```
+
+![Plot of global mean monthly temperature 1961-1990](README-unnamed-chunk-6-1.png)
+
+We can generate a violin plot of the same data to look at global relative humidity.
+
+``` r
+ggplot(data = t_rh, aes(x = month, y = tmp)) +
+  geom_violin() +
+  ggtitle("Global Monthly Mean Land Surface Relative Humidity From 1960-1991")
+```
+
+![Plot of global mean relative humidity 1961-1990](README-unnamed-chunk-7-1.png)
 
 Creating raster stacks for use in R
 -----------------------------------
@@ -101,11 +147,25 @@ CRU_stack <- create_CRU_stack(pre = TRUE,
 ```
 
 Create a list of raster stacks of maximum and minimum temperature.
+------------------------------------------------------------------
 
 ``` r
 tmn_tmx <- create_CRU_stack(tmn = TRUE,
                             tmx = TRUE)
 ```
+
+Plot raster stacks of tmin and tmax
+-----------------------------------
+
+Because the stacks are in a list, we need to access each element of the list individually to plot them, that's what the `[[1]]` or `[[2]]` is, the first or second element of the list.
+
+``` r
+library(raster)
+
+plot(tmn_tmx[[1]])
+```
+
+![Plot of raster layers from minimum temperature stack](README-unnamed-chunk-10-1.png)
 
 ------------------------------------------------------------------------
 

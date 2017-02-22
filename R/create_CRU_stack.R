@@ -180,7 +180,8 @@ create_CRU_stack <-
 #' @noRd
 .create_stack <- function(files, wrld, month_names, pre, pre_cv) {
   wvar <-
-    utils::read.table(files, header = FALSE, colClasses = "numeric")
+    data.frame(data.table::fread(paste0("gzip -dc ", files),
+                                 header = FALSE))
   cells <- raster::cellFromXY(wrld, wvar[, c(2, 1)])
   if (ncol(wvar) == 14) {
     for (j in 3:14) {

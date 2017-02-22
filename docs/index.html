@@ -97,8 +97,13 @@
 <a href="#development-version" class="anchor"> </a>Development version</h2>
 <p>A development version is available from from GitHub. If you wish to install the development version that may have new features (but also may not work properly), install the <a href="https://CRAN.R-project.org/package=devtools">devtools package</a>, available from CRAN. I strive to keep the master branch on GitHub functional and working properly, although this may not always happen.</p>
 <p>If you find bugs, please file a <a href="https://github.com/adamhsparks/getCRUCLdata/issues">report as an issue</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"adamhsparks/getCRUCLdata"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {
+  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
+}
+
+devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"adamhsparks/getCRUCLdata"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)
+
+<span class="kw">library</span>(getCRUCLdata)</code></pre></div>
 </div>
 <div id="using-getcrucldata" class="section level2">
 <h2 class="hasAnchor">
@@ -108,9 +113,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <h2 class="hasAnchor">
 <a href="#creating-tidy-data-frames-for-use-in-r" class="anchor"> </a>Creating tidy data frames for use in R</h2>
 <p>The <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> function returns a tidy data frames, as a <a href="https://github.com/tidyverse/tibble"><code>tibble</code></a> object, of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(getCRUCLdata)
-
-CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,
                           <span class="dt">pre_cv =</span> <span class="ot">TRUE</span>,
                           <span class="dt">rd0 =</span> <span class="ot">TRUE</span>,
                           <span class="dt">tmp =</span> <span class="ot">TRUE</span>,
@@ -122,9 +125,44 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/creat
                           <span class="dt">frs =</span> <span class="ot">TRUE</span>,
                           <span class="dt">wnd =</span> <span class="ot">TRUE</span>,
                           <span class="dt">elv =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>Create a tidy data frame of mean temperature and relative humidity.</p>
+</div>
+<div id="create-a-tidy-data-frame-of-mean-temperature-and-relative-humidity-" class="section level2">
+<h2 class="hasAnchor">
+<a href="#create-a-tidy-data-frame-of-mean-temperature-and-relative-humidity-" class="anchor"> </a>Create a tidy data frame of mean temperature and relative humidity.</h2>
+<p>Perhaps you don’t need all of the data available from CRU CL2.0, you can specify the necessary data to retrieve. Here we will fetch temperature and relative humidity only.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t_rh &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>,
                       <span class="dt">reh =</span> <span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="plotting-data-from-the-tidy-dataframe" class="section level2">
+<h2 class="hasAnchor">
+<a href="#plotting-data-from-the-tidy-dataframe" class="anchor"> </a>Plotting data from the tidy dataframe</h2>
+<p>Now that we have the data, we can plot it easily using <a href="http://ggplot2.org"><code>ggplot2</code></a> and the fantastic <a href="https://cran.r-project.org/web/packages/viridis/"><code>viridis</code></a> package for the colour scale.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"ggplot2"</span>)) {
+  <span class="kw">install.packages</span>(ggplot2)
+}
+<span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"viridis"</span>)) {
+  <span class="kw">install.packages</span>(<span class="st">"viridis"</span>)
+}
+
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(viridis)</code></pre></div>
+<p>Now that the required packages are installed and loaded, we can generate a figure of temperature ranges using <code>ggplot2</code> to map the 12 months.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t_rh, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> tmp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">option =</span> <span class="st">"inferno"</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_quickmap</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Global Mean Monthly Temperature 1961-1990"</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>month, <span class="dt">nrow =</span> <span class="dv">4</span>)</code></pre></div>
+<div class="figure">
+<img src="README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperature 1961-1990"><p class="caption">Plot of global mean monthly temperature 1961-1990</p>
+</div>
+<p>We can generate a violin plot of the same data to look at global relative humidity.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t_rh, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Global Monthly Mean Land Surface Relative Humidity From 1960-1991"</span>)</code></pre></div>
+<div class="figure">
+<img src="README-unnamed-chunk-7-1.png" alt="Plot of global mean relative humidity 1961-1990"><p class="caption">Plot of global mean relative humidity 1961-1990</p>
+</div>
 </div>
 <div id="creating-raster-stacks-for-use-in-r" class="section level2">
 <h2 class="hasAnchor">
@@ -143,9 +181,23 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/creat
                               <span class="dt">frs =</span> <span class="ot">TRUE</span>,
                               <span class="dt">wnd =</span> <span class="ot">TRUE</span>,
                               <span class="dt">elv =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>Create a list of raster stacks of maximum and minimum temperature.</p>
+</div>
+<div id="create-a-list-of-raster-stacks-of-maximum-and-minimum-temperature-" class="section level2">
+<h2 class="hasAnchor">
+<a href="#create-a-list-of-raster-stacks-of-maximum-and-minimum-temperature-" class="anchor"> </a>Create a list of raster stacks of maximum and minimum temperature.</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmn_tmx &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,
                             <span class="dt">tmx =</span> <span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="plot-raster-stacks-of-tmin-and-tmax" class="section level2">
+<h2 class="hasAnchor">
+<a href="#plot-raster-stacks-of-tmin-and-tmax" class="anchor"> </a>Plot raster stacks of tmin and tmax</h2>
+<p>Because the stacks are in a list, we need to access each element of the list individually to plot them, that’s what the <code>[[1]]</code> or <code>[[2]]</code> is, the first or second element of the list.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
+
+<span class="kw">plot</span>(tmn_tmx[[<span class="dv">1</span>]])</code></pre></div>
+<div class="figure">
+<img src="README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
+</div>
 <hr>
 </div>
 </div>

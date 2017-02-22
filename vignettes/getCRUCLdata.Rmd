@@ -75,7 +75,7 @@ CRU_data <- create_CRU_df(pre = TRUE,
 
 Create a tidy data frame of mean temperature and relative humidity.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE, message=FALSE}
 t_rh <- create_CRU_df(tmp = TRUE,
                       reh = TRUE)
 ```
@@ -86,6 +86,42 @@ Save the resulting tidy data frame to local disk as a comma separated (CSV) file
 library(readr)
 
 write_csv(t_rh, path = "~/")
+```
+
+## Plotting data from the tidy dataframe
+
+Now that we have the data, we can plot it easily using [`ggplot2`](http://ggplot2.org) and
+the fantastic [`viridis`](https://cran.r-project.org/web/packages/viridis/) package for the colour scale.
+
+```{r, eval=TRUE, message=FALSE}
+if (!require("ggplot2")) {
+  install.packages(ggplot2)
+}
+if (!require("viridis")) {
+  install.packages("viridis")
+}
+
+library(ggplot2)
+library(viridis)
+```
+
+Now that the required packages are installed and loaded, we can generate a figure of temperature ranges using `ggplot2` to map the 12 months.
+
+```{r, eval=TRUE}
+ggplot(data = t_rh, aes(x = lon, y = lat)) +
+  geom_raster(aes(fill = tmp)) +
+  scale_fill_viridis(option = "inferno") +
+  coord_quickmap() +
+  ggtitle("Global Mean Monthly Temperature 1961-1990") +
+  facet_wrap(~ month, nrow = 4)
+```
+
+We can generate a violin plot of the same data to look at global relative humidity.
+
+```{r, eval=TRUE}
+ggplot(data = t_rh, aes(x = month, y = tmp)) +
+  geom_violin() +
+  ggtitle("Global Monthly Mean Land Surface Relative Humidity From 1960-1991")
 ```
 
 ## Creating raster stacks for use in R or saving for use in a GIS
