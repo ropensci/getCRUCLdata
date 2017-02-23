@@ -7,13 +7,14 @@ unlink(list.files(
 ))
 
 test_that("create_CRU_stack fails if no parameters are TRUE", {
-  skip_on_cran()
   expect_error(create_CRU_stack(),
                "You must select at least one parameter for download.")
 })
 
 test_that("create_CRU_stack creates a list of raster stacks of pre and tmp", {
-
+  skip_on_cran()
+  skip_on_appveyor()
+  skip_on_travis()
   files <-
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
@@ -59,7 +60,8 @@ test_that("create_CRU_stack creates a list of raster stacks of pre and tmp", {
 
 test_that("create_CRU_stack creates a list containing only elv", {
   skip_on_cran()
-
+  skip_on_appveyor()
+  skip_on_travis()
   stacks <- create_CRU_stack(elv = TRUE)
 
   expect_named(stacks, "elv")
