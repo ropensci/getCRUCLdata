@@ -9,7 +9,13 @@ test_that("create_CRU_df fails if no parameters are TRUE", {
 test_that("Test that .tidy_df creates a tidy dataframe of pre, pre_cv and tmp", {
   skip_on_cran()
 
-# create files for testing, these data are the first 10 lines of pre and tmp
+  unlink(list.files(
+    path = tempdir(),
+    pattern = ".dat.gz$",
+    full.names = TRUE
+  ))
+
+  # create files for testing, these data are the first 10 lines of pre and tmp
 # from the CRU CL2.0 data
 pre_data <- rbind(
   c(
@@ -493,7 +499,7 @@ elv <- FALSE
   expect_is(CRU_df$tmp, "numeric")
 })
 
-test_that("Test that .tidy_df creates a tidy dataframe of pre, pre_cv, tmp, elv", {
+test_that("Test that .tidy_df creates a tidy dataframe of pre, tmp, elv", {
   skip_on_cran()
 
 # These data are taken from the raw elevation data file
@@ -546,12 +552,13 @@ utils::write.table(
 close(gz1)
 
 elv <- TRUE
+pre_cv <- FALSE
 
   CRU_df <-
     .tidy_df(pre_cv, elv, tmn, tmx, tempdir())
 
   expect_true(is.data.frame(CRU_df))
-  expect_named(CRU_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp", "elv"))
+  expect_named(CRU_df, c("lat", "lon", "month", "pre", "tmp", "elv"))
   expect_is(CRU_df$lat, "numeric")
   expect_is(CRU_df$lon, "numeric")
   expect_is(CRU_df$elv, "numeric")

@@ -523,8 +523,7 @@ elv <- FALSE
                 wrld,
                 month_names,
                 pre,
-                pre_cv,
-                .progress = "text")
+                pre_cv)
 
   expect_true(is.list(stacks))
   expect_named(
@@ -564,14 +563,17 @@ elv <- FALSE
   )
 })
 
-unlink(list.files(
-  path = tempdir(),
-  pattern = ".dat.gz$",
-  full.names = TRUE
-))
 
 test_that("create_CRU_stack creates a list containing only elv", {
+
   skip_on_cran()
+
+  unlink(list.files(
+    path = tempdir(),
+    pattern = ".dat.gz$",
+    full.names = TRUE
+  ))
+
 # These data are taken from the raw elevation data file
 elv_data <- cbind(
   c(
@@ -629,13 +631,8 @@ close(gz1)
 
   stacks <- .create_stack(files, wrld, month_names, pre, pre_cv)
   expect_named(stacks, "elv")
-  expect_named(stacks$elv, "elv")
   expect_equal(raster::cellStats(stacks$elv, max), 239)
   expect_equal(raster::cellStats(stacks$elv, min), 19)
-  expect_equal(raster::extent(stacks)[1], -180)
-  expect_equal(raster::extent(stacks)[2], 180)
-  expect_equal(raster::extent(stacks)[3], -60)
-  expect_equal(raster::extent(stacks)[4], 85)
 })
 
 
