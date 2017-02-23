@@ -26,17 +26,16 @@ Imports:
     tidyr,
     tibble,
     utils
-Suggests:
-    ggplot2,
-    viridis
 LazyData: TRUE
 RoxygenNote: 6.0.1
 ByteCompile: TRUE
 Suggests:
-    testthat,
+    covr,
+    ggplot2,
     knitr,
     rmarkdown,
-    covr
+    testthat,
+    viridis
 URL: https://github.com/adamhsparks/getCRUCLdata
 BugReports: https://github.com/adamhsparks/getCRUCLdata/issues
 VignetteBuilder: knitr

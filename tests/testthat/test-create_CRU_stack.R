@@ -1,5 +1,11 @@
 context("create_CRU_stack")
 
+unlink(list.files(
+  path = tempdir(),
+  pattern = ".dat.gz$",
+  full.names = TRUE
+))
+
 test_that("create_CRU_stack fails if no parameters are TRUE", {
   skip_on_cran()
   expect_error(create_CRU_stack(),
