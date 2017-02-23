@@ -13,7 +13,8 @@ test_that("create_CRU_stack fails if no parameters are TRUE", {
 })
 
 test_that("create_CRU_stack creates a list of raster stacks of pre and tmp", {
-
+  skip_on_cran()
+  skip_on_appveyor()
   files <-
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
@@ -59,6 +60,7 @@ test_that("create_CRU_stack creates a list of raster stacks of pre and tmp", {
 
 test_that("create_CRU_stack creates a list containing only elv", {
   skip_on_cran()
+  skip_on_appveyor()
 
   stacks <- create_CRU_stack(elv = TRUE)
 
