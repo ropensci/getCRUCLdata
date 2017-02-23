@@ -160,10 +160,12 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <div class="figure">
 <img src="README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperatures 1961-1990"><p class="caption">Plot of global mean monthly temperatures 1961-1990</p>
 </div>
-<p>We can generate a violin plot of the same data to look at global relative humidity.</p>
+<p>We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Global Monthly Mean Land Surface Temperatures From 1960-1991"</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Temperature (˚C)"</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Global Monthly Mean Land Surface Temperatures From 1960-1991"</span>,
+       <span class="dt">subtitle =</span> <span class="st">"Excludes Antarctica"</span>)</code></pre></div>
 <div class="figure">
 <img src="README-unnamed-chunk-7-1.png" alt="Violin plot of global mean temperatures 1961-1990"><p class="caption">Violin plot of global mean temperatures 1961-1990</p>
 </div>

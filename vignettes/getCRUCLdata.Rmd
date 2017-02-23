@@ -118,12 +118,14 @@ ggplot(data = t, aes(x = lon, y = lat)) +
 ![Plot of global mean monthly temperatures 1961-1990](README-unnamed-chunk-6-1.png)
 
 
-We can generate a violin plot of the same data to look at global relative humidity.
+We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.
 
 ```{r, eval=FALSE}
 ggplot(data = t, aes(x = month, y = tmp)) +
   geom_violin() +
-  ggtitle("Global Monthly Mean Land Surface Temperatures From 1960-1991")
+  ylab("Temperature (˚C)") +
+  labs(title = "Global Monthly Mean Land Surface Temperatures From 1960-1991",
+       subtitle = "Excludes Antarctica")
 ```
 
 ![Violin plot of global mean temperatures 1961-1990](README-unnamed-chunk-7-1.png)
