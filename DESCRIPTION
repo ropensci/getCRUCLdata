@@ -26,6 +26,9 @@ Imports:
     tidyr,
     tibble,
     utils
+Suggests:
+    ggplot2,
+    viridis
 LazyData: TRUE
 RoxygenNote: 6.0.1
 ByteCompile: TRUE

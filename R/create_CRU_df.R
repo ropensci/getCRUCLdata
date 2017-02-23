@@ -83,6 +83,7 @@ create_CRU_df <- function(pre = FALSE,
     stop("You must select at least one parameter for download.")
   }
 
+  month <- NULL
   cache_dir <- tempdir()
 
   .get_CRU(pre,
