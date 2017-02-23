@@ -630,7 +630,6 @@ close(gz1)
   pre <- pre_cv <- FALSE
 
   stacks <- .create_stack(files, wrld, month_names, pre, pre_cv)
-  expect_named(stacks, "elv")
   expect_equal(raster::cellStats(stacks$elv, max), 239)
   expect_equal(raster::cellStats(stacks$elv, min), 19)
 })
