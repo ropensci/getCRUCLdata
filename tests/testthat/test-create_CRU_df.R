@@ -1,6 +1,12 @@
 
 context("create_CRU_df")
 
+unlink(list.files(
+  path = tempdir(),
+  pattern = ".dat.gz$",
+  full.names = TRUE
+))
+
 test_that("create_CRU_df fails if no parameters are TRUE", {
   expect_error(create_CRU_df(),
                "You must select at least one parameter for download.")
@@ -28,8 +34,6 @@ test_that("Test that .tidy_df creates a tidy dataframe of pre, pre_cv, tmp and e
   CRU_df <-
     create_CRU_df(pre_cv = TRUE,
                   pre = TRUE,
-                  tmn = FALSE,
-                  tmx = FALSE,
                   tmp = TRUE,
                   elv = TRUE)
 
