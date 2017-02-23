@@ -116,7 +116,8 @@ We can also generate a violin plot of the same data to visualise how the tempera
 ggplot(data = t, aes(x = month, y = tmp)) +
   geom_violin() +
   ylab("Temperature (˚C)") +
-  ggtitle("Global Monthly Mean Land Surface Temperatures From 1960-1991")
+  labs(title = "Global Monthly Mean Land Surface Temperatures From 1960-1991",
+       subtitle = "Excludes Antarctica")
 ```
 
 ![Violin plot of global mean temperatures 1961-1990](README-unnamed-chunk-7-1.png)

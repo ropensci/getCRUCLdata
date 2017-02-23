@@ -9,7 +9,6 @@ unlink(list.files(
 test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
   skip_on_cran()
   skip_on_appveyor()
-  skip_on_travis()
   cache_dir <- tempdir()
   .get_CRU(
     pre = FALSE,
@@ -38,7 +37,6 @@ test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
 test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
   skip_on_cran()
   skip_on_appveyor()
-  skip_on_travis()
   cache_dir <- tempdir()
   .get_CRU(
     pre = FALSE,
@@ -67,7 +65,6 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
 test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
   skip_on_cran()
   skip_on_appveyor()
-  skip_on_travis()
   cache_dir <- tempdir()
   .get_CRU(
     pre = FALSE,
