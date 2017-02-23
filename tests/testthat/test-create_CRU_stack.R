@@ -573,6 +573,18 @@ test_that("create_CRU_stack creates a list containing only elv", {
     full.names = TRUE
   ))
 
+  wrld <-
+    raster::raster(
+      nrows = 930,
+      ncols = 2160,
+      ymn = -65,
+      ymx = 90,
+      xmn = -180,
+      xmx = 180
+    )
+
+  wrld[] <- NA
+
   # These data are taken from the raw elevation data file
   elv_data <- cbind(
     c(
@@ -629,8 +641,21 @@ test_that("create_CRU_stack creates a list containing only elv", {
 
   pre_cv <- FALSE
 
-  stacks <- .create_stack(files, wrld, month_names, pre_cv)
+  stacks <-
+    plyr::llply(.fun = .create_stack,
+                files,
+                wrld,
+                month_names,
+                pre,
+                pre_cv)
 
+  expect_named(stacks[[1]], "elv")
+  expect_equal(raster::cellStats(stacks[[1]], max), 239)
+  expect_equal(raster::cellStats(stacks[[1]], min), 19)
+  expect_equal(raster::extent(stacks[[1]])[1], -180)
+  expect_equal(raster::extent(stacks[[1]])[2], 180)
+  expect_equal(raster::extent(stacks[[1]])[3], -60)
+  expect_equal(raster::extent(stacks[[1]])[4], 85)
 })
 
 
