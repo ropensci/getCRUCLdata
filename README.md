@@ -72,8 +72,7 @@ CRU_data <- create_CRU_df(pre = TRUE,
                           elv = TRUE)
 ```
 
-Create a tidy data frame of mean temperature and relative humidity.
--------------------------------------------------------------------
+### Create a tidy data frame of mean temperature only.
 
 Perhaps you don't need all of the data available from CRU CL2.0, you can specify the necessary data to retrieve. Here we will fetch mean monthly temperature data only.
 
@@ -152,8 +151,7 @@ tmn_tmx <- create_CRU_stack(tmn = TRUE,
                             tmx = TRUE)
 ```
 
-Plot raster stacks of tmin and tmax
------------------------------------
+### Plot raster stacks of tmin and tmax
 
 Because the stacks are in a list, we need to access each element of the list individually to plot them, that's what the `[[1]]` or `[[2]]` is, the first or second element of the list.
 
