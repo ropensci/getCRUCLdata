@@ -130,13 +130,12 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
                           <span class="dt">frs =</span> <span class="ot">TRUE</span>,
                           <span class="dt">wnd =</span> <span class="ot">TRUE</span>,
                           <span class="dt">elv =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>Create a tidy data frame of mean temperature and relative humidity.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t_rh &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>,
-                      <span class="dt">reh =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Save the resulting tidy data frame to local disk as a comma separated (CSV) file to local disk.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
 
-<span class="kw">write_csv</span>(t_rh, <span class="dt">path =</span> <span class="st">"~/"</span>)</code></pre></div>
+<span class="kw">write_csv</span>(t, <span class="dt">path =</span> <span class="st">"~/"</span>)</code></pre></div>
 </div>
 <div id="plotting-data-from-the-tidy-dataframe" class="section level2">
 <h2 class="hasAnchor">
@@ -152,7 +151,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(viridis)</code></pre></div>
 <p>Now that the required packages are installed and loaded, we can generate a figure of temperature ranges using <code>ggplot2</code> to map the 12 months.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t_rh, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> tmp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">option =</span> <span class="st">"inferno"</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">coord_quickmap</span>() <span class="op">+</span>
@@ -162,9 +161,9 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <img src="README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperatures 1961-1990"><p class="caption">Plot of global mean monthly temperatures 1961-1990</p>
 </div>
 <p>We can generate a violin plot of the same data to look at global relative humidity.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t_rh, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Global Monthly Mean Land Surface Relative Humidity From 1960-1991"</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Global Monthly Mean Land Surface Temperatures From 1960-1991"</span>)</code></pre></div>
 <div class="figure">
 <img src="README-unnamed-chunk-7-1.png" alt="Violin plot of global mean temperatures 1961-1990"><p class="caption">Violin plot of global mean temperatures 1961-1990</p>
 </div>

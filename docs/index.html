@@ -125,12 +125,12 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
                           <span class="dt">frs =</span> <span class="ot">TRUE</span>,
                           <span class="dt">wnd =</span> <span class="ot">TRUE</span>,
                           <span class="dt">elv =</span> <span class="ot">TRUE</span>)</code></pre></div>
-</div>
-<div id="create-a-tidy-data-frame-of-mean-temperature-and-relative-humidity-" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-a-tidy-data-frame-of-mean-temperature-and-relative-humidity-" class="anchor"> </a>Create a tidy data frame of mean temperature and relative humidity.</h2>
+<div id="create-a-tidy-data-frame-of-mean-temperature-only-" class="section level3">
+<h3 class="hasAnchor">
+<a href="#create-a-tidy-data-frame-of-mean-temperature-only-" class="anchor"> </a>Create a tidy data frame of mean temperature only.</h3>
 <p>Perhaps you don’t need all of the data available from CRU CL2.0, you can specify the necessary data to retrieve. Here we will fetch mean monthly temperature data only.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>)</code></pre></div>
+</div>
 </div>
 <div id="plotting-data-from-the-tidy-dataframe" class="section level2">
 <h2 class="hasAnchor">
@@ -187,10 +187,9 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <a href="#create-a-list-of-raster-stacks-of-maximum-and-minimum-temperature-" class="anchor"> </a>Create a list of raster stacks of maximum and minimum temperature.</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmn_tmx &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,
                             <span class="dt">tmx =</span> <span class="ot">TRUE</span>)</code></pre></div>
-</div>
-<div id="plot-raster-stacks-of-tmin-and-tmax" class="section level2">
-<h2 class="hasAnchor">
-<a href="#plot-raster-stacks-of-tmin-and-tmax" class="anchor"> </a>Plot raster stacks of tmin and tmax</h2>
+<div id="plot-raster-stacks-of-tmin-and-tmax" class="section level3">
+<h3 class="hasAnchor">
+<a href="#plot-raster-stacks-of-tmin-and-tmax" class="anchor"> </a>Plot raster stacks of tmin and tmax</h3>
 <p>Because the stacks are in a list, we need to access each element of the list individually to plot them, that’s what the <code>[[1]]</code> or <code>[[2]]</code> is, the first or second element of the list.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
@@ -204,6 +203,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <img src="README-unnamed-chunk-11-1.png" alt="Plot of maximum temperatures for July"><p class="caption">Plot of maximum temperatures for July</p>
 </div>
 <hr>
+</div>
 </div>
 </div>
 <div id="meta" class="section level1">
