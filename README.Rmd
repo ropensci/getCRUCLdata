@@ -67,12 +67,12 @@ A development version is available from from GitHub. If you wish to install the 
 
 If you find bugs, please file a [report as an issue](https://github.com/adamhsparks/getCRUCLdata/issues).
 
-```{r, eval=TRUE}
+```{r, eval=FALSE}
 if (!require("devtools")) {
   install.packages("devtools")
 }
 
-#devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
+devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
 
 library(getCRUCLdata)
 ```
