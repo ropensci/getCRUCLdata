@@ -562,3 +562,76 @@ elv <- FALSE
     )
   )
 })
+
+test_that("create_CRU_stack creates a list containing only elv", {
+
+  skip_on_cran()
+
+  unlink(list.files(
+    path = tempdir(),
+    pattern = ".dat.gz$",
+    full.names = TRUE
+  ))
+
+  # These data are taken from the raw elevation data file
+  elv_data <- cbind(
+    c(
+      -59.083,
+      -58.417,
+      -58.417,
+      -55.917,
+      -55.750,
+      -55.750,
+      -55.750,
+      -55.583,
+      -55.583,
+      -55.583
+    ),
+    c(
+      -26.583,
+      -26.417,
+      -26.250,
+      -67.250,
+      -67.583,
+      -67.417,
+      -67.250,
+      -68.250,
+      -68.083,
+      -67.583
+    ),
+    c(
+      0.193,
+      0.239,
+      0.194,
+      0.064,
+      0.032,
+      0.103,
+      0.063,
+      0.062,
+      0.123,
+      0.019
+    )
+  )
+
+  gz1 <- gzfile(paste0(tempdir(), "/grid_10min_elv.dat.gz"), "w")
+  utils::write.table(
+    elv_data,
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
+  close(gz1)
+
+
+  files <- list.files(path = tempdir(),
+                      pattern = ".dat.gz$",
+                      full.names = TRUE)
+
+  pre_cv <- FALSE
+
+  stacks <- .create_stack(files, wrld, month_names, pre_cv)
+
+})
+
+
+
