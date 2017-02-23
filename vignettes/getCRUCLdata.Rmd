@@ -116,7 +116,7 @@ ggplot(data = t_rh, aes(x = lon, y = lat)) +
   facet_wrap(~ month, nrow = 4)
 ```
 
-![Plot of global mean monthly temperature 1961-1990](README-unnamed-chunk-6-1.png)
+![Plot of global mean monthly temperatures 1961-1990](README-unnamed-chunk-6-1.png)
 
 
 We can generate a violin plot of the same data to look at global relative humidity.
@@ -127,7 +127,7 @@ ggplot(data = t_rh, aes(x = month, y = tmp)) +
   ggtitle("Global Monthly Mean Land Surface Relative Humidity From 1960-1991")
 ```
 
-![Plot of global mean relative humidity 1961-1990](README-unnamed-chunk-7-1.png)
+![Violin plot of global mean temperatures 1961-1990](README-unnamed-chunk-7-1.png)
 
 ## Creating raster stacks for use in R or saving for use in a GIS
 The `create_CRU_stack()` function provides functionality for producing a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
@@ -165,6 +165,13 @@ library(raster)
 plot(tmn_tmx[[1]])
 ```
 ![Plot of raster layers from minimum temperature stack](README-unnamed-chunk-10-1.png)
+
+To plot only one month from the stack is also possible. Here we plot maxmimum temperature for July. Note that we use indexing `[[2]]` as before but append a `$jul` to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the `tmn_tmx` list, which is `tmx` and from that raster stack, plot only the layer for July.
+
+```{r, eval=FALSE}
+plot(tmn_tmx[[2]]$jul)
+```
+![Plot of maximum temperatures for July](README-unnamed-chunk-11-1.png)
 
 Saving raster format files to a local disk as geotiff files in the `tmp` directory with a tmn or tmx prefix to the month for a filename.
 

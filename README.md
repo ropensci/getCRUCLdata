@@ -25,8 +25,7 @@ Quick Start
 Install
 -------
 
-Stable version
---------------
+### Stable version
 
 A stable version of getCRUCLdata is available from [CRAN](https://cran.r-project.org/package=getCRUCLdata).
 
@@ -34,8 +33,7 @@ A stable version of getCRUCLdata is available from [CRAN](https://cran.r-project
 install.packages("getCRUCLdata")
 ```
 
-Development version
--------------------
+### Development version
 
 A development version is available from from GitHub. If you wish to install the development version that may have new features (but also may not work properly), install the [devtools package](https://CRAN.R-project.org/package=devtools), available from CRAN. I strive to keep the master branch on GitHub functional and working properly, although this may not always happen.
 
@@ -45,8 +43,9 @@ If you find bugs, please file a [report as an issue](https://github.com/adamhspa
 if (!require("devtools")) {
   install.packages("devtools")
 }
+#> Loading required package: devtools
 
-devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
+#devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
 
 library(getCRUCLdata)
 ```
@@ -77,11 +76,10 @@ CRU_data <- create_CRU_df(pre = TRUE,
 Create a tidy data frame of mean temperature and relative humidity.
 -------------------------------------------------------------------
 
-Perhaps you don't need all of the data available from CRU CL2.0, you can specify the necessary data to retrieve. Here we will fetch temperature and relative humidity only.
+Perhaps you don't need all of the data available from CRU CL2.0, you can specify the necessary data to retrieve. Here we will fetch mean monthly temperature data only.
 
 ``` r
-t_rh <- create_CRU_df(tmp = TRUE,
-                      reh = TRUE)
+t <- create_CRU_df(tmp = TRUE)
 ```
 
 Plotting data from the tidy dataframe
@@ -101,28 +99,29 @@ library(ggplot2)
 library(viridis)
 ```
 
-Now that the required packages are installed and loaded, we can generate a figure of temperature ranges using `ggplot2` to map the 12 months.
+Now that the required packages are installed and loaded, we can generate a figure of temperatures using `ggplot2` to map the 12 months.
 
 ``` r
-ggplot(data = t_rh, aes(x = lon, y = lat)) +
+ggplot(data = t, aes(x = lon, y = lat)) +
   geom_raster(aes(fill = tmp)) +
   scale_fill_viridis(option = "inferno") +
   coord_quickmap() +
-  ggtitle("Global Mean Monthly Temperature 1961-1990") +
+  ggtitle("Global Mean Monthly Temperatures 1961-1990") +
   facet_wrap(~ month, nrow = 4)
 ```
 
-![Plot of global mean monthly temperature 1961-1990](README-unnamed-chunk-6-1.png)
+![Plot of global mean monthly temperatures 1961-1990](README-unnamed-chunk-6-1.png)
 
-We can generate a violin plot of the same data to look at global relative humidity.
+We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.
 
 ``` r
-ggplot(data = t_rh, aes(x = month, y = tmp)) +
+ggplot(data = t, aes(x = month, y = tmp)) +
   geom_violin() +
-  ggtitle("Global Monthly Mean Land Surface Relative Humidity From 1960-1991")
+  ylab("Temperature (˚C)") +
+  ggtitle("Global Monthly Mean Land Surface Temperatures From 1960-1991")
 ```
 
-![Plot of global mean relative humidity 1961-1990](README-unnamed-chunk-7-1.png)
+![Violin plot of global mean temperatures 1961-1990](README-unnamed-chunk-7-1.png)
 
 Creating raster stacks for use in R
 -----------------------------------
@@ -166,6 +165,14 @@ plot(tmn_tmx[[1]])
 ```
 
 ![Plot of raster layers from minimum temperature stack](README-unnamed-chunk-10-1.png)
+
+To plot only one month from the stack is also possible. Here we plot maxmimum temperature for July. Note that we use indexing `[[2]]` as before but append a `$jul` to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the `tmn_tmx` list, which is `tmx` and from that raster stack, plot only the layer for July.
+
+``` r
+plot(tmn_tmx[[2]]$jul)
+```
+
+![Plot of maximum temperatures for July](README-unnamed-chunk-11-1.png)
 
 ------------------------------------------------------------------------
 

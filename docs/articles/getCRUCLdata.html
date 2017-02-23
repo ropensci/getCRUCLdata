@@ -159,14 +159,14 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Global Mean Monthly Temperature 1961-1990"</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>month, <span class="dt">nrow =</span> <span class="dv">4</span>)</code></pre></div>
 <div class="figure">
-<img src="README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperature 1961-1990"><p class="caption">Plot of global mean monthly temperature 1961-1990</p>
+<img src="README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperatures 1961-1990"><p class="caption">Plot of global mean monthly temperatures 1961-1990</p>
 </div>
 <p>We can generate a violin plot of the same data to look at global relative humidity.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t_rh, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Global Monthly Mean Land Surface Relative Humidity From 1960-1991"</span>)</code></pre></div>
 <div class="figure">
-<img src="README-unnamed-chunk-7-1.png" alt="Plot of global mean relative humidity 1961-1990"><p class="caption">Plot of global mean relative humidity 1961-1990</p>
+<img src="README-unnamed-chunk-7-1.png" alt="Violin plot of global mean temperatures 1961-1990"><p class="caption">Violin plot of global mean temperatures 1961-1990</p>
 </div>
 </div>
 <div id="creating-raster-stacks-for-use-in-r-or-saving-for-use-in-a-gis" class="section level2">
@@ -196,6 +196,11 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cr
 <span class="kw">plot</span>(tmn_tmx[[<span class="dv">1</span>]])</code></pre></div>
 <div class="figure">
 <img src="README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
+</div>
+<p>To plot only one month from the stack is also possible. Here we plot maxmimum temperature for July. Note that we use indexing <code>[[2]]</code> as before but append a <code>$jul</code> to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the <code>tmn_tmx</code> list, which is <code>tmx</code> and from that raster stack, plot only the layer for July.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(tmn_tmx[[<span class="dv">2</span>]]<span class="op">$</span>jul)</code></pre></div>
+<div class="figure">
+<img src="README-unnamed-chunk-11-1.png" alt="Plot of maximum temperatures for July"><p class="caption">Plot of maximum temperatures for July</p>
 </div>
 <p>Saving raster format files to a local disk as geotiff files in the <code>tmp</code> directory with a tmn or tmx prefix to the month for a filename.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
