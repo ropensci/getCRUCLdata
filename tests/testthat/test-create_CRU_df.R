@@ -15,6 +15,7 @@ test_that("create_CRU_df fails if no parameters are TRUE", {
 test_that("Test that .tidy_df creates a tidy dataframe of pre, pre_cv and tmp", {
   skip_on_cran()
   skip_on_appveyor()
+  skip_on_travis()
   CRU_df <-
     create_CRU_df(pre_cv = TRUE,
                   pre = TRUE,
@@ -33,6 +34,7 @@ test_that("Test that .tidy_df creates a tidy dataframe of pre, pre_cv and tmp", 
 test_that("Test that .tidy_df creates a tidy dataframe of pre, pre_cv, tmp and elv", {
   skip_on_cran()
   skip_on_appveyor()
+  skip_on_travis()
   CRU_df <-
     create_CRU_df(pre_cv = TRUE,
                   pre = TRUE,
