@@ -23,7 +23,7 @@
 #'For more information see the description of the data provided by CRU,
 #'\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 #'
-#' @details This function generates a data.frame object in R with the following
+#' @details This function generates a raster stack object in R with the following
 #' possible fields as specified by the user:
 #' @param pre Logical. Fetch precipitation (millimetres/month) from server and
 #' return in a raster stack? Defaults to FALSE.
@@ -139,6 +139,8 @@ create_CRU_stack <-
     files <-
       list.files(cache_dir, pattern = ".dat.gz$", full.names = TRUE)
 
+    message("\nCreating raster stack now.\n")
+
     CRU_stack_list <-
       plyr::llply(.fun = .create_stack,
                   files,
@@ -178,7 +180,8 @@ create_CRU_stack <-
 #' @noRd
 .create_stack <- function(files, wrld, month_names, pre, pre_cv) {
   wvar <-
-    utils::read.table(files, header = FALSE, colClasses = "numeric")
+    data.frame(data.table::fread(paste0("gzip -dc ", files),
+                                 header = FALSE))
   cells <- raster::cellFromXY(wrld, wvar[, c(2, 1)])
   if (ncol(wvar) == 14) {
     for (j in 3:14) {

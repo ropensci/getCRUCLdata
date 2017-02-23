@@ -16,9 +16,9 @@ importing CRU CL2.0 climatology data into R, facilitate the calculation of
 minimum temperature and maximum temperature, and formats the data into a tidy
 data frame or a list of raster stack objects for use in an R session. CRU CL2.0
 data are a gridded climatology of 1961-1990 monthly means released in 2002 and
-cover all land areas (excluding Antarctica) at 10-minute resolution. For
-more information see the description of the data provided by the University of
-East Anglia Climate Research Unit (CRU),
+cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree)
+resolution. For more information see the description of the data provided by the
+University of East Anglia Climate Research Unit (CRU),
 <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
 # Using getCRUCLdata
@@ -80,6 +80,55 @@ t_rh <- create_CRU_df(tmp = TRUE,
                       reh = TRUE)
 ```
 
+Save the resulting tidy data frame to local disk as a comma separated (CSV) file to local disk.
+
+```{r, eval=FALSE}
+library(readr)
+
+write_csv(t_rh, path = "~/")
+```
+
+## Plotting data from the tidy dataframe
+
+Now that we have the data, we can plot it easily using [`ggplot2`](http://ggplot2.org) and
+the fantastic [`viridis`](https://cran.r-project.org/web/packages/viridis/) package for the colour scale.
+
+```{r, eval=FALSE}
+if (!require("ggplot2")) {
+  install.packages(ggplot2)
+}
+if (!require("viridis")) {
+  install.packages("viridis")
+}
+
+library(ggplot2)
+library(viridis)
+```
+
+Now that the required packages are installed and loaded, we can generate a figure of temperature ranges using `ggplot2` to map the 12 months.
+
+```{r, eval=FALSE}
+ggplot(data = t_rh, aes(x = lon, y = lat)) +
+  geom_raster(aes(fill = tmp)) +
+  scale_fill_viridis(option = "inferno") +
+  coord_quickmap() +
+  ggtitle("Global Mean Monthly Temperature 1961-1990") +
+  facet_wrap(~ month, nrow = 4)
+```
+
+![Plot of global mean monthly temperatures 1961-1990](README-unnamed-chunk-6-1.png)
+
+
+We can generate a violin plot of the same data to look at global relative humidity.
+
+```{r, eval=FALSE}
+ggplot(data = t_rh, aes(x = month, y = tmp)) +
+  geom_violin() +
+  ggtitle("Global Monthly Mean Land Surface Relative Humidity From 1960-1991")
+```
+
+![Violin plot of global mean temperatures 1961-1990](README-unnamed-chunk-7-1.png)
+
 ## Creating raster stacks for use in R or saving for use in a GIS
 The `create_CRU_stack()` function provides functionality for producing a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
 
@@ -100,22 +149,42 @@ CRU_stack <- create_CRU_stack(pre = TRUE,
                               elv = TRUE)
 ```
 
+
 Create a list of raster stacks of maximum and minimum temperature.
 ```{r, eval=FALSE}
 tmn_tmx <- create_CRU_stack(tmn = TRUE,
                             tmx = TRUE)
 ```
 
+Plot raster stacks of tmin and tmax
+
+Because the stacks are in a list, we need to access each element of the list individually to plot them, that's what the `[[1]]` or `[[2]]` is, the first or second element of the list.
+```{r, eval=FALSE}
+library(raster)
+
+plot(tmn_tmx[[1]])
+```
+![Plot of raster layers from minimum temperature stack](README-unnamed-chunk-10-1.png)
+
+To plot only one month from the stack is also possible. Here we plot maxmimum temperature for July. Note that we use indexing `[[2]]` as before but append a `$jul` to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the `tmn_tmx` list, which is `tmx` and from that raster stack, plot only the layer for July.
+
+```{r, eval=FALSE}
+plot(tmn_tmx[[2]]$jul)
+```
+![Plot of maximum temperatures for July](README-unnamed-chunk-11-1.png)
+
 Saving raster format files to a local disk as geotiff files in the `tmp` directory with a tmn or tmx prefix to the month for a filename.
 
 ```{r, eval=FALSE}
+library(raster)
+
 dir.create(file.path("~/tmp"), showWarnings = FALSE)
 writeRaster(tmn_tmx$tmn, filename = paste0("~/tmp/tmn_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
 
 writeRaster(tmn_tmx$tmx, filename = paste0("~/tmp/tmx_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
 ```
 
-# Reference and abstract
+# CRU CL2.0 reference and abstract
 
 > Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)  
 A high-resolution data set of surface climate over global land areas

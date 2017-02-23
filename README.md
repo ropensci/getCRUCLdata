@@ -10,7 +10,7 @@ Download and Use CRU CL2.0 Climatology Data in R
 
 Author/Maintainer: Adam Sparks
 
-The getCRUCLdata package provides two functions that automate downloading and importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a tidy data frame or a list of raster stack objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10-minute resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
+The getCRUCLdata package provides two functions that automate downloading and importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a tidy data frame or a list of raster stack objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
 Changes to original data
 ------------------------
@@ -25,25 +25,28 @@ Quick Start
 Install
 -------
 
-Stable version
---------------
+### Stable version
 
-A stable version of GSODR is available from [CRAN](https://cran.r-project.org/package=getCRUCLdata).
+A stable version of getCRUCLdata is available from [CRAN](https://cran.r-project.org/package=getCRUCLdata).
 
 ``` r
 install.packages("getCRUCLdata")
 ```
 
-Development version
--------------------
+### Development version
 
 A development version is available from from GitHub. If you wish to install the development version that may have new features (but also may not work properly), install the [devtools package](https://CRAN.R-project.org/package=devtools), available from CRAN. I strive to keep the master branch on GitHub functional and working properly, although this may not always happen.
 
 If you find bugs, please file a [report as an issue](https://github.com/adamhsparks/getCRUCLdata/issues).
 
 ``` r
-#install.packages("devtools")
-devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
+if (!require("devtools")) {
+  install.packages("devtools")
+}
+
+#devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
+
+library(getCRUCLdata)
 ```
 
 Using getCRUCLdata
@@ -52,11 +55,9 @@ Using getCRUCLdata
 Creating tidy data frames for use in R
 --------------------------------------
 
-The `create_CRU_df()` function creates tidy data frames of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.
+The `create_CRU_df()` function returns a tidy data frames, as a [`tibble`](https://github.com/tidyverse/tibble) object, of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.
 
 ``` r
-library(getCRUCLdata)
-
 CRU_data <- create_CRU_df(pre = TRUE,
                           pre_cv = TRUE,
                           rd0 = TRUE,
@@ -72,11 +73,54 @@ CRU_data <- create_CRU_df(pre = TRUE,
 ```
 
 Create a tidy data frame of mean temperature and relative humidity.
+-------------------------------------------------------------------
+
+Perhaps you don't need all of the data available from CRU CL2.0, you can specify the necessary data to retrieve. Here we will fetch mean monthly temperature data only.
 
 ``` r
-t_rh <- create_CRU_df(tmp = TRUE,
-                      reh = TRUE)
+t <- create_CRU_df(tmp = TRUE)
 ```
+
+Plotting data from the tidy dataframe
+-------------------------------------
+
+Now that we have the data, we can plot it easily using [`ggplot2`](http://ggplot2.org) and the fantastic [`viridis`](https://cran.r-project.org/web/packages/viridis/) package for the colour scale.
+
+``` r
+if (!require("ggplot2")) {
+  install.packages(ggplot2)
+}
+if (!require("viridis")) {
+  install.packages("viridis")
+}
+
+library(ggplot2)
+library(viridis)
+```
+
+Now that the required packages are installed and loaded, we can generate a figure of temperatures using `ggplot2` to map the 12 months.
+
+``` r
+ggplot(data = t, aes(x = lon, y = lat)) +
+  geom_raster(aes(fill = tmp)) +
+  scale_fill_viridis(option = "inferno") +
+  coord_quickmap() +
+  ggtitle("Global Mean Monthly Temperatures 1961-1990") +
+  facet_wrap(~ month, nrow = 4)
+```
+
+![Plot of global mean monthly temperatures 1961-1990](README-unnamed-chunk-6-1.png)
+
+We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.
+
+``` r
+ggplot(data = t, aes(x = month, y = tmp)) +
+  geom_violin() +
+  ylab("Temperature (˚C)") +
+  ggtitle("Global Monthly Mean Land Surface Temperatures From 1960-1991")
+```
+
+![Violin plot of global mean temperatures 1961-1990](README-unnamed-chunk-7-1.png)
 
 Creating raster stacks for use in R
 -----------------------------------
@@ -101,19 +145,41 @@ CRU_stack <- create_CRU_stack(pre = TRUE,
 ```
 
 Create a list of raster stacks of maximum and minimum temperature.
+------------------------------------------------------------------
 
 ``` r
 tmn_tmx <- create_CRU_stack(tmn = TRUE,
                             tmx = TRUE)
 ```
 
+Plot raster stacks of tmin and tmax
+-----------------------------------
+
+Because the stacks are in a list, we need to access each element of the list individually to plot them, that's what the `[[1]]` or `[[2]]` is, the first or second element of the list.
+
+``` r
+library(raster)
+
+plot(tmn_tmx[[1]])
+```
+
+![Plot of raster layers from minimum temperature stack](README-unnamed-chunk-10-1.png)
+
+To plot only one month from the stack is also possible. Here we plot maxmimum temperature for July. Note that we use indexing `[[2]]` as before but append a `$jul` to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the `tmn_tmx` list, which is `tmx` and from that raster stack, plot only the layer for July.
+
+``` r
+plot(tmn_tmx[[2]]$jul)
+```
+
+![Plot of maximum temperatures for July](README-unnamed-chunk-11-1.png)
+
 ------------------------------------------------------------------------
 
 Meta
 ====
 
-Data reference and abstract
----------------------------
+CRU CL2.0 reference and abstract
+--------------------------------
 
 > Mark New (1,\*), David Lister (2), Mike Hulme (3), Ian Makin (4)
 

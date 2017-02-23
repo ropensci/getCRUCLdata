@@ -48,7 +48,8 @@
         rd0_url)
     names(files) <-
       names(object_list) <-
-      c("dtr_url",
+      c(
+        "dtr_url",
         "tmp_url",
         "reh_url",
         "elv_url",
@@ -63,27 +64,42 @@
 
     files <- as.list(files[object_list %in% !isTRUE(files)])
 
-    # download files -----------------------------------------------------------
-    # adapted from my question on SO,
-    # http://stackoverflow.com/questions/40715370/
-    message(" \nDownloading requested data files.\n ")
-    s_curl_fetch_disk <- purrr::safely(curl::curl_fetch_disk)
-    retry_cfd <- function(url, path) {
-      cache_file <- paste0(cache_dir, "/", basename(url))
-      if (file.exists(cache_file))
-        return()
-      i <- 0
-      repeat {
-        i <- i + 1
-        if (i == 6) {
-          stop("Too many retries...server may be under load")
-        }
-        res <- s_curl_fetch_disk(url, cache_file)
-        if (!is.null(res$result))
-          return()
+    # check to see, did we already download these data, if so don't redownload--
+    cache_dir_contents <-
+      list.files(cache_dir, pattern = ".dat.gz$")
+
+    # if there are files already locally available;
+    # check against the newly requested files and update list to download ------
+
+    if (length(cache_dir_contents) > 0) {
+
+      # remove files that are not requested a second time around ---------------
+      rm_files <- basename(unlist(files))
+      rm_files <- cache_dir_contents[!(cache_dir_contents %in% rm_files)]
+      rm_files <- paste0(cache_dir, "/", rm_files)
+      file.remove(rm_files)
+
+      # create list of files that do need to be downloaded ---------------------
+      cache_dir_contents <- paste0(CRU_url, cache_dir_contents)
+      files <- as.list(files[!(files %in% cache_dir_contents)])
+    }
+
+    if (length(files) > 0) {
+      # download files ---------------------------------------------------------
+      message(" \nDownloading requested data files.\n ")
+      pb <-
+        utils::txtProgressBar(
+          min = 0,
+          max = length(files),
+          initial = 0,
+          style = 3
+        )
+      for (f in 1:length(files)) {
+        httr::GET(url = files[[f]],
+                  httr::write_disk(paste0(cache_dir, "/",
+                                          basename(files[[f]])),
+                                   overwrite = TRUE))
+        utils::setTxtProgressBar(pb, f)
       }
     }
-    purrr::walk(files, function(f) {
-      purrr::walk(files, retry_cfd)
-    })
   }

@@ -1,3 +1,9 @@
+# getCRUCLdata 0.1.5
+
+## Minor Changes
+
+  * Change the method in which files are downloaded to use `httr::GET()`
+
 # getCRUCLdata 0.1.4
 
 ## Minor Changes

@@ -99,6 +99,8 @@ create_CRU_df <- function(pre = FALSE,
            elv,
            cache_dir)
 
+  message("\nCreating data frame now.\n")
+
   CRU_df <-
     .tidy_df(pre_cv, elv, tmn, tmx, cache_dir)
 
@@ -124,5 +126,25 @@ create_CRU_df <- function(pre = FALSE,
       CRU_df <- subset(CRU_df, select = -dtr)
     }
   }
-  return(CRU_df)
+  CRU_df$month <- factor(
+    CRU_df$month,
+    levels <-  c(
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec"
+    )
+  )
+
+  CRU_df <- dplyr::arrange(CRU_df, month)
+
+  return(tibble::as_tibble(CRU_df))
 }
