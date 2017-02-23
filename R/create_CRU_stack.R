@@ -23,7 +23,7 @@
 #'For more information see the description of the data provided by CRU,
 #'\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 #'
-#' @details This function generates a data.frame object in R with the following
+#' @details This function generates a raster stack object in R with the following
 #' possible fields as specified by the user:
 #' @param pre Logical. Fetch precipitation (millimetres/month) from server and
 #' return in a raster stack? Defaults to FALSE.

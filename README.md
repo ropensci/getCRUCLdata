@@ -43,7 +43,6 @@ If you find bugs, please file a [report as an issue](https://github.com/adamhspa
 if (!require("devtools")) {
   install.packages("devtools")
 }
-#> Loading required package: devtools
 
 #devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
 
