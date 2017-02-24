@@ -1,8 +1,8 @@
 #' @importFrom dplyr %>%
 #' @noRd
-.tidy_df <- function(pre_cv, elv, tmn, tmx, cache_dir) {
+.tidy_df <- function(pre_cv, elv, tmn, tmx) {
   files <-
-    list.files(cache_dir, pattern = ".dat.gz$", full.names = TRUE)
+    list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
   # internal function to read files from cache directory and tidy them -------
 

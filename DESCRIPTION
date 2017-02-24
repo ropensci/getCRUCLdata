@@ -15,7 +15,7 @@ Description: Provides functions that automate downloading and importing
     <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 License: MIT + file LICENSE
 Depends:
-    R (>= 3.0.0)
+    R (>= 3.2.0)
 Imports:
     data.table,
     dplyr,

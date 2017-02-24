@@ -84,7 +84,6 @@ create_CRU_df <- function(pre = FALSE,
   }
 
   month <- NULL
-  cache_dir <- tempdir()
 
   .get_CRU(pre,
            pre_cv,
@@ -97,13 +96,12 @@ create_CRU_df <- function(pre = FALSE,
            sunp,
            frs,
            wnd,
-           elv,
-           cache_dir)
+           elv)
 
   message("\nCreating data frame now.\n")
 
   CRU_df <-
-    .tidy_df(pre_cv, elv, tmn, tmx, cache_dir)
+    .tidy_df(pre_cv, elv, tmn, tmx)
 
   if (isTRUE(tmx)) {
     tmx_df <- .calculate_tmx(CRU_df[, "tmp"], CRU_df[, "dtr"])
