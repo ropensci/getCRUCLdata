@@ -10,7 +10,9 @@
 
   * Improved documentation with examples on mapping and graphing and more detail regarding the data itself
   * Change the method in which files are downloaded to use `httr::GET()`
-
+  * Ingest data using `data.table::fread` to decrease the amount of time necessary to run the functions
+  * Functions check to see if data file(s) have already been downloaded during current R session, if so data file(s) are not requested for download again
+  
 # getCRUCLdata 0.1.4
 
 ## Minor Changes
