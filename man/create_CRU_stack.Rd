@@ -4,35 +4,61 @@
 \alias{create_CRU_stack}
 \title{Create a List of Raster Stack Objects From CRU CL2.0 Climatology Variables on Local Disk}
 \usage{
-create_CRU_stack(pre_cv = FALSE, tmn = FALSE, tmx = FALSE, dtr = FALSE,
-  tmp = FALSE, dsn = NULL)
+create_CRU_stack(pre = FALSE, pre_cv = FALSE, rd0 = FALSE, tmp = FALSE,
+  dtr = FALSE, reh = FALSE, tmn = FALSE, tmx = FALSE, sunp = FALSE,
+  frs = FALSE, wnd = FALSE, elv = FALSE, dsn = "")
 }
 \arguments{
-\item{pre_cv}{Logical. Create a raster stack of precipitation CV? Requires
-precipitation file to be available. Defaults to FALSE.}
+\item{pre}{Logical. Create a raster stack of precipitation
+(millimetres/month) from local files? Defaults to FALSE.}
+
+\item{pre_cv}{Logical. Create a raster stack of cv of precipitation (percent)
+from local files? Defaults to FALSE.}
+
+\item{rd0}{Logical. Logical. Create a raster stack of wet days (number days
+with >0.1 millimetres rain per month) from local files? Defaults to FALSE.}
+
+\item{tmp}{Logical. Create a raster stack of temperature (degrees Celsius)
+from local files? Defaults to FALSE.}
+
+\item{dtr}{Logical. Create a raster stack of mean diurnal temperature range
+(degrees Celsius) from local files? Defaults to FALSE.}
+
+\item{reh}{Logical. Create a raster stack of relative humidity from local
+files? Defaults to FALSE.}
 
 \item{tmn}{Logical. Calculate minimum temperature values (degrees Celsius)
-and return it in a raster stack? Requires tmp and dtr files to both be
-available for calculation. Defaults to FALSE.}
+and return it in a raster stack? \emph{Requires tmp and dtr files to be
+locally present}. Defaults to FALSE.}
 
-\item{tmx}{Logical. Calculate maximum temperature (degrees Celsius) and
-return it in a raster stack?  Requires tmp and dtr files to both be
-available for calculation. Defaults to FALSE.}
+\item{tmx}{Logical. Calculate maximum temperature values (degrees Celsius)
+and return it in a raster stack? \emph{Requires tmp and dtr files to be
+locally present}. Defaults to FALSE.}
 
-\item{dtr}{Logical. When calculating tmn and/or tmx, keep tmp? Defaults to
-FALSE.}
+\item{sunp}{Logical. Create a raster stack of sunshine, percent of maximum
+possible (percent of day length) from local files? Defaults to FALSE.}
 
-\item{tmp}{Logical. When calculating tmn and/or tmx, keep tmp? Defaults to
-FALSE.}
+\item{frs}{Logical. Create a raster stack of ground-frost records (number of
+days with ground-frost per month) from local files? Defaults to FALSE.}
 
-\item{dsn}{Required. Local file path where CRU CL2.0 .dat.gz files are
-located.}
+\item{wnd}{Logical. Create a raster stack of 10m wind speed (metres/second)
+from local files? Defaults to FALSE.}
+
+\item{elv}{Logical. Create a raster layer of elevation (converted to metres)
+from local files? Defaults to FALSE.}
+
+\item{dsn}{Local file path where CRU CL2.0 .dat.gz files are located.}
 }
 \description{
 This function automates importing CRU CL2.0 climatology data into
 R from locally available data files and creates a list of raster stacks of the
 data.  If requested, minimum and maximum temperature may also be automatically
-calculated as described in the data readme.txt file.
+calculated as described in the data readme.txt file.  This function can be
+useful if you have network connection issues that mean automated downloading
+of the files using R does not work properly.  In this instance it is
+recommended to use an FTP client (e.g., FileZilla), web browser or command
+line command (e.g., wget or curl) to download the files, save locally and use
+this function to import the data into R.
 
 Nomenclature and units from readme.txt:
 \describe{
@@ -74,5 +100,6 @@ CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE, dsn = "~/Downloads")
 }
 }
 \seealso{
-\code{link{get_CRU_stack}}
+\code{\link{get_CRU_stack}}
+\code{\link{get_CRU_df}}
 }

@@ -1,7 +1,12 @@
 # getCRUCLdata 0.1.5
 
+## Major Changes
+
+  * `create_CRU_stack()` and `create_CRU_df()` now only work with locally available files. If you need to fetch and create a data frame or raster stack of the data, please use the new functions, `get_CRU_stack()` and `create_CRU_stack()`
+  * Months are returned as a factor object in the tidy data frame
 ## Minor Changes
 
+  * Improved documentation with examples on mapping and graphing and more detail regarding the data itself
   * Change the method in which files are downloaded to use `httr::GET()`
 
 # getCRUCLdata 0.1.4

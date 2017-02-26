@@ -90,4 +90,5 @@ CRU_pre_tmp <- get_CRU_stack(pre = TRUE, tmp = TRUE)
 }
 \seealso{
 \code{\link{create_CRU_df}}
+\code{link{get_CRU_stack}}
 }

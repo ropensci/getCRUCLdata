@@ -57,6 +57,7 @@
 #'}
 #' @seealso
 #' \code{\link{create_CRU_df}}
+#' \code{link{get_CRU_stack}}
 #'
 #' @note
 #' This package automatically converts elevation values from kilometres to
@@ -88,7 +89,7 @@ get_CRU_stack <-
         !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
         !isTRUE(sunp) &
         !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
-      stop("You must select at least one parameter for download.")
+      stop("You must select at least one element for download.")
     }
 
     .get_CRU(pre,
@@ -106,8 +107,11 @@ get_CRU_stack <-
 
     if (isTRUE(pre_cv)) {
       pre <- TRUE
-    } else pre <- FALSE
+    }
 
-    s <- create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv)
+    files <-
+      list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
+
+    s <- create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
     return(s)
 }

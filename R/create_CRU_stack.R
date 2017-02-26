@@ -3,7 +3,12 @@
 #'@description This function automates importing CRU CL2.0 climatology data into
 #'R from locally available data files and creates a list of raster stacks of the
 #'data.  If requested, minimum and maximum temperature may also be automatically
-#'calculated as described in the data readme.txt file.
+#'calculated as described in the data readme.txt file.  This function can be
+#'useful if you have network connection issues that mean automated downloading
+#'of the files using R does not work properly.  In this instance it is
+#'recommended to use an FTP client (e.g., FileZilla), web browser or command
+#'line command (e.g., wget or curl) to download the files, save locally and use
+#'this function to import the data into R.
 #'
 #'Nomenclature and units from readme.txt:
 #'\describe{
@@ -26,20 +31,33 @@
 #' @details This function generates a raster stack object in R from local files
 #' already downloaded via a web browser or FTP. The user will need to specify
 #' the following options.
-#' @param pre_cv Logical. Create a raster stack of precipitation CV? Requires
-#' precipitation file to be available. Defaults to FALSE.
+#' @param pre Logical. Create a raster stack of precipitation
+#' (millimetres/month) from local files? Defaults to FALSE.
+#' @param pre_cv Logical. Create a raster stack of cv of precipitation (percent)
+#' from local files? Defaults to FALSE.
+#' @param rd0 Logical. Logical. Create a raster stack of wet days (number days
+#' with >0.1 millimetres rain per month) from local files? Defaults to FALSE.
+#' @param dtr Logical. Create a raster stack of mean diurnal temperature range
+#' (degrees Celsius) from local files? Defaults to FALSE.
+#' @param tmp Logical. Create a raster stack of temperature (degrees Celsius)
+#' from local files? Defaults to FALSE.
 #' @param tmn Logical. Calculate minimum temperature values (degrees Celsius)
-#' and return it in a raster stack? Requires tmp and dtr files to both be
-#' available for calculation. Defaults to FALSE.
-#' @param tmx Logical. Calculate maximum temperature (degrees Celsius) and
-#' return it in a raster stack?  Requires tmp and dtr files to both be
-#' available for calculation. Defaults to FALSE.
-#' @param tmp Logical. When calculating tmn and/or tmx, keep tmp? Defaults to
-#' FALSE.
-#' @param dtr Logical. When calculating tmn and/or tmx, keep tmp? Defaults to
-#' FALSE.
-#' @param dsn Required. Local file path where CRU CL2.0 .dat.gz files are
-#' located.
+#' and return it in a raster stack? \emph{Requires tmp and dtr files to be
+#' locally present}. Defaults to FALSE.
+#' @param tmx Logical. Calculate maximum temperature values (degrees Celsius)
+#' and return it in a raster stack? \emph{Requires tmp and dtr files to be
+#' locally present}. Defaults to FALSE.
+#' @param reh Logical. Create a raster stack of relative humidity from local
+#' files? Defaults to FALSE.
+#' @param sunp Logical. Create a raster stack of sunshine, percent of maximum
+#' possible (percent of day length) from local files? Defaults to FALSE.
+#' @param frs Logical. Create a raster stack of ground-frost records (number of
+#' days with ground-frost per month) from local files? Defaults to FALSE.
+#' @param wnd Logical. Create a raster stack of 10m wind speed (metres/second)
+#' from local files? Defaults to FALSE.
+#' @param elv Logical. Create a raster layer of elevation (converted to metres)
+#' from local files? Defaults to FALSE.
+#' @param dsn Local file path where CRU CL2.0 .dat.gz files are located.
 #'
 #' @examples
 #' # Create a raster stack of precipitation and temperature from pre and tmp
@@ -48,8 +66,8 @@
 #' CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE, dsn = "~/Downloads")
 #'}
 #' @seealso
-#' \code{link{get_CRU_stack}}
-#'
+#' \code{\link{get_CRU_stack}}
+#' \code{\link{get_CRU_df}}
 #' @note
 #' This package automatically converts elevation values from kilometres to
 #' metres.
@@ -62,19 +80,32 @@
 #'
 #' @export
 create_CRU_stack <-
-  function(pre_cv = FALSE,
+  function(pre = FALSE,
+           pre_cv = FALSE,
+           rd0 = FALSE,
+           tmp = FALSE,
+           dtr = FALSE,
+           reh = FALSE,
            tmn = FALSE,
            tmx = FALSE,
-           dtr = FALSE,
-           tmp = FALSE,
-           dsn = NULL) {
+           sunp = FALSE,
+           frs = FALSE,
+           wnd = FALSE,
+           elv = FALSE,
+           dsn = "") {
+
+    if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
+        !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
+        !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
+      stop("\nYou must select at least one element for importing.\n")
+    }
 
     .validate_dsn(dsn)
 
     files <-
       list.files(dsn, pattern = ".dat.gz$", full.names = TRUE)
 
-    s <- create_stacks(pre_cv, tmn, tmx, files)
+    s <- create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
     return(s)
-}
+  }
 

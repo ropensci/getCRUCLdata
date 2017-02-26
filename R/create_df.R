@@ -1,26 +1,78 @@
+#' @noRd
+
+create_df <- function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
+
+  month <- NULL
+
+  CRU_df <-
+    .tidy_df(pre_cv, elv, tmn, tmx, .files = files)
+
+  if (isTRUE(tmx)) {
+    tmx_df <- .calculate_tmx(CRU_df[, "tmp"], CRU_df[, "dtr"])
+    CRU_df <- data.frame(CRU_df, tmx_df)
+    names(CRU_df)[names(CRU_df) == "tmx_df"] <- "tmx"
+  }
+
+  if (isTRUE(tmn)) {
+    tmn_df <- .calculate_tmn(CRU_df[, "tmp"], CRU_df[, "dtr"])
+    CRU_df <- data.frame(CRU_df, tmn_df)
+    names(CRU_df)[names(CRU_df) == "tmn_df"] <- "tmn"
+  }
+
+  # Remove tmp/dtr if they aren't specified (necessary for tmn/tmx)
+  if (isTRUE(tmx) | isTRUE(tmn)) {
+    if (!isTRUE(tmp)) {
+      CRU_df <- subset(CRU_df, select = -tmp)
+    }
+
+    if (!isTRUE(dtr)) {
+      CRU_df <- subset(CRU_df, select = -dtr)
+    }
+  }
+  CRU_df$month <- factor(
+    CRU_df$month,
+    levels <-  c(
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec"
+    )
+  )
+
+  CRU_df <- dplyr::arrange(CRU_df, month)
+
+  return(tibble::as_tibble(CRU_df))
+}
+
 #' @importFrom dplyr %>%
 #' @noRd
-.tidy_df <- function(pre_cv, elv, tmn, tmx) {
-  files <-
-    list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
+.tidy_df <- function(pre_cv, elv, tmn, tmx, .files) {
 
   # internal function to read files from cache directory and tidy them -------
 
   # create list of tidied data frames ----------------------------------------
   CRU_list <-
     plyr::llply(
-      .data = files,
+      .data = .files,
       .fun = .read_cache,
       .pre_cv = pre_cv,
       .progress = "text"
     )
 
   # name the items in the list for the data that they contain ----------------
-  names(CRU_list) <- substr(basename(files), 12, 14)
+  names(CRU_list) <- substr(basename(.files), 12, 14)
 
   # rename the columns in the data frames within the list --------------------
   for (i in seq_along(CRU_list)) {
-    wvars <- as.list(substr(basename(files), 12, 14))
+    wvars <- as.list(substr(basename(.files), 12, 14))
     names(CRU_list[[i]])[names(CRU_list[[i]]) == "wvar"] <-
       wvars[[i]]
   }
@@ -43,11 +95,11 @@
   return(CRU_df)
 
   # cleanup before we go -----------------------------------------------------
-  rm(c(CRU_list, files))
+  rm(c(CRU_list))
 }
 
 #' @noRd
-.read_cache <- function(files, .pre_cv) {
+.read_cache <- function(.files, .pre_cv) {
   lat <- NULL
   lon <- NULL
   month_names <-
@@ -65,7 +117,7 @@
       "dec")
 
   x <-
-    tibble::as_tibble(data.table::fread(paste0("gzip -dc ", files),
+    tibble::as_tibble(data.table::fread(paste0("gzip -dc ", .files),
                                         header = FALSE))
 
   if (ncol(x) == 14) {

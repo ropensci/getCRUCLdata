@@ -1,6 +1,6 @@
 #' @noRd
 #'
-create_stacks <- function(files, tmn, tmx, tmp, dtr, pre, pre_cv) {
+create_stacks <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
   message("\nCreating raster stack now.\n")
   wrld <-
     raster::raster(
@@ -32,16 +32,13 @@ create_stacks <- function(files, tmn, tmx, tmp, dtr, pre, pre_cv) {
   # create.stack takes pre, tmp, tmn and tmx and creates a raster
   # object stack of 12 month data
 
-  files <-
-    list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
-
   CRU_stack_list <-
     plyr::llply(.fun = .create_stack,
                 files,
                 wrld,
                 month_names,
-                .pre = pre,
-                .pre_cv = pre_cv,
+                pre,
+                pre_cv,
                 .progress = "text")
 
   names(CRU_stack_list) <- substr(basename(files), 12, 14)
@@ -75,10 +72,10 @@ create_stacks <- function(files, tmn, tmx, tmp, dtr, pre, pre_cv) {
 .create_stack <- function(files,
                           wrld,
                           month_names,
-                          .pre,
-                          .pre_cv) {
+                          pre,
+                          pre_cv) {
   wvar <-
-    data.frame(data.table::fread(paste0("gzip -dc ", files),
+    data.frame(data.table::fread(paste0("gzip -dc ", files[[1]]),
                                  header = FALSE))
   cells <- raster::cellFromXY(wrld, wvar[, c(2, 1)])
   if (ncol(wvar) == 14) {
@@ -91,7 +88,7 @@ create_stacks <- function(files, tmn, tmx, tmp, dtr, pre, pre_cv) {
     }
     names(y) <- month_names
   } else if (ncol(wvar) == 26) {
-    if (isTRUE(.pre) & isTRUE(.pre_cv)) {
+    if (isTRUE(pre) & isTRUE(pre_cv)) {
       for (k in 3:26) {
         wrld[cells] <- wvar[, k]
         if (k == 3) {
@@ -99,8 +96,8 @@ create_stacks <- function(files, tmn, tmx, tmp, dtr, pre, pre_cv) {
         } else
           y <- raster::stack(y, wrld)
       }
-      names(y) <- c(month_names, paste0(".pre_cv_", month_names))
-    } else if (isTRUE(.pre)) {
+      names(y) <- c(month_names, paste0("pre_cv_", month_names))
+    } else if (isTRUE(pre)) {
       for (k in 3:14) {
         wrld[cells] <- wvar[, k]
         if (k == 3) {
@@ -109,7 +106,7 @@ create_stacks <- function(files, tmn, tmx, tmp, dtr, pre, pre_cv) {
           y <- raster::stack(y, wrld)
       }
       names(y) <- month_names
-    } else if (isTRUE(.pre_cv)) {
+    } else if (isTRUE(pre_cv)) {
       for (k in 15:26) {
         wrld[cells] <- wvar[, k]
         if (k == 15) {
@@ -117,7 +114,7 @@ create_stacks <- function(files, tmn, tmx, tmp, dtr, pre, pre_cv) {
         } else
           y <- raster::stack(y, wrld)
       }
-      names(y) <- paste0(".pre_cv_", month_names)
+      names(y) <- paste0("pre_cv_", month_names)
     }
 
   } else if (ncol(wvar) == 3) {

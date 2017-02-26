@@ -84,7 +84,12 @@
     <p>This function automates importing CRU CL2.0 climatology data into
 R from locally available data files and creates a list of raster stacks of the
 data.  If requested, minimum and maximum temperature may also be automatically
-calculated as described in the data readme.txt file.</p>
+calculated as described in the data readme.txt file.  This function can be
+useful if you have network connection issues that mean automated downloading
+of the files using R does not work properly.  In this instance it is
+recommended to use an FTP client (e.g., FileZilla), web browser or command
+line command (e.g., wget or curl) to download the files, save locally and use
+this function to import the data into R.</p>
 
     <p>Nomenclature and units from readme.txt:
 <dl class='dl-horizontal'>
@@ -104,30 +109,52 @@ calculated as described in the data readme.txt file.</p>
 <a href = 'https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt'>https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a></p>
     
 
-    <pre><span class='fu'>create_CRU_stack</span>(<span class='kw'>pre_cv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmn</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmx</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dsn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre><span class='fu'>create_CRU_stack</span>(<span class='kw'>pre</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pre_cv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rd0</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>dtr</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>reh</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmn</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmx</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sunp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>frs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>wnd</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>elv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dsn</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
+      <dt>pre</dt>
+      <dd>Logical. Create a raster stack of precipitation
+(millimetres/month) from local files? Defaults to FALSE.</dd>
       <dt>pre_cv</dt>
-      <dd>Logical. Create a raster stack of precipitation CV? Requires
-precipitation file to be available. Defaults to FALSE.</dd>
+      <dd>Logical. Create a raster stack of cv of precipitation (percent)
+from local files? Defaults to FALSE.</dd>
+      <dt>rd0</dt>
+      <dd>Logical. Logical. Create a raster stack of wet days (number days
+with &gt;0.1 millimetres rain per month) from local files? Defaults to FALSE.</dd>
+      <dt>tmp</dt>
+      <dd>Logical. Create a raster stack of temperature (degrees Celsius)
+from local files? Defaults to FALSE.</dd>
+      <dt>dtr</dt>
+      <dd>Logical. Create a raster stack of mean diurnal temperature range
+(degrees Celsius) from local files? Defaults to FALSE.</dd>
+      <dt>reh</dt>
+      <dd>Logical. Create a raster stack of relative humidity from local
+files? Defaults to FALSE.</dd>
       <dt>tmn</dt>
       <dd>Logical. Calculate minimum temperature values (degrees Celsius)
-and return it in a raster stack? Requires tmp and dtr files to both be
-available for calculation. Defaults to FALSE.</dd>
+and return it in a raster stack? <em>Requires tmp and dtr files to be
+locally present</em>. Defaults to FALSE.</dd>
       <dt>tmx</dt>
-      <dd>Logical. Calculate maximum temperature (degrees Celsius) and
-return it in a raster stack?  Requires tmp and dtr files to both be
-available for calculation. Defaults to FALSE.</dd>
+      <dd>Logical. Calculate maximum temperature values (degrees Celsius)
+and return it in a raster stack? <em>Requires tmp and dtr files to be
+locally present</em>. Defaults to FALSE.</dd>
+      <dt>sunp</dt>
+      <dd>Logical. Create a raster stack of sunshine, percent of maximum
+possible (percent of day length) from local files? Defaults to FALSE.</dd>
+      <dt>frs</dt>
+      <dd>Logical. Create a raster stack of ground-frost records (number of
+days with ground-frost per month) from local files? Defaults to FALSE.</dd>
+      <dt>wnd</dt>
+      <dd>Logical. Create a raster stack of 10m wind speed (metres/second)
+from local files? Defaults to FALSE.</dd>
+      <dt>elv</dt>
+      <dd>Logical. Create a raster layer of elevation (converted to metres)
+from local files? Defaults to FALSE.</dd>
       <dt>dsn</dt>
-      <dd>Required. Local file path where CRU CL2.0 .dat.gz files are
-located.</dd>
-      <dt>tmp</dt>
-      <dd>Logical. When calculating tmn and/or tmx, keep tmp? Defaults to
-FALSE.</dd>
-      <dt>dtr</dt>
-      <dd>Logical. When calculating tmn and/or tmx, keep tmp? Defaults to
-FALSE.</dd>
+      <dd>Local file path where CRU CL2.0 .dat.gz files are located.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -147,19 +174,16 @@ generated by this function.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code>link{get_CRU_stack}</code></p>
+    <p><code><a href='get_CRU_stack.html'>get_CRU_stack</a></code>
+<code><a href='get_CRU_df.html'>get_CRU_df</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># Create a raster stack of precipitation and temperature from pre and tmp
-files in the Downloads directory.
-## Not run: ------------------------------------
-# CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE, dsn = "~/Downloads")
-## ---------------------------------------------
-</div><div class='output co'>#&gt; <span class='error'>Error: &lt;text&gt;:2:7: unexpected &#39;in&#39;</span>
-#&gt; <span class='error'>1: # Create a raster stack of precipitation and temperature from pre and tmp</span>
-#&gt; <span class='error'>2: files in</span>
-#&gt; <span class='error'>         ^</span></div></pre>
+    <pre class="examples"><div class='input'><span class='co'># Create a raster stack of precipitation and temperature from pre and tmp</span>
+<span class='co'># files in the Downloads directory.</span>
+<span class='co'>## Not run: ------------------------------------</span>
+<span class='co'># CRU_pre_tmp &lt;- create_CRU_stack(pre = TRUE, tmp = TRUE, dsn = "~/Downloads")</span>
+<span class='co'>## ---------------------------------------------</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
