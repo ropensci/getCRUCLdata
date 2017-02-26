@@ -10,7 +10,7 @@ Download and Use CRU CL2.0 Climatology Data in R
 
 Author/Maintainer: Adam Sparks
 
-The getCRUCLdata package provides two functions that automate downloading and importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a tidy data frame or a list of raster stack objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
+The getCRUCLdata package provides four functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a tidy data frame or a list of raster stack objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
 Changes to original data
 ------------------------
@@ -55,29 +55,39 @@ Using getCRUCLdata
 Creating tidy data frames for use in R
 --------------------------------------
 
-The `create_CRU_df()` function returns a tidy data frames, as a [`tibble`](https://github.com/tidyverse/tibble) object, of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.
+There are two methods that this package provides for creating tidy data frames of the CRU CL2.0 climate data as a [`tibble`](https://github.com/tidyverse/tibble). Depending on your needs you may need to use `create_CRU_df()`, which will create a tidy data frame of the climate elements from *locally available* files. Or you can use `get_CRU_df()`, which will automate the fetching and importing of the data files into R in one step.
+
+The `create_CRU_df()` function is useful if you have network issues that interfere with R downloading the data files themselves from the CRU website or if you frequently work with these data and do not wish to download them every time they are needed.
+
+The `get_CRU_df()` function creates tidy data frames of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.
 
 ``` r
-CRU_data <- create_CRU_df(pre = TRUE,
-                          pre_cv = TRUE,
-                          rd0 = TRUE,
-                          tmp = TRUE,
-                          dtr = TRUE,
-                          reh = TRUE,
-                          tmn = TRUE,
-                          tmx = TRUE,
-                          sunp = TRUE,
-                          frs = TRUE,
-                          wnd = TRUE,
-                          elv = TRUE)
+library(getCRUCLdata)
+
+CRU_data <- get_CRU_df(pre = TRUE,
+                       pre_cv = TRUE,
+                       rd0 = TRUE,
+                       tmp = TRUE,
+                       dtr = TRUE,
+                       reh = TRUE,
+                       tmn = TRUE,
+                       tmx = TRUE,
+                       sunp = TRUE,
+                       frs = TRUE,
+                       wnd = TRUE,
+                       elv = TRUE)
 ```
 
-### Create a tidy data frame of mean temperature only.
-
-Perhaps you don't need all of the data available from CRU CL2.0, you can specify the necessary data to retrieve. Here we will fetch mean monthly temperature data only.
+Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only.
 
 ``` r
-t <- create_CRU_df(tmp = TRUE)
+t <- get_CRU_df(tmp = TRUE)
+```
+
+The `create_CRU_df()` function works in the same way with only one minor difference. You must supply the location of the files on the local disk (`dsn`) that you wish to import.
+
+``` r
+t <- create_CRU_df(tmp = TRUE, dsn = "~/Downloads")
 ```
 
 Plotting data from the tidy dataframe
@@ -122,37 +132,55 @@ ggplot(data = t, aes(x = month, y = tmp)) +
 
 ![Violin plot of global mean temperatures 1961-1990](README-unnamed-chunk-7-1.png)
 
-Creating raster stacks for use in R
------------------------------------
+Saving the tidy data frame as a CSV (comma separated values file) locally
+-------------------------------------------------------------------------
 
-The `create_CRU_stack()` function provides functionality for producing a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
-
-Create a list of raster stacks of all CRU CL2.0 climatology elements available.
+Save the resulting tidy data frame to local disk as a comma separated (CSV) file to local disk.
 
 ``` r
-CRU_stack <- create_CRU_stack(pre = TRUE,
-                              pre_cv = TRUE,
-                              rd0 = TRUE,
-                              tmp = TRUE,
-                              dtr = TRUE,
-                              reh = TRUE,
-                              tmn = TRUE,
-                              tmx = TRUE,
-                              sunp = TRUE,
-                              frs = TRUE,
-                              wnd = TRUE,
-                              elv = TRUE)
+library(readr)
+
+write_csv(t, path = "~/CRU_tmp.csv")
+```
+
+Creating raster stacks for use in R or saving for use in a GIS
+--------------------------------------------------------------
+
+For working with spatial data,`getCRUCLdata()` provides two functions that create lists of [raster](https://CRAN.R-project.org/package=raster) stacks of the data.
+
+The `create_CRU_stack()` and `get_CRU_stack()` functions provide similar functionality to `create_CRU_df()` and `get_CRU_df()`, but rather than returning a tidy data frame, they return a a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
+
+Fetch data from the CRU website and create a list of raster stacks of all CRU CL2.0 climatology elements available.
+
+``` r
+CRU_stack <- get_CRU_stack(pre = TRUE,
+                           pre_cv = TRUE,
+                           rd0 = TRUE,
+                           tmp = TRUE,
+                           dtr = TRUE,
+                           reh = TRUE,
+                           tmn = TRUE,
+                           tmx = TRUE,
+                           sunp = TRUE,
+                           frs = TRUE,
+                           wnd = TRUE,
+                           elv = TRUE)
 ```
 
 Create a list of raster stacks of maximum and minimum temperature.
-------------------------------------------------------------------
 
 ``` r
-tmn_tmx <- create_CRU_stack(tmn = TRUE,
-                            tmx = TRUE)
+tmn_tmx <- get_CRU_stack(tmn = TRUE,
+                         tmx = TRUE)
 ```
 
-### Plot raster stacks of tmin and tmax
+The `create_CRU_stack()` function works in the same way with only one minor difference. You must supply the location of the files on the local disk (`dsn`) that you wish to import.
+
+``` r
+t <- create_CRU_stack(tmp = TRUE, dsn = "~/Downloads")
+```
+
+### Ploting raster stacks of tmin and tmax
 
 Because the stacks are in a list, we need to access each element of the list individually to plot them, that's what the `[[1]]` or `[[2]]` is, the first or second element of the list.
 
@@ -171,6 +199,20 @@ plot(tmn_tmx[[2]]$jul)
 ```
 
 ![Plot of maximum temperatures for July](README-unnamed-chunk-11-1.png)
+
+Saving raster objects to local disk
+-----------------------------------
+
+The raster stack objects can be saved to disk as geotiff files (others are available, see help for `writeRaster` and `writeFormats` for more options) in the `Data` directory with a tmn or tmx prefix to the month for a filename.
+
+``` r
+library(raster)
+
+dir.create(file.path("~/Data"), showWarnings = FALSE)
+writeRaster(tmn_tmx$tmn, filename = paste0("~/Data/tmn_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
+
+writeRaster(tmn_tmx$tmx, filename = paste0("~/Data/tmx_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
+```
 
 ------------------------------------------------------------------------
 

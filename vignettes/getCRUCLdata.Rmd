@@ -59,7 +59,7 @@ CRU CL2.0 .dat.gz files are located.
 
 ## Creating tidy data frames for use in R
 
-There are two methods that this package provides for creating tidy data frames of the CRU CL2.0 climate data. Depending on your needs you may need to use `create_CRU_df()`, which will create a tidy data frame of the climate elements from *locally available* files. Or you can use `get_CRU_df()`, which will automate the fetching and importing of the data files into R in one step.
+There are two methods that this package provides for creating tidy data frames of the CRU CL2.0 climate data as a [`tibble`](https://github.com/tidyverse/tibble). Depending on your needs you may need to use `create_CRU_df()`, which will create a tidy data frame of the climate elements from *locally available* files. Or you can use `get_CRU_df()`, which will automate the fetching and importing of the data files into R in one step.
 
 The `create_CRU_df()` function is useful if you have network issues that interfere with R downloading the data files themselves from the CRU website or if you frequently work with these data and do not wish to download them every time they are needed.
 
@@ -144,7 +144,7 @@ Save the resulting tidy data frame to local disk as a comma separated (CSV) file
 ```{r, eval=FALSE}
 library(readr)
 
-write_csv(t, path = "~/")
+write_csv(t, path = "~/CRU_tmp.csv")
 
 ```
 
