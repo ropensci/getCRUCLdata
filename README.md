@@ -93,7 +93,7 @@ t <- create_CRU_df(tmp = TRUE, dsn = "~/Downloads")
 Plotting data from the tidy dataframe
 -------------------------------------
 
-Now that we have the data, we can plot it easily using [`ggplot2`](http://ggplot2.org) and the fantastic [`viridis`](https://cran.r-project.org/web/packages/viridis/) package for the colour scale.
+Now that we have the data, we can plot it easily using [`ggplot2`](http://ggplot2.org) and the fantastic [`viridis`](https://CRAN.R-project.org/package=viridis) package for the colour scale.
 
 ``` r
 if (!require("ggplot2")) {

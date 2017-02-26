@@ -119,7 +119,7 @@ t <- create_CRU_df(tmp = TRUE, dsn = "~/Downloads")
 ## Plotting data from the tidy dataframe
 
 Now that we have the data, we can plot it easily using [`ggplot2`](http://ggplot2.org) and
-the fantastic [`viridis`](https://cran.r-project.org/web/packages/viridis/) package for the colour scale.
+the fantastic [`viridis`](https://CRAN.R-project.org/package=viridis) package for the colour scale.
 
 ```{r, eval=FALSE}
 if (!require("ggplot2")) {
@@ -253,8 +253,7 @@ Climate Research, 2000, Vol 21, pg 1-25
     Norwich NR4 7TJ, United Kingdom  
 > (4) International Water Management Institute, PO Box 2075, Colombo, Sri Lanka
 
-> **ABSTRACT:** We describe the construction of a 10-minute latitude/longitude data set of mean monthly surface climate over global land areas, excluding Antarctica. The climatology includes 8 climate elements - precipitation, wet-day frequency, temperature, diurnal temperature range, relative humidity,sunshine duration, ground frost frequency and windspeed - and was interpolated from a data set of station means for the period centred on 1961 to 1990. Precipitation was first defined in terms of the parameters of the Gamma distribution, enabling the calculation of monthly precipitation at any given return period. The data are compared to an earlier data set at 0.5 degrees latitude/longitude resolution and
-show added value over most regions. The data will have many applications in applied climatology, biogeochemical modelling, hydrology and agricultural meteorology and are available through the School of Geography Oxford  (http://www.geog.ox.ac.uk), the International Water Management Institute "World Water and Climate Atlas" (http://www.iwmi.org) and the Climatic Research Unit (http://www.cru.uea.ac.uk).
+> **ABSTRACT:** We describe the construction of a 10-minute latitude/longitude data set of mean monthly surface climate over global land areas, excluding Antarctica. The climatology includes 8 climate elements - precipitation, wet-day frequency, temperature, diurnal temperature range, relative humidity,sunshine duration, ground frost frequency and windspeed - and was interpolated from a data set of station means for the period centred on 1961 to 1990. Precipitation was first defined in terms of the parameters of the Gamma distribution, enabling the calculation of monthly precipitation at any given return period. The data are compared to an earlier data set at 0.5 degrees latitude/longitude resolution and show added value over most regions. The data will have many applications in applied climatology, biogeochemical modelling, hydrology and agricultural meteorology and are available through the School of Geography Oxford  (http://www.geog.ox.ac.uk), the International Water Management Institute "World Water and Climate Atlas" (http://www.iwmi.org) and the Climatic Research Unit (http://www.cru.uea.ac.uk).
 
 ## Contributors
 
