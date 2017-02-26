@@ -1,9 +1,14 @@
-#' @title Download and Create a List of Raster Stack Objects From CRU CL2.0 Climatology Variables
+#' @title Create a List of Raster Stack Objects From CRU CL2.0 Climatology Variables on Local Disk
 #'
-#'@description This function automates downloading and importing CRU CL2.0
-#'climatology data into R and creates a list of raster stacks of the data.  If
-#'requested, minimum and maximum temperature may also be automatically
-#'calculated as described in the data readme.txt file.
+#'@description This function automates importing CRU CL2.0 climatology data into
+#'R from locally available data files and creates a list of raster stacks of the
+#'data.  If requested, minimum and maximum temperature may also be automatically
+#'calculated as described in the data readme.txt file.  This function can be
+#'useful if you have network connection issues that mean automated downloading
+#'of the files using R does not work properly.  In this instance it is
+#'recommended to use an FTP client (e.g., FileZilla), web browser or command
+#'line command (e.g., wget or curl) to download the files, save locally and use
+#'this function to import the data into R.
 #'
 #'Nomenclature and units from readme.txt:
 #'\describe{
@@ -23,41 +28,46 @@
 #'For more information see the description of the data provided by CRU,
 #'\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 #'
-#' @details This function generates a raster stack object in R with the following
-#' possible fields as specified by the user:
-#' @param pre Logical. Fetch precipitation (millimetres/month) from server and
-#' return in a raster stack? Defaults to FALSE.
-#' @param pre_cv Logical. Fetch cv of precipitation (percent) from server and
-#' return in a raster stack? Defaults to FALSE.
-#' @param rd0 Logical. Fetch wet-days (number days with >0.1 millimetres rain
-#' per month) and return in a raster stack? Defaults to FALSE.
-#' @param dtr Logical. Fetch mean diurnal temperature range (degrees Celsius)
-#' and return it in a raster stack? Defaults to FALSE.
-#' @param tmp Logical. Fetch temperature (degrees Celsius) and return it in the
-#' raster stack? Defaults to FALSE.
+#' @details This function generates a raster stack object in R from local files
+#' already downloaded via a web browser or FTP. The user will need to specify
+#' the following options.
+#' @param pre Logical. Create a raster stack of precipitation
+#' (millimetres/month) from local files? Defaults to FALSE.
+#' @param pre_cv Logical. Create a raster stack of cv of precipitation (percent)
+#' from local files? Defaults to FALSE.
+#' @param rd0 Logical. Logical. Create a raster stack of wet days (number days
+#' with >0.1 millimetres rain per month) from local files? Defaults to FALSE.
+#' @param dtr Logical. Create a raster stack of mean diurnal temperature range
+#' (degrees Celsius) from local files? Defaults to FALSE.
+#' @param tmp Logical. Create a raster stack of temperature (degrees Celsius)
+#' from local files? Defaults to FALSE.
 #' @param tmn Logical. Calculate minimum temperature values (degrees Celsius)
-#' and return it in a raster stack? Defaults to FALSE.
-#' @param tmx Logical. Calculate maximum temperature (degrees Celsius) and
-#' return it in a raster stack? Defaults to FALSE.
-#' @param reh Logical. Fetch relative humidity and return it in a raster stack?
-#' Defaults to FALSE.
-#' @param sunp Logical. Fetch sunshine, percent of maximum possible (percent of
-#' day length) and return it in raster stack? Defaults to FALSE.
-#' @param frs Logical. Fetch ground-frost records (number of days with ground-
-#' frost per month) and return it in raster stack? Defaults to FALSE.
-#' @param wnd Logical. Fetch 10m wind speed (metres/second) and return it in the
-#' raster stack? Defaults to FALSE.
-#' @param elv Logical. Fetch elevation (converted to metres) and return it in a
-#' raster layer object? Defaults to FALSE.
+#' and return it in a raster stack? \emph{Requires tmp and dtr files to be
+#' locally present}. Defaults to FALSE.
+#' @param tmx Logical. Calculate maximum temperature values (degrees Celsius)
+#' and return it in a raster stack? \emph{Requires tmp and dtr files to be
+#' locally present}. Defaults to FALSE.
+#' @param reh Logical. Create a raster stack of relative humidity from local
+#' files? Defaults to FALSE.
+#' @param sunp Logical. Create a raster stack of sunshine, percent of maximum
+#' possible (percent of day length) from local files? Defaults to FALSE.
+#' @param frs Logical. Create a raster stack of ground-frost records (number of
+#' days with ground-frost per month) from local files? Defaults to FALSE.
+#' @param wnd Logical. Create a raster stack of 10m wind speed (metres/second)
+#' from local files? Defaults to FALSE.
+#' @param elv Logical. Create a raster layer of elevation (converted to metres)
+#' from local files? Defaults to FALSE.
+#' @param dsn Local file path where CRU CL2.0 .dat.gz files are located.
 #'
 #' @examples
-#' # Download data and create a raster stack of precipitation and temperature
+#' # Create a raster stack of precipitation and temperature from pre and tmp
+#' # files in the Downloads directory.
 #' \dontrun{
-#' CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE)
+#' CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE, dsn = "~/Downloads")
 #'}
 #' @seealso
-#' \code{\link{create_CRU_df}}
-#'
+#' \code{\link{get_CRU_stack}}
+#' \code{\link{get_CRU_df}}
 #' @note
 #' This package automatically converts elevation values from kilometres to
 #' metres.
@@ -81,156 +91,21 @@ create_CRU_stack <-
            sunp = FALSE,
            frs = FALSE,
            wnd = FALSE,
-           elv = FALSE) {
-    cache_dir <- tempdir()
+           elv = FALSE,
+           dsn = "") {
 
-    if (!isTRUE(pre) &
-        !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
+    if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
         !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
-        !isTRUE(sunp) &
-        !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
-      stop("You must select at least one parameter for download.")
+        !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
+      stop("\nYou must select at least one element for importing.\n")
     }
 
-    wrld <-
-      raster::raster(
-        nrows = 930,
-        ncols = 2160,
-        ymn = -65,
-        ymx = 90,
-        xmn = -180,
-        xmx = 180
-      )
-
-    wrld[] <- NA
-
-    month_names <-
-      c("jan",
-        "feb",
-        "mar",
-        "apr",
-        "may",
-        "jun",
-        "jul",
-        "aug",
-        "sep",
-        "oct",
-        "nov",
-        "dec")
-
-    # Create raster objects using cellFromXY and generate a raster stack
-    # create.stack takes pre, tmp, tmn and tmx and creates a raster
-    # object stack of 12 month data
-
-    .get_CRU(pre,
-             pre_cv,
-             rd0,
-             tmp,
-             dtr,
-             reh,
-             tmn,
-             tmx,
-             sunp,
-             frs,
-             wnd,
-             elv,
-             cache_dir)
+    .validate_dsn(dsn)
 
     files <-
-      list.files(cache_dir, pattern = ".dat.gz$", full.names = TRUE)
+      list.files(dsn, pattern = ".dat.gz$", full.names = TRUE)
 
-    message("\nCreating raster stack now.\n")
-
-    CRU_stack_list <-
-      plyr::llply(.fun = .create_stack,
-                  files,
-                  wrld,
-                  month_names,
-                  pre,
-                  pre_cv,
-                  .progress = "text")
-
-    names(CRU_stack_list) <- substr(basename(files), 12, 14)
-
-    # cacluate tmn -------------------------------------------------------------
-    if (isTRUE(tmn)) {
-      CRU_stack_list$tmn <-
-        CRU_stack_list$tmp - (0.5 * CRU_stack_list$dtr)
-    }
-    # cacluate tmx -------------------------------------------------------------
-    if (isTRUE(tmx)) {
-      CRU_stack_list$tmx <-
-        CRU_stack_list$tmp + (0.5 * CRU_stack_list$dtr)
-    }
-
-    # cleanup if tmn/tmx specified but tmp/dtr not -----------------------------
-    if (!isTRUE(tmp) | !isTRUE(dtr) & isTRUE(tmx) | isTRUE(tmn)) {
-      CRU_stack_list[which(names(CRU_stack_list) %in% c("tmp", "dtr"))] <-
-        NULL
-    }
-    if (!isTRUE(dtr) & isTRUE(tmx) | isTRUE(tmn)) {
-      CRU_stack_list[which(names(CRU_stack_list) %in% "dtr")] <- NULL
-    }
-    if (!isTRUE(tmp) & isTRUE(tmx) | isTRUE(tmn)) {
-      CRU_stack_list[which(names(CRU_stack_list) %in% "tmp")] <- NULL
-    }
-    return(CRU_stack_list)
+    s <- create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
+    return(s)
   }
 
-#' @noRd
-.create_stack <- function(files, wrld, month_names, pre, pre_cv) {
-  wvar <-
-    data.frame(data.table::fread(paste0("gzip -dc ", files),
-                                 header = FALSE))
-  cells <- raster::cellFromXY(wrld, wvar[, c(2, 1)])
-  if (ncol(wvar) == 14) {
-    for (j in 3:14) {
-      wrld[cells] <- wvar[, j]
-      if (j == 3) {
-        y <- wrld
-      } else
-        y <- raster::stack(y, wrld)
-    }
-    names(y) <- month_names
-  } else if (ncol(wvar) == 26) {
-    if (isTRUE(pre) & isTRUE(pre_cv)) {
-      for (k in 3:26) {
-        wrld[cells] <- wvar[, k]
-        if (k == 3) {
-          y <- wrld
-        } else
-          y <- raster::stack(y, wrld)
-      }
-      names(y) <- c(month_names, paste0("pre_cv_", month_names))
-    } else if (isTRUE(pre)) {
-      for (k in 3:14) {
-        wrld[cells] <- wvar[, k]
-        if (k == 3) {
-          y <- wrld
-        } else
-          y <- raster::stack(y, wrld)
-      }
-      names(y) <- month_names
-    } else if (isTRUE(pre_cv)) {
-      for (k in 15:26) {
-        wrld[cells] <- wvar[, k]
-        if (k == 15) {
-          y <- wrld
-        } else
-          y <- raster::stack(y, wrld)
-      }
-      names(y) <- paste0("pre_cv_", month_names)
-    }
-
-  } else if (ncol(wvar) == 3) {
-    wrld[cells] <- wvar[, 3] * 1000
-    y <- wrld
-    names(y) <- "elv"
-  }
-
-  y <- raster::crop(y, raster::extent(-180,
-                                      180,
-                                      -60,
-                                      85))
-  return(y)
-}

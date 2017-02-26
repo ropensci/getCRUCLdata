@@ -9,7 +9,6 @@ unlink(list.files(
 test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
   skip_on_cran()
   skip_on_appveyor()
-  cache_dir <- tempdir()
   .get_CRU(
     pre = FALSE,
     pre_cv = TRUE,
@@ -22,13 +21,12 @@ test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
     sunp = FALSE,
     frs = FALSE,
     wnd = FALSE,
-    elv = FALSE,
-    cache_dir
+    elv = FALSE
   )
-  files <- list.files(cache_dir, pattern = ".dat.gz$")
+  files <- list.files(tempdir(), pattern = ".dat.gz$")
   expect_identical(files, "grid_10min_pre.dat.gz")
   unlink(list.files(
-    path = cache_dir,
+    path = tempdir(),
     pattern = ".dat.gz$",
     full.names = TRUE
   ))
@@ -37,7 +35,6 @@ test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
 test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
   skip_on_cran()
   skip_on_appveyor()
-  cache_dir <- tempdir()
   .get_CRU(
     pre = FALSE,
     pre_cv = FALSE,
@@ -50,13 +47,12 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
     sunp = FALSE,
     frs = FALSE,
     wnd = FALSE,
-    elv = FALSE,
-    cache_dir
+    elv = FALSE
   )
-  files <- list.files(cache_dir, pattern = ".dat.gz$")
+  files <- list.files(tempdir(), pattern = ".dat.gz$")
   expect_identical(files, c("grid_10min_dtr.dat.gz", "grid_10min_tmp.dat.gz"))
   unlink(list.files(
-    path = cache_dir,
+    path = tempdir(),
     pattern = ".dat.gz$",
     full.names = TRUE
   ))
@@ -65,7 +61,6 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
 test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
   skip_on_cran()
   skip_on_appveyor()
-  cache_dir <- tempdir()
   .get_CRU(
     pre = FALSE,
     pre_cv = FALSE,
@@ -78,13 +73,12 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
     sunp = FALSE,
     frs = FALSE,
     wnd = FALSE,
-    elv = FALSE,
-    cache_dir
+    elv = FALSE
   )
-  files <- list.files(cache_dir, pattern = ".dat.gz$")
+  files <- list.files(tempdir(), pattern = ".dat.gz$")
   expect_identical(files, c("grid_10min_dtr.dat.gz", "grid_10min_tmp.dat.gz"))
   unlink(list.files(
-    path = cache_dir,
+    path = tempdir(),
     pattern = ".dat.gz$",
     full.names = TRUE
   ))

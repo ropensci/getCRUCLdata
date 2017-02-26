@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Tidy Data Frame From CRU CL2.0 Climatology Variables on Local Disk — create_CRU_df • getCRUCLdata</title>
+<title>Download and Create a List of Raster Stack Objects From CRU CL2.0 Climatology Variables — get_CRU_stack • getCRUCLdata</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -77,19 +77,14 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Tidy Data Frame From CRU CL2.0 Climatology Variables on Local Disk</h1>
+    <h1>Download and Create a List of Raster Stack Objects From CRU CL2.0 Climatology Variables</h1>
     </div>
 
     
-    <p>This function automates importing CRU CL2.0 climatology data
-into R and creates a tidy data frame of the data.  If requested, minimum and
-maximum temperature may also be automatically calculated as described in the
-data readme.txt file.  This function can be useful if you have network
-connection issues that mean automated downloading of the files using R
-does not work properly.  In this instance it is recommended to use an FTP
-client (e.g., FileZilla), web browser or command line command (e.g., wget or
-curl) to download the files, save locally and use this function to import the
-data into R.</p>
+    <p>This function automates downloading and importing CRU CL2.0
+climatology data into R and creates a list of raster stacks of the data.  If
+requested, minimum and maximum temperature may also be automatically
+calculated as described in the data readme.txt file.</p>
 
     <p>Nomenclature and units from readme.txt:
 <dl class='dl-horizontal'>
@@ -109,74 +104,74 @@ data into R.</p>
 <a href = 'https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt'>https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a></p>
     
 
-    <pre><span class='fu'>create_CRU_df</span>(<span class='kw'>pre</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pre_cv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rd0</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <pre><span class='fu'>get_CRU_stack</span>(<span class='kw'>pre</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pre_cv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rd0</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>dtr</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>reh</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmn</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmx</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sunp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>frs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>wnd</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>elv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dsn</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
+  <span class='kw'>frs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>wnd</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>elv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>pre</dt>
       <dd>Logical. Fetch precipitation (millimetres/month) from server and
-return in the data frame? Defaults to FALSE.</dd>
+return in a raster stack? Defaults to FALSE.</dd>
       <dt>pre_cv</dt>
       <dd>Logical. Fetch cv of precipitation (percent) from server and
-return in the data frame? Defaults to FALSE. NOTE. Setting this to TRUE
-will always results in <strong>pre</strong> being set to TRUE and returned as well.</dd>
+return in a raster stack? Defaults to FALSE.</dd>
       <dt>rd0</dt>
-      <dd>Logical. Fetch wet-days (number days with &gt;0.1millimetres rain per
-month) and return in the data frame? Defaults to FALSE.</dd>
+      <dd>Logical. Fetch wet-days (number days with &gt;0.1 millimetres rain
+per month) and return in a raster stack? Defaults to FALSE.</dd>
       <dt>tmp</dt>
       <dd>Logical. Fetch temperature (degrees Celsius) and return it in the
-data frame? Defaults to FALSE.</dd>
+raster stack? Defaults to FALSE.</dd>
       <dt>dtr</dt>
       <dd>Logical. Fetch mean diurnal temperature range (degrees Celsius)
-and return it in the data frame? Defaults to FALSE.</dd>
+and return it in a raster stack? Defaults to FALSE.</dd>
       <dt>reh</dt>
-      <dd>Logical. Fetch relative humidity and return it in the data frame?
+      <dd>Logical. Fetch relative humidity and return it in a raster stack?
 Defaults to FALSE.</dd>
       <dt>tmn</dt>
       <dd>Logical. Calculate minimum temperature values (degrees Celsius)
-and return it in the data frame? Defaults to FALSE.</dd>
+and return it in a raster stack? Defaults to FALSE.</dd>
       <dt>tmx</dt>
       <dd>Logical. Calculate maximum temperature (degrees Celsius) and
-return it in the data frame? Defaults to FALSE.</dd>
+return it in a raster stack? Defaults to FALSE.</dd>
       <dt>sunp</dt>
       <dd>Logical. Fetch sunshine, percent of maximum possible (percent of
-day length) and return it in data frame? Defaults to FALSE.</dd>
+day length) and return it in raster stack? Defaults to FALSE.</dd>
       <dt>frs</dt>
       <dd>Logical. Fetch ground-frost records (number of days with ground-
-frost per month) and return it in data frame? Defaults to FALSE.</dd>
+frost per month) and return it in raster stack? Defaults to FALSE.</dd>
       <dt>wnd</dt>
       <dd>Logical. Fetch 10m wind speed (metres/second) and return it in the
-data frame? Defaults to FALSE.</dd>
+raster stack? Defaults to FALSE.</dd>
       <dt>elv</dt>
-      <dd>Logical. Fetch elevation (converted to metres) and return it in
-the data frame? Defaults to FALSE.</dd>
-      <dt>dsn</dt>
-      <dd>Local file path where CRU CL2.0 .dat.gz files are located.</dd>
+      <dd>Logical. Fetch elevation (converted to metres) and return it in a
+raster layer object? Defaults to FALSE.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function generates a data.frame object in R with the following
+    <p>This function generates a raster stack object in R with the following
 possible fields as specified by the user:</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>This package automatically converts elevation values from kilometres to
 metres.</p>
+    <p>This package crops all spatial outputs to an extent of ymin = -60, ymax = 85,
+xmin = -180, xmax = 180. Note that the original wind data include land area
+for parts of Antarctica, these data are excluded in the raster stacks
+generated by this function.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='get_CRU_df.html'>get_CRU_df</a></code>
-<code><a href='get_CRU_stack.html'>get_CRU_stack</a></code></p>
+    <p><code><a href='create_CRU_df.html'>create_CRU_df</a></code>
+<code>link{get_CRU_stack}</code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create a raster stack of precipitation and temperature from locally</span>
-<span class='co'># available files</span>
+    <pre class="examples"><div class='input'><span class='co'># Download data and create a raster stack of precipitation and temperature.</span>
 <span class='co'>## Not run: ------------------------------------</span>
-<span class='co'># CRU_pre_tmp &lt;- create_CRU_df(pre = TRUE, tmp = TRUE, dsn = "~/Downloads")</span>
+<span class='co'># CRU_pre_tmp &lt;- get_CRU_stack(pre = TRUE, tmp = TRUE)</span>
 <span class='co'>## ---------------------------------------------</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

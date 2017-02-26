@@ -11,8 +11,7 @@
            sunp,
            frs,
            wnd,
-           elv,
-           cache_dir) {
+           elv) {
     CRU_url <- "https://crudata.uea.ac.uk/cru/data/hrg/tmc/"
     dtr_url <- paste0(CRU_url, "grid_10min_dtr.dat.gz")
     tmp_url <- paste0(CRU_url, "grid_10min_tmp.dat.gz")
@@ -66,7 +65,7 @@
 
     # check to see, did we already download these data, if so don't redownload--
     cache_dir_contents <-
-      list.files(cache_dir, pattern = ".dat.gz$")
+      list.files(tempdir(), pattern = ".dat.gz$")
 
     # if there are files already locally available;
     # check against the newly requested files and update list to download ------
@@ -76,8 +75,11 @@
       # remove files that are not requested a second time around ---------------
       rm_files <- basename(unlist(files))
       rm_files <- cache_dir_contents[!(cache_dir_contents %in% rm_files)]
-      rm_files <- paste0(cache_dir, "/", rm_files)
-      file.remove(rm_files)
+      rm_files <- paste0(tempdir(), "/", rm_files)
+
+      if (length(rm_files > 0)) {
+        file.remove(rm_files)
+      }
 
       # create list of files that do need to be downloaded ---------------------
       cache_dir_contents <- paste0(CRU_url, cache_dir_contents)
@@ -96,7 +98,7 @@
         )
       for (f in 1:length(files)) {
         httr::GET(url = files[[f]],
-                  httr::write_disk(paste0(cache_dir, "/",
+                  httr::write_disk(paste0(tempdir(), "/",
                                           basename(files[[f]])),
                                    overwrite = TRUE))
         utils::setTxtProgressBar(pb, f)
