@@ -481,10 +481,8 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
   )
   close(gz1)
 
-  dsn <- tempdir()
-
   files <-
-    list.files(dsn, pattern = ".dat.gz$", full.names = TRUE)
+    list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
   expect_type(files, "character")
   expect_equal(files, paste0(tempdir(), "/grid_10min_tmp.dat.gz"))
