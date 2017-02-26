@@ -1,19 +1,69 @@
 
-context("create_CRU_df")
 
-test_that("create_CRU_df fails if no parameters are TRUE", {
-  expect_error(create_CRU_df(dsn = "~/"),
-               "You must select at least one element for import.")
+context("create_stacks")
+
+test_that("wrld raster object resolution and extent are appropriate", {
+  skip_on_cran()
+  wrld <- raster::raster(
+    nrows = 930,
+    ncols = 2160,
+    ymn = -65,
+    ymx = 90,
+    xmn = -180,
+    xmx = 180
+  )
+
+  wrld[] <- NA
+
+  expect_type(wrld, "S4")
+  expect_equal(wrld@extent[1], -180)
+  expect_equal(wrld@extent[2], 180)
+  expect_equal(wrld@extent[3], -65)
+  expect_equal(wrld@extent[4], 90)
+  expect_equal(wrld@ncols, 2160)
+  expect_equal(wrld@nrows, 930)
+  expect_true(is.na(wrld@data@values[raster::ncell(wrld)]))
+  expect_true(is.na(wrld@data@values[1]))
+  expect_true(is.na(wrld@data@values[1004400]))
 })
 
-test_that("create_CRU_df fails if no dsn is specified", {
-  expect_error(create_CRU_df(pre = TRUE),
-               "File directory does not exist: .")
+
+test_that("month names are appropriate", {
+  month_names <-
+    c("jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec")
+
+  expect_equal(
+    month_names,
+    c(
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec"
+    )
+  )
 })
 
-test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
-  # create files for testing, these data are the first 10 lines of pre and tmp
-  # from the CRU CL2.0 data
+test_that("CRU_stack_list returns a list of raster stacks and names them properly", {
+  skip_on_cran()
 
   unlink(list.files(
     path = tempdir(),
@@ -466,7 +516,7 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
       7.6
     )
   )
-  gz1 <- gzfile(paste0(tempdir(), "/grid_10min_pre.gz"), "w")
+  gz1 <- gzfile(paste0(tempdir(), "/grid_10min_pre.dat.gz"), "w")
   utils::write.table(
     pre_data,
     file = gz1,
@@ -484,12 +534,52 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
   )
   close(gz1)
 
-  dsn <- tempdir()
-
   files <-
-    list.files(dsn, pattern = ".dat.gz$", full.names = TRUE)
+    list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
-  expect_type(files, "character")
-  expect_equal(files, paste0(tempdir(), "/grid_10min_tmp.dat.gz"))
+  wrld <- raster::raster(
+    nrows = 930,
+    ncols = 2160,
+    ymn = -65,
+    ymx = 90,
+    xmn = -180,
+    xmx = 180
+  )
+
+  wrld[] <- NA
+
+  month_names <-
+    c("jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec")
+
+  pre <- TRUE
+  pre_cv <- TRUE
+
+  CRU_stack_list <-
+    plyr::llply(.fun = .create_stack,
+                files,
+                wrld,
+                month_names,
+                pre,
+                pre_cv,
+                .progress = "text")
+
+  names(CRU_stack_list) <- substr(basename(files), 12, 14)
+
+  expect_named(CRU_stack_list, c("pre", "tmp"))
+  expect_type(CRU_stack_list, "list")
+  expect_equal(raster::extent(CRU_stack_list[[1]])[1], -180)
+  expect_equal(raster::extent(CRU_stack_list[[1]])[2], 180)
+  expect_equal(raster::extent(CRU_stack_list[[1]])[3], -60)
+  expect_equal(raster::extent(CRU_stack_list[[1]])[4], 85)
 })
-
