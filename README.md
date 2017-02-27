@@ -216,6 +216,11 @@ writeRaster(tmn_tmx$tmx, filename = paste0("~/Data/tmx_", names(tmn_tmx$tmn)), b
 
 ------------------------------------------------------------------------
 
+Documentation
+=============
+
+For complete documentation see the package website: <https://adamhsparks.github.io/getCRUCLdata/>
+
 Meta
 ====
 

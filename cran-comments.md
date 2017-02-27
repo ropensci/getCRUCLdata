@@ -11,7 +11,7 @@
 
 ## Major Changes
 
-  * `create_CRU_stack()` and `create_CRU_df()` now only work with locally available files. If you need to fetch and create a data frame or raster stack of the data, please use the new functions, `get_CRU_stack()` and `create_CRU_stack()`
+  * `create_CRU_stack()` and `create_CRU_df()` now only work with locally available files. If you need to fetch and create a data frame or raster stack of the data, please use the new functions, `get_CRU_stack()` and `get_CRU_stack()`
   * R >=3.2.0 now required
 
 ## Minor Changes
