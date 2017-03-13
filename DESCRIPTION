@@ -22,6 +22,7 @@ Imports:
     httr,
     plyr,
     purrr (>= 0.2.0),
+    rappdirs,
     raster,
     tidyr,
     tibble,

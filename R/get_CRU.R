@@ -11,7 +11,8 @@
            sunp,
            frs,
            wnd,
-           elv) {
+           elv,
+           cache_dir) {
     CRU_url <- "https://crudata.uea.ac.uk/cru/data/hrg/tmc/"
     dtr_url <- paste0(CRU_url, "grid_10min_dtr.dat.gz")
     tmp_url <- paste0(CRU_url, "grid_10min_tmp.dat.gz")
@@ -60,27 +61,16 @@
       )
 
     # filter downloads ---------------------------------------------------------
-
     files <- as.list(files[object_list %in% !isTRUE(files)])
 
-    # check to see, did we already download these data, if so don't redownload--
+    # did we already download these data, if so don't redownload----------------
     cache_dir_contents <-
-      list.files(tempdir(), pattern = ".dat.gz$")
+      list.files(cache_dir, pattern = ".dat.gz$")
 
     # if there are files already locally available;
     # check against the newly requested files and update list to download ------
 
     if (length(cache_dir_contents) > 0) {
-
-      # remove files that are not requested a second time around ---------------
-      rm_files <- basename(unlist(files))
-      rm_files <- cache_dir_contents[!(cache_dir_contents %in% rm_files)]
-      rm_files <- paste0(tempdir(), "/", rm_files)
-
-      if (length(rm_files > 0)) {
-        file.remove(rm_files)
-      }
-
       # create list of files that do need to be downloaded ---------------------
       cache_dir_contents <- paste0(CRU_url, cache_dir_contents)
       files <- as.list(files[!(files %in% cache_dir_contents)])
@@ -96,12 +86,30 @@
           initial = 0,
           style = 3
         )
-      for (f in 1:length(files)) {
-        httr::GET(url = files[[f]],
-                  httr::write_disk(paste0(tempdir(), "/",
-                                          basename(files[[f]])),
-                                   overwrite = TRUE))
-        utils::setTxtProgressBar(pb, f)
-      }
+      tryCatch(
+        for (f in 1:length(files)) {
+          httr::GET(url = files[[f]],
+                    httr::write_disk(paste0(cache_dir, "/",
+                                            basename(files[[f]])),
+                                     overwrite = TRUE))
+          utils::setTxtProgressBar(pb, f)
+        }, error = function(x) {
+          do.call(file.remove, list(list.files(cache_dir, full.names = TRUE)))
+          stop("\nThe file downloads have failed. Please start the download again.\n")
+        }
+      )
     }
+
+
+    files <- as.list(files[object_list %in% !isTRUE(files)])
+    files <- paste0(basename(unlist(files)))
+    files <- paste0(cache_dir, "/",
+                    as.list(cache_dir_contents[cache_dir_contents %in% files]))
+
+    # fill the space with a "\" for R, if one exists
+    files <- gsub(" ", "\\ ", files, fixed = TRUE)
+
+    return(files)
+
   }
+

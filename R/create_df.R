@@ -1,22 +1,17 @@
 #' @noRd
 
 create_df <- function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
-
   month <- NULL
 
   CRU_df <-
     .tidy_df(pre_cv, elv, tmn, tmx, .files = files)
 
   if (isTRUE(tmx)) {
-    tmx_df <- .calculate_tmx(CRU_df[, "tmp"], CRU_df[, "dtr"])
-    CRU_df <- data.frame(CRU_df, tmx_df)
-    names(CRU_df)[names(CRU_df) == "tmx_df"] <- "tmx"
+    CRU_df <- dplyr::mutate(CRU_df, tmx =  tmp + (0.5 * dtr))
   }
 
   if (isTRUE(tmn)) {
-    tmn_df <- .calculate_tmn(CRU_df[, "tmp"], CRU_df[, "dtr"])
-    CRU_df <- data.frame(CRU_df, tmn_df)
-    names(CRU_df)[names(CRU_df) == "tmn_df"] <- "tmn"
+    CRU_df <- dplyr::mutate(CRU_df, tmx =  tmp - (0.5 * dtr))
   }
 
   # Remove tmp/dtr if they aren't specified (necessary for tmn/tmx)
@@ -55,7 +50,6 @@ create_df <- function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
 #' @importFrom dplyr %>%
 #' @noRd
 .tidy_df <- function(pre_cv, elv, tmn, tmx, .files) {
-
   # internal function to read files from cache directory and tidy them -------
 
   # create list of tidied data frames ----------------------------------------
