@@ -1,8 +1,8 @@
-#' @title Manage cached CRU CL 2.0 files
+#' @title Manage locally cached CRU CL 2.0 files
 #'
 #' @description The user is given an option when downloading the CRU CL2.0 data
 #' to cache or not to cache the data for later use.  If \code{cache == TRUE},
-#' then the CRU CL2.0 data files are saved in a directory in the users' home
+#' then the CRU CL 2.0 data files are saved in a directory in the users' home
 #' filespace.  These functions provide facilities for interacting and managing
 #' these files.
 #'
@@ -54,7 +54,7 @@
 #' @export
 #' @rdname manage_CRU_cache
 CRU_cache_list <- function() {
-  cache_dir <- rappdirs::user_config_dir("getCRUdata")
+  cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
   list.files(cache_dir, ignore.case = TRUE, include.dirs = TRUE,
              recursive = TRUE, full.names = TRUE)
 }
@@ -72,7 +72,7 @@ CRU_cache_delete <- function(files, force = TRUE) {
 #' @export
 #' @rdname manage_CRU_cache
 CRU_cache_delete_all <- function(force = TRUE) {
-  cache_dir <- rappdirs::user_config_dir("getCRUdata")
+  cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
   files <- list.files(cache_dir, ignore.case = TRUE, include.dirs = TRUE,
                       full.names = TRUE, recursive = TRUE)
   unlink(files, force = force, recursive = TRUE)
@@ -81,7 +81,7 @@ CRU_cache_delete_all <- function(force = TRUE) {
 #' @export
 #' @rdname manage_CRU_cache
 CRU_cache_details <- function(files = NULL) {
-  cache_dir <- rappdirs::user_config_dir("getCRUdata")
+  cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
   if (is.null(files)) {
     files <- list.files(cache_dir, ignore.case = TRUE, include.dirs = TRUE,
                         full.names = TRUE, recursive = TRUE)
@@ -99,7 +99,7 @@ file_info_ <- function(x) {
     x <- paste0(x, " - does not exist")
   }
   list(file = x,
-       type = "tif",
+       type = "gz",
        size = if (!is.na(fs)) getsize(fs) else NA
   )
 }
@@ -110,8 +110,8 @@ getsize <- function(x) {
 
 #' @export
 print.CRU_cache_info <- function(x, ...) {
-  cache_dir <- rappdirs::user_config_dir("getCRUdata")
-  cat("<CRU CL2.0 cached files>", sep = "\n")
+  cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
+  cat("<CRU CL 2.0 cached files>", sep = "\n")
   cat(sprintf("  directory: %s\n", cache_dir), sep = "\n")
   for (i in seq_along(x)) {
     cat(paste0("  file: ", sub(cache_dir, "", x[[i]]$file)), sep = "\n")
