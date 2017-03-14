@@ -99,7 +99,7 @@ file_info_ <- function(x) {
     x <- paste0(x, " - does not exist")
   }
   list(file = x,
-       type = "tif",
+       type = "gz",
        size = if (!is.na(fs)) getsize(fs) else NA
   )
 }
@@ -111,7 +111,7 @@ getsize <- function(x) {
 #' @export
 print.CRU_cache_info <- function(x, ...) {
   cache_dir <- rappdirs::user_config_dir("getCRUdata")
-  cat("<CRU CL2.0 cached files>", sep = "\n")
+  cat("<CRU CL 2.0 cached files>", sep = "\n")
   cat(sprintf("  directory: %s\n", cache_dir), sep = "\n")
   for (i in seq_along(x)) {
     cat(paste0("  file: ", sub(cache_dir, "", x[[i]]$file)), sep = "\n")
