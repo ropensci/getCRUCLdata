@@ -90,22 +90,18 @@ of the files using R does not work properly.  In this instance it is
 recommended to use an FTP client (e.g., FileZilla), web browser or command
 line command (e.g., wget or curl) to download the files, save locally and use
 this function to import the data into R.</p>
+<p>Nomenclature and units from readme.txt:</p><dl class='dl-horizontal'>
+<dt>pre</dt><dd><p>precipitation (millimetres/month)</p></dd>
 
-    <p>Nomenclature and units from readme.txt:
-<dl class='dl-horizontal'>
-<dt>pre</dt><dd>precipitation (millimetres/month)</dd></p>
-
-    <p><dt>rd0</dt><dd>wet-days (number days with &gt;0.1mm rain per month)</dd>
-<dt>tmp</dt><dd>mean temperature (degrees Celsius)</dd>
-<dt>dtr</dt><dd>mean diurnal temperature range (degrees Celsius)</dd>
-<dt>reh</dt><dd>relative humidity (percent)</dd>
-<dt>sunp</dt><dd>sunshine (percent of maximum possible (percent of day length))</dd>
-<dt>frs</dt><dd>ground-frost (number of days with ground-frost per month)</dd>
-<dt>wnd</dt><dd>10 metre windspeed (metres/second)</dd>
-<dt>elv</dt><dd>elevation (automatically converted to metres)</dd>
-</dl></p>
-
-    <p>For more information see the description of the data provided by CRU,
+    <dt>rd0</dt><dd><p>wet-days (number days with &gt;0.1mm rain per month)</p></dd>
+<dt>tmp</dt><dd><p>mean temperature (degrees Celsius)</p></dd>
+<dt>dtr</dt><dd><p>mean diurnal temperature range (degrees Celsius)</p></dd>
+<dt>reh</dt><dd><p>relative humidity (percent)</p></dd>
+<dt>sunp</dt><dd><p>sunshine (percent of maximum possible (percent of day length))</p></dd>
+<dt>frs</dt><dd><p>ground-frost (number of days with ground-frost per month)</p></dd>
+<dt>wnd</dt><dd><p>10 metre windspeed (metres/second)</p></dd>
+<dt>elv</dt><dd><p>elevation (automatically converted to metres)</p></dd>
+</dl><p>For more information see the description of the data provided by CRU,
 <a href = 'https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt'>https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a></p>
     
 
@@ -116,45 +112,45 @@ this function to import the data into R.</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>pre</dt>
-      <dd>Logical. Create a raster stack of precipitation
-(millimetres/month) from local files? Defaults to FALSE.</dd>
+      <dd><p>Logical. Create a raster stack of precipitation
+(millimetres/month) from local files? Defaults to FALSE.</p></dd>
       <dt>pre_cv</dt>
-      <dd>Logical. Create a raster stack of cv of precipitation (percent)
-from local files? Defaults to FALSE.</dd>
+      <dd><p>Logical. Create a raster stack of cv of precipitation (percent)
+from local files? Defaults to FALSE.</p></dd>
       <dt>rd0</dt>
-      <dd>Logical. Logical. Create a raster stack of wet days (number days
-with &gt;0.1 millimetres rain per month) from local files? Defaults to FALSE.</dd>
+      <dd><p>Logical. Logical. Create a raster stack of wet days (number days
+with &gt;0.1 millimetres rain per month) from local files? Defaults to FALSE.</p></dd>
       <dt>tmp</dt>
-      <dd>Logical. Create a raster stack of temperature (degrees Celsius)
-from local files? Defaults to FALSE.</dd>
+      <dd><p>Logical. Create a raster stack of temperature (degrees Celsius)
+from local files? Defaults to FALSE.</p></dd>
       <dt>dtr</dt>
-      <dd>Logical. Create a raster stack of mean diurnal temperature range
-(degrees Celsius) from local files? Defaults to FALSE.</dd>
+      <dd><p>Logical. Create a raster stack of mean diurnal temperature range
+(degrees Celsius) from local files? Defaults to FALSE.</p></dd>
       <dt>reh</dt>
-      <dd>Logical. Create a raster stack of relative humidity from local
-files? Defaults to FALSE.</dd>
+      <dd><p>Logical. Create a raster stack of relative humidity from local
+files? Defaults to FALSE.</p></dd>
       <dt>tmn</dt>
-      <dd>Logical. Calculate minimum temperature values (degrees Celsius)
+      <dd><p>Logical. Calculate minimum temperature values (degrees Celsius)
 and return it in a raster stack? <em>Requires tmp and dtr files to be
-locally present</em>. Defaults to FALSE.</dd>
+locally present</em>. Defaults to FALSE.</p></dd>
       <dt>tmx</dt>
-      <dd>Logical. Calculate maximum temperature values (degrees Celsius)
+      <dd><p>Logical. Calculate maximum temperature values (degrees Celsius)
 and return it in a raster stack? <em>Requires tmp and dtr files to be
-locally present</em>. Defaults to FALSE.</dd>
+locally present</em>. Defaults to FALSE.</p></dd>
       <dt>sunp</dt>
-      <dd>Logical. Create a raster stack of sunshine, percent of maximum
-possible (percent of day length) from local files? Defaults to FALSE.</dd>
+      <dd><p>Logical. Create a raster stack of sunshine, percent of maximum
+possible (percent of day length) from local files? Defaults to FALSE.</p></dd>
       <dt>frs</dt>
-      <dd>Logical. Create a raster stack of ground-frost records (number of
-days with ground-frost per month) from local files? Defaults to FALSE.</dd>
+      <dd><p>Logical. Create a raster stack of ground-frost records (number of
+days with ground-frost per month) from local files? Defaults to FALSE.</p></dd>
       <dt>wnd</dt>
-      <dd>Logical. Create a raster stack of 10m wind speed (metres/second)
-from local files? Defaults to FALSE.</dd>
+      <dd><p>Logical. Create a raster stack of 10m wind speed (metres/second)
+from local files? Defaults to FALSE.</p></dd>
       <dt>elv</dt>
-      <dd>Logical. Create a raster layer of elevation (converted to metres)
-from local files? Defaults to FALSE.</dd>
+      <dd><p>Logical. Create a raster layer of elevation (converted to metres)
+from local files? Defaults to FALSE.</p></dd>
       <dt>dsn</dt>
-      <dd>Local file path where CRU CL2.0 .dat.gz files are located.</dd>
+      <dd><p>Local file path where CRU CL2.0 .dat.gz files are located.</p></dd>
     </dl>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -167,7 +163,7 @@ the following options.</p>
 
     <p>This package automatically converts elevation values from kilometres to
 metres.</p>
-    <p>This package crops all spatial outputs to an extent of ymin = -60, ymax = 85,
+<p>This package crops all spatial outputs to an extent of ymin = -60, ymax = 85,
 xmin = -180, xmax = 180. Note that the original wind data include land area
 for parts of Antarctica, these data are excluded in the raster stacks
 generated by this function.</p>

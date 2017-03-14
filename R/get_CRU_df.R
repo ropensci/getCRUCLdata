@@ -25,41 +25,57 @@
 #'
 #' @details This function generates a data.frame object in R with the following
 #' possible fields as specified by the user:
-#' @param pre Logical. Fetch precipitation (millimetres/month) from server and
-#'  return in the data frame? Defaults to FALSE.
-#' @param pre_cv Logical. Fetch cv of precipitation (percent) from server and
-#' return in the data frame? Defaults to FALSE. NOTE. Setting this to TRUE
-#' will always results in \strong{pre} being set to TRUE and returned as well.
-#' @param rd0 Logical. Fetch wet-days (number days with >0.1millimetres rain per
-#' month) and return in the data frame? Defaults to FALSE.
-#' @param dtr Logical. Fetch mean diurnal temperature range (degrees Celsius)
-#' and return it in the data frame? Defaults to FALSE.
-#' @param tmp Logical. Fetch temperature (degrees Celsius) and return it in the
-#' data frame? Defaults to FALSE.
-#' @param tmn Logical. Calculate minimum temperature values (degrees Celsius)
-#' and return it in the data frame? Defaults to FALSE.
-#' @param tmx Logical. Calculate maximum temperature (degrees Celsius) and
-#' return it in the data frame? Defaults to FALSE.
-#' @param reh Logical. Fetch relative humidity and return it in the data frame?
+#' @param pre Logical.  Fetch precipitation (millimetres/month) from server and
+#' return in the data frame?  Defaults to \code{FALSE}.
+#' @param pre_cv Logical.  Fetch cv of precipitation (percent) from server and
+#' return in the data frame?  Defaults to \code{FALSE}.  NOTE.  Setting this to
+#' \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
+#' returned as well.
+#' @param rd0 Logical.  Fetch wet-days (number days with >0.1millimetres rain
+#' per month) and return in the data frame?  Defaults to \code{FALSE}.
+#' @param dtr Logical.  Fetch mean diurnal temperature range (degrees Celsius)
+#' and return it in the data frame?  Defaults to \code{FALSE}.
+#' @param tmp Logical.  Fetch temperature (degrees Celsius) and return it in the
+#' data frame?  Defaults to \code{FALSE}.
+#' @param tmn Logical.  Calculate minimum temperature values (degrees Celsius)
+#' and return it in the data frame?  Defaults to \code{FALSE}.
+#' @param tmx Logical.  Calculate maximum temperature (degrees Celsius) and
+#' return it in the data frame?  Defaults to \code{FALSE}.
+#' @param reh Logical.  Fetch relative humidity and return it in the data frame?
 #' Defaults to FALSE.
-#' @param sunp Logical. Fetch sunshine, percent of maximum possible (percent of
-#' day length) and return it in data frame? Defaults to FALSE.
-#' @param frs Logical. Fetch ground-frost records (number of days with ground-
-#' frost per month) and return it in data frame? Defaults to FALSE.
-#' @param wnd Logical. Fetch 10m wind speed (metres/second) and return it in the
-#' data frame? Defaults to FALSE.
-#' @param elv Logical. Fetch elevation (converted to metres) and return it in
-#' the data frame? Defaults to FALSE.
+#' @param sunp Logical.  Fetch sunshine, percent of maximum possible (percent of
+#' day length) and return it in data frame?  Defaults to \code{FALSE}.
+#' @param frs Logical.  Fetch ground-frost records (number of days with ground-
+#' frost per month) and return it in data frame?  Defaults to \code{FALSE}.
+#' @param wnd Logical.  Fetch 10m wind speed (metres/second) and return it in the
+#' data frame? Defaults to \code{FALSE}.
+#' @param elv Logical.  Fetch elevation (converted to metres) and return it in
+#' the data frame?  Defaults to \code{FALSE}.
+#' @param cache Logical.  Store CRU CL2.0 data files locally for later use? If
+#' \code{FALSE}, the downloaded files are removed when R session is closed.  To
+#' take advantage of cached files in future sessions, use \code{cache = TRUE}
+#' after the inital download and caching.  Defaults to \code{FALSE}.
 #'
 #' @examples
-#' # Download data and create a raster stack of precipitation and temperature
 #' \dontrun{
+#' # Download data and create a data frame of precipitation and temperature
+#' # without caching the data files
 #' CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
+#'
+#' # Download data and create a data frame of precipitation and temperature
+#' # without caching the data files
+#' CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
+#'
+#' # Download temperature and calculate tmin and tmax, save the temperature file
+#' # for later use by caching
+#'
+#' CRU_tmp <- get_CRU_df(tmp = TRUE, tmn = TRUE, tmx = TRUE, cache = TRUE)
 #'}
 #'
 #' @seealso
 #' \code{\link{create_CRU_stack}}
 #' \code{\link{get_CRU_stack}}
+#' \code{\link{manage_CRU_cache}}
 #'
 #' @note
 #' This package automatically converts elevation values from kilometres to
@@ -77,28 +93,36 @@ get_CRU_df <- function(pre = FALSE,
                        sunp = FALSE,
                        frs = FALSE,
                        wnd = FALSE,
-                       elv = FALSE) {
+                       elv = FALSE,
+                       cache = FALSE) {
   if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
       !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
       !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
     stop("You must select at least one element for download.")
   }
 
-  .get_CRU(pre,
-           pre_cv,
-           rd0,
-           tmp,
-           dtr,
-           reh,
-           tmn,
-           tmx,
-           sunp,
-           frs,
-           wnd,
-           elv)
+  if (isTRUE(cache)) {
+    cache_dir <- rappdirs::user_config_dir("getCRUdata")
+    if (!file.exists(cache_dir)) {
+      dir.create(cache_dir)
+    }
+  } else {
+    cache_dir <- tempdir()
+  }
 
-  files <-
-    list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
+  files <- .get_CRU(pre,
+                    pre_cv,
+                    rd0,
+                    tmp,
+                    dtr,
+                    reh,
+                    tmn,
+                    tmx,
+                    sunp,
+                    frs,
+                    wnd,
+                    elv,
+                    cache_dir)
 
   message("\nCreating data frame now.\n")
   d <- create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)

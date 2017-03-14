@@ -11,14 +11,15 @@ vignette: >
 
 # Introduction to getCRUCLdata
 
-The getCRUCLdata package provides two functions that automate downloading and
-importing CRU CL2.0 climatology data into R, facilitate the calculation of
-minimum temperature and maximum temperature, and formats the data into a tidy
-data frame or a list of raster stack objects for use in an R session. CRU CL2.0
-data are a gridded climatology of 1961-1990 monthly means released in 2002 and
-cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree)
-resolution. For more information see the description of the data provided by the
-University of East Anglia Climate Research Unit (CRU),
+The getCRUCLdata package provides four functions that automate importing CRU 
+CL2.0 climatology data into R, facilitate the calculation of minimum temperature
+and maximum temperature, and formats the data into a 
+[tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) or a list
+of [raster stack](https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf) objects for use in an R session. CRU CL2.0 data are a gridded
+climatology of 1961-1990 monthly means released in 2002 and cover all land areas
+(excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more
+information see the description of the data provided by the University of East
+Anglia Climate Research Unit (CRU),
 <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
 # Using getCRUCLdata
@@ -63,7 +64,7 @@ There are two methods that this package provides for creating tidy data frames o
 
 The `create_CRU_df()` function is useful if you have network issues that interfere with R downloading the data files themselves from the CRU website or if you frequently work with these data and do not wish to download them every time they are needed.
 
-The `get_CRU_df()` function creates tidy data frames of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.
+The `get_CRU_df()` function automates the download process and creates tidy data frames of the CRU CL2.0 climatology elements. Files downloaded using this method may be cached in the users' local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available and cache them to save time in the future.
 
 ```{r, eval=FALSE}
 library(getCRUCLdata)
@@ -79,10 +80,11 @@ CRU_data <- get_CRU_df(pre = TRUE,
                        sunp = TRUE,
                        frs = TRUE,
                        wnd = TRUE,
-                       elv = TRUE)
+                       elv = TRUE,
+                       cache = TRUE)
 ```
 
-Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only.
+Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only. Note that unless you specify `cache = TRUE` the files will be downloaded again and only remain available for the active R session. In this example, since `cache` is not set `TRUE` the tmp file will be downloaded to a temporary directory for use. If you wish to use the files that were previously downloaded using the `get_CRU_df()` function, then it is necessary to specify `cache = TRUE` in the arguments.
 
 ```{r, eval=FALSE}
 t <- get_CRU_df(tmp = TRUE)
@@ -154,7 +156,7 @@ For working with spatial data,`getCRUCLdata()` provides two functions that creat
 
 The `create_CRU_stack()` and `get_CRU_stack()` functions provide similar functionality to `create_CRU_df()` and `get_CRU_df()`, but rather than returning a tidy data frame, they return a a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
 
-Fetch data from the CRU website and create a list of raster stacks of all CRU CL2.0 climatology elements available.
+The `get_CRU_stack()` function automates the download process and creates a raster stack object of the CRU CL2.0 climatology elements. Files downloaded using this method may be cached in the users' local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available and cache them to save time in the future.
 
 ```{r, eval = FALSE}
 CRU_stack <- get_CRU_stack(pre = TRUE,
@@ -168,14 +170,16 @@ CRU_stack <- get_CRU_stack(pre = TRUE,
                            sunp = TRUE,
                            frs = TRUE,
                            wnd = TRUE,
-                           elv = TRUE)
+                           elv = TRUE,
+                           cache = TRUE)
 ```
 
+Create a list of raster stacks of maximum and minimum temperature. To take advantage of the previously cached files and save time by not downloading files, specify `cache = TRUE`.
 
-Create a list of raster stacks of maximum and minimum temperature.
 ```{r, eval=FALSE}
 tmn_tmx <- get_CRU_stack(tmn = TRUE,
-                         tmx = TRUE)
+                         tmx = TRUE,
+                         cache = TRUE)
 ```
 
 The `create_CRU_stack()` function works in the same way with only one minor difference. You must supply the location of the files on the local disk (`dsn`) that you wish to import.

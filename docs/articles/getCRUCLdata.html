@@ -60,7 +60,7 @@
       <h1>getCRUCLdata</h1>
                         <h4 class="author">Adam H. Sparks</h4>
             
-            <h4 class="date">2017-02-27</h4>
+            <h4 class="date">2017-03-14</h4>
           </div>
 
     
@@ -69,7 +69,7 @@
 <div id="introduction-to-getcrucldata" class="section level1">
 <h1 class="hasAnchor">
 <html><body><a href="#introduction-to-getcrucldata" class="anchor"> </a></body></html>Introduction to getCRUCLdata</h1>
-<p>The getCRUCLdata package provides two functions that automate downloading and importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a tidy data frame or a list of raster stack objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <a href="https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt" class="uri">https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a>.</p>
+<p>The getCRUCLdata package provides four functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data frame</a> or a list of <a href="https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf">raster stack</a> objects for use in an R session. CRU CL2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <a href="https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt" class="uri">https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a>.</p>
 </div>
 <div id="using-getcrucldata" class="section level1">
 <h1 class="hasAnchor">
@@ -120,7 +120,7 @@
 <html><body><a href="#creating-tidy-data-frames-for-use-in-r" class="anchor"> </a></body></html>Creating tidy data frames for use in R</h2>
 <p>There are two methods that this package provides for creating tidy data frames of the CRU CL2.0 climate data as a <a href="https://github.com/tidyverse/tibble"><code>tibble</code></a>. Depending on your needs you may need to use <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code>, which will create a tidy data frame of the climate elements from <em>locally available</em> files. Or you can use <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code>, which will automate the fetching and importing of the data files into R in one step.</p>
 <p>The <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> function is useful if you have network issues that interfere with R downloading the data files themselves from the CRU website or if you frequently work with these data and do not wish to download them every time they are needed.</p>
-<p>The <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> function creates tidy data frames of the CRU CL2.0 climatology elements. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available.</p>
+<p>The <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> function automates the download process and creates tidy data frames of the CRU CL2.0 climatology elements. Files downloaded using this method may be cached in the users’ local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available and cache them to save time in the future.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(getCRUCLdata)
 
 CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_CRU_df.html">get_CRU_df</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,
@@ -134,8 +134,9 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge
                        <span class="dt">sunp =</span> <span class="ot">TRUE</span>,
                        <span class="dt">frs =</span> <span class="ot">TRUE</span>,
                        <span class="dt">wnd =</span> <span class="ot">TRUE</span>,
-                       <span class="dt">elv =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only.</p>
+                       <span class="dt">elv =</span> <span class="ot">TRUE</span>,
+                       <span class="dt">cache =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only. Note that unless you specify <code>cache = TRUE</code> the files will be downloaded again and only remain available for the active R session. In this example, since <code>cache</code> is not set <code>TRUE</code> the tmp file will be downloaded to a temporary directory for use. If you wish to use the files that were previously downloaded using the <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> function, then it is necessary to specify <code>cache = TRUE</code> in the arguments.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_CRU_df.html">get_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>The <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> function works in the same way with only one minor difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>, <span class="dt">dsn =</span> <span class="st">"~/Downloads"</span>)</code></pre></div>
@@ -186,7 +187,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge
 <html><body><a href="#creating-raster-stacks-for-use-in-r-or-saving-for-use-in-a-gis" class="anchor"> </a></body></html>Creating raster stacks for use in R or saving for use in a GIS</h2>
 <p>For working with spatial data,<code><a href="../reference/getCRUCLdata.html">getCRUCLdata()</a></code> provides two functions that create lists of <a href="https://CRAN.R-project.org/package=raster">raster</a> stacks of the data.</p>
 <p>The <code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code> and <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions provide similar functionality to <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code>, but rather than returning a tidy data frame, they return a a list of <a href="https://CRAN.R-project.org/package=raster">raster</a> stack objects for use in an R session.</p>
-<p>Fetch data from the CRU website and create a list of raster stacks of all CRU CL2.0 climatology elements available.</p>
+<p>The <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> function automates the download process and creates a raster stack object of the CRU CL2.0 climatology elements. Files downloaded using this method may be cached in the users’ local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available and cache them to save time in the future.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CRU_stack &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,
                            <span class="dt">pre_cv =</span> <span class="ot">TRUE</span>,
                            <span class="dt">rd0 =</span> <span class="ot">TRUE</span>,
@@ -198,10 +199,12 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge
                            <span class="dt">sunp =</span> <span class="ot">TRUE</span>,
                            <span class="dt">frs =</span> <span class="ot">TRUE</span>,
                            <span class="dt">wnd =</span> <span class="ot">TRUE</span>,
-                           <span class="dt">elv =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>Create a list of raster stacks of maximum and minimum temperature.</p>
+                           <span class="dt">elv =</span> <span class="ot">TRUE</span>,
+                           <span class="dt">cache =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Create a list of raster stacks of maximum and minimum temperature. To take advantage of the previously cached files and save time by not downloading files, specify <code>cache = TRUE</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmn_tmx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,
-                         <span class="dt">tmx =</span> <span class="ot">TRUE</span>)</code></pre></div>
+                         <span class="dt">tmx =</span> <span class="ot">TRUE</span>,
+                         <span class="dt">cache =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>The <code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code> function works in the same way with only one minor difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>, <span class="dt">dsn =</span> <span class="st">"~/Downloads"</span>)</code></pre></div>
 </div>
