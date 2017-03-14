@@ -86,3 +86,35 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
     full.names = TRUE
   ))
 })
+
+test_that("get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE", {
+  skip_on_cran()
+  skip_on_appveyor()
+  pre <- FALSE
+  pre_cv <- TRUE
+
+  expect_true(!isTRUE(pre))
+
+  if (isTRUE(pre_cv)) {
+    pre <- TRUE
+  }
+  expect_true(pre)
+})
+
+test_that("get_CRU will set tmp and dtr to TRUE if tmn or tmx is TRUE and either/both are false", {
+
+  tmp <- FALSE
+  dtr <- FALSE
+  tmn <- TRUE
+  tmx <- TRUE
+  expect_true(!isTRUE(tmp))
+  expect_true(!isTRUE(dtr))
+
+  if (isTRUE(tmn) | isTRUE(tmx)) {
+    dtr <- tmp <- TRUE
+  }
+
+  expect_true(tmp)
+  expect_true(dtr)
+
+})

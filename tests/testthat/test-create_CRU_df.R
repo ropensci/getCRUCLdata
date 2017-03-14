@@ -520,5 +520,6 @@ test_that("create_CRU_df loads files and creates a proper tibble", {
 
   expect_equal(max(d$pre), 163.5)
   expect_named(d, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
+  expect_type(d, "list")
 })
 
