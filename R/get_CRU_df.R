@@ -102,7 +102,7 @@ get_CRU_df <- function(pre = FALSE,
   }
 
   if (isTRUE(cache)) {
-    cache_dir <- rappdirs::user_config_dir("getCRUdata")
+    cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
     if (!file.exists(cache_dir)) {
       dir.create(cache_dir)
     }
