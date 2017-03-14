@@ -193,7 +193,7 @@
 
   if (length(files) < 0) {
     stop(
-      "You are requesting a file that you have not downloaded or is not in the directory specified."
+      "There are no CRU CL 2.0 data files available in this directory."
     )
   }
 
