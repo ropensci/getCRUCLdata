@@ -11,7 +11,7 @@ test_that("create_CRU_df fails if no dsn is specified", {
                "File directory does not exist: .")
 })
 
-test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
+test_that("create_CRU_df loads files and creates a proper tibble", {
   # create files for testing, these data are the first 10 lines of pre and tmp
   # from the CRU CL2.0 data
 
@@ -466,7 +466,7 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
       7.6
     )
   )
-  gz1 <- gzfile(paste0(tempdir(), "/grid_10min_pre.gz"), "w")
+  gz1 <- gzfile(paste0(tempdir(), "/grid_10min_pre.dat.gz"), "w")
   utils::write.table(
     pre_data,
     file = gz1,
@@ -484,12 +484,41 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
   )
   close(gz1)
 
-  dsn <- tempdir()
+  pre <- TRUE
+  pre_cv <- TRUE
+  rd0 <- FALSE
+  tmp <- TRUE
+  dtr <- FALSE
+  reh <- FALSE
+  tmn <- FALSE
+  tmx <- FALSE
+  sunp <- FALSE
+  frs <- FALSE
+  wnd <- FALSE
+  elv <- FALSE
+  cache_dir <- tempdir()
 
-  files <-
-    list.files(dsn, pattern = ".dat.gz$", full.names = TRUE)
+  files <- .get_local(pre,
+                      pre_cv,
+                      rd0,
+                      tmp,
+                      dtr,
+                      reh,
+                      tmn,
+                      tmx,
+                      sunp,
+                      frs,
+                      wnd,
+                      elv,
+                      cache_dir)
 
-  expect_type(files, "character")
-  expect_equal(files, paste0(tempdir(), "/grid_10min_tmp.dat.gz"))
+  expect_equal(length(files), 2)
+  expect_equal(basename(files[1]), "grid_10min_pre.dat.gz")
+  expect_equal(basename(files[2]), "grid_10min_tmp.dat.gz")
+
+  d <- create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
+
+  expect_equal(max(d$pre), 163.5)
+  expect_named(d, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
 })
 
