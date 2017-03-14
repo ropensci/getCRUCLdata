@@ -1,19 +1,19 @@
 #' @title Manage cached CRU CL 2.0 files
 #'
 #' @description The user is given an option when downloading the CRU CL2.0 data
-#' to cache or not to cache the data for later use. If \code{cache == TRUE},
+#' to cache or not to cache the data for later use.  If \code{cache == TRUE},
 #' then the CRU CL2.0 data files are saved in a directory in the users' home
-#' filespace. These functions provide facilities for interacing and managing
+#' filespace.  These functions provide facilities for interacting and managing
 #' these files.
 #'
 #' @export
 #' @name manage_CRU_cache
-#' @param files Character. One or more complete file names
-#' @param force Logical. Should files be force deleted? Defaults to :
+#' @param files Character.  One or more complete file names
+#' @param force Logical.  Should files be force deleted? Defaults to :
 #' \code{TRUE}
 #'
 #' @details \code{cache_delete} only accepts one file name, while
-#' \code{cache_delete_all} doesn't accept any names, but deletes all files.
+#' \code{cache_delete_all} does not accept any names, but deletes all files.
 #' For deleting many specific files, use \code{cache_delete} in a
 #' \code{\link{lapply}} type call.
 #'
@@ -48,7 +48,9 @@
 #' # Delete all files in cache
 #' CRU_cache_delete_all()
 #' }
-
+#' @note
+#' These functions were adapted from ROpenSci's \code{ccafs::cc_cache}
+#'
 #' @export
 #' @rdname manage_CRU_cache
 CRU_cache_list <- function() {

@@ -25,35 +25,36 @@
 #'
 #' @details This function generates a data.frame object in R with the following
 #' possible fields as specified by the user:
-#' @param pre Logical. Fetch precipitation (millimetres/month) from server and
-#' return in the data frame? Defaults to \code{FALSE}.
-#' @param pre_cv Logical. Fetch cv of precipitation (percent) from server and
-#' return in the data frame? Defaults to \code{FALSE}. NOTE. Setting this to
+#' @param pre Logical.  Fetch precipitation (millimetres/month) from server and
+#' return in the data frame?  Defaults to \code{FALSE}.
+#' @param pre_cv Logical.  Fetch cv of precipitation (percent) from server and
+#' return in the data frame?  Defaults to \code{FALSE}.  NOTE.  Setting this to
 #' \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
 #' returned as well.
-#' @param rd0 Logical. Fetch wet-days (number days with >0.1millimetres rain per
-#' month) and return in the data frame? Defaults to \code{FALSE}.
-#' @param dtr Logical. Fetch mean diurnal temperature range (degrees Celsius)
-#' and return it in the data frame? Defaults to \code{FALSE}.
-#' @param tmp Logical. Fetch temperature (degrees Celsius) and return it in the
-#' data frame? Defaults to \code{FALSE}.
-#' @param tmn Logical. Calculate minimum temperature values (degrees Celsius)
-#' and return it in the data frame? Defaults to \code{FALSE}.
-#' @param tmx Logical. Calculate maximum temperature (degrees Celsius) and
-#' return it in the data frame? Defaults to \code{FALSE}.
-#' @param reh Logical. Fetch relative humidity and return it in the data frame?
+#' @param rd0 Logical.  Fetch wet-days (number days with >0.1millimetres rain
+#' per month) and return in the data frame?  Defaults to \code{FALSE}.
+#' @param dtr Logical.  Fetch mean diurnal temperature range (degrees Celsius)
+#' and return it in the data frame?  Defaults to \code{FALSE}.
+#' @param tmp Logical.  Fetch temperature (degrees Celsius) and return it in the
+#' data frame?  Defaults to \code{FALSE}.
+#' @param tmn Logical.  Calculate minimum temperature values (degrees Celsius)
+#' and return it in the data frame?  Defaults to \code{FALSE}.
+#' @param tmx Logical.  Calculate maximum temperature (degrees Celsius) and
+#' return it in the data frame?  Defaults to \code{FALSE}.
+#' @param reh Logical.  Fetch relative humidity and return it in the data frame?
 #' Defaults to FALSE.
-#' @param sunp Logical. Fetch sunshine, percent of maximum possible (percent of
-#' day length) and return it in data frame? Defaults to \code{FALSE}.
-#' @param frs Logical. Fetch ground-frost records (number of days with ground-
-#' frost per month) and return it in data frame? Defaults to \code{FALSE}.
-#' @param wnd Logical. Fetch 10m wind speed (metres/second) and return it in the
+#' @param sunp Logical.  Fetch sunshine, percent of maximum possible (percent of
+#' day length) and return it in data frame?  Defaults to \code{FALSE}.
+#' @param frs Logical.  Fetch ground-frost records (number of days with ground-
+#' frost per month) and return it in data frame?  Defaults to \code{FALSE}.
+#' @param wnd Logical.  Fetch 10m wind speed (metres/second) and return it in the
 #' data frame? Defaults to \code{FALSE}.
-#' @param elv Logical. Fetch elevation (converted to metres) and return it in
-#' the data frame? Defaults to \code{FALSE}.
-#' @param cache Logical. Store CRU CL2.0 data files locally for later use? If
-#' \code{FALSE}, the downloaded files are removed when R session is closed.
-#' Defaults to \code{FALSE}.
+#' @param elv Logical.  Fetch elevation (converted to metres) and return it in
+#' the data frame?  Defaults to \code{FALSE}.
+#' @param cache Logical.  Store CRU CL2.0 data files locally for later use? If
+#' \code{FALSE}, the downloaded files are removed when R session is closed.  To
+#' take advantage of cached files in future sessions, use \code{cache = TRUE}
+#' after the inital download and caching.  Defaults to \code{FALSE}.
 #'
 #' @examples
 #' \dontrun{
@@ -61,8 +62,13 @@
 #' # without caching the data files
 #' CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
 #'
+#' # Download data and create a data frame of precipitation and temperature
+#' # without caching the data files
+#' CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
+#'
 #' # Download temperature and calculate tmin and tmax, save the temperature file
 #' # for later use by caching
+#'
 #' CRU_tmp <- get_CRU_df(tmp = TRUE, tmn = TRUE, tmx = TRUE, cache = TRUE)
 #'}
 #'

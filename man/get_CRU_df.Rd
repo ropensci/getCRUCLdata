@@ -9,47 +9,48 @@ get_CRU_df(pre = FALSE, pre_cv = FALSE, rd0 = FALSE, tmp = FALSE,
   frs = FALSE, wnd = FALSE, elv = FALSE, cache = FALSE)
 }
 \arguments{
-\item{pre}{Logical. Fetch precipitation (millimetres/month) from server and
-return in the data frame? Defaults to \code{FALSE}.}
+\item{pre}{Logical.  Fetch precipitation (millimetres/month) from server and
+return in the data frame?  Defaults to \code{FALSE}.}
 
-\item{pre_cv}{Logical. Fetch cv of precipitation (percent) from server and
-return in the data frame? Defaults to \code{FALSE}. NOTE. Setting this to
+\item{pre_cv}{Logical.  Fetch cv of precipitation (percent) from server and
+return in the data frame?  Defaults to \code{FALSE}.  NOTE.  Setting this to
 \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
 returned as well.}
 
-\item{rd0}{Logical. Fetch wet-days (number days with >0.1millimetres rain per
-month) and return in the data frame? Defaults to \code{FALSE}.}
+\item{rd0}{Logical.  Fetch wet-days (number days with >0.1millimetres rain
+per month) and return in the data frame?  Defaults to \code{FALSE}.}
 
-\item{tmp}{Logical. Fetch temperature (degrees Celsius) and return it in the
-data frame? Defaults to \code{FALSE}.}
+\item{tmp}{Logical.  Fetch temperature (degrees Celsius) and return it in the
+data frame?  Defaults to \code{FALSE}.}
 
-\item{dtr}{Logical. Fetch mean diurnal temperature range (degrees Celsius)
-and return it in the data frame? Defaults to \code{FALSE}.}
+\item{dtr}{Logical.  Fetch mean diurnal temperature range (degrees Celsius)
+and return it in the data frame?  Defaults to \code{FALSE}.}
 
-\item{reh}{Logical. Fetch relative humidity and return it in the data frame?
+\item{reh}{Logical.  Fetch relative humidity and return it in the data frame?
 Defaults to FALSE.}
 
-\item{tmn}{Logical. Calculate minimum temperature values (degrees Celsius)
-and return it in the data frame? Defaults to \code{FALSE}.}
+\item{tmn}{Logical.  Calculate minimum temperature values (degrees Celsius)
+and return it in the data frame?  Defaults to \code{FALSE}.}
 
-\item{tmx}{Logical. Calculate maximum temperature (degrees Celsius) and
-return it in the data frame? Defaults to \code{FALSE}.}
+\item{tmx}{Logical.  Calculate maximum temperature (degrees Celsius) and
+return it in the data frame?  Defaults to \code{FALSE}.}
 
-\item{sunp}{Logical. Fetch sunshine, percent of maximum possible (percent of
-day length) and return it in data frame? Defaults to \code{FALSE}.}
+\item{sunp}{Logical.  Fetch sunshine, percent of maximum possible (percent of
+day length) and return it in data frame?  Defaults to \code{FALSE}.}
 
-\item{frs}{Logical. Fetch ground-frost records (number of days with ground-
-frost per month) and return it in data frame? Defaults to \code{FALSE}.}
+\item{frs}{Logical.  Fetch ground-frost records (number of days with ground-
+frost per month) and return it in data frame?  Defaults to \code{FALSE}.}
 
-\item{wnd}{Logical. Fetch 10m wind speed (metres/second) and return it in the
+\item{wnd}{Logical.  Fetch 10m wind speed (metres/second) and return it in the
 data frame? Defaults to \code{FALSE}.}
 
-\item{elv}{Logical. Fetch elevation (converted to metres) and return it in
-the data frame? Defaults to \code{FALSE}.}
+\item{elv}{Logical.  Fetch elevation (converted to metres) and return it in
+the data frame?  Defaults to \code{FALSE}.}
 
-\item{cache}{Logical. Store CRU CL2.0 data files locally for later use? If
-\code{FALSE}, the downloaded files are removed when R session is closed.
-Defaults to \code{FALSE}.}
+\item{cache}{Logical.  Store CRU CL2.0 data files locally for later use? If
+\code{FALSE}, the downloaded files are removed when R session is closed.  To
+take advantage of cached files in future sessions, use \code{cache = TRUE}
+after the inital download and caching.  Defaults to \code{FALSE}.}
 }
 \description{
 This function automates downloading and importing CRU CL2.0
@@ -89,8 +90,13 @@ metres.
 # without caching the data files
 CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
 
+# Download data and create a data frame of precipitation and temperature
+# without caching the data files
+CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
+
 # Download temperature and calculate tmin and tmax, save the temperature file
 # for later use by caching
+
 CRU_tmp <- get_CRU_df(tmp = TRUE, tmn = TRUE, tmx = TRUE, cache = TRUE)
 }
 

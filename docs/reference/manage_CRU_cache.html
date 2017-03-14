@@ -82,9 +82,9 @@
 
     
     <p>The user is given an option when downloading the CRU CL2.0 data
-to cache or not to cache the data for later use. If <code>cache == TRUE</code>,
+to cache or not to cache the data for later use.  If <code>cache == TRUE</code>,
 then the CRU CL2.0 data files are saved in a directory in the users' home
-filespace. These functions provide facilities for interacing and managing
+filespace.  These functions provide facilities for interacting and managing
 these files.</p>
     
 
@@ -99,20 +99,24 @@ these files.</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>files</dt>
-      <dd><p>Character. One or more complete file names</p></dd>
+      <dd><p>Character.  One or more complete file names</p></dd>
       <dt>force</dt>
-      <dd><p>Logical. Should files be force deleted? Defaults to :
+      <dd><p>Logical.  Should files be force deleted? Defaults to :
 <code>TRUE</code></p></dd>
     </dl>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>cache_delete</code> only accepts one file name, while
-<code>cache_delete_all</code> doesn't accept any names, but deletes all files.
+<code>cache_delete_all</code> does not accept any names, but deletes all files.
 For deleting many specific files, use <code>cache_delete</code> in a
 <code>lapply</code> type call.</p>
 <p>We files cache using <code><a href='http://www.rdocumentation.org/packages/rappdirs/topics/user_cache_dir'>user_cache_dir</a></code>, find your
 cache folder by executing <code>rappdirs::user_cache_dir("getCRUCLdata")</code></p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>These functions were adapted from ROpenSci's <code>ccafs::cc_cache</code></p>
     
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
@@ -153,6 +157,8 @@ cache folder by executing <code>rappdirs::user_cache_dir("getCRUCLdata")</code><
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#note">Note</a></li>
 
       <li><a href="#functions">Functions</a></li>
       

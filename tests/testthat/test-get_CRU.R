@@ -21,7 +21,8 @@ test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
     sunp = FALSE,
     frs = FALSE,
     wnd = FALSE,
-    elv = FALSE
+    elv = FALSE,
+    cache_dir = tempdir()
   )
   files <- list.files(tempdir(), pattern = ".dat.gz$")
   expect_identical(files, "grid_10min_pre.dat.gz")
@@ -47,7 +48,8 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
     sunp = FALSE,
     frs = FALSE,
     wnd = FALSE,
-    elv = FALSE
+    elv = FALSE,
+    cache_dir = tempdir()
   )
   files <- list.files(tempdir(), pattern = ".dat.gz$")
   expect_identical(files, c("grid_10min_dtr.dat.gz", "grid_10min_tmp.dat.gz"))
@@ -73,7 +75,8 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
     sunp = FALSE,
     frs = FALSE,
     wnd = FALSE,
-    elv = FALSE
+    elv = FALSE,
+    cache_dir = tempdir()
   )
   files <- list.files(tempdir(), pattern = ".dat.gz$")
   expect_identical(files, c("grid_10min_dtr.dat.gz", "grid_10min_tmp.dat.gz"))
