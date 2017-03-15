@@ -17,7 +17,7 @@ CRU_cache_delete_all(force = TRUE)
 CRU_cache_details(files = NULL)
 }
 \arguments{
-\item{files}{Character.  One or more complete file names}
+\item{files}{Character.  One or more complete file names with no file path}
 
 \item{force}{Logical.  Should files be force deleted? Defaults to :
 \code{TRUE}}
@@ -30,8 +30,8 @@ filespace.  These functions provide facilities for interacting and managing
 these files.
 }
 \details{
-\code{cache_delete} only accepts one file name, while
-\code{cache_delete_all} does not accept any names, but deletes all files.
+\code{CRU_cache_delete} only accepts one file name, while
+\code{CRU_cache_delete_all} does not accept any names, but deletes all files.
 For deleting many specific files, use \code{cache_delete} in a
 \code{\link{lapply}} type call.
 

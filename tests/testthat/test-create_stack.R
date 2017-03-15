@@ -661,6 +661,7 @@ test_that("create_CRU_stack creates a list containing only elv", {
 
 test_that("Test thatwrld raster object resolution and extent are appropriate", {
   skip_on_cran()
+
   wrld <- raster::raster(
     nrows = 930,
     ncols = 2160,

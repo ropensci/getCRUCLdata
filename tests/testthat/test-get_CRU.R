@@ -111,6 +111,7 @@ test_that("get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE", {
 # either/both are false
 
 test_that("get_CRU will set tmp and dtr to TRUE if tmn or tmx is TRUE and either/both are false", {
+  skip_on_cran()
 
   tmp <- FALSE
   dtr <- FALSE
