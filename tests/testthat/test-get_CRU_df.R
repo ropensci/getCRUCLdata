@@ -487,3 +487,36 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
   expect_type(files, "character")
   expect_equal(files, paste0(tempdir(), "/grid_10min_tmp.dat.gz"))
 })
+
+test_that("get_CRU_df sets the cache directory properly when cache is TRUE",
+          {
+            cache <- TRUE
+
+            if (isTRUE(cache)) {
+              cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
+              if (!file.exists(cache_dir)) {
+                dir.create(cache_dir)
+              }
+            } else {
+              cache_dir <- tempdir()
+            }
+
+            expect_equal(cache_dir, rappdirs::user_config_dir("getCRUCLdata"))
+
+          })
+
+test_that("get_CRU_df sets the cache directory properly when cache is FALSE",
+          {
+            cache <- FALSE
+
+            if (isTRUE(cache)) {
+              cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
+              if (!file.exists(cache_dir)) {
+                dir.create(cache_dir)
+              }
+            } else {
+              cache_dir <- tempdir()
+            }
+
+            expect_equal(cache_dir, tempdir())
+          })
