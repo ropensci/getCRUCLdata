@@ -482,9 +482,4 @@ test_that("Test that manage_CRU_cache functions work as expected",
             expect_equal(CRU_cache_list(),
                          list.files(rappdirs::user_config_dir("getCRUCLdata"),
                                     full.names = TRUE))
-
-            CRU_cache_delete_all()
-
-            expect_equal(list.files(rappdirs::user_config_dir("getCRUCLdata")),
-                         character(0))
           })
