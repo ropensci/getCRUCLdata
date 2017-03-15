@@ -6,7 +6,7 @@
 \alias{CRU_cache_delete}
 \alias{CRU_cache_delete_all}
 \alias{CRU_cache_details}
-\title{Manage locally cached CRU CL 2.0 files}
+\title{Manage locally cached CRU CL v. 2.0 files}
 \usage{
 CRU_cache_list()
 
@@ -23,11 +23,11 @@ CRU_cache_details(files = NULL)
 \code{TRUE}}
 }
 \description{
-The user is given an option when downloading the CRU CL2.0 data
-to cache or not to cache the data for later use.  If \code{cache == TRUE},
-then the CRU CL 2.0 data files are saved in a directory in the users' home
-filespace.  These functions provide facilities for interacting and managing
-these files.
+The user is given an option when downloading the CRU CL v. 2.0
+data to cache or not to cache the data for later use.  If
+\code{cache == TRUE}, then the CRU CL v. 2.0 data files are saved in a directory
+in the users' home filespace.  These functions provide facilities for
+interacting and managing these files.
 }
 \details{
 \code{CRU_cache_delete} only accepts one file name, while
