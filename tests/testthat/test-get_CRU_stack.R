@@ -1,5 +1,7 @@
 context("get_CRU_stack")
 
+# Test that get_CRU_stack fails if no parameters are TRUE ----------------------
+
 test_that("get_CRU_stack fails if no parameters are TRUE", {
   expect_error(get_CRU_stack(),
                "You must select at least one element for download.")
@@ -487,6 +489,8 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
   expect_equal(files, paste0(tempdir(), "/grid_10min_tmp.dat.gz"))
 })
 
+# Test that get_CRU_stack sets the cache dir properly when cache is TRUE -------
+
 test_that("get_CRU_stack sets the cache directory properly when cache is TRUE",
           {
             cache <- TRUE
@@ -501,8 +505,9 @@ test_that("get_CRU_stack sets the cache directory properly when cache is TRUE",
             }
 
             expect_equal(cache_dir, rappdirs::user_config_dir("getCRUCLdata"))
-
           })
+
+# Test that get_CRU_stack sets the cache dir properly when cache is FALSE ------
 
 test_that("get_CRU_stack sets the cache directory properly when cache is FALSE",
           {

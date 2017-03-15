@@ -1,15 +1,21 @@
 
 context("create_CRU_df")
 
+# Test that create_CRU_df fails if no parameters are TRUE ----------------------
+
 test_that("create_CRU_df fails if no parameters are TRUE", {
   expect_error(create_CRU_df(dsn = "~/"),
                "You must select at least one element for import.")
 })
 
+# Test that create_CRU_df fails if no dsn is specified -------------------------
+
 test_that("create_CRU_df fails if no dsn is specified", {
   expect_error(create_CRU_df(pre = TRUE),
                "File directory does not exist: .")
 })
+
+# Test that create_CRU_df loads files and creates a proper tibble --------------
 
 test_that("create_CRU_df loads files and creates a proper tibble", {
   # create files for testing, these data are the first 10 lines of pre and tmp
@@ -484,42 +490,12 @@ test_that("create_CRU_df loads files and creates a proper tibble", {
   )
   close(gz1)
 
-  pre <- TRUE
-  pre_cv <- TRUE
-  rd0 <- FALSE
-  tmp <- TRUE
-  dtr <- FALSE
-  reh <- FALSE
-  tmn <- FALSE
-  tmx <- FALSE
-  sunp <- FALSE
-  frs <- FALSE
-  wnd <- FALSE
-  elv <- FALSE
-  cache_dir <- tempdir()
+  dsn <- tempdir()
 
-  files <- .get_local(pre,
-                      pre_cv,
-                      rd0,
-                      tmp,
-                      dtr,
-                      reh,
-                      tmn,
-                      tmx,
-                      sunp,
-                      frs,
-                      wnd,
-                      elv,
-                      cache_dir)
+  CRU_df <- create_CRU_df(pre = TRUE, pre_cv = TRUE, tmp = TRUE, dsn = dsn)
 
-  expect_equal(length(files), 2)
-  expect_equal(basename(files[1]), "grid_10min_pre.dat.gz")
-  expect_equal(basename(files[2]), "grid_10min_tmp.dat.gz")
-
-  d <- create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
-
-  expect_equal(max(d$pre), 163.5)
-  expect_named(d, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
-  expect_type(d, "list")
+  expect_equal(max(CRU_df$pre), 163.5)
+  expect_equal(max(CRU_df$tmp), 8.6)
+  expect_named(CRU_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
+  expect_type(CRU_df, "list")
 })
-

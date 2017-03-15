@@ -6,6 +6,7 @@ unlink(list.files(
   full.names = TRUE
 ))
 
+# Test that get_CRU will retrieve only precipitation file when pre_cv TRUE -----
 test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
   skip_on_cran()
   skip_on_appveyor()
@@ -32,6 +33,8 @@ test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
     full.names = TRUE
   ))
 })
+
+# Test that get_CRU will retrieve diurnal tmp & tmp files when tmn TRUE --------
 
 test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
   skip_on_cran()
@@ -60,6 +63,7 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
   ))
 })
 
+# Test that get_CRU will retrieve diurnal tmp & tmp files when tmx TRUE --------
 test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
   skip_on_cran()
   skip_on_appveyor()
@@ -87,6 +91,8 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
   ))
 })
 
+# Test that get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE ----
+
 test_that("get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE", {
   skip_on_cran()
   skip_on_appveyor()
@@ -100,6 +106,9 @@ test_that("get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE", {
   }
   expect_true(pre)
 })
+
+# Test that get_CRU will set tmp and dtr to TRUE if tmn or tmx is TRUE and -----
+# either/both are false
 
 test_that("get_CRU will set tmp and dtr to TRUE if tmn or tmx is TRUE and either/both are false", {
 
@@ -116,5 +125,4 @@ test_that("get_CRU will set tmp and dtr to TRUE if tmn or tmx is TRUE and either
 
   expect_true(tmp)
   expect_true(dtr)
-
 })
