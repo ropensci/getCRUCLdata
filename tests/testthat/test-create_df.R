@@ -1,6 +1,7 @@
 
 context("create_df")
 
+# Test that create_df creates a tidy dataframe of pre, pre_cv and tmp ---------
 test_that("Test that create_df creates a tidy dataframe of pre, pre_cv and tmp", {
   skip_on_cran()
 
@@ -503,6 +504,8 @@ expect_is(CRU_df$pre, "numeric")
 expect_is(CRU_df$pre_cv, "numeric")
 expect_is(CRU_df$tmp, "numeric")
 })
+
+# Test that create_df creates a tidy dataframe of pre, tmp, elv ----------------
 
 test_that("Test that create_df creates a tidy dataframe of pre, tmp, elv", {
   skip_on_cran()

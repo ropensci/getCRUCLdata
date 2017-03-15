@@ -1,69 +1,10 @@
+context(".get_local")
 
+# Test that .get_local creates a tibble of only specified elements -------------
 
-context("create_stacks")
-
-test_that("wrld raster object resolution and extent are appropriate", {
-  skip_on_cran()
-  wrld <- raster::raster(
-    nrows = 930,
-    ncols = 2160,
-    ymn = -65,
-    ymx = 90,
-    xmn = -180,
-    xmx = 180
-  )
-
-  wrld[] <- NA
-
-  expect_type(wrld, "S4")
-  expect_equal(wrld@extent[1], -180)
-  expect_equal(wrld@extent[2], 180)
-  expect_equal(wrld@extent[3], -65)
-  expect_equal(wrld@extent[4], 90)
-  expect_equal(wrld@ncols, 2160)
-  expect_equal(wrld@nrows, 930)
-  expect_true(is.na(wrld@data@values[raster::ncell(wrld)]))
-  expect_true(is.na(wrld@data@values[1]))
-  expect_true(is.na(wrld@data@values[1004400]))
-})
-
-
-test_that("month names are appropriate", {
-  month_names <-
-    c("jan",
-      "feb",
-      "mar",
-      "apr",
-      "may",
-      "jun",
-      "jul",
-      "aug",
-      "sep",
-      "oct",
-      "nov",
-      "dec")
-
-  expect_equal(
-    month_names,
-    c(
-      "jan",
-      "feb",
-      "mar",
-      "apr",
-      "may",
-      "jun",
-      "jul",
-      "aug",
-      "sep",
-      "oct",
-      "nov",
-      "dec"
-    )
-  )
-})
-
-test_that("CRU_stack_list returns a list of raster stacks and names them properly", {
-  skip_on_cran()
+test_that("Test that .get_local creates a tibble of only specified elements (pre)", {
+  # create files for testing, these data are the first 10 lines of pre and tmp
+  # from the CRU CL2.0 data
 
   unlink(list.files(
     path = tempdir(),
@@ -517,69 +458,47 @@ test_that("CRU_stack_list returns a list of raster stacks and names them properl
     )
   )
   gz1 <- gzfile(paste0(tempdir(), "/grid_10min_pre.dat.gz"), "w")
-  utils::write.table(
-    pre_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(pre_data,
+                     file = gz1,
+                     col.names = FALSE,
+                     row.names = FALSE)
   close(gz1)
 
   gz1 <- gzfile(paste0(tempdir(), "/grid_10min_tmp.dat.gz"), "w")
-  utils::write.table(
-    tmp_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(tmp_data,
+                     file = gz1,
+                     col.names = FALSE,
+                     row.names = FALSE)
   close(gz1)
 
-  files <-
-    list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
-
-  wrld <- raster::raster(
-    nrows = 930,
-    ncols = 2160,
-    ymn = -65,
-    ymx = 90,
-    xmn = -180,
-    xmx = 180
-  )
-
-  wrld[] <- NA
-
-  month_names <-
-    c("jan",
-      "feb",
-      "mar",
-      "apr",
-      "may",
-      "jun",
-      "jul",
-      "aug",
-      "sep",
-      "oct",
-      "nov",
-      "dec")
-
   pre <- TRUE
-  pre_cv <- TRUE
+  pre_cv <- FALSE
+  rd0 <- FALSE
+  tmp <- FALSE
+  dtr <- FALSE
+  reh <- FALSE
+  tmn <- FALSE
+  tmx <- FALSE
+  sunp <- FALSE
+  frs <- FALSE
+  wnd <- FALSE
+  elv <- FALSE
+  cache_dir <- tempdir()
 
-  CRU_stack_list <-
-    plyr::llply(.fun = .create_stack,
-                files,
-                wrld,
-                month_names,
-                pre,
-                pre_cv,
-                .progress = "text")
+  files <- .get_local(pre,
+                      pre_cv,
+                      rd0,
+                      tmp,
+                      dtr,
+                      reh,
+                      tmn,
+                      tmx,
+                      sunp,
+                      frs,
+                      wnd,
+                      elv,
+                      cache_dir)
 
-  names(CRU_stack_list) <- substr(basename(files), 12, 14)
-
-  expect_named(CRU_stack_list, c("pre", "tmp"))
-  expect_type(CRU_stack_list, "list")
-  expect_equal(raster::extent(CRU_stack_list[[1]])[1], -180)
-  expect_equal(raster::extent(CRU_stack_list[[1]])[2], 180)
-  expect_equal(raster::extent(CRU_stack_list[[1]])[3], -60)
-  expect_equal(raster::extent(CRU_stack_list[[1]])[4], 85)
+  expect_equal(length(files), 1)
+  expect_equal(basename(files[1]), "grid_10min_pre.dat.gz")
 })

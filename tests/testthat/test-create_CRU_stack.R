@@ -1,21 +1,22 @@
 
-
 context("create_CRU_stack")
+
+# Test that create_CRU_stack fails if no dsn is specified ----------------------
 
 test_that("create_CRU_stack fails if no dsn is specified", {
   expect_error(create_CRU_stack(pre = TRUE),
                "File directory does not exist: .")
 })
 
+# Test that create_CRU_stack fails if no parameters are TRUE -------------------
+
 test_that("create_CRU_stack fails if no parameters are TRUE", {
   expect_error(create_CRU_stack(dsn = "~/"),
                "You must select at least one element for importing")
 })
 
-test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
-  # create files for testing, these data are the first 10 lines of pre and tmp
-  # from the CRU CL2.0 data
-
+# Test that create_CRU_stack returns a list of raster stacks -------------------
+test_that("create_CRU_stack returns a list of raster stacks", {
   unlink(list.files(
     path = tempdir(),
     pattern = ".dat.gz$",
@@ -481,57 +482,10 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
                      row.names = FALSE)
   close(gz1)
 
-  pre <- TRUE
-  pre_cv <- TRUE
-  rd0 <- FALSE
-  tmp <- TRUE
-  dtr <- FALSE
-  reh <- FALSE
-  tmn <- FALSE
-  tmx <- FALSE
-  sunp <- FALSE
-  frs <- FALSE
-  wnd <- FALSE
-  elv <- FALSE
-  cache_dir <- tempdir()
+  dsn <- tempdir()
+  CRU_stack <- create_CRU_stack(pre = TRUE, dsn = dsn)
 
-  files <- .get_local(pre,
-                      pre_cv,
-                      rd0,
-                      tmp,
-                      dtr,
-                      reh,
-                      tmn,
-                      tmx,
-                      sunp,
-                      frs,
-                      wnd,
-                      elv,
-                      cache_dir)
-
-  expect_equal(length(files), 2)
-  expect_equal(basename(files[1]), "grid_10min_pre.dat.gz")
-  expect_equal(basename(files[2]), "grid_10min_tmp.dat.gz")
-
-  s <- create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
-
-  expect_named(s, c("pre", "tmp"))
-  expect_equal(
-    raster::cellStats(s$tmp, max),
-    c(
-      8.6,
-      8.6,
-      7.3,
-      5.6,
-      3.4,
-      2.0,
-      1.5,
-      2.2,
-      3.6,
-      5.4,
-      6.7,
-      8.0
-    )
-  )
-  expect_type(s, "list")
+  expect_named(CRU_stack, "pre")
+  expect_equal(raster::nlayers(CRU_stack$pre), 12)
+  expect_equal(length(CRU_stack), 1)
 })
