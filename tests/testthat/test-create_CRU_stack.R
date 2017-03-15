@@ -16,7 +16,11 @@ test_that("create_CRU_stack fails if no parameters are TRUE", {
 })
 
 # Test that create_CRU_stack returns a list of raster stacks -------------------
+
 test_that("create_CRU_stack returns a list of raster stacks", {
+
+  skip_on_cran()
+
   unlink(list.files(
     path = tempdir(),
     pattern = ".dat.gz$",

@@ -18,6 +18,8 @@ test_that("create_CRU_df fails if no dsn is specified", {
 # Test that create_CRU_df loads files and creates a proper tibble --------------
 
 test_that("create_CRU_df loads files and creates a proper tibble", {
+  skip_on_cran()
+
   # create files for testing, these data are the first 10 lines of pre and tmp
   # from the CRU CL2.0 data
 

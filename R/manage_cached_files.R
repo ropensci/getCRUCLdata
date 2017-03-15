@@ -8,12 +8,12 @@
 #'
 #' @export
 #' @name manage_CRU_cache
-#' @param files Character.  One or more complete file names
+#' @param files Character.  One or more complete file names with no file path
 #' @param force Logical.  Should files be force deleted? Defaults to :
 #' \code{TRUE}
 #'
-#' @details \code{cache_delete} only accepts one file name, while
-#' \code{cache_delete_all} does not accept any names, but deletes all files.
+#' @details \code{CRU_cache_delete} only accepts one file name, while
+#' \code{CRU_cache_delete_all} does not accept any names, but deletes all files.
 #' For deleting many specific files, use \code{cache_delete} in a
 #' \code{\link{lapply}} type call.
 #'
@@ -62,11 +62,13 @@ CRU_cache_list <- function() {
 #' @export
 #' @rdname manage_CRU_cache
 CRU_cache_delete <- function(files, force = TRUE) {
-  if (!all(file.exists(files))) {
+  cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
+  if (!all(file.exists(cache_dir, "/", files))) {
     stop("These files don't exist or can't be found: \n",
-         strwrap(files[!file.exists(files)], indent = 5), call. = FALSE)
+         strwrap(paste0(cache_dir, "/", files)[!file.exists(paste0(cache_dir, "/", files))], indent = 5), call. = FALSE)
   }
-  unlink(files, force = force, recursive = TRUE)
+  unlink(paste0(cache_dir, "/", files),
+         force = force, recursive = TRUE)
 }
 
 #' @export

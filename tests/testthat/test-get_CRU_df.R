@@ -496,6 +496,8 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
 
 test_that("get_CRU_df sets the cache directory properly when cache is TRUE",
           {
+            skip_on_cran()
+
             cache <- TRUE
 
             if (isTRUE(cache)) {
@@ -515,6 +517,8 @@ test_that("get_CRU_df sets the cache directory properly when cache is TRUE",
 
 test_that("get_CRU_df sets the cache directory properly when cache is FALSE",
           {
+
+            skip_on_cran()
             cache <- FALSE
 
             if (isTRUE(cache)) {

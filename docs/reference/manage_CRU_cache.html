@@ -99,7 +99,7 @@ these files.</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>files</dt>
-      <dd><p>Character.  One or more complete file names</p></dd>
+      <dd><p>Character.  One or more complete file names with no file path</p></dd>
       <dt>force</dt>
       <dd><p>Logical.  Should files be force deleted? Defaults to :
 <code>TRUE</code></p></dd>
@@ -107,8 +107,8 @@ these files.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>cache_delete</code> only accepts one file name, while
-<code>cache_delete_all</code> does not accept any names, but deletes all files.
+    <p><code>CRU_cache_delete</code> only accepts one file name, while
+<code>CRU_cache_delete_all</code> does not accept any names, but deletes all files.
 For deleting many specific files, use <code>cache_delete</code> in a
 <code>lapply</code> type call.</p>
 <p>We files cache using <code><a href='http://www.rdocumentation.org/packages/rappdirs/topics/user_cache_dir'>user_cache_dir</a></code>, find your
