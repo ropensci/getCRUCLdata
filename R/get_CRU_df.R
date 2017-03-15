@@ -1,6 +1,6 @@
-#' @title Download and Create a Tidy Data Frame of CRU CL2.0 Climatology Variables
+#' @title Download and Create a Tidy Data Frame of CRU CL v. 2.0 Climatology Variables
 #'
-#'@description This function automates downloading and importing CRU CL2.0
+#'@description This function automates downloading and importing CRU CL v. 2.0
 #'climatology data into R and creates a tidy data frame of the data.  If
 #'requested, minimum and maximum temperature may also be automatically
 #'calculated as described in the data readme.txt file.
@@ -51,9 +51,9 @@
 #' data frame? Defaults to \code{FALSE}.
 #' @param elv Logical.  Fetch elevation (converted to metres) and return it in
 #' the data frame?  Defaults to \code{FALSE}.
-#' @param cache Logical.  Store CRU CL2.0 data files locally for later use? If
-#' \code{FALSE}, the downloaded files are removed when R session is closed.  To
-#' take advantage of cached files in future sessions, use \code{cache = TRUE}
+#' @param cache Logical.  Store CRU CL v. 2.0 data files locally for later use?
+#' If \code{FALSE}, the downloaded files are removed when R session is closed.
+#' To take advantage of cached files in future sessions, use \code{cache = TRUE}
 #' after the inital download and caching.  Defaults to \code{FALSE}.
 #'
 #' @examples

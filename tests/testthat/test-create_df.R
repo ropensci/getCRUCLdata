@@ -12,7 +12,7 @@ test_that("Test that create_df creates a tidy dataframe of pre, pre_cv and tmp",
   ))
 
 # create files for testing, these data are the first 10 lines of pre and tmp
-# from the CRU CL2.0 data
+# from the CRU CL v. 2.0 data
 pre_data <- rbind(
   c(
     -59.083,

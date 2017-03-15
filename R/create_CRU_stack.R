@@ -1,6 +1,6 @@
-#' @title Create a List of Raster Stack Objects From CRU CL2.0 Climatology Variables on Local Disk
+#' @title Create a List of Raster Stack Objects From CRU CL v. 2.0 Climatology Variables on Local Disk
 #'
-#'@description This function automates importing CRU CL2.0 climatology data into
+#'@description This function automates importing CRU CL v. 2.0 climatology data into
 #'R from locally available data files and creates a list of raster stacks of the
 #'data.  If requested, minimum and maximum temperature may also be automatically
 #'calculated as described in the data readme.txt file.  This function can be
@@ -57,7 +57,7 @@
 #' from local files? Defaults to FALSE.
 #' @param elv Logical. Create a raster layer of elevation (converted to metres)
 #' from local files? Defaults to FALSE.
-#' @param dsn Local file path where CRU CL2.0 .dat.gz files are located.
+#' @param dsn Local file path where CRU CL v. 2.0 .dat.gz files are located.
 #'
 #' @examples
 #' # Create a raster stack of precipitation and temperature from pre and tmp

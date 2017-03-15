@@ -1,6 +1,6 @@
-#' @title Create a Tidy Data Frame From CRU CL2.0 Climatology Variables on Local Disk
+#' @title Create a Tidy Data Frame From CRU CL v.2.0 Climatology Variables on Local Disk
 #'
-#'@description This function automates importing CRU CL2.0 climatology data
+#'@description This function automates importing CRU CL v.2.0 climatology data
 #'into R and creates a tidy data frame of the data.  If requested, minimum and
 #'maximum temperature may also be automatically calculated as described in the
 #'data readme.txt file.  This function can be useful if you have network
@@ -55,7 +55,7 @@
 #' data frame? Defaults to FALSE.
 #' @param elv Logical. Fetch elevation (converted to metres) and return it in
 #' the data frame? Defaults to FALSE.
-#' @param dsn Local file path where CRU CL2.0 .dat.gz files are located.
+#' @param dsn Local file path where CRU CL v.2.0 .dat.gz files are located.
 #'
 #' @examples
 #' # Create a raster stack of precipitation and temperature from locally

@@ -6,7 +6,7 @@ test_that("Test that .get_local creates a tibble of only specified elements (pre
   skip_on_cran()
 
   # create files for testing, these data are the first 10 lines of pre and tmp
-  # from the CRU CL2.0 data
+  # from the CRU CL v. 2.0 data
 
   unlink(list.files(
     path = tempdir(),

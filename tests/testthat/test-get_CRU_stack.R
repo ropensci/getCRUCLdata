@@ -9,7 +9,7 @@ test_that("get_CRU_stack fails if no parameters are TRUE", {
 
 test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
   # create files for testing, these data are the first 10 lines of pre and tmp
-  # from the CRU CL2.0 data
+  # from the CRU CL v. 2.0 data
 
   unlink(list.files(
     path = tempdir(),

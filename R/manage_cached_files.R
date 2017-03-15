@@ -1,10 +1,10 @@
-#' @title Manage locally cached CRU CL 2.0 files
+#' @title Manage locally cached CRU CL v. 2.0 files
 #'
-#' @description The user is given an option when downloading the CRU CL2.0 data
-#' to cache or not to cache the data for later use.  If \code{cache == TRUE},
-#' then the CRU CL 2.0 data files are saved in a directory in the users' home
-#' filespace.  These functions provide facilities for interacting and managing
-#' these files.
+#' @description The user is given an option when downloading the CRU CL v. 2.0
+#' data to cache or not to cache the data for later use.  If
+#' \code{cache == TRUE}, then the CRU CL v. 2.0 data files are saved in a directory
+#' in the users' home filespace.  These functions provide facilities for
+#' interacting and managing these files.
 #'
 #' @export
 #' @name manage_CRU_cache
@@ -113,7 +113,7 @@ getsize <- function(x) {
 #' @export
 print.CRU_cache_info <- function(x, ...) {
   cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
-  cat("<CRU CL 2.0 cached files>", sep = "\n")
+  cat("<CRU CL v. 2.0 cached files>", sep = "\n")
   cat(sprintf("  directory: %s\n", cache_dir), sep = "\n")
   for (i in seq_along(x)) {
     cat(paste0("  file: ", sub(cache_dir, "", x[[i]]$file)), sep = "\n")
