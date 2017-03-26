@@ -62,10 +62,6 @@
 #' # without caching the data files
 #' CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
 #'
-#' # Download data and create a data frame of precipitation and temperature
-#' # without caching the data files
-#' CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
-#'
 #' # Download temperature and calculate tmin and tmax, save the temperature file
 #' # for later use by caching
 #'
