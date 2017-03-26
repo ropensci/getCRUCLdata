@@ -111,7 +111,7 @@ Perhaps you only need one or two elements, it is easy to create a tidy data fram
 t <- get_CRU_df(tmp = TRUE)
 ```
 
-The `create_CRU_df()` function works in the same way with only one minor difference. You must supply the location of the files on the local disk (`dsn`) that you wish to import.
+The `create_CRU_df()` function works in the same way with only one minor difference. You must supply the location of the files on the local disk (`dsn`) that you wish to import. This can be useful if you have network connectivity issues or just wish to download the data outside of R using another program like FileZilla, curl or wget.
 
 ```{r, eval=FALSE}
 t <- create_CRU_df(tmp = TRUE, dsn = "~/Downloads")
