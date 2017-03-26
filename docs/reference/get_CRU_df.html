@@ -31,6 +31,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -105,51 +107,78 @@ calculated as described in the data readme.txt file.</p>
   <span class='kw'>frs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>wnd</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>elv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>pre</dt>
-      <dd><p>Logical.  Fetch precipitation (millimetres/month) from server and
-return in the data frame?  Defaults to <code>FALSE</code>.</p></dd>
-      <dt>pre_cv</dt>
-      <dd><p>Logical.  Fetch cv of precipitation (percent) from server and
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>pre</th>
+      <td><p>Logical.  Fetch precipitation (millimetres/month) from server and
+return in the data frame?  Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>pre_cv</th>
+      <td><p>Logical.  Fetch cv of precipitation (percent) from server and
 return in the data frame?  Defaults to <code>FALSE</code>.  NOTE.  Setting this to
 <code>TRUE</code> will always results in <strong>pre</strong> being set to <code>TRUE</code> and
-returned as well.</p></dd>
-      <dt>rd0</dt>
-      <dd><p>Logical.  Fetch wet-days (number days with &gt;0.1millimetres rain
-per month) and return in the data frame?  Defaults to <code>FALSE</code>.</p></dd>
-      <dt>tmp</dt>
-      <dd><p>Logical.  Fetch temperature (degrees Celsius) and return it in the
-data frame?  Defaults to <code>FALSE</code>.</p></dd>
-      <dt>dtr</dt>
-      <dd><p>Logical.  Fetch mean diurnal temperature range (degrees Celsius)
-and return it in the data frame?  Defaults to <code>FALSE</code>.</p></dd>
-      <dt>reh</dt>
-      <dd><p>Logical.  Fetch relative humidity and return it in the data frame?
-Defaults to FALSE.</p></dd>
-      <dt>tmn</dt>
-      <dd><p>Logical.  Calculate minimum temperature values (degrees Celsius)
-and return it in the data frame?  Defaults to <code>FALSE</code>.</p></dd>
-      <dt>tmx</dt>
-      <dd><p>Logical.  Calculate maximum temperature (degrees Celsius) and
-return it in the data frame?  Defaults to <code>FALSE</code>.</p></dd>
-      <dt>sunp</dt>
-      <dd><p>Logical.  Fetch sunshine, percent of maximum possible (percent of
-day length) and return it in data frame?  Defaults to <code>FALSE</code>.</p></dd>
-      <dt>frs</dt>
-      <dd><p>Logical.  Fetch ground-frost records (number of days with ground-
-frost per month) and return it in data frame?  Defaults to <code>FALSE</code>.</p></dd>
-      <dt>wnd</dt>
-      <dd><p>Logical.  Fetch 10m wind speed (metres/second) and return it in the
-data frame? Defaults to <code>FALSE</code>.</p></dd>
-      <dt>elv</dt>
-      <dd><p>Logical.  Fetch elevation (converted to metres) and return it in
-the data frame?  Defaults to <code>FALSE</code>.</p></dd>
-      <dt>cache</dt>
-      <dd><p>Logical.  Store CRU CL v. 2.0 data files locally for later use?
+returned as well.</p></td>
+    </tr>
+    <tr>
+      <th>rd0</th>
+      <td><p>Logical.  Fetch wet-days (number days with &gt;0.1millimetres rain
+per month) and return in the data frame?  Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>tmp</th>
+      <td><p>Logical.  Fetch temperature (degrees Celsius) and return it in the
+data frame?  Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>dtr</th>
+      <td><p>Logical.  Fetch mean diurnal temperature range (degrees Celsius)
+and return it in the data frame?  Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>reh</th>
+      <td><p>Logical.  Fetch relative humidity and return it in the data frame?
+Defaults to FALSE.</p></td>
+    </tr>
+    <tr>
+      <th>tmn</th>
+      <td><p>Logical.  Calculate minimum temperature values (degrees Celsius)
+and return it in the data frame?  Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>tmx</th>
+      <td><p>Logical.  Calculate maximum temperature (degrees Celsius) and
+return it in the data frame?  Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>sunp</th>
+      <td><p>Logical.  Fetch sunshine, percent of maximum possible (percent of
+day length) and return it in data frame?  Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>frs</th>
+      <td><p>Logical.  Fetch ground-frost records (number of days with ground-
+frost per month) and return it in data frame?  Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>wnd</th>
+      <td><p>Logical.  Fetch 10m wind speed (metres/second) and return it in the
+data frame? Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>elv</th>
+      <td><p>Logical.  Fetch elevation (converted to metres) and return it in
+the data frame?  Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>cache</th>
+      <td><p>Logical.  Store CRU CL v. 2.0 data files locally for later use?
 If <code>FALSE</code>, the downloaded files are removed when R session is closed.
 To take advantage of cached files in future sessions, use <code>cache = TRUE</code>
-after the inital download and caching.  Defaults to <code>FALSE</code>.</p></dd>
-    </dl>
+after the inital download and caching.  Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -170,10 +199,6 @@ metres.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Not run: ------------------------------------</span>
-<span class='co'># # Download data and create a data frame of precipitation and temperature</span>
-<span class='co'># # without caching the data files</span>
-<span class='co'># CRU_pre_tmp &lt;- get_CRU_df(pre = TRUE, tmp = TRUE)</span>
-<span class='co'># </span>
 <span class='co'># # Download data and create a data frame of precipitation and temperature</span>
 <span class='co'># # without caching the data files</span>
 <span class='co'># CRU_pre_tmp &lt;- get_CRU_df(pre = TRUE, tmp = TRUE)</span>

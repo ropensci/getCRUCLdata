@@ -42,7 +42,7 @@
 <li>
   <a href="https://github.com/adamhsparks/getCRUCLdata">
     <span class="fa fa-github fa-lg"></span>
-
+     
   </a>
 </li>
       </ul>
@@ -53,47 +53,47 @@
 </div>
 <!--/.navbar -->
 
-
+      
       </header><div class="row">
   <div class="col-md-9">
+    
 
-
-
-
+    
+    
 <div class="contents">
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <div id="getcrucldata" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#getcrucldata" class="anchor"> </a>getCRUCLdata</h1></div>
+<a href="#getcrucldata" class="anchor"></a>getCRUCLdata</h1></div>
 <div id="download-and-use-cru-cl-v--2-0-climatology-data-in-r" class="section level2">
 <h2 class="hasAnchor">
-<a href="#download-and-use-cru-cl-v--2-0-climatology-data-in-r" class="anchor"> </a>Download and Use CRU CL v. 2.0 Climatology Data in R</h2>
+<a href="#download-and-use-cru-cl-v--2-0-climatology-data-in-r" class="anchor"></a>Download and Use CRU CL v. 2.0 Climatology Data in R</h2>
 <p>Author/Maintainer: Adam Sparks</p>
 <p>The getCRUCLdata package provides four functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data frame</a> or a list of <a href="https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf">raster stack</a> objects for use in an R session. CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <a href="https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt" class="uri">https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a>.</p>
 </div>
 <div id="changes-to-original-data" class="section level2">
 <h2 class="hasAnchor">
-<a href="#changes-to-original-data" class="anchor"> </a>Changes to original data</h2>
+<a href="#changes-to-original-data" class="anchor"></a>Changes to original data</h2>
 <p>This package automatically converts elevation values from kilometres to metres.</p>
 <p>This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xmin = -180, xmax = 180. Note that the original wind data include land area for parts of Antarctica.</p>
 </div>
 </div>
 <div id="quick-start" class="section level1">
 <h1 class="hasAnchor">
-<a href="#quick-start" class="anchor"> </a>Quick Start</h1>
+<a href="#quick-start" class="anchor"></a>Quick Start</h1>
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
-<a href="#install" class="anchor"> </a>Install</h2>
+<a href="#install" class="anchor"></a>Install</h2>
 <div id="stable-version" class="section level3">
 <h3 class="hasAnchor">
-<a href="#stable-version" class="anchor"> </a>Stable version</h3>
+<a href="#stable-version" class="anchor"></a>Stable version</h3>
 <p>A stable version of getCRUCLdata is available from <a href="https://cran.r-project.org/package=getCRUCLdata">CRAN</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"getCRUCLdata"</span>)</code></pre></div>
 </div>
 <div id="development-version" class="section level3">
 <h3 class="hasAnchor">
-<a href="#development-version" class="anchor"> </a>Development version</h3>
+<a href="#development-version" class="anchor"></a>Development version</h3>
 <p>A development version is available from from GitHub. If you wish to install the development version that may have new features (but also may not work properly), install the <a href="https://CRAN.R-project.org/package=devtools">devtools package</a>, available from CRAN. I strive to keep the master branch on GitHub functional and working properly, although this may not always happen.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {
   <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
@@ -106,11 +106,11 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 </div>
 <div id="using-getcrucldata" class="section level2">
 <h2 class="hasAnchor">
-<a href="#using-getcrucldata" class="anchor"> </a>Using getCRUCLdata</h2>
+<a href="#using-getcrucldata" class="anchor"></a>Using getCRUCLdata</h2>
 </div>
 <div id="creating-tidy-data-frames-for-use-in-r" class="section level2">
 <h2 class="hasAnchor">
-<a href="#creating-tidy-data-frames-for-use-in-r" class="anchor"> </a>Creating tidy data frames for use in R</h2>
+<a href="#creating-tidy-data-frames-for-use-in-r" class="anchor"></a>Creating tidy data frames for use in R</h2>
 <p>There are two methods that this package provides for creating tidy data frames of the CRU CL v. 2.0 climate data as a <a href="https://github.com/tidyverse/tibble"><code>tibble</code></a>. Depending on your needs you may need to use <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code>, which will create a tidy data frame of the climate elements from <em>locally available</em> files. Or you can use <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code>, which will automate the fetching and importing of the data files into R in one step.</p>
 <p>The <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> function is useful if you have network issues that interfere with R downloading the data files themselves from the CRU website or if you frequently work with these data and do not wish to download them every time they are needed.</p>
 <p>The <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> function automates the download process and creates tidy data frames of the CRU CL v. 2.0 climatology elements. Files downloaded using this method may be cached in the users’ local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future.</p>
@@ -136,7 +136,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 </div>
 <div id="plotting-data-from-the-tidy-dataframe" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plotting-data-from-the-tidy-dataframe" class="anchor"> </a>Plotting data from the tidy dataframe</h2>
+<a href="#plotting-data-from-the-tidy-dataframe" class="anchor"></a>Plotting data from the tidy dataframe</h2>
 <p>Now that we have the data, we can plot it easily using <a href="http://ggplot2.org"><code>ggplot2</code></a> and the fantastic <a href="https://CRAN.R-project.org/package=viridis"><code>viridis</code></a> package for the colour scale.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"ggplot2"</span>)) {
   <span class="kw">install.packages</span>(ggplot2)
@@ -169,7 +169,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 </div>
 <div id="saving-the-tidy-data-frame-as-a-csv-comma-separated-values-file-locally" class="section level2">
 <h2 class="hasAnchor">
-<a href="#saving-the-tidy-data-frame-as-a-csv-comma-separated-values-file-locally" class="anchor"> </a>Saving the tidy data frame as a CSV (comma separated values file) locally</h2>
+<a href="#saving-the-tidy-data-frame-as-a-csv-comma-separated-values-file-locally" class="anchor"></a>Saving the tidy data frame as a CSV (comma separated values file) locally</h2>
 <p>Save the resulting tidy data frame to local disk as a comma separated (CSV) file to local disk.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
 
@@ -177,7 +177,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 </div>
 <div id="creating-raster-stacks-for-use-in-r-or-saving-for-use-in-a-gis" class="section level2">
 <h2 class="hasAnchor">
-<a href="#creating-raster-stacks-for-use-in-r-or-saving-for-use-in-a-gis" class="anchor"> </a>Creating raster stacks for use in R or saving for use in a GIS</h2>
+<a href="#creating-raster-stacks-for-use-in-r-or-saving-for-use-in-a-gis" class="anchor"></a>Creating raster stacks for use in R or saving for use in a GIS</h2>
 <p>For working with spatial data,<code><a href="reference/getCRUCLdata.html">getCRUCLdata()</a></code> provides two functions that create lists of <a href="https://CRAN.R-project.org/package=raster">raster</a> stacks of the data.</p>
 <p>The <code><a href="reference/create_CRU_stack.html">create_CRU_stack()</a></code> and <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions provide similar functionality to <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code>, but rather than returning a tidy data frame, they return a a list of <a href="https://CRAN.R-project.org/package=raster">raster</a> stack objects for use in an R session.</p>
 <p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> function automates the download process and creates a raster stack object of the CRU CL v. 2.0 climatology elements. Files downloaded using this method may be cached in the users’ local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future.</p>
@@ -202,7 +202,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>, <span class="dt">dsn =</span> <span class="st">"~/Downloads"</span>)</code></pre></div>
 <div id="ploting-raster-stacks-of-tmin-and-tmax" class="section level3">
 <h3 class="hasAnchor">
-<a href="#ploting-raster-stacks-of-tmin-and-tmax" class="anchor"> </a>Ploting raster stacks of tmin and tmax</h3>
+<a href="#ploting-raster-stacks-of-tmin-and-tmax" class="anchor"></a>Ploting raster stacks of tmin and tmax</h3>
 <p>Because the stacks are in a list, we need to access each element of the list individually to plot them, that’s what the <code>[[1]]</code> or <code>[[2]]</code> is, the first or second element of the list.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
@@ -219,7 +219,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 </div>
 <div id="saving-raster-objects-to-local-disk" class="section level2">
 <h2 class="hasAnchor">
-<a href="#saving-raster-objects-to-local-disk" class="anchor"> </a>Saving raster objects to local disk</h2>
+<a href="#saving-raster-objects-to-local-disk" class="anchor"></a>Saving raster objects to local disk</h2>
 <p>The raster stack objects can be saved to disk as geotiff files (others are available, see help for <code>writeRaster</code> and <code>writeFormats</code> for more options) in the <code>Data</code> directory with a tmn or tmx prefix to the month for a filename.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
@@ -232,15 +232,15 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 </div>
 <div id="documentation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#documentation" class="anchor"> </a>Documentation</h1>
+<a href="#documentation" class="anchor"></a>Documentation</h1>
 <p>For complete documentation see the package website: <a href="https://adamhsparks.github.io/getCRUCLdata/" class="uri">https://adamhsparks.github.io/getCRUCLdata/</a></p>
 </div>
 <div id="meta" class="section level1">
 <h1 class="hasAnchor">
-<a href="#meta" class="anchor"> </a>Meta</h1>
+<a href="#meta" class="anchor"></a>Meta</h1>
 <div id="cru-cl-v--2-0-reference-and-abstract" class="section level2">
 <h2 class="hasAnchor">
-<a href="#cru-cl-v--2-0-reference-and-abstract" class="anchor"> </a>CRU CL v. 2.0 reference and abstract</h2>
+<a href="#cru-cl-v--2-0-reference-and-abstract" class="anchor"></a>CRU CL v. 2.0 reference and abstract</h2>
 <blockquote>
 <p>Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)</p>
 </blockquote>
@@ -262,14 +262,14 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 </div>
 <div id="contributors" class="section level2">
 <h2 class="hasAnchor">
-<a href="#contributors" class="anchor"> </a>Contributors</h2>
+<a href="#contributors" class="anchor"></a>Contributors</h2>
 <ul>
 <li><a href="https://github.com/adamhsparks">Adam H. Sparks</a></li>
 </ul>
 </div>
 <div id="other" class="section level2">
 <h2 class="hasAnchor">
-<a href="#other" class="anchor"> </a>Other</h2>
+<a href="#other" class="anchor"></a>Other</h2>
 <ul>
 <li>Please <a href="https://github.com/adamhsparks/getCRUCLdata/issues">report any issues or bugs</a>.</li>
 <li>License: MIT</li>
@@ -298,7 +298,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <ul class="list-unstyled">
 <li>Adam Sparks <br><small class="roles"> Author, maintainer </small> </li>
 </ul>
-<html><body>
+<div>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/"><img src="https://travis-ci.org/adamhsparks/getCRUCLdata.svg?branch=master" alt="Travis-CI Build Status"></a></li>
@@ -310,7 +310,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <li><a href="http://depsy.org/package/r/getCRUCLdata"><img src="http://depsy.org/api/package/cran/getCRUCLdata/badge.svg" alt="Research software impact"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/71445587"><img src="https://zenodo.org/badge/71445587.svg" alt="DOI"></a></li>
 </ul>
-</body></html>
+</div>
 </div>
 
 </div>
