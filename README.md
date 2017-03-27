@@ -193,7 +193,7 @@ plot(tmn_tmx[[1]])
 
 ![Plot of raster layers from minimum temperature stack](vignettes/README-unnamed-chunk-10-1.png)
 
-To plot only one month from the stack is also possible. Here we plot maxmimum temperature for July. Note that we use indexing `[[2]]` as before but append a `$jul` to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the `tmn_tmx` list, which is `tmx` and from that raster stack, plot only the layer for July.
+To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing `[[2]]` as before but append a `$jul` to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the `tmn_tmx` list, which is `tmx` and from that raster stack, plot only the layer for July.
 
 ``` r
 plot(tmn_tmx[[2]]$jul)

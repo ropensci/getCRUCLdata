@@ -50,7 +50,7 @@ the data frame?  Defaults to \code{FALSE}.}
 \item{cache}{Logical.  Store CRU CL v. 2.0 data files locally for later use?
 If \code{FALSE}, the downloaded files are removed when R session is closed.
 To take advantage of cached files in future sessions, use \code{cache = TRUE}
-after the inital download and caching.  Defaults to \code{FALSE}.}
+after the initial download and caching.  Defaults to \code{FALSE}.}
 }
 \description{
 This function automates downloading and importing CRU CL v. 2.0
