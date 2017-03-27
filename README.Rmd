@@ -82,10 +82,10 @@ Using getCRUCLdata
 
 There are two methods that this package provides for creating tidy data frames of the CRU CL v. 2.0 climate data as a [`tibble`](https://github.com/tidyverse/tibble). Depending on your needs you may need to use `create_CRU_df()`, which will create a tidy data frame of the climate elements from *locally available* files. Or you can use `get_CRU_df()`, which will automate the fetching and importing of the data files into R in one step.
 
-The `create_CRU_df()` function is useful if you have network issues that interfere with R downloading the data files themselves from the CRU website or if you frequently work with these data and do not wish to download them every time they are needed.
+The `create_CRU_df()` function is useful if you have network issues that interfere with R downloading the data files themselves from the CRU website or if you frequently work with these data and do not wish to download them every time they are needed.  In this instance it is recommended to use an FTP client (e.g., FileZilla), web browser or command line command (e.g., wget or curl) to download the files, save locally and use this function to import the
+data into R.  This function automates importing CRU CL v.2.0 climatology data into R and creates a tidy data frame of the data.  If requested, minimum and maximum temperature may also be automatically calculated as described in the data's readme.txt file. Use this if you want to download the data and specify where it is stored.
 
-
-The `get_CRU_df()` function automates the download process and creates tidy data frames of the CRU CL v. 2.0 climatology elements. Files downloaded using this method may be cached in the users' local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future.
+The `get_CRU_df()` function automates the download process and creates tidy data frames of the CRU CL v. 2.0 climatology elements. Files downloaded using this method may be cached in the users' local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future. Use this function if you want to do everything in R and you do not care where the data are stored if you choose to cache the data.  If you do so, you will need to use this function again in the future to take advantage of the cached data.
 
 ```{r, eval=FALSE}
 library(getCRUCLdata)
@@ -105,13 +105,13 @@ CRU_data <- get_CRU_df(pre = TRUE,
                        cache = TRUE)
 ```
 
-Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only. Note that unless you specify `cache = TRUE` the files will be downloaded again and only remain available for the active R session. In this example, since `cache` is not set `TRUE` the tmp file will be downloaded to a temporary directory for use. If you wish to use the files that were previously downloaded using the `get_CRU_df()` function, then it is necessary to specify `cache = TRUE` in the arguments.
+Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only. Note that unless you specify `cache = TRUE` the files will be downloaded again and only remain available for the active R session. In this example, since `cache` is not set `TRUE` the tmp file will be downloaded to a temporary directory for use. If you wish to use the files that were previously downloaded using the `get_CRU_df()` function, then it is necessary to specify `cache = TRUE` in the arguments and use `get_CRU_df()` in the future to access these data again.
 
 ```{r, eval=FALSE}
 t <- get_CRU_df(tmp = TRUE)
 ```
 
-The `create_CRU_df()` function works in the same way with only one minor difference. You must supply the location of the files on the local disk (`dsn`) that you wish to import. This can be useful if you have network connectivity issues or just wish to download the data outside of R using another program like FileZilla, curl or wget.
+The `create_CRU_df()` function works in the same way with only one minor difference. You must supply the location of the files on the local disk (`dsn`) that you wish to import, where you have already downloaded the files external to R.
 
 ```{r, eval=FALSE}
 t <- create_CRU_df(tmp = TRUE, dsn = "~/Downloads")
@@ -219,7 +219,7 @@ plot(tmn_tmx[[1]])
 ```
 ![Plot of raster layers from minimum temperature stack](vignettes/README-unnamed-chunk-10-1.png)
 
-To plot only one month from the stack is also possible. Here we plot maxmimum temperature for July. Note that we use indexing `[[2]]` as before but append a `$jul` to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the `tmn_tmx` list, which is `tmx` and from that raster stack, plot only the layer for July.
+To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing `[[2]]` as before but append a `$jul` to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the `tmn_tmx` list, which is `tmx` and from that raster stack, plot only the layer for July.
 
 ```{r, eval=FALSE}
 plot(tmn_tmx[[2]]$jul)
