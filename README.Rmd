@@ -85,7 +85,7 @@ There are two methods that this package provides for creating tidy data frames o
 The `create_CRU_df()` function is useful if you have network issues that interfere with R downloading the data files themselves from the CRU website or if you frequently work with these data and do not wish to download them every time they are needed.  In this instance it is recommended to use an FTP client (e.g., FileZilla), web browser or command line command (e.g., wget or curl) to download the files, save locally and use this function to import the
 data into R.  This function automates importing CRU CL v.2.0 climatology data into R and creates a tidy data frame of the data.  If requested, minimum and maximum temperature may also be automatically calculated as described in the data's readme.txt file. Use this if you want to download the data and specify where it is stored.
 
-The `get_CRU_df()` function automates the download process and creates tidy data frames of the CRU CL v. 2.0 climatology elements. Files downloaded using this method may be cached in the users' local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future. Use this function if you want to do everything in R and you do not care where the data are stored if you choose to cache the data.  If you do so, you will need to use this function again in the future to take advantage of the cached data.
+The `get_CRU_df()` function automates the download process and creates tidy data frames of the CRU CL v. 2.0 climatology elements. Files downloaded using this method may be cached in the users' local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL2.0 climatology elements available and cache them to save time in the future. In order to take advantage of the cahced data, you must use the `get_CRU_df()` function again in the future. The functionality is modelled after the `raster::getData()` function that will not download files that already exist in the working directory, however in this case the function is portable and it will work for any working directory. That is, if you have cached the data and you use `get_CRU_df()` again, it will use the cached data no matter what working directory you are in.
 
 ```{r, eval=FALSE}
 library(getCRUCLdata)
@@ -105,7 +105,13 @@ CRU_data <- get_CRU_df(pre = TRUE,
                        cache = TRUE)
 ```
 
-Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only. Note that unless you specify `cache = TRUE` the files will be downloaded again and only remain available for the active R session. In this example, since `cache` is not set `TRUE` the tmp file will be downloaded to a temporary directory for use. If you wish to use the files that were previously downloaded using the `get_CRU_df()` function, then it is necessary to specify `cache = TRUE` in the arguments and use `get_CRU_df()` in the future to access these data again.
+Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only. Note that unless you specify `cache = TRUE` the files will be downloaded again and only remain available for the active R session. In this example, since `cache` is not set `TRUE` the tmp file will be downloaded to a temporary directory for use. If you wish to use the files that were previously downloaded using the `get_CRU_df()` function, then it is necessary to specify `cache = TRUE` in the arguments. 
+
+```{r, eval=FALSE}
+t <- get_CRU_df(tmp = TRUE)
+```
+
+The `create_CRU_df()` function works in the same way with only one minor difference. You must supply the location of the files on the local disk (`dsn`) that you wish to import. These files *must* be downloaded prior to the use of this function using a program external to R, e.g. FileZilla or some other FTP program.
 
 ```{r, eval=FALSE}
 t <- get_CRU_df(tmp = TRUE)
