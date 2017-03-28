@@ -56,7 +56,9 @@ after the initial download and caching.  Defaults to \code{FALSE}.}
 This function automates downloading and importing CRU CL v. 2.0
 climatology data into R and creates a tidy data frame of the data.  If
 requested, minimum and maximum temperature may also be automatically
-calculated as described in the data readme.txt file.
+calculated as described in the data readme.txt file.  Data may be cached for
+later use by this function, saving time downloading files in future use of the
+function.
 
 Nomenclature and units from readme.txt:
 \describe{
