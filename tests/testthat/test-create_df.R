@@ -2,7 +2,7 @@
 context("create_df")
 
 # Test that create_df creates a tidy dataframe of pre, pre_cv and tmp ---------
-test_that("Test that create_df creates a tidy dataframe of pre, pre_cv and tmp", {
+test_that("Test that create_df creates a tidy df of pre, pre_cv and tmp", {
   skip_on_cran()
 
   unlink(list.files(
@@ -481,13 +481,13 @@ pre <- TRUE
 tmn <- FALSE
 tmx <- FALSE
 elv <- FALSE
-rd0 = FALSE
-tmp = FALSE
-dtr = FALSE
-reh = FALSE
-sunp = FALSE
-frs = FALSE
-wnd = FALSE
+rd0 <- FALSE
+tmp <- FALSE
+dtr <- FALSE
+reh <- FALSE
+sunp <- FALSE
+frs <- FALSE
+wnd <- FALSE
 
 files <-
   list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
@@ -564,13 +564,13 @@ test_that("Test that create_df creates a tidy dataframe of pre, tmp, elv", {
   tmn <- FALSE
   tmx <- FALSE
   elv <- TRUE
-  rd0 = FALSE
-  tmp = FALSE
-  dtr = FALSE
-  reh = FALSE
-  sunp = FALSE
-  frs = FALSE
-  wnd = FALSE
+  rd0 <- FALSE
+  tmp <- FALSE
+  dtr <- FALSE
+  reh <- FALSE
+  sunp <- FALSE
+  frs <- FALSE
+  wnd <- FALSE
 
   files <-
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
