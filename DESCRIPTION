@@ -34,6 +34,7 @@ Suggests:
     ggplot2,
     knitr,
     rmarkdown,
+    roxygen2 (>= 6.0.1),
     testthat,
     viridis
 URL: https://github.com/adamhsparks/getCRUCLdata
