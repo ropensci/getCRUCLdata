@@ -22,13 +22,13 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/71445587.svg)](https://zenodo.org/badge/latestdoi/71445587)
 
 # getCRUCLdata
-## Use CRU CL v. 2.0 Climatology Data in R
+## Use and explore CRU CL v. 2.0 Climatology Elements in R
 
 Author/Maintainer: Adam Sparks
 
-# Introduction to `getCRUCLdata`
+# Introduction to _getCRUCLdata_
 
-The getCRUCLdata package provides functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature
+The _getCRUCLdata_ package provides functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature
 and maximum temperature, and formats the data into a 
 [tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) or a list
 of [raster stack](https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf) objects for use in an R session.
@@ -52,7 +52,7 @@ Install
 
 ### Stable version
 
-A stable version of getCRUCLdata is available from
+A stable version of _getCRUCLdata_ is available from
 [CRAN](https://cran.r-project.org/package=getCRUCLdata).
 
 ```{r, eval=FALSE}
@@ -72,7 +72,7 @@ devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
 
 ```
 
-Using `getCRUCLdata`
+Using _getCRUCLdata_
 -----------
 
 ### Creating tidy data frames for use in R
@@ -156,7 +156,7 @@ write_csv(t, path = "~/CRU_tmp.csv")
 
 ### Creating raster stacks for use in R and saving for use in another GIS
 
-For working with spatial data,`getCRUCLdata()` provides a function that create lists of [raster](https://CRAN.R-project.org/package=raster) stacks of the data.
+For working with spatial data, _getCRUCLdata_ provides a function that create lists of [raster](https://CRAN.R-project.org/package=raster) stacks of the data.
 
 The `get_CRU_stack()` functions provide similar functionality to `get_CRU_df()`, but rather than returning a tidy data frame, it returns a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
 
@@ -276,5 +276,5 @@ Climate Research, 2000, Vol 21, pg 1-25
 
 * Please [report any issues or bugs](https://github.com/adamhsparks/getCRUCLdata/issues).
 * License: MIT
-* Get citation information for `getCRUCLdata` in R typing `citation(package = "getCRUCLdata")`
+* Get citation information for _getCRUCLdata_ in R typing `citation(package = "getCRUCLdata")`
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

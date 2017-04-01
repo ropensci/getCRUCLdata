@@ -5,15 +5,15 @@
 getCRUCLdata
 ============
 
-Use CRU CL v. 2.0 Climatology Data in R
----------------------------------------
+Use and explore CRU CL v. 2.0 Climatology Elements in R
+-------------------------------------------------------
 
 Author/Maintainer: Adam Sparks
 
-Introduction to `getCRUCLdata`
+Introduction to *getCRUCLdata*
 ==============================
 
-The getCRUCLdata package provides functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a [tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) or a list of [raster stack](https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf) objects for use in an R session.
+The *getCRUCLdata* package provides functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a [tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) or a list of [raster stack](https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf) objects for use in an R session.
 
 CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
@@ -32,7 +32,7 @@ Install
 
 ### Stable version
 
-A stable version of getCRUCLdata is available from [CRAN](https://cran.r-project.org/package=getCRUCLdata).
+A stable version of *getCRUCLdata* is available from [CRAN](https://cran.r-project.org/package=getCRUCLdata).
 
 ``` r
 install.packages("getCRUCLdata")
@@ -50,7 +50,7 @@ if (!require("devtools")) {
 devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
 ```
 
-Using `getCRUCLdata`
+Using *getCRUCLdata*
 --------------------
 
 ### Creating tidy data frames for use in R
@@ -133,7 +133,7 @@ write_csv(t, path = "~/CRU_tmp.csv")
 
 ### Creating raster stacks for use in R and saving for use in another GIS
 
-For working with spatial data,`getCRUCLdata()` provides a function that create lists of [raster](https://CRAN.R-project.org/package=raster) stacks of the data.
+For working with spatial data, *getCRUCLdata* provides a function that create lists of [raster](https://CRAN.R-project.org/package=raster) stacks of the data.
 
 The `get_CRU_stack()` functions provide similar functionality to `get_CRU_df()`, but rather than returning a tidy data frame, it returns a list of [raster](https://CRAN.R-project.org/package=raster) stack objects for use in an R session.
 
@@ -255,5 +255,5 @@ Other
 
 -   Please [report any issues or bugs](https://github.com/adamhsparks/getCRUCLdata/issues).
 -   License: MIT
--   Get citation information for `getCRUCLdata` in R typing `citation(package = "getCRUCLdata")`
+-   Get citation information for *getCRUCLdata* in R typing `citation(package = "getCRUCLdata")`
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

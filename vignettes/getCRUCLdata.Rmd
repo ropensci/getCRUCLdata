@@ -9,16 +9,16 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Introduction to `getCRUCLdata`
+# Introduction to _getCRUCLdata_
 
-The `getCRUCLdata` package provides functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature
+The _getCRUCLdata_ package provides functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature
 and maximum temperature, and formats the data into a 
 [tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) or a list
 of [raster stack](https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf) objects for use in an R session.
 
 CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
-# Using `getCRUCLdata`
+# Using _getCRUCLdata_
 
 Logical arguments are used to specify the climatology elements to retrieve and parse. The `create_CRU_*()` functions require an additional parameter, `dsn` to be
 provided that states where the files are locally stored. The arguments for
@@ -58,7 +58,7 @@ There are two methods that this package provides for creating tidy data frames o
 The `create_CRU_df()` function is useful if you have network issues that interfere with R downloading the data files themselves from the CRU website or if you frequently work with these data and do not wish to download them every time they are needed.
 
 The `get_CRU_df()` function automates the download process and creates tidy data frames of the CRU CL v. 2.0 climatology elements. Files downloaded using this method may be cached in the users' local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future. In order to take advantage of the cahced data, you must use the `get_CRU_df()` function again in the future. The functionality is modelled after the `raster::getData()` function that will not download files that already exist in the working directory, however in this case the function is portable and it will work for any working directory. That is, if you have cached the data and you use `get_CRU_df()` again, it will use the cached data no matter what working directory you are in.
-Using `getCRUCLdata`
+Using _getCRUCLdata_
 -----------
 
 ### Creating tidy data frames for use in R
