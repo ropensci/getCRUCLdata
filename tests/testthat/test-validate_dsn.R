@@ -5,6 +5,5 @@ context(".validate_dsn")
 test_that(".validate_dsn stops if the dsn is not provided", {
   skip_on_cran()
   dsn <- NULL
-  expect_error(.validate_dsn(dsn),
-"You must define the dsn where you have stored the local files\\\\n         for import\\\\. If you want to download files using R, use one of the\\\\n         'get_CRU_\\\\*\\\\(\\\\)' functions provided\\\\.")
+  expect_error(.validate_dsn(dsn))
 })
