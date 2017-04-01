@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Download and Use CRU CL v. 2.0 Climatology Data in R • getCRUCLdata</title>
+<title>Use and explore CRU CL v. 2.0 Climatology Elements in R • getCRUCLdata</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -66,17 +66,17 @@
 <div id="getcrucldata" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#getcrucldata" class="anchor"></a>getCRUCLdata</h1></div>
-<div id="use-cru-cl-v--2-0-climatology-data-in-r" class="section level2">
+<div id="use-and-explore-cru-cl-v--2-0-climatology-elements-in-r" class="section level2">
 <h2 class="hasAnchor">
-<a href="#use-cru-cl-v--2-0-climatology-data-in-r" class="anchor"></a>Use CRU CL v. 2.0 Climatology Data in R</h2>
+<a href="#use-and-explore-cru-cl-v--2-0-climatology-elements-in-r" class="anchor"></a>Use and explore CRU CL v. 2.0 Climatology Elements in R</h2>
 <p>Author/Maintainer: Adam Sparks</p>
 </div>
 </div>
 <div id="introduction-to-getcrucldata" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction-to-getcrucldata" class="anchor"></a>Introduction to <code>getCRUCLdata</code>
+<a href="#introduction-to-getcrucldata" class="anchor"></a>Introduction to <em>getCRUCLdata</em>
 </h1>
-<p>The getCRUCLdata package provides functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data frame</a> or a list of <a href="https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf">raster stack</a> objects for use in an R session.</p>
+<p>The <em>getCRUCLdata</em> package provides functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data frame</a> or a list of <a href="https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf">raster stack</a> objects for use in an R session.</p>
 <p>CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <a href="https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt" class="uri">https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a>.</p>
 <div id="changes-to-original-cru-cl-v--2-0-data" class="section level2">
 <h2 class="hasAnchor">
@@ -94,7 +94,7 @@
 <div id="stable-version" class="section level3">
 <h3 class="hasAnchor">
 <a href="#stable-version" class="anchor"></a>Stable version</h3>
-<p>A stable version of getCRUCLdata is available from <a href="https://cran.r-project.org/package=getCRUCLdata">CRAN</a>.</p>
+<p>A stable version of <em>getCRUCLdata</em> is available from <a href="https://cran.r-project.org/package=getCRUCLdata">CRAN</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"getCRUCLdata"</span>)</code></pre></div>
 </div>
 <div id="development-version" class="section level3">
@@ -110,7 +110,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 </div>
 <div id="using-getcrucldata" class="section level2">
 <h2 class="hasAnchor">
-<a href="#using-getcrucldata" class="anchor"></a>Using <code>getCRUCLdata</code>
+<a href="#using-getcrucldata" class="anchor"></a>Using <em>getCRUCLdata</em>
 </h2>
 <div id="creating-tidy-data-frames-for-use-in-r" class="section level3">
 <h3 class="hasAnchor">
@@ -177,7 +177,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <div id="creating-raster-stacks-for-use-in-r-and-saving-for-use-in-another-gis" class="section level3">
 <h3 class="hasAnchor">
 <a href="#creating-raster-stacks-for-use-in-r-and-saving-for-use-in-another-gis" class="anchor"></a>Creating raster stacks for use in R and saving for use in another GIS</h3>
-<p>For working with spatial data,<code><a href="reference/getCRUCLdata.html">getCRUCLdata()</a></code> provides a function that create lists of <a href="https://CRAN.R-project.org/package=raster">raster</a> stacks of the data.</p>
+<p>For working with spatial data, <em>getCRUCLdata</em> provides a function that create lists of <a href="https://CRAN.R-project.org/package=raster">raster</a> stacks of the data.</p>
 <p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions provide similar functionality to <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code>, but rather than returning a tidy data frame, it returns a list of <a href="https://CRAN.R-project.org/package=raster">raster</a> stack objects for use in an R session.</p>
 <p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> function automates the download process and creates a raster stack object of the CRU CL v. 2.0 climatology elements. Illustrated here is creating a tidy data frame of all CRU CL v. 2.0 climatology elements available.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CRU_stack &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,
@@ -290,7 +290,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <ul>
 <li>Please <a href="https://github.com/adamhsparks/getCRUCLdata/issues">report any issues or bugs</a>.</li>
 <li>License: MIT</li>
-<li>Get citation information for <code>getCRUCLdata</code> in R typing <code>citation(package = "getCRUCLdata")</code>
+<li>Get citation information for <em>getCRUCLdata</em> in R typing <code>citation(package = "getCRUCLdata")</code>
 </li>
 <li>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</li>
 </ul>

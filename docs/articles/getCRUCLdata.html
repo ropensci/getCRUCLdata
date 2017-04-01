@@ -60,7 +60,7 @@
       <h1>getCRUCLdata</h1>
                         <h4 class="author">Adam H. Sparks</h4>
             
-            <h4 class="date">2017-03-31</h4>
+            <h4 class="date">2017-04-01</h4>
           </div>
 
     
@@ -68,14 +68,14 @@
 <div class="contents">
 <div id="introduction-to-getcrucldata" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction-to-getcrucldata" class="anchor"></a>Introduction to <code>getCRUCLdata</code>
+<a href="#introduction-to-getcrucldata" class="anchor"></a>Introduction to <em>getCRUCLdata</em>
 </h1>
-<p>The <code>getCRUCLdata</code> package provides functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data frame</a> or a list of <a href="https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf">raster stack</a> objects for use in an R session.</p>
+<p>The <em>getCRUCLdata</em> package provides functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data frame</a> or a list of <a href="https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf">raster stack</a> objects for use in an R session.</p>
 <p>CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <a href="https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt" class="uri">https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a>.</p>
 </div>
 <div id="using-getcrucldata" class="section level1">
 <h1 class="hasAnchor">
-<a href="#using-getcrucldata" class="anchor"></a>Using <code>getCRUCLdata</code>
+<a href="#using-getcrucldata" class="anchor"></a>Using <em>getCRUCLdata</em>
 </h1>
 <p>Logical arguments are used to specify the climatology elements to retrieve and parse. The <code>create_CRU_*()</code> functions require an additional parameter, <code>dsn</code> to be provided that states where the files are locally stored. The arguments for selecting the climatology elements for importing are:</p>
 <ul>
@@ -123,7 +123,7 @@
 <a href="#creating-tidy-data-frames-for-use-in-r" class="anchor"></a>Creating tidy data frames for use in R</h2>
 <p>There are two methods that this package provides for creating tidy data frames of the CRU CL v. 2.0 climate data as a <a href="https://github.com/tidyverse/tibble"><code>tibble</code></a>. Depending on your needs you may need to use <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code>, which will create a tidy data frame of the climate elements from <em>locally available</em> files. Or you can use <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code>, which will automate the fetching and importing of the data files into R in one step.</p>
 <p>The <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> function is useful if you have network issues that interfere with R downloading the data files themselves from the CRU website or if you frequently work with these data and do not wish to download them every time they are needed.</p>
-<p>The <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> function automates the download process and creates tidy data frames of the CRU CL v. 2.0 climatology elements. Files downloaded using this method may be cached in the users’ local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future. In order to take advantage of the cahced data, you must use the <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> function again in the future. The functionality is modelled after the <code>raster::getData()</code> function that will not download files that already exist in the working directory, however in this case the function is portable and it will work for any working directory. That is, if you have cached the data and you use <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> again, it will use the cached data no matter what working directory you are in. Using <code>getCRUCLdata</code> ———–</p>
+<p>The <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> function automates the download process and creates tidy data frames of the CRU CL v. 2.0 climatology elements. Files downloaded using this method may be cached in the users’ local space for later use or stored in a temporary directory and deleted when the R session is closed and not saved. Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future. In order to take advantage of the cahced data, you must use the <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> function again in the future. The functionality is modelled after the <code>raster::getData()</code> function that will not download files that already exist in the working directory, however in this case the function is portable and it will work for any working directory. That is, if you have cached the data and you use <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> again, it will use the cached data no matter what working directory you are in. Using <em>getCRUCLdata</em> ———–</p>
 <div id="creating-tidy-data-frames-for-use-in-r-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#creating-tidy-data-frames-for-use-in-r-1" class="anchor"></a>Creating tidy data frames for use in R</h3>
@@ -279,9 +279,9 @@ A high-resolution data set of surface climate over global land areas Climate Res
         <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#introduction-to-getcrucldata">Introduction to <code>getCRUCLdata</code></a></li>
+<li><a href="#introduction-to-getcrucldata">Introduction to <em>getCRUCLdata</em></a></li>
       <li>
-<a href="#using-getcrucldata">Using <code>getCRUCLdata</code></a><ul class="nav nav-pills nav-stacked">
+<a href="#using-getcrucldata">Using <em>getCRUCLdata</em></a><ul class="nav nav-pills nav-stacked">
 <li><a href="#creating-tidy-data-frames-for-use-in-r">Creating tidy data frames for use in R</a></li>
       <li><a href="#advanced-usage">Advanced usage</a></li>
       </ul>
