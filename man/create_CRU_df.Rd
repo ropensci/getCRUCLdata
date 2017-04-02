@@ -48,6 +48,10 @@ the data frame? Defaults to FALSE.}
 
 \item{dsn}{Local file path where CRU CL v.2.0 .dat.gz files are located.}
 }
+\value{
+A tidy data frame of CRU CL v. 2.0 climatology elements as a
+\code{\link[tibble]{tibble}} object
+}
 \description{
 This function automates importing CRU CL v.2.0 climatology data
 into R and creates a tidy data frame of the data.  If requested, minimum and

@@ -52,6 +52,10 @@ If \code{FALSE}, the downloaded files are removed when R session is closed.
 To take advantage of cached files in future sessions, use \code{cache = TRUE}
 after the initial download and caching.  Defaults to \code{FALSE}.}
 }
+\value{
+A \code{\link[base]{list}} of \code{\link{raster}}
+\code{\link[raster]{stack}} objects of CRU CL v. 2.0 climatology elements
+}
 \description{
 This function automates downloading and importing CRU CL v. 2.0
 climatology data into R and creates a list of raster stacks of the data.  If

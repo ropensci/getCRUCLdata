@@ -68,6 +68,9 @@
 #' \code{\link{get_CRU_df}}
 #' \code{\link{get_CRU_stack}}
 #'
+#' @return A tidy data frame of CRU CL v. 2.0 climatology elements as a
+#' \code{\link[tibble]{tibble}} object
+#'
 #' @note
 #' This package automatically converts elevation values from kilometres to
 #' metres.

@@ -52,6 +52,10 @@ If \code{FALSE}, the downloaded files are removed when R session is closed.
 To take advantage of cached files in future sessions, use \code{cache = TRUE}
 after the initial download and caching.  Defaults to \code{FALSE}.}
 }
+\value{
+A tidy data frame of CRU CL v. 2.0 climatology elements as a
+\code{\link[tibble]{tibble}} object
+}
 \description{
 This function automates downloading and importing CRU CL v. 2.0
 climatology data into R and creates a tidy data frame of the data.  If
