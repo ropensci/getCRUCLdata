@@ -74,6 +74,9 @@
 #' \code{\link{get_CRU_stack}}
 #' \code{\link{manage_CRU_cache}}
 #'
+#' @return A \code{\link[base]{list}} of \code{\link{raster}}
+#' \code{\link[raster]{stack}} objects of CRU CL v. 2.0 climatology elements
+#'
 #' @note
 #' This package automatically converts elevation values from kilometres to
 #' metres.

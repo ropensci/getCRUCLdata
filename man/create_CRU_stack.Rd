@@ -49,6 +49,10 @@ from local files? Defaults to FALSE.}
 
 \item{dsn}{Local file path where CRU CL v. 2.0 .dat.gz files are located.}
 }
+\value{
+A \code{\link[base]{list}} of \code{\link{raster}}
+\code{\link[raster]{stack}} objects of CRU CL v. 2.0 climatology elements
+}
 \description{
 This function automates importing CRU CL v. 2.0 climatology data into
 R from locally available data files and creates a list of raster stacks of the
