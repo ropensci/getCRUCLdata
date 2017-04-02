@@ -48,6 +48,9 @@
 #' # Delete all files in cache
 #' CRU_cache_delete_all()
 #' }
+#'
+#' @author Scott Chamberlain, \email{scott@ropensci.org}
+#'
 #' @note
 #' These functions were adapted from ROpenSci's \code{ccafs::cc_cache}
 #'

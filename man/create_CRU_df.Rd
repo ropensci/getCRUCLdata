@@ -96,3 +96,6 @@ CRU_pre_tmp <- create_CRU_df(pre = TRUE, tmp = TRUE, dsn = "~/Downloads")
 \seealso{
 \code{\link{get_CRU_df}}
 }
+\author{
+Adam H Sparks, \email{adamhsparks@gmail.com}
+}

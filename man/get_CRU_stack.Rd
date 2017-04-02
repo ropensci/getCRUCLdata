@@ -107,3 +107,6 @@ CRU_tmp <- get_CRU_stack(tmp = TRUE, tmn = TRUE, tmx = TRUE, cache = TRUE)
 \code{\link{create_CRU_stack}}
 \code{\link{manage_CRU_cache}}
 }
+\author{
+Adam H. Sparks, \email{adamhsparks@gmail.com}
+}
