@@ -39,7 +39,7 @@ We files cache using \code{\link[rappdirs]{user_cache_dir}}, find your
 cache folder by executing \code{rappdirs::user_cache_dir("getCRUCLdata")}
 }
 \note{
-These functions were adapted from ROpenSci's \code{ccafs::cc_cache}
+These functions were adapted from ROpenSci's \code{\link[ccafs]{cc_cache}}.
 }
 \section{Functions}{
 
@@ -75,5 +75,6 @@ CRU_cache_delete_all()
 
 }
 \author{
-Scott Chamberlain, \email{scott@ropensci.org}
+Original: Scott Chamberlain, \email{scott@ropensci.org}, adapted for
+use in this package by Adam H Sparks, \email{adamhsparks@gmail.com}
 }
