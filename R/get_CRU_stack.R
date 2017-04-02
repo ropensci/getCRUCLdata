@@ -25,8 +25,6 @@
 #'For more information see the description of the data provided by CRU,
 #'\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 #'
-#' @details This function generates a raster stack object in R with the
-#' following possible fields as specified by the user:
 #' @param pre Logical.  Fetch precipitation (millimetres/month) from server and
 #' return in the data frame?  Defaults to \code{FALSE}.
 #' @param pre_cv Logical.  Fetch cv of precipitation (percent) from server and
@@ -70,8 +68,7 @@
 #' CRU_tmp <- get_CRU_stack(tmp = TRUE, tmn = TRUE, tmx = TRUE, cache = TRUE)
 #'}
 #' @seealso
-#' \code{\link{create_CRU_df}}
-#' \code{\link{get_CRU_stack}}
+#' \code{\link{create_CRU_stack}}
 #' \code{\link{manage_CRU_cache}}
 #'
 #' @return A \code{\link[base]{list}} of \code{\link{raster}}

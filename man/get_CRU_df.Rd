@@ -82,10 +82,6 @@ Nomenclature and units from readme.txt:
 For more information see the description of the data provided by CRU,
 \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 }
-\details{
-This function generates a data.frame object in R with the following
-possible fields as specified by the user:
-}
 \note{
 This package automatically converts elevation values from kilometres to
 metres.
@@ -105,6 +101,5 @@ CRU_tmp <- get_CRU_df(tmp = TRUE, tmn = TRUE, tmx = TRUE, cache = TRUE)
 }
 \seealso{
 \code{\link{create_CRU_stack}}
-\code{\link{get_CRU_stack}}
 \code{\link{manage_CRU_cache}}
 }

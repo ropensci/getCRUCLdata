@@ -54,15 +54,15 @@ A \code{\link[base]{list}} of \code{\link{raster}}
 \code{\link[raster]{stack}} objects of CRU CL v. 2.0 climatology elements
 }
 \description{
-This function automates importing CRU CL v. 2.0 climatology data into
-R from locally available data files and creates a list of raster stacks of the
-data.  If requested, minimum and maximum temperature may also be automatically
-calculated as described in the data readme.txt file.  This function can be
-useful if you have network connection issues that mean automated downloading
-of the files using R does not work properly.  In this instance it is
-recommended to use an FTP client (e.g., FileZilla), web browser or command
-line command (e.g., wget or curl) to download the files, save locally and use
-this function to import the data into R.
+This function automates importing CRU CL v. 2.0 climatology data
+into R from locally available data files and creates a list of raster stacks
+of the data.  If requested, minimum and maximum temperature may also be
+automatically calculated as described in the data readme.txt file.  This
+function can be useful if you have network connection issues that mean
+automated downloading of the files using R does not work properly.  In this
+instance it is recommended to use an FTP client (e.g., FileZilla), web browser
+or command line command (e.g., wget or curl) to download the files, save
+locally and use this function to import the data into R.
 
 Nomenclature and units from readme.txt:
 \describe{
@@ -82,11 +82,6 @@ Nomenclature and units from readme.txt:
 For more information see the description of the data provided by CRU,
 \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 }
-\details{
-This function generates a raster stack object in R from local files
-already downloaded via a web browser or FTP. The user will need to specify
-the following options.
-}
 \note{
 This package automatically converts elevation values from kilometres to
 metres.
@@ -105,5 +100,4 @@ CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE, dsn = "~/Downloads")
 }
 \seealso{
 \code{\link{get_CRU_stack}}
-\code{\link{get_CRU_df}}
 }
