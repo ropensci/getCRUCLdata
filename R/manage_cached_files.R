@@ -2,9 +2,9 @@
 #'
 #' @description The user is given an option when downloading the CRU CL v. 2.0
 #' data to cache or not to cache the data for later use.  If
-#' \code{cache == TRUE}, then the CRU CL v. 2.0 data files are saved in a directory
-#' in the users' home filespace.  These functions provide facilities for
-#' interacting and managing these files.
+#' \code{cache == TRUE}, then the CRU CL v. 2.0 data files are saved in a
+#' directory in the users' home filespace.  These functions provide facilities
+#' for interacting and managing these files.
 #'
 #' @export
 #' @name manage_CRU_cache
