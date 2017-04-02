@@ -49,10 +49,11 @@
 #' CRU_cache_delete_all()
 #' }
 #'
-#' @author Scott Chamberlain, \email{scott@ropensci.org}
+#' @author Original: Scott Chamberlain, \email{scott@ropensci.org}, adapted for
+#' use in this package by Adam H Sparks, \email{adamhsparks@gmail.com}
 #'
 #' @note
-#' These functions were adapted from ROpenSci's \code{ccafs::cc_cache}
+#' These functions were adapted from ROpenSci's \code{\link[ccafs]{cc_cache}}.
 #'
 #' @export
 #' @rdname manage_CRU_cache
