@@ -68,6 +68,8 @@
 #' @return A \code{\link[base]{list}} of \code{\link{raster}}
 #' \code{\link[raster]{stack}} objects of CRU CL v. 2.0 climatology elements
 #'
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com}
+#'
 #' @note
 #' This package automatically converts elevation values from kilometres to
 #' metres.

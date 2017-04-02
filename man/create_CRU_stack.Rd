@@ -101,3 +101,6 @@ CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE, dsn = "~/Downloads")
 \seealso{
 \code{\link{get_CRU_stack}}
 }
+\author{
+Adam H Sparks, \email{adamhsparks@gmail.com}
+}

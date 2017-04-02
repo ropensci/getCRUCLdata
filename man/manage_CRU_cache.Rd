@@ -72,4 +72,8 @@ CRU_cache_delete(files = CRU_cache_list()[1])
 # Delete all files in cache
 CRU_cache_delete_all()
 }
+
+}
+\author{
+Scott Chamberlain, \email{scott@ropensci.org}
 }
