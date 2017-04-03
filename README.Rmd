@@ -129,7 +129,7 @@ ggplot(data = t, aes(x = lon, y = lat)) +
   facet_wrap(~ month, nrow = 4)
 ```
 
-![Plot of global mean monthly temperatures 1961-1990](vignettes/README-unnamed-chunk-6-1.png)
+![Plot of global mean monthly temperatures 1961-1990](man/figures/README-unnamed-chunk-6-1.png)
 
 We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.
 
@@ -141,7 +141,7 @@ ggplot(data = t, aes(x = month, y = tmp)) +
        subtitle = "Excludes Antarctica")
 ```
 
-![Violin plot of global mean temperatures 1961-1990](vignettes/README-unnamed-chunk-7-1.png)
+![Violin plot of global mean temperatures 1961-1990](man/figures/README-unnamed-chunk-7-1.png)
 
 #### Saving the tidy data frame as a CSV (comma separated values file) locally
 
@@ -193,7 +193,7 @@ library(raster)
 plot(tmn_tmx[[1]])
 ```
 
-![Plot of raster layers from minimum temperature stack](vignettes/README-unnamed-chunk-10-1.png)
+![Plot of raster layers from minimum temperature stack](man/figures/README-unnamed-chunk-10-1.png)
 
 To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing `[[2]]` as before but append a `$jul` to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the `tmn_tmx` list, which is `tmx` and from that raster stack, plot only the layer for July.
 
@@ -201,7 +201,7 @@ To plot only one month from the stack is also possible. Here we plot maximum tem
 plot(tmn_tmx[[2]]$jul)
 ```
 
-![Plot of maximum temperatures for July](vignettes/README-unnamed-chunk-11-1.png)
+![Plot of maximum temperatures for July](man/figures/README-unnamed-chunk-11-1.png)
 
 
 #### Saving raster objects to local disk
