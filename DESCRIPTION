@@ -38,6 +38,6 @@ Suggests:
     roxygen2 (>= 6.0.1),
     testthat,
     viridis
-URL: https://github.com/adamhsparks/getCRUCLdata
-BugReports: https://github.com/adamhsparks/getCRUCLdata/issues
+URL: https://github.com/ropensci/getCRUCLdata
+BugReports: https://github.com/ropensci/getCRUCLdata/issues
 VignetteBuilder: knitr

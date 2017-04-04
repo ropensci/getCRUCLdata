@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/adamhsparks/getCRUCLdata.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/adamhsparks/getCRUCLdata) [![Coverage Status](https://img.shields.io/codecov/c/github/adamhsparks/getCRUCLdata/master.svg)](https://codecov.io/github/adamhsparks/getCRUCLdata?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app) [![Research software impact](http://depsy.org/api/package/cran/getCRUCLdata/badge.svg)](http://depsy.org/package/r/getCRUCLdata) [![DOI](https://zenodo.org/badge/71445587.svg)](https://zenodo.org/badge/latestdoi/71445587)
+[![Travis-CI Build Status](https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/getCRUCLdata) [![Coverage Status](https://img.shields.io/codecov/c/github/ropensci/getCRUCLdata/master.svg)](https://codecov.io/github/ropensci/getCRUCLdata?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app) [![Research software impact](http://depsy.org/api/package/cran/getCRUCLdata/badge.svg)](http://depsy.org/package/r/getCRUCLdata) [![DOI](https://zenodo.org/badge/71445587.svg)](https://zenodo.org/badge/latestdoi/71445587)
 
 getCRUCLdata
 ============
@@ -47,7 +47,7 @@ if (!require("devtools")) {
   install.packages("devtools")
 }
 
-devtools::install_github("adamhsparks/getCRUCLdata", build_vignettes = TRUE)
+devtools::install_github("ropensci/getCRUCLdata", build_vignettes = TRUE)
 ```
 
 Using *getCRUCLdata*
@@ -225,7 +225,7 @@ t <- create_CRU_df(tmp = TRUE, dsn = "~/Downloads")
 Documentation
 =============
 
-For complete documentation see the package website: <https://adamhsparks.github.io/getCRUCLdata/>
+For complete documentation see the package website: <https://ropensci.github.io/getCRUCLdata/>
 
 Meta
 ====
@@ -251,7 +251,7 @@ Contributors
 Other
 -----
 
--   Please [report any issues or bugs](https://github.com/adamhsparks/getCRUCLdata/issues).
+-   Please [report any issues or bugs](https://github.com/ropensci/getCRUCLdata/issues).
 -   License: MIT
 -   Get citation information for *getCRUCLdata* in R typing `citation(package = "getCRUCLdata")`
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

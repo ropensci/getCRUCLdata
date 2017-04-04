@@ -1,8 +1,8 @@
 note <- sprintf("R package version %s", meta$Version)
 
 bibentry(bibtype = "Manual",
-         title = "{getCRUCLdata}: Use and explore CRU CL v. 2.0 Climatology Elements in R",
+         title = "{getCRUCLdata}: Use and Explore CRU CL v. 2.0 Climatology Elements in R",
          author = c(person("Adam", "Sparks")),
          year = 2017,
          note = note,
-         url = "https://github.com/adamhsparks/getCRUCLdata")
+         url = "https://github.com/ropensci/getCRUCLdata")
