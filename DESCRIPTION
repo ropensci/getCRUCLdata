@@ -1,6 +1,6 @@
 Package: getCRUCLdata
 Type: Package
-Title: Use and explore CRU CL v. 2.0 Climatology Elements in R
+Title: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 Version: 0.1.5
 Authors@R: person(given = "Adam", family = "Sparks", 
                   email = "adamhsparks@gmail.com", role = c("aut", "cre"))
@@ -38,6 +38,6 @@ Suggests:
     roxygen2 (>= 6.0.1),
     testthat,
     viridis
-URL: https://github.com/adamhsparks/getCRUCLdata
-BugReports: https://github.com/adamhsparks/getCRUCLdata/issues
+URL: https://github.com/ropensci/getCRUCLdata
+BugReports: https://github.com/ropensci/getCRUCLdata/issues
 VignetteBuilder: knitr

@@ -3,7 +3,7 @@
 #' @description The user is given an option when downloading the CRU CL v. 2.0
 #' data to cache or not to cache the data for later use.  If
 #' \code{cache == TRUE}, then the CRU CL v. 2.0 data files are saved in a
-#' directory in the users' home filespace.  These functions provide facilities
+#' directory in the users' home file space.  These functions provide facilities
 #' for interacting and managing these files.
 #'
 #' @export
@@ -53,7 +53,7 @@
 #' use in this package by Adam H Sparks, \email{adamhsparks@gmail.com}
 #'
 #' @note
-#' These functions were adapted from ROpenSci's \code{\link[ccafs]{cc_cache}}.
+#' These functions were adapted from rOpenSci's \code{\link[ccafs]{cc_cache}}.
 #'
 #' @export
 #' @rdname manage_CRU_cache

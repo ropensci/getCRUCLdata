@@ -26,7 +26,7 @@ CRU_cache_details(files = NULL)
 The user is given an option when downloading the CRU CL v. 2.0
 data to cache or not to cache the data for later use.  If
 \code{cache == TRUE}, then the CRU CL v. 2.0 data files are saved in a
-directory in the users' home filespace.  These functions provide facilities
+directory in the users' home file space.  These functions provide facilities
 for interacting and managing these files.
 }
 \details{
@@ -39,7 +39,7 @@ We files cache using \code{\link[rappdirs]{user_cache_dir}}, find your
 cache folder by executing \code{rappdirs::user_cache_dir("getCRUCLdata")}
 }
 \note{
-These functions were adapted from ROpenSci's \code{\link[ccafs]{cc_cache}}.
+These functions were adapted from rOpenSci's \code{\link[ccafs]{cc_cache}}.
 }
 \section{Functions}{
 

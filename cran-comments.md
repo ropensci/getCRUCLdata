@@ -1,13 +1,13 @@
-## Test environments
-* local macOS install, R 3.3.2
-* Windows (on Appveyor), R 3.3.2
-* win-builder (devel and release)
-* Linux (on Travis), (devel and release)
-* local Linux (Ubuntu 16.04) install, R 3.3.2
+## Test environments  
 
-## R CMD check results
+- OS X 10.11.6 (local install), R version 3.3.3 (2017-03-06)
+- Ubuntu 14.04.5 LTS (on travis-ci), R version 3.3.3 (2017-03-06)
+- Windows (on win-builder), R version 3.3.3 (2017-03-06)
+- Windows (on win-builder), R version 3.4.0 alpha (2017-04-02 r72473)
 
-0 errors | 0 warnings | 1 note
+## R CMD check results  
+
+There were no ERRORs or WARNINGs  
 
 ## Major Changes
 
