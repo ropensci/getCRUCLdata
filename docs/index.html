@@ -76,7 +76,7 @@
 <h1 class="hasAnchor">
 <a href="#introduction-to-getcrucldata" class="anchor"></a>Introduction to <em>getCRUCLdata</em>
 </h1>
-<p>The <em>getCRUCLdata</em> package provides functions that automate importing CRU CL2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data frame</a> or a list of <a href="https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf">raster stack</a> objects for use in an R session.</p>
+<p>The <em>getCRUCLdata</em> package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data frame</a> or a list of <a href="https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf">raster stack</a> objects for use in an R session.</p>
 <p>CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <a href="https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt" class="uri">https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a>.</p>
 <div id="changes-to-original-cru-cl-v--2-0-data" class="section level2">
 <h2 class="hasAnchor">
@@ -115,7 +115,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <div id="creating-tidy-data-frames-for-use-in-r" class="section level3">
 <h3 class="hasAnchor">
 <a href="#creating-tidy-data-frames-for-use-in-r" class="anchor"></a>Creating tidy data frames for use in R</h3>
-<p>The <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> function automates the download process and creates tidy data frames as a <a href="https://github.com/tidyverse/tibble"><code>tibble</code></a> of the CRU CL v. 2.0 climatology elements.</p>
+<p>The <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> function automates the download process and creates tidy data frames as a <a href="https://github.com/tidyverse/tibble"><em>tibble</em></a> of the CRU CL v. 2.0 climatology elements.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(getCRUCLdata)
 
 CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_df.html">get_CRU_df</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,
@@ -135,7 +135,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <div id="plotting-data-from-the-tidy-dataframe" class="section level4">
 <h4 class="hasAnchor">
 <a href="#plotting-data-from-the-tidy-dataframe" class="anchor"></a>Plotting data from the tidy dataframe</h4>
-<p>Now that we have the data, we can plot it easily using <a href="http://ggplot2.org"><code>ggplot2</code></a> and the fantastic <a href="https://CRAN.R-project.org/package=viridis"><code>viridis</code></a> package for the colour scale.</p>
+<p>Now that we have the data, we can plot it easily using <a href="http://ggplot2.org"><em>ggplot2</em></a> and the fantastic <a href="https://CRAN.R-project.org/package=viridis"><em>viridis</em></a> package for the colour scale.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"ggplot2"</span>)) {
   <span class="kw">install.packages</span>(ggplot2)
 }
@@ -145,7 +145,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 
 <span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(viridis)</code></pre></div>
-<p>Now that the required packages are installed and loaded, we can generate a figure of temperatures using <code>ggplot2</code> to map the 12 months.</p>
+<p>Now that the required packages are installed and loaded, we can generate a figure of temperatures using <em>ggplot2</em> to map the 12 months.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> tmp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">option =</span> <span class="st">"inferno"</span>) <span class="op">+</span>
@@ -165,10 +165,10 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <img src="reference/figures/README-unnamed-chunk-7-1.png" alt="Violin plot of global mean temperatures 1961-1990"><p class="caption">Violin plot of global mean temperatures 1961-1990</p>
 </div>
 </div>
-<div id="saving-the-tidy-data-frame-as-a-csv-comma-separated-values-file-locally" class="section level4">
+<div id="saving-the-tidy-tibble-as-a-csv-comma-separated-values-file-locally" class="section level4">
 <h4 class="hasAnchor">
-<a href="#saving-the-tidy-data-frame-as-a-csv-comma-separated-values-file-locally" class="anchor"></a>Saving the tidy data frame as a CSV (comma separated values file) locally</h4>
-<p>Save the resulting tidy data frame to local disk as a comma separated (CSV) file to local disk.</p>
+<a href="#saving-the-tidy-tibble-as-a-csv-comma-separated-values-file-locally" class="anchor"></a>Saving the tidy <code>tibble</code> as a CSV (comma separated values file) locally</h4>
+<p>Save the resulting tidy <code>tibble</code> to local disk as a comma separated (CSV) file to local disk.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
 
 <span class="kw">write_csv</span>(t, <span class="dt">path =</span> <span class="st">"~/CRU_tmp.csv"</span>)</code></pre></div>
@@ -177,9 +177,9 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <div id="creating-raster-stacks-for-use-in-r-and-saving-for-use-in-another-gis" class="section level3">
 <h3 class="hasAnchor">
 <a href="#creating-raster-stacks-for-use-in-r-and-saving-for-use-in-another-gis" class="anchor"></a>Creating raster stacks for use in R and saving for use in another GIS</h3>
-<p>For working with spatial data, <em>getCRUCLdata</em> provides a function that create lists of <a href="https://CRAN.R-project.org/package=raster">raster</a> stacks of the data.</p>
-<p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions provide similar functionality to <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code>, but rather than returning a tidy data frame, it returns a list of <a href="https://CRAN.R-project.org/package=raster">raster</a> stack objects for use in an R session.</p>
-<p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> function automates the download process and creates a raster stack object of the CRU CL v. 2.0 climatology elements. Illustrated here is creating a tidy data frame of all CRU CL v. 2.0 climatology elements available.</p>
+<p>For working with spatial data, <em>getCRUCLdata</em> provides a function that create lists of <a href="https://CRAN.R-project.org/package=raster"><em>raster</em></a> stacks of the data.</p>
+<p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions provide similar functionality to <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code>, but rather than returning a tidy data frame, it returns a list of <code>raster::stack()</code> objects for use in an R session.</p>
+<p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> function automates the download process and creates a <code>raster::stack()</code> object of the CRU CL v. 2.0 climatology elements. Illustrated here is creating a <code>raster::stack()</code> of all CRU CL v. 2.0 climatology elements available.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CRU_stack &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,
                            <span class="dt">pre_cv =</span> <span class="ot">TRUE</span>,
                            <span class="dt">rd0 =</span> <span class="ot">TRUE</span>,
@@ -197,14 +197,14 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <div id="plotting-raster-stacks-of-tmin-and-tmax" class="section level4">
 <h4 class="hasAnchor">
 <a href="#plotting-raster-stacks-of-tmin-and-tmax" class="anchor"></a>Plotting raster stacks of tmin and tmax</h4>
-<p>Because the stacks are in a list, we need to access each element of the list individually to plot them, that’s what the <code>[[1]]</code> or <code>[[2]]</code> is, the first or second element of the list. Here using <code>[[1]]</code> we will plot the monthly average minimum temperature for all twelve months.</p>
+<p>Because the stacks are in a <code>list()</code>, we need to access each element of the list individually to plot them, that’s what the <code>[[1]]</code> or <code>[[2]]</code> is, the first or second element of the list. Here using <code>[[1]]</code> we will plot the monthly average minimum temperature for all twelve months.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
 <span class="kw">plot</span>(tmn_tmx[[<span class="dv">1</span>]])</code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
 </div>
-<p>To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing <code>[[2]]</code> as before but append a <code>$jul</code> to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the <code>tmn_tmx</code> list, which is <code>tmx</code> and from that raster stack, plot only the layer for July.</p>
+<p>To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing <code>[[2]]</code> as before but append a <code>$jul</code> to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the <code>tmn_tmx</code> list, which is <code>tmx</code> and from that <code>raster::stack()</code>, plot only the raster layer for July.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(tmn_tmx[[<span class="dv">2</span>]]<span class="op">$</span>jul)</code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-11-1.png" alt="Plot of maximum temperatures for July"><p class="caption">Plot of maximum temperatures for July</p>
@@ -213,7 +213,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <div id="saving-raster-objects-to-local-disk" class="section level4">
 <h4 class="hasAnchor">
 <a href="#saving-raster-objects-to-local-disk" class="anchor"></a>Saving raster objects to local disk</h4>
-<p>The raster stack objects can be saved to disk as geotiff files (others are available, see help for <code>writeRaster</code> and <code>writeFormats</code> for more options) in the <code>Data</code> directory with a tmn or tmx prefix to the month for a file name.</p>
+<p>The raster stack objects can be saved to disk as geotiff files (others are available, see help for <code>writeRaster()</code> and <code>writeFormats()</code> for more options) in the <code>Data</code> directory with a tmn or tmx prefix to the month for a file name.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
 <span class="kw">dir.create</span>(<span class="kw">file.path</span>(<span class="st">"~/Data"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
@@ -238,10 +238,9 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <div id="downloading-files-outside-of-r-using-another-ftp-program" class="section level3">
 <h3 class="hasAnchor">
 <a href="#downloading-files-outside-of-r-using-another-ftp-program" class="anchor"></a>Downloading files outside of R using another FTP program</h3>
-<p>A second set of functions is provided for users that may have connectivity issues or simply wish to use something other than R to download the data files. You may also wish to use these if you want to download the data and specify where it is stored rather than using the <code>cache</code> functionality of <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code>.</p>
-<p>The <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="reference/create_CRU_stack.html">create_CRU_stack()</a></code> functions only work with files that have already been downloaded. In this instance it is recommended to use an FTP client (e.g., <a href="https://filezilla-project.org">FileZilla</a>), a web browser* or command line command (e.g., <a href="https://www.gnu.org/software/wget/">wget</a> or <a href="https://curl.haxx.se">cURL</a>) to download the files, save locally and use this function to import the data into R. These functions automate importing CRU CL v.2.0 climatology data into R and creates a tidy data frame or list of raster stack objects of local data. If requested, minimum and maximum temperature may also be automatically calculated as described in the CRU CL v. 2.0 data’s readme.txt file.</p>
+<p>A second set of functions, <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="reference/create_CRU_stack.html">create_CRU_stack()</a></code>, is provided for users that may have connectivity issues or simply wish to use something other than R to download the data files. You may also wish to use these if you want to download the data and specify where it is stored rather than using the <code>cache</code> functionality of <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code>.</p>
+<p>The <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="reference/create_CRU_stack.html">create_CRU_stack()</a></code> functions work in the same way as <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions with only one major difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import. That is, the CRU CL v. 2.0 data files <em>must</em> be downloaded prior to the use of these functions using a program external to R, e.g., FileZilla or some other FTP program. In this instance it is recommended to use an FTP client (e.g., <a href="https://filezilla-project.org">FileZilla</a>), a web browser* or command line command (e.g., <a href="https://www.gnu.org/software/wget/">wget</a> or <a href="https://curl.haxx.se">cURL</a>) to download the files, save locally and use one of these functions to import the data into R and generate your desired object to work with.</p>
 <p>*Beware, if using Safari, macOS will automatically unzip the files. This will cause the functions in R to fail as they expect a gzipped file.</p>
-<p>The <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> function works in the same way as <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> with only one minor difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import. These files <em>must</em> be downloaded prior to the use of this function using a program external to R, e.g., FileZilla or some other FTP program.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>, <span class="dt">dsn =</span> <span class="st">"~/Downloads"</span>)</code></pre></div>
 <hr>
 </div>
@@ -294,6 +293,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 </li>
 <li>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</li>
 </ul>
+<p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/github_footer.png" alt="ropensci_footer"></a></p>
 </div>
 </div>
 </div>
