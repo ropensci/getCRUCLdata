@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/71445587.svg)](https://zenodo.org/badge/latestdoi/71445587)
 
 # getCRUCLdata
-## Use and explore CRU CL v. 2.0 Climatology Elements in R
+## Use and Explore CRU CL v. 2.0 Climatology Elements in R
 
 Author/Maintainer: Adam Sparks
 

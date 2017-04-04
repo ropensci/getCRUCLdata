@@ -5,7 +5,7 @@
 getCRUCLdata
 ============
 
-Use and explore CRU CL v. 2.0 Climatology Elements in R
+Use and Explore CRU CL v. 2.0 Climatology Elements in R
 -------------------------------------------------------
 
 Author/Maintainer: Adam Sparks
