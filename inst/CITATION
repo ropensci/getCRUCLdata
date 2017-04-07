@@ -4,7 +4,7 @@ citEntry(
   entry = "Article",
   author = personList(as.person("Adam H Sparks")),
   title = "{getCRUCLdata}: Use and Explore {CRU} {CL} v. 2.0 Climatology Elements in R",
-  doi = "DOI: 10.21105/joss.00230",
+  doi = "10.21105/joss.00230",
   year = 2017,
   month = "apr",
   publisher = "The Open Journal",
