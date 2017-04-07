@@ -1,8 +1,21 @@
-note <- sprintf("R package version %s", meta$Version)
+citHeader("To cite getCRUCLdata in publications, please use:")
 
-bibentry(bibtype = "Manual",
-         title = "{getCRUCLdata}: Use and Explore CRU CL v. 2.0 Climatology Elements in R",
-         author = c(person("Adam", "Sparks")),
-         year = 2017,
-         note = note,
-         url = "https://github.com/ropensci/getCRUCLdata")
+citEntry(
+  entry = "Article",
+  author = personList(as.person("Adam H Sparks")),
+  title = "{getCRUCLdata}: Use and Explore {CRU} {CL} v. 2.0 Climatology Elements in R",
+  doi = "DOI: 10.21105/joss.00230",
+  year = 2017,
+  month = "apr",
+  publisher = "The Open Journal",
+  volume = 2,
+  number = 12,
+  journal = "The Journal of Open Source Software",
+  url = "https://dx.doi.org/10.21105/joss.00230",
+
+  textVersion = paste("Adam H Sparks.",
+        "getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R.",
+        "The Journal of Open Source Software, 2(12).",
+        "DOI: 10.21105/joss.00230.",
+        "URL: https://dx.doi.org/10.21105/joss.00230")
+)
