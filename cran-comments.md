@@ -3,7 +3,7 @@
 - OS X 10.11.6 (local install), R version 3.3.3 (2017-03-06)
 - Ubuntu 14.04.5 LTS (on travis-ci), R version 3.3.3 (2017-03-06)
 - Windows (on win-builder), R version 3.3.3 (2017-03-06)
-- Windows (on win-builder), R version 3.4.0 alpha (2017-04-02 r72473)
+- Windows (on win-builder), R version 3.4.0 alpha (2017-04-04 r72488)
 
 ## R CMD check results  
 
