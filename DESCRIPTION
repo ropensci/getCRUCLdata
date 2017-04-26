@@ -33,7 +33,9 @@ ByteCompile: TRUE
 Suggests:
     covr,
     ggplot2,
+    GSODR,
     knitr,
+    readr,
     rmarkdown,
     roxygen2 (>= 6.0.1),
     testthat,
