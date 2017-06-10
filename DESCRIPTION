@@ -34,7 +34,6 @@ ByteCompile: TRUE
 Suggests:
     covr,
     ggplot2,
-    GSODR,
     knitr,
     readr,
     rmarkdown,
