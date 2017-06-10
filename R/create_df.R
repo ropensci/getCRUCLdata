@@ -47,18 +47,16 @@ create_df <- function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
   return(tibble::as_tibble(CRU_df))
 }
 
-#' @importFrom dplyr %>%
 #' @noRd
 .tidy_df <- function(pre_cv, elv, tmn, tmx, .files) {
   # internal function to read files from cache directory and tidy them -------
 
   # create list of tidied data frames ----------------------------------------
   CRU_list <-
-    plyr::llply(
-      .data = .files,
-      .fun = .read_cache,
-      .pre_cv = pre_cv,
-      .progress = "text"
+    purrr::map(
+      .x = .files,
+      .f = .read_cache,
+      .pre_cv = pre_cv
     )
 
   # name the items in the list for the data that they contain ----------------
@@ -117,8 +115,8 @@ create_df <- function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
   if (ncol(x) == 14) {
     names(x) <- c("lat", "lon", month_names)
     x_df <-
-      x %>%
-      tidyr::gather(key = "month",
+      tidyr::gather(x,
+                    key = "month",
                     value = "wvar",
                     dplyr::everything(),
                     -c(lat, lon))
@@ -126,28 +124,27 @@ create_df <- function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
     if (isTRUE(.pre_cv)) {
       x_df1 <- x[, c(1:14)]
       names(x_df1) <- c("lat", "lon", month_names)
-      x_df1 <-
-        x_df1 %>%
-        tidyr::gather(key = "month",
-                      value = "pre",
-                      dplyr::everything(),
-                      -c(lat, lon))
+      x_df1 <- tidyr::gather(x_df1,
+                             key = "month",
+                             value = "pre",
+                             dplyr::everything(),
+                             -c(lat, lon))
       x_df2 <- x[, c(1:2, 15:26)]
       names(x_df2) <- c("lat", "lon", month_names)
-      x_df2 <-
-        x_df2 %>%
-        tidyr::gather(key = "month",
-                      value = "pre_cv",
-                      dplyr::everything(),
-                      -c(lat, lon))
+
+      x_df2 <- tidyr::gather(x_df2,
+                             key = "month",
+                             value = "pre_cv",
+                             dplyr::everything(),
+                             -c(lat, lon))
       x_df <-
         dplyr::left_join(x_df1, x_df2, by = c("lat", "lon", "month"))
     } else {
       x_df <- x[, c(1:14)]
       names(x_df) <- c("lat", "lon", month_names)
       x_df <-
-        x_df %>%
-        tidyr::gather(key = "month",
+        tidyr::gather(x_df,
+                      key = "month",
                       value = "pre",
                       dplyr::everything(),
                       -c(lat, lon))
