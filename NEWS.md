@@ -1,6 +1,7 @@
 # getCRUCLdata 0.1.6
 
 ## Minor Changes
+
   * Use _purrr_ in place of _plyr_ functions  
   * Update DESCRIPTION file to be more complete  
   * Remove use of "%>%" in functions and remove _magrittr_ import  
