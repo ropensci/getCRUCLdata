@@ -2,7 +2,7 @@
 # getCRUCLdata 0.1.6
 
 ## Minor Changes
-<<<<<<< HEAD
+
 - Use _purrr_ in place of _plyr_ functions
 
 - Update DESCRIPTION file to be more complete
@@ -14,12 +14,6 @@
 - Fix bugs in CITATION file
 
 - Format NEWS.md to be more markdown standards compliant
-=======
-
-  * Use _purrr_ in place of _plyr_ functions  
-  * Update DESCRIPTION file to be more complete  
-  * Remove use of "%>%" in functions and remove _magrittr_ import  
->>>>>>> origin/master
 
 # getCRUCLdata 0.1.5
 
