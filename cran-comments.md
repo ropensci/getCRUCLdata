@@ -1,6 +1,6 @@
 
-This is a new minor release that updates getCRUCLdata to use newer R resources
-and reduces the imports
+This is a new minor release that updates getCRUCLdata using R packages that are
+currently under development, removes one that is not and removes one import
 
 ## Test environments  
 
