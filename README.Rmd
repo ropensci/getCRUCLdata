@@ -273,7 +273,10 @@ Climate Research, 2000, Vol 21, pg 1-25
 
 ## Other
 
-* Please [report any issues or bugs](https://github.com/ropensci/getCRUCLdata/issues).
-* License: MIT
-* Get citation information for _getCRUCLdata_ in R typing `citation(package = "getCRUCLdata")`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+- Please [report any issues or bugs](https://github.com/ropensci/getCRUCLdata/issues).
+
+- License: MIT
+
+- Get citation information for _getCRUCLdata_ in R typing `citation(package = "getCRUCLdata")`
+
+- Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
