@@ -52,10 +52,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../articles/getCRUCLdata.html">Get Started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -123,8 +129,8 @@
 <a href="#minor-changes-1" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li><p>Improved documentation with examples on mapping and graphing and more detail regarding the data itself</p></li>
-<li><p>Change the method in which files are downloaded to use <code>httr::GET()</code></p></li>
-<li><p>Ingest data using <code>data.table::fread</code> to decrease the amount of time necessary to run the functions</p></li>
+<li><p>Change the method in which files are downloaded to use <code><a href="http://www.rdocumentation.org/packages/httr/topics/GET">httr::GET()</a></code></p></li>
+<li><p>Ingest data using <code><a href="http://www.rdocumentation.org/packages/data.table/topics/fread">data.table::fread</a></code> to decrease the amount of time necessary to run the functions</p></li>
 <li><p>Functions check to see if data file(s) have already been downloaded during current R session, if so data file(s) are not requested for download again</p></li>
 <li><p>Months are returned as a factor object in the tidy data frame</p></li>
 </ul>

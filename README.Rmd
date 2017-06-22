@@ -21,9 +21,7 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812)
 [![status](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15/status.svg)](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15)
 
-# getCRUCLdata
-
-## Use and Explore CRU CL v. 2.0 Climatology Elements in R
+# _getCRUCLdata_: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 
 Author/Maintainer: Adam Sparks
 
@@ -280,3 +278,5 @@ Climate Research, 2000, Vol 21, pg 1-25
 - Get citation information for _getCRUCLdata_ in R typing `citation(package = "getCRUCLdata")`
 
 - Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+[![ropensci](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
