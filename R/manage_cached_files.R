@@ -69,10 +69,10 @@ CRU_cache_delete <- function(files, force = TRUE) {
   cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
   if (!all(file.exists(cache_dir, "/", files))) {
     stop("These files don't exist or can't be found: \n",
-         strwrap(paste0(cache_dir, "/", files)[!file.exists(
-           paste0(cache_dir, "/", files))], indent = 5), call. = FALSE)
+         strwrap(file.path(cache_dir, files)[!file.exists(
+           file.path(cache_dir, files))], indent = 5), call. = FALSE)
   }
-  unlink(paste0(cache_dir, "/", files),
+  unlink(file.path(cache_dir, files),
          force = force, recursive = TRUE)
 }
 

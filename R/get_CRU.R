@@ -89,9 +89,8 @@
       tryCatch(
         for (f in 1:length(dl_files)) {
           httr::GET(url = dl_files[[f]],
-                    httr::write_disk(paste0(
-                      cache_dir, "/",
-                      basename(dl_files[[f]])
+                    httr::write_disk(file.path(
+                      cache_dir, basename(dl_files[[f]])
                     ),
                     overwrite = TRUE))
           utils::setTxtProgressBar(pb, f)
@@ -112,7 +111,7 @@
     files <- cache_dir_contents[cache_dir_contents %in% files]
 
     # add full file path to the files
-    files <- paste0(cache_dir, "/", files)
+    files <- file.path(cache_dir, files)
 
     # fill the space with a "\" for R, if one exists
     files <- gsub(" ", "\\ ", files, fixed = TRUE)
@@ -199,7 +198,7 @@
   }
 
   # add full file path to the files
-  files <- paste0(cache_dir, "/", files)
+  files <- file.path(cache_dir, files)
 
   # fill the space with a "\" for R, if one exists
   files <- gsub(" ", "\\ ", files, fixed = TRUE)

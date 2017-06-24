@@ -66,7 +66,7 @@
       <h1>getCRUCLdata</h1>
                         <h4 class="author">Adam H. Sparks</h4>
             
-            <h4 class="date">2017-06-22</h4>
+            <h4 class="date">2017-06-24</h4>
           </div>
 
     
@@ -231,13 +231,13 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge
 <div id="saving-raster-objects-to-local-disk" class="section level4">
 <h4 class="hasAnchor">
 <a href="#saving-raster-objects-to-local-disk" class="anchor"></a>Saving raster objects to local disk</h4>
-<p>The raster stack objects can be saved to disk as geotiff files (others are available, see help for <code>writeRaster()</code> and <code>writeFormats()</code> for more options) in the <code>Data</code> directory with a tmn or tmx prefix to the month for a file name.</p>
+<p>The raster stack objects can be saved to disk as geotiff files (others are available, see help for <code><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster()</a></code> and <code><a href="http://www.rdocumentation.org/packages/raster/topics/writeFormats">writeFormats()</a></code> for more options) in the <code>Data</code> directory with a tmn or tmx prefix to the month for a file name.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
 <span class="kw">dir.create</span>(<span class="kw">file.path</span>(<span class="st">"~/Data"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmn, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/Data/tmn_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmn, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmn_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmx, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmx, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
 </div>
 </div>
 <div id="advanced-usage" class="section level2">

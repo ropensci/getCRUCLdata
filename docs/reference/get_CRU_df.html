@@ -206,16 +206,17 @@ metres.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
-  <span class='co'># Download data and create a data frame of precipitation and temperature</span>
-  <span class='co'># without caching the data files</span>
-  <span class='no'>CRU_pre_tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_CRU_df</span>(<span class='kw'>pre</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tmp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'># Download data and create a data frame of precipitation and temperature</span>
+<span class='co'># without caching the data files</span>
+<span class='no'>CRU_pre_tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_CRU_df</span>(<span class='kw'>pre</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tmp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-  <span class='co'># Download temperature and calculate tmin and tmax, save the temperature file</span>
-  <span class='co'># for later use by caching</span>
+<span class='co'># Download temperature and calculate tmin and tmax, save the temperature file</span>
+<span class='co'># for later use by caching</span>
 
-  <span class='no'>CRU_tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_CRU_df</span>(<span class='kw'>tmp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tmn</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tmx</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-})</div></pre>
+<span class='no'>CRU_tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_CRU_df</span>(<span class='kw'>tmp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tmn</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tmx</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

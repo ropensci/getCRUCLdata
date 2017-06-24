@@ -467,7 +467,7 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
       7.6
     )
   )
-  gz1 <- gzfile(paste0(tempdir(), "/grid_10min_pre.gz"), "w")
+  gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.gz"), "w")
   utils::write.table(
     pre_data,
     file = gz1,
@@ -476,7 +476,7 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
   )
   close(gz1)
 
-  gz1 <- gzfile(paste0(tempdir(), "/grid_10min_tmp.dat.gz"), "w")
+  gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
   utils::write.table(
     tmp_data,
     file = gz1,

@@ -458,7 +458,7 @@ tmp_data <- rbind(
     7.6
   )
 )
-gz1 <- gzfile(paste0(tempdir(), "/grid_10min_pre.dat.gz"), "w")
+gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.dat.gz"), "w")
 utils::write.table(
   pre_data,
   file = gz1,
@@ -467,7 +467,7 @@ utils::write.table(
 )
 close(gz1)
 
-gz1 <- gzfile(paste0(tempdir(), "/grid_10min_tmp.dat.gz"), "w")
+gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
 utils::write.table(
   tmp_data,
   file = gz1,
@@ -550,7 +550,7 @@ test_that("Test that create_df creates a tidy dataframe of pre, tmp, elv", {
     )
   )
 
-  gz1 <- gzfile(paste0(tempdir(), "/grid_10min_elv.dat.gz"), "w")
+  gz1 <- gzfile(file.path(tempdir(), "grid_10min_elv.dat.gz"), "w")
   utils::write.table(
     elv_data,
     file = gz1,
