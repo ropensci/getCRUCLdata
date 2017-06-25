@@ -9,7 +9,7 @@
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -29,10 +29,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="/index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="articles/index.html">Articles</a>
+  <a href="articles/getCRUCLdata.html">Get Started</a>
+</li>
+<li>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li>
   <a href="news/index.html">News</a>
@@ -63,14 +69,10 @@
 <div class="contents">
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<div id="getcrucldata" class="section level1">
+<div id="getcrucldata-use-and-explore-cru-cl-v--2-0-climatology-elements-in-r" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#getcrucldata" class="anchor"></a>getCRUCLdata</h1></div>
-<div id="use-and-explore-cru-cl-v--2-0-climatology-elements-in-r" class="section level2">
-<h2 class="hasAnchor">
-<a href="#use-and-explore-cru-cl-v--2-0-climatology-elements-in-r" class="anchor"></a>Use and Explore CRU CL v. 2.0 Climatology Elements in R</h2>
+<a href="#getcrucldata-use-and-explore-cru-cl-v--2-0-climatology-elements-in-r" class="anchor"></a><em>getCRUCLdata</em>: Use and Explore CRU CL v. 2.0 Climatology Elements in R</h1></div>
 <p>Author/Maintainer: Adam Sparks</p>
-</div>
 </div>
 <div id="introduction-to-getcrucldata" class="section level1">
 <h1 class="hasAnchor">
@@ -105,7 +107,7 @@
   <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
 }
 
-devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"ropensci/getCRUCLdata"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/getCRUCLdata"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 </div>
 <div id="using-getcrucldata" class="section level2">
@@ -146,20 +148,20 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(viridis)</code></pre></div>
 <p>Now that the required packages are installed and loaded, we can generate a figure of temperatures using <em>ggplot2</em> to map the 12 months.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> tmp)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">option =</span> <span class="st">"inferno"</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_quickmap</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Global Mean Monthly Temperatures 1961-1990"</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>month, <span class="dt">nrow =</span> <span class="dv">4</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> t, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile">geom_raster</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">fill =</span> tmp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/viridis/topics/scale_viridis">scale_fill_viridis</a></span>(<span class="dt">option =</span> <span class="st">"inferno"</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_quickmap</a></span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ggtitle</a></span>(<span class="st">"Global Mean Monthly Temperatures 1961-1990"</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(<span class="op">~</span><span class="st"> </span>month, <span class="dt">nrow =</span> <span class="dv">4</span>)</code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperatures 1961-1990"><p class="caption">Plot of global mean monthly temperatures 1961-1990</p>
 </div>
 <p>We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> t, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Temperature (˚C)"</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Global Monthly Mean Land Surface Temperatures From 1960-1991"</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> t, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_violin">geom_violin</a></span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Temperature (˚C)"</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"Global Monthly Mean Land Surface Temperatures From 1960-1991"</span>,
        <span class="dt">subtitle =</span> <span class="st">"Excludes Antarctica"</span>)</code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-7-1.png" alt="Violin plot of global mean temperatures 1961-1990"><p class="caption">Violin plot of global mean temperatures 1961-1990</p>
@@ -171,15 +173,15 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <p>Save the resulting tidy <code>tibble</code> to local disk as a comma separated (CSV) file to local disk.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
 
-<span class="kw">write_csv</span>(t, <span class="dt">path =</span> <span class="st">"~/CRU_tmp.csv"</span>)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/readr/topics/write_delim">write_csv</a></span>(t, <span class="dt">path =</span> <span class="st">"~/CRU_tmp.csv"</span>)</code></pre></div>
 </div>
 </div>
 <div id="creating-raster-stacks-for-use-in-r-and-saving-for-use-in-another-gis" class="section level3">
 <h3 class="hasAnchor">
 <a href="#creating-raster-stacks-for-use-in-r-and-saving-for-use-in-another-gis" class="anchor"></a>Creating raster stacks for use in R and saving for use in another GIS</h3>
 <p>For working with spatial data, <em>getCRUCLdata</em> provides a function that create lists of <a href="https://CRAN.R-project.org/package=raster"><em>raster</em></a> stacks of the data.</p>
-<p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions provide similar functionality to <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code>, but rather than returning a tidy data frame, it returns a list of <code>raster::stack()</code> objects for use in an R session.</p>
-<p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> function automates the download process and creates a <code>raster::stack()</code> object of the CRU CL v. 2.0 climatology elements. Illustrated here is creating a <code>raster::stack()</code> of all CRU CL v. 2.0 climatology elements available.</p>
+<p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions provide similar functionality to <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code>, but rather than returning a tidy data frame, it returns a list of <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> objects for use in an R session.</p>
+<p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> function automates the download process and creates a <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> object of the CRU CL v. 2.0 climatology elements. Illustrated here is creating a <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> of all CRU CL v. 2.0 climatology elements available.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CRU_stack &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,
                            <span class="dt">pre_cv =</span> <span class="ot">TRUE</span>,
                            <span class="dt">rd0 =</span> <span class="ot">TRUE</span>,
@@ -200,12 +202,12 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <p>Because the stacks are in a <code>list()</code>, we need to access each element of the list individually to plot them, that’s what the <code>[[1]]</code> or <code>[[2]]</code> is, the first or second element of the list. Here using <code>[[1]]</code> we will plot the monthly average minimum temperature for all twelve months.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
-<span class="kw">plot</span>(tmn_tmx[[<span class="dv">1</span>]])</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(tmn_tmx[[<span class="dv">1</span>]])</code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
 </div>
-<p>To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing <code>[[2]]</code> as before but append a <code>$jul</code> to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the <code>tmn_tmx</code> list, which is <code>tmx</code> and from that <code>raster::stack()</code>, plot only the raster layer for July.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(tmn_tmx[[<span class="dv">2</span>]]<span class="op">$</span>jul)</code></pre></div>
+<p>To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing <code>[[2]]</code> as before but append a <code>$jul</code> to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the <code>tmn_tmx</code> list, which is <code>tmx</code> and from that <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code>, plot only the raster layer for July.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(tmn_tmx[[<span class="dv">2</span>]]<span class="op">$</span>jul)</code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-11-1.png" alt="Plot of maximum temperatures for July"><p class="caption">Plot of maximum temperatures for July</p>
 </div>
@@ -213,13 +215,13 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <div id="saving-raster-objects-to-local-disk" class="section level4">
 <h4 class="hasAnchor">
 <a href="#saving-raster-objects-to-local-disk" class="anchor"></a>Saving raster objects to local disk</h4>
-<p>The raster stack objects can be saved to disk as geotiff files (others are available, see help for <code>writeRaster()</code> and <code>writeFormats()</code> for more options) in the <code>Data</code> directory with a tmn or tmx prefix to the month for a file name.</p>
+<p>The raster stack objects can be saved to disk as geotiff files (others are available, see help for <code><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster()</a></code> and <code><a href="http://www.rdocumentation.org/packages/raster/topics/writeFormats">writeFormats()</a></code> for more options) in the <code>Data</code> directory with a tmn or tmx prefix to the month for a file name.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
 <span class="kw">dir.create</span>(<span class="kw">file.path</span>(<span class="st">"~/Data"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
-<span class="kw">writeRaster</span>(tmn_tmx<span class="op">$</span>tmn, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/Data/tmn_"</span>, <span class="kw">names</span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmn, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmn_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
 
-<span class="kw">writeRaster</span>(tmn_tmx<span class="op">$</span>tmx, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw">names</span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmx, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
 </div>
 </div>
 </div>
@@ -229,7 +231,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <div id="caching-files-for-later-use" class="section level3">
 <h3 class="hasAnchor">
 <a href="#caching-files-for-later-use" class="anchor"></a>Caching files for later use</h3>
-<p>When using the <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> or <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions, files may be cached in the users’ local space for later use (optional) or stored in a temporary directory and deleted when the R session is closed and not saved (this is the default behaviour already illustrated above). Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future. <em>In order to take advantage of the cached data, you must use the <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> function again in the future</em>. This functionality is somewhat modelled after the <code>raster::getData()</code> function that will not download files that already exist in the working directory, however in this case the function is portable and it will work for any working directory. That is, if you have cached the data and you use <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> again, it will use the cached data no matter what working directory you are in. This functionality will be most useful for writing scripts that may be used several times rather than just once off or if you frequently use the data in multiple analyses the data will not be downloaded again if they have been cached.</p>
+<p>When using the <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> or <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions, files may be cached in the users’ local space for later use (optional) or stored in a temporary directory and deleted when the R session is closed and not saved (this is the default behaviour already illustrated above). Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future. <em>In order to take advantage of the cached data, you must use the <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> function again in the future</em>. This functionality is somewhat modelled after the <code><a href="http://www.rdocumentation.org/packages/raster/topics/getData">raster::getData()</a></code> function that will not download files that already exist in the working directory, however in this case the function is portable and it will work for any working directory. That is, if you have cached the data and you use <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> again, it will use the cached data no matter what working directory you are in. This functionality will be most useful for writing scripts that may be used several times rather than just once off or if you frequently use the data in multiple analyses the data will not be downloaded again if they have been cached.</p>
 <p>Create a list of raster stacks of maximum and minimum temperature. To take advantage of the previously cached files and save time by not downloading files, specify <code>cache = TRUE</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmn_tmx &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,
                          <span class="dt">tmx =</span> <span class="ot">TRUE</span>,
@@ -287,20 +289,20 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <h2 class="hasAnchor">
 <a href="#other" class="anchor"></a>Other</h2>
 <ul>
-<li>Please <a href="https://github.com/ropensci/getCRUCLdata/issues">report any issues or bugs</a>.</li>
-<li>License: MIT</li>
-<li>Get citation information for <em>getCRUCLdata</em> in R typing <code>citation(package = "getCRUCLdata")</code>
-</li>
-<li>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</li>
+<li><p>Please <a href="https://github.com/ropensci/getCRUCLdata/issues">report any issues or bugs</a>.</p></li>
+<li><p>License: MIT</p></li>
+<li><p>Get citation information for <em>getCRUCLdata</em> in R typing <code>citation(package = "getCRUCLdata")</code></p></li>
+<li><p>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p></li>
 </ul>
-<p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/github_footer.png" alt="ropensci_footer"></a></p>
+<p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/github_footer.png" alt="ropensci"></a></p>
 </div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Links</h2>
+    <h2 class="hasAnchor">
+<a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cran.r-project.org/package=getCRUCLdata">https://​cran.r-project.org/​package=getCRUCLdata</a>
 </li>
@@ -310,25 +312,27 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 </li>
 </ul>
 <h2>License</h2>
-<p><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE">LICENSE</a></p>
+<p><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE.html">LICENSE</a></p>
+<h2>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html">Citing getCRUCLdata</a></li>
+</ul>
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Adam Sparks <br><small class="roles"> Author, maintainer </small> </li>
+<li>Adam Sparks <br><small class="roles"> Author, maintainer </small> <br><small>(http://orcid.org/0000-0002-0061-8359)</small>
+</li>
 </ul>
-<div>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/"><img src="https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/ropensci/getCRUCLdata"><img src="https://ci.appveyor.com/api/projects/status/github/ropensci/getCRUCLdata?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://codecov.io/github/ropensci/getCRUCLdata?branch=master"><img src="https://img.shields.io/codecov/c/github/ropensci/getCRUCLdata/master.svg" alt="Coverage Status"></a></li>
+<li><a href="https://codecov.io/gh/ropensci/getCRUCLdata"><img src="https://codecov.io/gh/ropensci/getCRUCLdata/branch/master/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="https://cran.r-project.org/package=getCRUCLdata"><img src="http://www.r-pkg.org/badges/version/getCRUCLdata" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://github.com/metacran/cranlogs.app"><img src="http://cranlogs.r-pkg.org/badges/getCRUCLdata?color=blue" alt="rstudio mirror downloads"></a></li>
 <li><a href="https://github.com/metacran/cranlogs.app"><img src="http://cranlogs.r-pkg.org/badges/grand-total/getCRUCLdata?color=blue" alt="rstudio mirror downloads"></a></li>
-<li><a href="http://depsy.org/package/r/getCRUCLdata"><img src="http://depsy.org/api/package/cran/getCRUCLdata/badge.svg" alt="Research software impact"></a></li>
 <li><a href="https://doi.org/10.5281/zenodo.466812"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg" alt="DOI"></a></li>
 <li><a href="http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15"><img src="http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15/status.svg" alt="status"></a></li>
 </ul>
-</div>
 </div>
 
 </div>

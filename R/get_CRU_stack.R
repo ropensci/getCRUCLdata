@@ -109,14 +109,7 @@ get_CRU_stack <-
       stop("You must select at least one element for download.")
     }
 
-    if (isTRUE(cache)) {
-      cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
-      if (!file.exists(cache_dir)) {
-        dir.create(cache_dir)
-      }
-    } else {
-      cache_dir <- tempdir()
-    }
+    cache_dir <- .set_cache()
 
     files <- .get_CRU(pre,
                       pre_cv,

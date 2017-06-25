@@ -11,11 +11,9 @@ citEntry(
   volume = 2,
   number = 12,
   journal = "The Journal of Open Source Software",
-  url = "https://dx.doi.org/10.21105/joss.00230",
 
   textVersion = paste("Adam H Sparks.",
         "getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R.",
         "The Journal of Open Source Software, 2(12).",
-        "DOI: 10.21105/joss.00230.",
-        "URL: https://dx.doi.org/10.21105/joss.00230")
+        "DOI: 10.21105/joss.00230.")
 )

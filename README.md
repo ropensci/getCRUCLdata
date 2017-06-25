@@ -1,12 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/getCRUCLdata) [![Coverage Status](https://img.shields.io/codecov/c/github/ropensci/getCRUCLdata/master.svg)](https://codecov.io/github/ropensci/getCRUCLdata?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app) [![Research software impact](http://depsy.org/api/package/cran/getCRUCLdata/badge.svg)](http://depsy.org/package/r/getCRUCLdata) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812) [![status](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15/status.svg)](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15)
+[![Travis-CI Build Status](https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/getCRUCLdata) [![codecov](https://codecov.io/gh/ropensci/getCRUCLdata/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/getCRUCLdata) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/getCRUCLdata?color=blue)](https://github.com/metacran/cranlogs.app) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812) [![status](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15/status.svg)](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15)
 
-getCRUCLdata
-============
-
-Use and Explore CRU CL v. 2.0 Climatology Elements in R
--------------------------------------------------------
+*getCRUCLdata*: Use and Explore CRU CL v. 2.0 Climatology Elements in R
+=======================================================================
 
 Author/Maintainer: Adam Sparks
 
@@ -188,9 +185,9 @@ The raster stack objects can be saved to disk as geotiff files (others are avail
 library(raster)
 
 dir.create(file.path("~/Data"), showWarnings = FALSE)
-writeRaster(tmn_tmx$tmn, filename = paste0("~/Data/tmn_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
+writeRaster(tmn_tmx$tmn, filename = file.path("~/Data/tmn_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
 
-writeRaster(tmn_tmx$tmx, filename = paste0("~/Data/tmx_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
+writeRaster(tmn_tmx$tmx, filename = file.path("~/Data/tmx_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
 ```
 
 Advanced usage
@@ -252,8 +249,11 @@ Other
 -----
 
 -   Please [report any issues or bugs](https://github.com/ropensci/getCRUCLdata/issues).
+
 -   License: MIT
+
 -   Get citation information for *getCRUCLdata* in R typing `citation(package = "getCRUCLdata")`
+
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-[![ropensci\_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+[![ropensci](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

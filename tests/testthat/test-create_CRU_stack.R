@@ -472,14 +472,14 @@ test_that("create_CRU_stack returns a list of raster stacks", {
       7.6
     )
   )
-  gz1 <- gzfile(paste0(tempdir(), "/grid_10min_pre.dat.gz"), "w")
+  gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.dat.gz"), "w")
   utils::write.table(pre_data,
                      file = gz1,
                      col.names = FALSE,
                      row.names = FALSE)
   close(gz1)
 
-  gz1 <- gzfile(paste0(tempdir(), "/grid_10min_tmp.dat.gz"), "w")
+  gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
   utils::write.table(tmp_data,
                      file = gz1,
                      col.names = FALSE,

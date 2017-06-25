@@ -58,7 +58,7 @@
 #' @export
 #' @rdname manage_CRU_cache
 CRU_cache_list <- function() {
-  cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
+  cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
   list.files(cache_dir, ignore.case = TRUE, include.dirs = TRUE,
              recursive = TRUE, full.names = TRUE)
 }
@@ -66,20 +66,20 @@ CRU_cache_list <- function() {
 #' @export
 #' @rdname manage_CRU_cache
 CRU_cache_delete <- function(files, force = TRUE) {
-  cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
+  cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
   if (!all(file.exists(cache_dir, "/", files))) {
     stop("These files don't exist or can't be found: \n",
-         strwrap(paste0(cache_dir, "/", files)[!file.exists(
-           paste0(cache_dir, "/", files))], indent = 5), call. = FALSE)
+         strwrap(file.path(cache_dir, files)[!file.exists(
+           file.path(cache_dir, files))], indent = 5), call. = FALSE)
   }
-  unlink(paste0(cache_dir, "/", files),
+  unlink(file.path(cache_dir, files),
          force = force, recursive = TRUE)
 }
 
 #' @export
 #' @rdname manage_CRU_cache
 CRU_cache_delete_all <- function(force = TRUE) {
-  cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
+  cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
   files <- list.files(cache_dir, ignore.case = TRUE, include.dirs = TRUE,
                       full.names = TRUE, recursive = TRUE)
   unlink(files, force = force, recursive = TRUE)
@@ -88,7 +88,7 @@ CRU_cache_delete_all <- function(force = TRUE) {
 #' @export
 #' @rdname manage_CRU_cache
 CRU_cache_details <- function(files = NULL) {
-  cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
+  cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
   if (is.null(files)) {
     files <- list.files(cache_dir, ignore.case = TRUE, include.dirs = TRUE,
                         full.names = TRUE, recursive = TRUE)
@@ -117,7 +117,7 @@ getsize <- function(x) {
 
 #' @export
 print.CRU_cache_info <- function(x, ...) {
-  cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
+  cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
   cat("<CRU CL v. 2.0 cached files>", sep = "\n")
   cat(sprintf("  directory: %s\n", cache_dir), sep = "\n")
   for (i in seq_along(x)) {

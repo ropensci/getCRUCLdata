@@ -23,9 +23,10 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -51,10 +52,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../articles/getCRUCLdata.html">Get Started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -101,10 +108,10 @@ function.</p>
 <dt>wnd</dt><dd><p>10 metre windspeed (metres/second)</p></dd>
 <dt>elv</dt><dd><p>elevation (automatically converted to metres)</p></dd>
 </dl><p>For more information see the description of the data provided by CRU,
-<a href = 'https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt'>https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a></p>
+<a href='https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt'>https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a></p>
     
 
-    <pre><span class='fu'>get_CRU_df</span>(<span class='kw'>pre</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pre_cv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rd0</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <pre class="usage"><span class='fu'>get_CRU_df</span>(<span class='kw'>pre</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pre_cv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rd0</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>dtr</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>reh</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmn</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tmx</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sunp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>frs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>wnd</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>elv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
@@ -199,16 +206,17 @@ metres.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## Not run: ------------------------------------</span>
-<span class='co'># # Download data and create a data frame of precipitation and temperature</span>
-<span class='co'># # without caching the data files</span>
-<span class='co'># CRU_pre_tmp &lt;- get_CRU_df(pre = TRUE, tmp = TRUE)</span>
-<span class='co'># </span>
-<span class='co'># # Download temperature and calculate tmin and tmax, save the temperature file</span>
-<span class='co'># # for later use by caching</span>
-<span class='co'># </span>
-<span class='co'># CRU_tmp &lt;- get_CRU_df(tmp = TRUE, tmn = TRUE, tmx = TRUE, cache = TRUE)</span>
-<span class='co'>## ---------------------------------------------</span></div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'># Download data and create a data frame of precipitation and temperature</span>
+<span class='co'># without caching the data files</span>
+<span class='no'>CRU_pre_tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_CRU_df</span>(<span class='kw'>pre</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tmp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='co'># Download temperature and calculate tmin and tmax, save the temperature file</span>
+<span class='co'># for later use by caching</span>
+
+<span class='no'>CRU_tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_CRU_df</span>(<span class='kw'>tmp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tmn</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tmx</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

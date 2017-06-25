@@ -1,9 +1,10 @@
 Package: getCRUCLdata
 Type: Package
 Title: Use and Explore CRU CL v. 2.0 Climatology Elements in R
-Version: 0.1.5
+Version: 0.1.6
 Authors@R: person(given = "Adam", family = "Sparks", 
-                  email = "adamhsparks@gmail.com", role = c("aut", "cre"))
+                  email = "adamhsparks@gmail.com", role = c("aut", "cre"),
+                   comment = "http://orcid.org/0000-0002-0061-8359")
 Description: Provides functions that automate downloading and importing
     University of East Anglia Climate Research Unit (CRU) CL v. 2.0 climatology
     data into R, facilitates the calculation of minimum temperature and maximum
@@ -21,7 +22,7 @@ Imports:
     data.table,
     dplyr,
     httr,
-    plyr,
+    purrr,
     rappdirs,
     raster,
     tidyr,
@@ -33,11 +34,11 @@ ByteCompile: TRUE
 Suggests:
     covr,
     ggplot2,
-    GSODR,
     knitr,
     readr,
     rmarkdown,
     roxygen2 (>= 6.0.1),
+    sp,
     testthat,
     viridis
 URL: https://github.com/ropensci/getCRUCLdata

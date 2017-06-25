@@ -23,9 +23,10 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -51,10 +52,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../articles/getCRUCLdata.html">Get Started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -84,6 +91,27 @@
     </div>
 
     <div class="contents">
+    <div id="getcrucldata-0-1-6" class="section level1">
+<h1 class="hasAnchor">
+<a href="#getcrucldata-0-1-6" class="anchor"></a>getCRUCLdata 0.1.6</h1>
+<div id="minor-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-changes" class="anchor"></a>Minor Changes</h2>
+<ul>
+<li><p>Use <em>purrr</em> in place of <em>plyr</em> functions</p></li>
+<li><p>Update DESCRIPTION file to be more complete</p></li>
+<li><p>Remove use of “%&gt;%” in functions and remove <em>magrittr</em> import</p></li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li><p>Fix bugs in CITATION file</p></li>
+<li><p>Format NEWS.md to be more markdown standards compliant</p></li>
+</ul>
+</div>
+</div>
     <div id="getcrucldata-0-1-5" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getcrucldata-0-1-5" class="anchor"></a>getCRUCLdata 0.1.5</h1>
@@ -91,35 +119,29 @@
 <h2 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major Changes</h2>
 <ul>
-<li>
-<code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code> and <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> now only work with locally available files. If you need to fetch and create a data frame or raster stack of the data, please use the new functions, <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> and <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code><br>
-</li>
-<li>R &gt;=3.2.0 now required<br>
-</li>
-<li>Data can be cached using either <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> or <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> for later use</li>
+<li><p><code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code> and <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> now only work with locally available files. If you need to fetch and create a data frame or raster stack of the data, please use the new functions, <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> and <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code></p></li>
+<li><p>R &gt;=3.2.0 now required</p></li>
+<li><p>Data can be cached using either <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> or <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> for later use</p></li>
 </ul>
 </div>
-<div id="minor-changes" class="section level2">
+<div id="minor-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-1" class="anchor"></a>Minor Changes</h2>
 <ul>
-<li>Improved documentation with examples on mapping and graphing and more detail regarding the data itself</li>
-<li>Change the method in which files are downloaded to use <code>httr::GET()</code><br>
-</li>
-<li>Ingest data using <code>data.table::fread</code> to decrease the amount of time necessary to run the functions<br>
-</li>
-<li>Functions check to see if data file(s) have already been downloaded during current R session, if so data file(s) are not requested for download again<br>
-</li>
-<li>Months are returned as a factor object in the tidy data frame</li>
+<li><p>Improved documentation with examples on mapping and graphing and more detail regarding the data itself</p></li>
+<li><p>Change the method in which files are downloaded to use <code><a href="http://www.rdocumentation.org/packages/httr/topics/GET">httr::GET()</a></code></p></li>
+<li><p>Ingest data using <code><a href="http://www.rdocumentation.org/packages/data.table/topics/fread">data.table::fread</a></code> to decrease the amount of time necessary to run the functions</p></li>
+<li><p>Functions check to see if data file(s) have already been downloaded during current R session, if so data file(s) are not requested for download again</p></li>
+<li><p>Months are returned as a factor object in the tidy data frame</p></li>
 </ul>
 </div>
 </div>
     <div id="getcrucldata-0-1-4" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getcrucldata-0-1-4" class="anchor"></a>getCRUCLdata 0.1.4</h1>
-<div id="minor-changes-1" class="section level2">
+<div id="minor-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-2" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li>Correct fix bug in data frame object generation where elevation was improperly handled and function would stop</li>
 </ul>
@@ -128,58 +150,50 @@
     <div id="getcrucldata-0-1-3" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getcrucldata-0-1-3" class="anchor"></a>getCRUCLdata 0.1.3</h1>
-<div id="minor-changes-2" class="section level2">
+<div id="minor-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-3" class="anchor"></a>Minor Changes</h2>
 <ul>
-<li>Correct fix bug in raster object generation where the objects were incorrectly cropped<br>
-</li>
-<li>Update documentation with ROxygen 6.0.0<br>
-</li>
-<li>Minor edits to documentation for clarity</li>
+<li><p>Correct fix bug in raster object generation where the objects were incorrectly cropped</p></li>
+<li><p>Update documentation with ROxygen 6.0.0</p></li>
+<li><p>Minor edits to documentation for clarity</p></li>
 </ul>
 </div>
 </div>
     <div id="getcrucldata-0-1-2" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getcrucldata-0-1-2" class="anchor"></a>getCRUCLdata 0.1.2</h1>
-<div id="minor-changes-3" class="section level2">
+<div id="minor-changes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-4" class="anchor"></a>Minor Changes</h2>
 <ul>
-<li>Correct documentation to read that the data resolution is 10 minute, not 10 seconds<br>
-</li>
-<li>Correct URLs in DESCRIPTION file<br>
-</li>
-<li>Add required version for PURRR<br>
-</li>
-<li>Add required version for R<br>
-</li>
-<li>Corrected URL pointing to CRU readme.txt file</li>
+<li><p>Correct documentation to read that the data resolution is 10 minute, not 10 seconds</p></li>
+<li><p>Correct URLs in DESCRIPTION file</p></li>
+<li><p>Add required version for PURRR</p></li>
+<li><p>Add required version for R</p></li>
+<li><p>Corrected URL pointing to CRU readme.txt file</p></li>
 </ul>
 </div>
 </div>
     <div id="getcrucldata-0-1-1" class="section level1">
 <h1 class="hasAnchor">
 <a href="#getcrucldata-0-1-1" class="anchor"></a>getCRUCLdata 0.1.1</h1>
-<div id="minor-changes-4" class="section level2">
-<h2 class="hasAnchor">
-<a href="#minor-changes-4" class="anchor"></a>Minor Changes</h2>
-<ul>
-<li>Renamed to getCRUdata as suggested by CRAN maintainers<br>
-</li>
-<li>Revised description file as requested by CRAN maintainers<br>
-</li>
-<li>Enhanced vignette</li>
-</ul>
-</div>
-</div>
-    <div id="getcrucl2-0-0-1-0" class="section level1">
-<h1 class="hasAnchor">
-<a href="#getcrucl2-0-0-1-0" class="anchor"></a>getCRUCL2.0 0.1.0</h1>
 <div id="minor-changes-5" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes-5" class="anchor"></a>Minor Changes</h2>
+<ul>
+<li><p>Renamed to getCRUdata as suggested by CRAN maintainers</p></li>
+<li><p>Revised description file as requested by CRAN maintainers</p></li>
+<li><p>Enhanced vignette</p></li>
+</ul>
+</div>
+<div id="getcrucl2-0-0-1-0" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getcrucl2-0-0-1-0" class="anchor"></a>getCRUCL2.0 0.1.0</h2>
+</div>
+<div id="minor-changes-6" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-changes-6" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li>Initial submission to CRAN</li>
 </ul>
@@ -192,12 +206,12 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#getcrucldata-0-1-6">0.1.6</a></li>
         <li><a href="#getcrucldata-0-1-5">0.1.5</a></li>
         <li><a href="#getcrucldata-0-1-4">0.1.4</a></li>
         <li><a href="#getcrucldata-0-1-3">0.1.3</a></li>
         <li><a href="#getcrucldata-0-1-2">0.1.2</a></li>
         <li><a href="#getcrucldata-0-1-1">0.1.1</a></li>
-        <li><a href="#getcrucl2-0-0-1-0">0.1.0</a></li>
       </ul>
     </div>
   </div>
