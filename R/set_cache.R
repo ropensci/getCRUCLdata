@@ -12,5 +12,3 @@
   }
   return(cache_dir)
 }
-
-

@@ -486,7 +486,7 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
     list.files(dsn, pattern = ".dat.gz$", full.names = TRUE)
 
   expect_type(files, "character")
-  expect_equal(files, paste0(tempdir(), "/grid_10min_tmp.dat.gz"))
+  expect_equal(files, file.path(tempdir(), "grid_10min_tmp.dat.gz"))
 })
 
 # Test that get_CRU_stack sets the cache dir properly when cache is TRUE -------
