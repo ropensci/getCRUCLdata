@@ -7,7 +7,7 @@ currently under development, removes one that is not and removes one import
 - macOS 10.12.5 (local install), R version 3.4.0 (2017-04-21)
 - Ubuntu 14.04.5 LTS (on travis-ci), R version 3.4.0 (2017-04-21)
 - Windows (on win-builder), R version 3.4.0 (2017-04-21)
-- Windows (on win-builder), R Under development (unstable) (2017-06-10 r72776)
+- Windows (on win-builder), R Under development (unstable) (2017-06-23 r72852)
 
 ## R CMD check results  
 
@@ -15,18 +15,13 @@ There were no ERRORs or WARNINGs
 
 ## Minor Changes
 
-- Use _purrr_ in place of _plyr_ functions  
-
-- Update DESCRIPTION file to be more complete  
-
-- Remove use of "%>%" in functions and remove _magrittr_ import  
+- Use `file.path` in place of `paste0`
 
 ## Bug fixes
 
-- Fix bugs in CITATION file
+- Fix bug where `rappdirs::user_config_dir()` was incorrectly used in place of
+`rappdirs::user_cache_dir()`
 
-- Format NEWS.md to be more markdown standards compliant
-  
 ## Reverse dependencies
 
 There are no reverse dependencies.

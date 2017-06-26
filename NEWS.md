@@ -1,4 +1,15 @@
 
+# getCRUCLdata 0.1.7
+
+## Minor Changes
+
+- Use `file.path` in place of `paste0`
+
+## Bug fixes
+
+- Fix bug where `rappdirs::user_config_dir()` was incorrectly used in place of
+`rappdirs::user_cache_dir()`
+
 # getCRUCLdata 0.1.6
 
 ## Minor Changes
