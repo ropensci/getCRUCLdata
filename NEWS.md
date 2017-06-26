@@ -8,7 +8,7 @@ programming practices
 
 ## Bug Fixes
 
-- Fix bug where cache was not specified in internal function `.set_cache()`, 
+- Fix bug where `cache` was not specified in internal function, `.set_cache()`,
 this caused either of the functions fetching data from CRU to fail
 
 - Fix bug where cache directory could not be created on Windows OS machines
