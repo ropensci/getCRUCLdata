@@ -11,7 +11,9 @@ test_that("test that set_cache creates a cache directory if none exists", {
   unlink(rappdirs::user_cache_dir("climcropr"), recursive = TRUE)
 })
 
-test_that("test that set_cache uses tempdir() if caching == FALSE", {
+# test that .set_cache does a cache directory if cache is FALSE ----------------
+
+test_that("test that set_cache does not create a dir if cache == FALSE", {
   cache <- FALSE
   cache_dir <- .set_cache(cache)
   expect_true(cache_dir == tempdir())
