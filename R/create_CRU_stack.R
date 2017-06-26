@@ -115,6 +115,16 @@ create_CRU_stack <- function(pre = FALSE,
                       wnd,
                       elv,
                       cache_dir = dsn)
+
+  if (length(files) == 0) {
+    stop(
+      "\nNo CRU CL 2.0 data files were found in ",
+      dsn,
+      ". ",
+      "Please check that you have the proper file location.\n"
+    )
+  }
+
   s <- create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
   return(s)
 }
