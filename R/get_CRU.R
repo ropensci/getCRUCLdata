@@ -87,7 +87,7 @@
           style = 3
         )
       tryCatch(
-        for (f in 1:length(dl_files)) {
+        for (f in seq_along(dl_files)) {
           httr::GET(url = dl_files[[f]],
                     httr::write_disk(file.path(
                       cache_dir, basename(dl_files[[f]])

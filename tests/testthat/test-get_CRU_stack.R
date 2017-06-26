@@ -1,5 +1,14 @@
 context("get_CRU_stack")
 
+# Test that get_CRU_stack will retrieve files from CRU FTP server --------------
+test_that("get_CRU_stack will retreive files from CRU FTP server", {
+  skip_on_cran()
+  rm(CRU_tmp)
+
+  CRU_tmp <- get_CRU_stack(tmp = TRUE, tmn = FALSE, tmx = FALSE, cache = FALSE)
+  expect_is(CRU_tmp, "list")
+})
+
 # Test that get_CRU_stack fails if no parameters are TRUE ----------------------
 
 test_that("get_CRU_stack fails if no parameters are TRUE", {
@@ -486,7 +495,7 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
     list.files(dsn, pattern = ".dat.gz$", full.names = TRUE)
 
   expect_type(files, "character")
-  expect_equal(files, paste0(tempdir(), "/grid_10min_tmp.dat.gz"))
+  expect_equal(files, file.path(tempdir(), "grid_10min_tmp.dat.gz"))
 })
 
 # Test that get_CRU_stack sets the cache dir properly when cache is TRUE -------
