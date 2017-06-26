@@ -101,7 +101,7 @@ get_CRU_df <- function(pre = FALSE,
     stop("You must select at least one element for download.")
   }
 
-  cache_dir <- .set_cache()
+  cache_dir <- .set_cache(cache)
 
   files <- .get_CRU(pre,
                     pre_cv,
