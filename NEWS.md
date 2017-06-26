@@ -1,7 +1,15 @@
 
 # getCRUCLdata 0.1.8
 
-## Bug fixes
+## Minor Changes
+
+- Replaced `for f in 1:length()` with `for f in seq_along()` for better
+programming practices
+
+## Bug Fixes
+
+- Fix bug where cache was not specified in internal function `.set_cache()`, 
+this caused either of the functions fetching data from CRU to fail
 
 - Fix bug where cache directory could not be created on Windows OS machines
 
@@ -13,7 +21,7 @@
 
 - Use `file.path` in place of `paste0`
 
-## Bug fixes
+## Bug Fixes
 
 - Fix bug where `rappdirs::user_config_dir()` was incorrectly used in place of
 `rappdirs::user_cache_dir()`
@@ -30,7 +38,7 @@
 
 - Remove use of "%>%" in functions and remove _magrittr_ import
 
-## Bug fixes
+## Bug Fixes
 
 - Fix bugs in CITATION file
 
