@@ -1,5 +1,14 @@
 context("get_CRU_stack")
 
+# Test that get_CRU_stack will retrieve files from CRU FTP server --------------
+test_that("get_CRU_stack will retreive files from CRU FTP server", {
+  skip_on_cran()
+  rm(CRU_tmp)
+
+  CRU_tmp <- get_CRU_stack(tmp = TRUE, tmn = FALSE, tmx = FALSE, cache = FALSE)
+  expect_is(CRU_tmp, "list")
+})
+
 # Test that get_CRU_stack fails if no parameters are TRUE ----------------------
 
 test_that("get_CRU_stack fails if no parameters are TRUE", {
