@@ -1,6 +1,6 @@
 
-This is a new minor release that updates getCRUCLdata using R packages that are
-currently under development, removes one that is not and removes one import
+This is a new bug fix release that fixes bugs that prevented the previous
+version submitted to CRAN from working
 
 ## Test environments  
 
@@ -13,14 +13,17 @@ currently under development, removes one that is not and removes one import
 
 There were no ERRORs or WARNINGs  
 
+## Bug Fixes
+
+- Fix bug where cache was not specified in internal function `.set_cache()`, 
+this caused either of the functions fetching data from CRU to fail
+
+- Fix bug where cache directory could not be created on Windows OS machines
+
 ## Minor Changes
 
-- Use `file.path` in place of `paste0`
-
-## Bug fixes
-
-- Fix bug where `rappdirs::user_config_dir()` was incorrectly used in place of
-`rappdirs::user_cache_dir()`
+- Replaced `for f in 1:length()` with `for f in seq_along()` for better
+programming practices
 
 ## Reverse dependencies
 
