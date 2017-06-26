@@ -5,6 +5,8 @@
 
 - Use `file.path` in place of `paste0`
 
+- _ccafs_ is now Suggested
+
 ## Bug fixes
 
 - Fix bug where `rappdirs::user_config_dir()` was incorrectly used in place of
