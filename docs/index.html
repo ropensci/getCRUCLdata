@@ -73,13 +73,13 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#getcrucldata-use-and-explore-cru-cl-v--2-0-climatology-elements-in-r" class="anchor"></a><em>getCRUCLdata</em>: Use and Explore CRU CL v. 2.0 Climatology Elements in R</h1></div>
 <p>Author/Maintainer: Adam Sparks</p>
-</div>
-<div id="introduction-to-getcrucldata" class="section level1">
-<h1 class="hasAnchor">
+<div id="introduction-to-getcrucldata" class="section level2">
+<h2 class="hasAnchor">
 <a href="#introduction-to-getcrucldata" class="anchor"></a>Introduction to <em>getCRUCLdata</em>
-</h1>
-<p>The <em>getCRUCLdata</em> package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data frame</a> or a list of <a href="https://CRAN.R-project.org/package=raster"><em>raster</em> <code>stack</code></a> objects for use in an R session.</p>
+</h2>
+<p>The <em>getCRUCLdata</em> package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data frame</a> as a <a href="https://www.rdocumentation.org/packages/tibble/versions/1.2"><code><a href="http://www.rdocumentation.org/packages/tibble/topics/tibble">tibble::tibble()</a></code></a> or a <a href="https://www.rdocumentation.org/packages/base/versions/3.4.0/topics/list"><code>list()</code></a> of <a href="https://www.rdocumentation.org/packages/raster/versions/2.5-8/topics/stack"><code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code></a> objects for use in an R session.</p>
 <p>CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <a href="https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt" class="uri">https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt</a>.</p>
+</div>
 <div id="changes-to-original-cru-cl-v--2-0-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#changes-to-original-cru-cl-v--2-0-data" class="anchor"></a>Changes to original CRU CL v. 2.0 data</h2>
@@ -327,9 +327,6 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <li><a href="https://travis-ci.org/"><img src="https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/ropensci/getCRUCLdata"><img src="https://ci.appveyor.com/api/projects/status/github/ropensci/getCRUCLdata?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 <li><a href="https://codecov.io/gh/ropensci/getCRUCLdata"><img src="https://codecov.io/gh/ropensci/getCRUCLdata/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="https://cran.r-project.org/package=getCRUCLdata"><img src="http://www.r-pkg.org/badges/version/getCRUCLdata" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://github.com/metacran/cranlogs.app"><img src="http://cranlogs.r-pkg.org/badges/getCRUCLdata?color=blue" alt="rstudio mirror downloads"></a></li>
-<li><a href="https://github.com/metacran/cranlogs.app"><img src="http://cranlogs.r-pkg.org/badges/grand-total/getCRUCLdata?color=blue" alt="rstudio mirror downloads"></a></li>
 <li><a href="https://doi.org/10.5281/zenodo.466812"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg" alt="DOI"></a></li>
 <li><a href="http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15"><img src="http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15/status.svg" alt="status"></a></li>
 </ul>
