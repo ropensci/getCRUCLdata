@@ -1,17 +1,21 @@
 
 # getCRUCLdata 0.1.8
 
-## Minor Changes
-
-- Replaced `for f in 1:length()` with `for f in seq_along()` for better
-programming practices
-
 ## Bug Fixes
 
 - Fix bug where `cache` was not specified in internal function, `.set_cache()`,
 this caused either of the functions fetching data from CRU to fail
 
-- Fix bug where cache directory could not be created on Windows OS machines
+- Fix bug where `cache` directory could not be created on Windows OS machines
+
+- Fix bug where tmx was returned when *either* tmn *or* tmx was requested for
+data frame, tmn now returned when requested and tmx now returned when requested.
+Raster stacks were not affected by this bug
+
+## Minor Changes
+
+- Replaced `for f in 1:length()` with `for f in seq_along()` for better
+programming practices
 
 --------------------------------------------------------------------------------
 
