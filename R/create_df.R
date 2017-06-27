@@ -11,7 +11,7 @@ create_df <- function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
   }
 
   if (isTRUE(tmn)) {
-    CRU_df <- dplyr::mutate(CRU_df, tmx =  tmp - (0.5 * dtr))
+    CRU_df <- dplyr::mutate(CRU_df, tmn =  tmp - (0.5 * dtr))
   }
 
   # Remove tmp/dtr if they aren't specified (necessary for tmn/tmx)
