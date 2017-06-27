@@ -15,6 +15,12 @@ test_that("create_CRU_stack fails if no parameters are TRUE", {
                "You must select at least one element for importing")
 })
 
+# Test that create_CRU_stack fails if dsn does not contain CRU files ------------
+
+test_that("create_CRU_stack fails if dsn does not contain CRU files", {
+  expect_error(create_CRU_stack(pre = TRUE, dsn = "/dev/null"))
+})
+
 # Test that create_CRU_stack returns a list of raster stacks -------------------
 
 test_that("create_CRU_stack returns a list of raster stacks", {
