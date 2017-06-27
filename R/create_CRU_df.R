@@ -88,7 +88,6 @@ create_CRU_df <-   function(pre = FALSE,
                             wnd = FALSE,
                             elv = FALSE,
                             dsn = "") {
-
   if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
       !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
       !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
@@ -110,6 +109,16 @@ create_CRU_df <-   function(pre = FALSE,
                       wnd,
                       elv,
                       cache_dir = dsn)
+
+  if (length(files) == 0) {
+    stop(
+      "\nNo CRU CL 2.0 data files were found in ",
+      dsn,
+      ". ",
+      "Please check that you have the proper file location.\n"
+    )
+  }
+
   message("\nCreating data frame now.\n")
   d <- create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
   return(d)
