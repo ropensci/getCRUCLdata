@@ -66,7 +66,7 @@
       <h1>getCRUCLdata</h1>
                         <h4 class="author">Adam H. Sparks</h4>
             
-            <h4 class="date">2017-06-27</h4>
+            <h4 class="date">2017-07-07</h4>
           </div>
 
     
@@ -153,7 +153,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge
 <div id="plotting-data-from-the-tidy-dataframe" class="section level4">
 <h4 class="hasAnchor">
 <a href="#plotting-data-from-the-tidy-dataframe" class="anchor"></a>Plotting data from the tidy dataframe</h4>
-<p>Now that we have the data, we can plot it easily using <a href="http://ggplot2.org"><em>ggplot2</em></a> and the fantastic <a href="https://CRAN.R-project.org/package=viridis"><em>viridis</em></a> package for the colour scale.</p>
+<p>Now that we have the data, we can plot it easily using <a href="http://ggplot2.org"><em>ggplot2</em></a> and the <a href="https://CRAN.R-project.org/package=viridis"><em>viridis</em></a> package for the colour scale.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"ggplot2"</span>)) {
   <span class="kw">install.packages</span>(ggplot2)
 }
@@ -235,9 +235,11 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
 <span class="kw">dir.create</span>(<span class="kw">file.path</span>(<span class="st">"~/Data"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmn, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmn_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmn, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmn_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)),
+            <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmx, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmx, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)),
+            <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
 </div>
 </div>
 <div id="advanced-usage" class="section level2">
@@ -256,8 +258,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge
 <h3 class="hasAnchor">
 <a href="#downloading-files-outside-of-r-using-another-ftp-program" class="anchor"></a>Downloading files outside of R using another FTP program</h3>
 <p>A second set of functions, <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code>, is provided for users that may have connectivity issues or simply wish to use something other than R to download the data files. You may also wish to use these if you want to download the data and specify where it is stored rather than using the <code>cache</code> functionality of <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code>.</p>
-<p>The <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code> functions work in the same way as <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions with only one major difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import. That is, the CRU CL v. 2.0 data files <em>must</em> be downloaded prior to the use of these functions using a program external to R, e.g., FileZilla or some other FTP program. In this instance it is recommended to use an FTP client (e.g., <a href="https://filezilla-project.org">FileZilla</a>), a web browser* or command line command (e.g., <a href="https://www.gnu.org/software/wget/">wget</a> or <a href="https://curl.haxx.se">cURL</a>) to download the files, save locally and use one of these functions to import the data into R and generate your desired object to work with.</p>
-<p>*Beware, if using Safari, macOS will automatically unzip the files. This will cause the functions in R to fail as they expect a gzipped file.</p>
+<p>The <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code> functions work in the same way as <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions with only one major difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import. That is, the CRU CL v. 2.0 data files <em>must</em> be downloaded prior to the use of these functions using a program external to R, e.g., FileZilla or some other FTP program. In this instance it is recommended to use an FTP client (e.g., <a href="https://filezilla-project.org">FileZilla</a>) to download the files, save locally and use one of these functions to import the data into R and generate your desired object to work with.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>, <span class="dt">dsn =</span> <span class="st">"~/Downloads"</span>)</code></pre></div>
 </div>
 </div>
