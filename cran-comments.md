@@ -3,10 +3,10 @@ This is a new bug fix release that fixes several bugs
 
 ## Test environments
 
-- macOS 10.12.5 (local install), R version 3.4.0 (2017-04-21)
+- macOS 10.12.5 (local install), R version 3.4.1 (2017-06-30)
 - Ubuntu 14.04.5 LTS (on travis-ci), R version 3.4.0 (2017-04-21)
-- Windows (on win-builder), R version 3.4.0 (2017-04-21)
-- Windows (on win-builder), R Under development (unstable) (2017-06-23 r72852)
+- Windows (on win-builder), R version 3.4.1 (2017-06-30)
+- Windows (on win-builder), R Under development (unstable) (2017-07-05 r72891)
 
 ## R CMD check results
 
