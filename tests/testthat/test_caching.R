@@ -9,7 +9,7 @@ test_that("test that set_cache creates a cache directory if none exists", {
   .set_cache(cache)
   expect_true(file.exists(file.path(rappdirs::user_cache_dir("getCRUCLdata"))))
   # cleanup
-  unlink(rappdirs::user_cache_dir("climcropr"), recursive = TRUE)
+  unlink(rappdirs::user_cache_dir("getCRUCLdata"), recursive = TRUE)
 })
 
 # test that .set_cache does a cache directory if cache is FALSE ----------------
