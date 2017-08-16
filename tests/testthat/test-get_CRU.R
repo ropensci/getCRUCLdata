@@ -1,13 +1,14 @@
-context(".get_CRU")
 
-unlink(list.files(
-  path = tempdir(),
-  pattern = ".dat.gz$",
-  full.names = TRUE
-))
+context(".get_CRU")
 
 # Test that get_CRU will retrieve only precipitation file when pre_cv TRUE -----
 test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
+  unlink(list.files(
+    path = tempdir(),
+    pattern = ".dat.gz$",
+    full.names = TRUE
+  ))
+
   skip_on_cran()
   skip_on_appveyor()
   .get_CRU(
