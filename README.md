@@ -1,7 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/getCRUCLdata) [![codecov](https://codecov.io/gh/ropensci/getCRUCLdata/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/getCRUCLdata) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812) [![status](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15/status.svg)](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15)
-[![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/onboarding/issues/96)
+[![Travis-CI Build Status](https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master)](https://travis-ci.org/) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/getCRUCLdata) [![codecov](https://codecov.io/gh/ropensci/getCRUCLdata/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/getCRUCLdata) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812) [![status](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15/status.svg)](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15) [![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/onboarding/issues/96)
 
 *getCRUCLdata*: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 =======================================================================

@@ -72,7 +72,7 @@ CRU_cache_list <- function() {
 #' @rdname manage_CRU_cache
 CRU_cache_delete <- function(files, force = TRUE) {
   cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
-  files <- file.path(rappdirs::user_cache_dir("getCRUCLdata"), files)
+  files <- file.path(cache_dir, files)
   if (!all(file.exists(files))) {
     stop(
       "These files don't exist or can't be found: \n",
