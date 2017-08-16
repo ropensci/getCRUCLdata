@@ -41,11 +41,11 @@ parse. The `create_CRU_*()` functions require an additional parameter, `dsn` to
 be provided that states where the files are locally stored. The arguments for
 selecting the climatology elements for importing are:  
 
-- **pre** Logical. Fetch precipitation (milimetres/month) from server and
+- **pre** Logical. Fetch precipitation (millimetres/month) from server and
 return in the data? Defaults to FALSE.  
 - **pre_cv** Logical. Fetch cv of precipitation (percent) from server and
 return in the data? Defaults to FALSE.  
-- **rd0** Logical. Fetch wet-days (number days with >0.1milimetres rain per
+- **rd0** Logical. Fetch wet-days (number days with >0.1 millimetres rain per
 month) and return in the data? Defaults to FALSE.  
 - **dtr** Logical. Fetch mean diurnal temperature range (degrees Celsius)
 and return it in the data? Defaults to FALSE.  
