@@ -1,6 +1,7 @@
 
-# test that .set_cache creates a cache directory if none exists ----------------
+context("Cache directory handling")
 
+# test that .set_cache creates a cache directory if none exists ----------------
 test_that("test that set_cache creates a cache directory if none exists", {
   skip_on_cran()
   unlink(rappdirs::user_cache_dir("getCRUCLdata"), recursive = TRUE)
@@ -18,10 +19,6 @@ test_that("test that set_cache does not create a dir if cache == FALSE", {
   cache_dir <- .set_cache(cache)
   expect_true(cache_dir == tempdir())
 })
-
-
-context("Cache directory handling")
-skip_on_cran()
 
 test_that("cache directory is created if necessary", {
   # if cache directory exists during testing, remove it
@@ -61,4 +58,5 @@ test_that("caching utils list files in cache and delete when asked", {
                                                    appauthor = "getCRUCLdata")
                           ),
                           character(0))
-})
+}
+)
