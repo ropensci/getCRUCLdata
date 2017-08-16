@@ -37,6 +37,7 @@ test_that("cache directory is created if necessary", {
 })
 
 test_that("caching utils list files in cache and delete when asked", {
+  skip_on_cran()
   f <- raster::raster(system.file("external/test.grd", package = "raster"))
   cache_dir <- rappdirs::user_cache_dir(appname = "getCRUCLdata",
                                         appauthor = "getCRUCLdata")
@@ -56,5 +57,8 @@ test_that("caching utils list files in cache and delete when asked", {
 
   # test delete all
   CRU_cache_delete_all()
-  expect_equal(basename(CRU_cache_list()), character(0))
+  expect_equal(list.files(rappdirs::user_cache_dir(appname = "getCRUCLdata",
+                                                   appauthor = "getCRUCLdata")
+                          ),
+                          character(0))
 })
