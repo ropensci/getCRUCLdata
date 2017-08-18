@@ -1,3 +1,8 @@
+# getCRUCLdata 0.1.9
+
+## Bug fixes
+
+- Fix issues in cached file management where files were not properly handled
 
 # getCRUCLdata 0.1.8
 
