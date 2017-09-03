@@ -1,12 +1,12 @@
 
-This is a new bug fix release that fixes several bugs
+This is a new bug fix release that fixes a small bug
 
 ## Test environments
 
 - macOS 10.12.5 (local install), R version 3.4.1 (2017-06-30)
 - Ubuntu 14.04.5 LTS (on travis-ci), R version 3.4.0 (2017-04-21)
-- Windows (on win-builder), R version 3.4.1 (2017-06-30)
-- Windows (on win-builder), R Under development (unstable) (2017-07-05 r72891)
+- Windows (on win-builder), R Under development (unstable) (2017-08-17 r73106)
+- 
 
 ## R CMD check results
 
@@ -14,19 +14,7 @@ There were no ERRORs or WARNINGs
 
 ## Bug Fixes
 
-- Fix bug where `cache` was not specified in internal function, `.set_cache()`,
-this caused either of the functions fetching data from CRU to fail
-
-- Fix bug where cache directory could not be created on Windows OS machines
-
-- Fix bug where tmx was returned when *either* tmn *or* tmx was requested for
-data frame, tmn now returned when requested and tmx now returned when requested.
-Raster stacks were not affected by this bug
-
-## Minor Changes
-
-- Replaced `for f in 1:length()` with `for f in seq_along()` for better
-programming practices
+- Fix issues in cached file management where files were not properly handled
 
 ## Reverse dependencies
 
