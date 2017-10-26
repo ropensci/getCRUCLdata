@@ -1,20 +1,17 @@
-
-This is a new bug fix release that fixes a small bug
-
 ## Test environments
 
-- macOS 10.12.5 (local install), R version 3.4.1 (2017-06-30)
-- Ubuntu 14.04.5 LTS (on travis-ci), R version 3.4.0 (2017-04-21)
-- Windows (on win-builder), R Under development (unstable) (2017-08-17 r73106)
-- 
+* local OS X install, R 3.4.1
+* ubuntu 12.04 (on travis-ci), R 3.4.1
+* win-builder R Under development (unstable) (2017-09-12 r73242)
+* win-builder R version 3.4.1 (2017-06-30)
 
 ## R CMD check results
 
-There were no ERRORs or WARNINGs
+0 errors | 0 warnings | 1 note
 
-## Bug Fixes
+## New minor release
 
-- Fix issues in cached file management where files were not properly handled
+This is a new minor release that updates the package to be more in-line with CRAN policy
 
 ## Reverse dependencies
 

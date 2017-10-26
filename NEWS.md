@@ -4,8 +4,6 @@
 
 - Add startup message regarding data source, use and citation
 
-## Minor changes
-
 - Include Scott Chamberlain as copyright holder and contributor for file
 caching functionality
 
