@@ -4,7 +4,7 @@ Title: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 Version: 0.1.10
 Authors@R: c(person(given = "Adam", family = "Sparks", 
                   email = "adamhsparks@gmail.com", role = c("aut", "cre"),
-                  comment = "http://orcid.org/0000-0002-0061-8359"),
+                  comment = "https://orcid.org/0000-0002-0061-8359"),
                   person("Scott", "Chamberlain", role = c("ctb", "cph"),
                   email = "myrmecocystus@gmail.com",
                   comment = "Contributed code for caching data files,
