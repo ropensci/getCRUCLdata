@@ -1,3 +1,14 @@
+# getCRUCLdata 0.1.10
+
+## Major changes
+
+- Add startup message regarding data source, use and citation
+
+## Minor changes
+
+- Include Scott Chamberlain as copyright holder and contributor for file
+caching functionality
+
 # getCRUCLdata 0.1.9
 
 ## Bug fixes
