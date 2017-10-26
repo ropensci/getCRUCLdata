@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -66,7 +66,7 @@
       <h1>getCRUCLdata</h1>
                         <h4 class="author">Adam H. Sparks</h4>
             
-            <h4 class="date">2017-08-19</h4>
+            <h4 class="date">2017-10-26</h4>
           </div>
 
     
@@ -258,7 +258,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge
 <h3 class="hasAnchor">
 <a href="#downloading-files-outside-of-r-using-another-ftp-program" class="anchor"></a>Downloading files outside of R using another FTP program</h3>
 <p>A second set of functions, <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code>, is provided for users that may have connectivity issues or simply wish to use something other than R to download the data files. You may also wish to use these if you want to download the data and specify where it is stored rather than using the <code>cache</code> functionality of <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code>.</p>
-<p>The <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code> functions work in the same way as <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions with only one major difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import. That is, the CRU CL v. 2.0 data files <em>must</em> be downloaded prior to the use of these functions using a program external to R, e.g., FileZilla or some other FTP program. In this instance it is recommended to use an FTP client (e.g., <a href="https://filezilla-project.org">FileZilla</a>) to download the files, save locally and use one of these functions to import the data into R and generate your desired object to work with.</p>
+<p>The <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code> functions work in the same way as <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions with only one major difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import. That is, the CRU CL v. 2.0 data files <em>must</em> be downloaded prior to the use of these functions using a program external to R, <em>e.g.</em>, FileZilla or some other FTP program. In this instance it is recommended to use an FTP client (<em>e.g.</em>, <a href="https://filezilla-project.org">FileZilla</a>) to download the files, save locally and use one of these functions to import the data into R and generate your desired object to work with.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>, <span class="dt">dsn =</span> <span class="st">"~/Downloads"</span>)</code></pre></div>
 </div>
 </div>
@@ -266,16 +266,12 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge
 <div id="cru-cl-v--2-0-reference-and-abstract" class="section level1">
 <h1 class="hasAnchor">
 <a href="#cru-cl-v--2-0-reference-and-abstract" class="anchor"></a>CRU CL v. 2.0 reference and abstract</h1>
-<blockquote>
 <p>Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)<br>
 A high-resolution data set of surface climate over global land areas Climate Research, 2000, Vol 21, pg 1-25<br>
 (1) School of Geography and the Environment, University of Oxford, Mansfield Road, Oxford OX1 3TB, United Kingdom<br>
 (2) Climatic Research Unit, and (3) Tyndall Centre for Climate Change Research, both at School of Environmental Sciences, University of East Anglia, Norwich NR4 7TJ, United Kingdom<br>
 (4) International Water Management Institute, PO Box 2075, Colombo, Sri Lanka</p>
-</blockquote>
-<blockquote>
 <p><strong>ABSTRACT:</strong> We describe the construction of a 10-minute latitude/longitude data set of mean monthly surface climate over global land areas, excluding Antarctica. The climatology includes 8 climate elements - precipitation, wet-day frequency, temperature, diurnal temperature range, relative humidity,sunshine duration, ground frost frequency and windspeed - and was interpolated from a data set of station means for the period centred on 1961 to 1990. Precipitation was first defined in terms of the parameters of the Gamma distribution, enabling the calculation of monthly precipitation at any given return period. The data are compared to an earlier data set at 0.5 degrees latitude/longitude resolution and show added value over most regions. The data will have many applications in applied climatology, biogeochemical modelling, hydrology and agricultural meteorology and are available through the School of Geography Oxford (<a href="http://www.geog.ox.ac.uk" class="uri">http://www.geog.ox.ac.uk</a>), the International Water Management Institute “World Water and Climate Atlas” (<a href="http://www.iwmi.org" class="uri">http://www.iwmi.org</a>) and the Climatic Research Unit (<a href="http://www.cru.uea.ac.uk" class="uri">http://www.cru.uea.ac.uk</a>).</p>
-</blockquote>
 </div>
 </div>
   </div>

@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="/index.html">
+  <a href="index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -69,9 +69,6 @@
 <div class="contents">
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<div id="getcrucldata-use-and-explore-cru-cl-v--2-0-climatology-elements-in-r" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#getcrucldata-use-and-explore-cru-cl-v--2-0-climatology-elements-in-r" class="anchor"></a><em>getCRUCLdata</em>: Use and Explore CRU CL v. 2.0 Climatology Elements in R</h1></div>
 <p>Author/Maintainer: Adam Sparks</p>
 <div id="introduction-to-getcrucldata" class="section level2">
 <h2 class="hasAnchor">
@@ -86,10 +83,9 @@
 <p>This package automatically converts elevation values from kilometres to metres.</p>
 <p>This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xmin = -180, xmax = 180. Note that the original wind data include land area for parts of Antarctica.</p>
 </div>
-</div>
 <div id="quick-start" class="section level1">
-<h1 class="hasAnchor">
-<a href="#quick-start" class="anchor"></a>Quick Start</h1>
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#quick-start" class="anchor"></a>Quick Start</h1></div>
 <div id="install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>
@@ -241,7 +237,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <h3 class="hasAnchor">
 <a href="#downloading-files-outside-of-r-using-another-ftp-program" class="anchor"></a>Downloading files outside of R using another FTP program</h3>
 <p>A second set of functions, <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="reference/create_CRU_stack.html">create_CRU_stack()</a></code>, is provided for users that may have connectivity issues or simply wish to use something other than R to download the data files. You may also wish to use these if you want to download the data and specify where it is stored rather than using the <code>cache</code> functionality of <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code>.</p>
-<p>The <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="reference/create_CRU_stack.html">create_CRU_stack()</a></code> functions work in the same way as <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions with only one major difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import. That is, the CRU CL v. 2.0 data files <em>must</em> be downloaded prior to the use of these functions using a program external to R, e.g., FileZilla or some other FTP program. In this instance it is recommended to use an FTP client (e.g., <a href="https://filezilla-project.org">FileZilla</a>), a web browser* or command line command (e.g., <a href="https://www.gnu.org/software/wget/">wget</a> or <a href="https://curl.haxx.se">cURL</a>) to download the files, save locally and use one of these functions to import the data into R and generate your desired object to work with.</p>
+<p>The <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="reference/create_CRU_stack.html">create_CRU_stack()</a></code> functions work in the same way as <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions with only one major difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import. That is, the CRU CL v. 2.0 data files <em>must</em> be downloaded prior to the use of these functions using a program external to R, e.g., FileZilla or some other FTP program. In this instance it is recommended to use an FTP client (<em>e.g.</em>, <a href="https://filezilla-project.org">FileZilla</a>), a web browser* or command line command (e.g., <a href="https://www.gnu.org/software/wget/">wget</a> or <a href="https://curl.haxx.se">cURL</a>) to download the files, save locally and use one of these functions to import the data into R and generate your desired object to work with.</p>
 <p>*Beware, if using Safari, macOS will automatically unzip the files. This will cause the functions in R to fail as they expect a gzipped file.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>, <span class="dt">dsn =</span> <span class="st">"~/Downloads"</span>)</code></pre></div>
 <hr>
@@ -321,6 +317,7 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <ul class="list-unstyled">
 <li>Adam Sparks <br><small class="roles"> Author, maintainer </small> <br><small>(http://orcid.org/0000-0002-0061-8359)</small>
 </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">

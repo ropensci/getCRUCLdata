@@ -2,7 +2,9 @@
 title: "getCRUCLdata"
 author: "Adam H. Sparks"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteEngine{knitr::knitr}
   %\VignetteIndexEntry{getCRUCLdata}
@@ -281,9 +283,9 @@ The `create_CRU_df()` and `create_CRU_stack()` functions work in the same way as
 `get_CRU_df()` and `get_CRU_stack()` functions with only one major difference.
 You must supply the location of the files on the local disk (`dsn`) that you
 wish to import. That is, the CRU CL v. 2.0 data files *must* be downloaded prior
-to the use of these functions using a program external to R, e.g., FileZilla or
+to the use of these functions using a program external to R, _e.g._, FileZilla or
 some other FTP program. In this instance it is recommended to use an FTP client
-(e.g., [FileZilla](https://filezilla-project.org)) to download the files, save
+(_e.g._, [FileZilla](https://filezilla-project.org)) to download the files, save
 locally and use one of these functions to import the data into R and generate
 your desired object to work with.
 
@@ -293,9 +295,8 @@ t <- create_CRU_df(tmp = TRUE, dsn = "~/Downloads")
 
 # CRU CL v. 2.0 reference and abstract
 
-> Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)  
-A high-resolution data set of surface climate over global land areas
-Climate Research, 2000, Vol 21, pg 1-25  
+Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)  
+A high-resolution data set of surface climate over global land areas Climate Research, 2000, Vol 21, pg 1-25  
 (1) School of Geography and the Environment, University of Oxford, 
     Mansfield Road, Oxford OX1 3TB, United Kingdom  
 (2) Climatic Research Unit, and (3) Tyndall Centre for Climate Change Research,
@@ -303,7 +304,7 @@ Climate Research, 2000, Vol 21, pg 1-25
     Norwich NR4 7TJ, United Kingdom  
 (4) International Water Management Institute, PO Box 2075, Colombo, Sri Lanka
 
-> **ABSTRACT:** We describe the construction of a 10-minute latitude/longitude
+**ABSTRACT:** We describe the construction of a 10-minute latitude/longitude
 data set of mean monthly surface climate over global land areas, excluding
 Antarctica. The climatology includes 8 climate elements - precipitation, wet-day
 frequency, temperature, diurnal temperature range, relative humidity,sunshine
