@@ -1,7 +1,7 @@
 
 #' @title Manage locally cached CRU CL v. 2.0 files
 #'
-#' @description Manage cached `getCRUCLdata` files with \pkg{hoardr}
+#' @description Manage cached \pkg{getCRUCLdata} files with \pkg{hoardr}
 #'
 #' @export
 #' @name CRU_cache
