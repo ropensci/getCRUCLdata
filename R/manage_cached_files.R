@@ -16,31 +16,31 @@
 #'
 #' @section Useful user functions:
 #' \itemize{
-#'  \item \code{CRU_cachecache_path_get()} - get cache path
-#'  \item \code{CRU_cachecache_path_set()} - set cache path
-#'  \item \code{CRU_cachelist()} - returns a character vector of full
+#'  \item \code{CRU_cache$cache_path_get()} - get cache path
+#'  \item \code{CRU_cache$cache_path_set()} - set cache path
+#'  \item \code{CRU_cache$list()} - returns a character vector of full
 #'  path file names
-#'  \item \code{CRU_cachefiles()} - returns file objects with metadata
-#'  \item \code{CRU_cachedetails()} - returns files with details
-#'  \item \code{CRU_cachedelete()} - delete specific files
-#'  \item \code{CRU_cachedelete_all()} - delete all files, returns
+#'  \item \code{CRU_cache$files()} - returns file objects with metadata
+#'  \item \code{CRU_cache$details()} - returns files with details
+#'  \item \code{CRU_cache$delete()} - delete specific files
+#'  \item \code{CRU_cache$delete_all()} - delete all files, returns
 #'  nothing
 #' }
 #'
 #' @examples \dontrun{
-#' CRU_cache
 #'
 #' # list files in cache
-#' CRU_cachelist()
+#' CRU_cache$list()
 #'
 #' # delete certain database files
-#' # CRU_cachedelete("file path")
-#' # CRU_cachelist()
+#' CRU_cache$delete("file path")
+#' CRU_cache$list()
 #'
 #' # delete all files in cache
-#' # CRU_cachedelete_all()
-#' # CRU_cachelist()
+#' CRU_cache$delete_all()
+#' CRU_cache$list()
 #'
 #' # set a different cache path from the default
+#' CRU_cache$cache_path_set("~/tmp")
 #' }
 NULL

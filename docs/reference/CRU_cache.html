@@ -107,34 +107,33 @@ files, use <code>cache_delete</code> in an <code><a href='http://www.rdocumentat
 
     
     <ul>
-<li><p><code>CRU_cachecache_path_get()</code> - get cache path</p></li>
-<li><p><code>CRU_cachecache_path_set()</code> - set cache path</p></li>
-<li><p><code>CRU_cachelist()</code> - returns a character vector of full
+<li><p><code>CRU_cache$cache_path_get()</code> - get cache path</p></li>
+<li><p><code>CRU_cache$cache_path_set()</code> - set cache path</p></li>
+<li><p><code>CRU_cache$list()</code> - returns a character vector of full
  path file names</p></li>
-<li><p><code>CRU_cachefiles()</code> - returns file objects with metadata</p></li>
-<li><p><code>CRU_cachedetails()</code> - returns files with details</p></li>
-<li><p><code>CRU_cachedelete()</code> - delete specific files</p></li>
-<li><p><code>CRU_cachedelete_all()</code> - delete all files, returns
+<li><p><code>CRU_cache$files()</code> - returns file objects with metadata</p></li>
+<li><p><code>CRU_cache$details()</code> - returns files with details</p></li>
+<li><p><code>CRU_cache$delete()</code> - delete specific files</p></li>
+<li><p><code>CRU_cache$delete_all()</code> - delete all files, returns
  nothing</p></li>
 </ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>CRU_cache</span>
-
 <span class='co'># list files in cache</span>
-<span class='fu'>CRU_cachelist</span>()
+<span class='no'>CRU_cache</span>$<span class='fu'>list</span>()
 
 <span class='co'># delete certain database files</span>
-<span class='co'># CRU_cachedelete("file path")</span>
-<span class='co'># CRU_cachelist()</span>
+<span class='no'>CRU_cache</span>$<span class='fu'>delete</span>(<span class='st'>"file path"</span>)
+<span class='no'>CRU_cache</span>$<span class='fu'>list</span>()
 
 <span class='co'># delete all files in cache</span>
-<span class='co'># CRU_cachedelete_all()</span>
-<span class='co'># CRU_cachelist()</span>
+<span class='no'>CRU_cache</span>$<span class='fu'>delete_all</span>()
+<span class='no'>CRU_cache</span>$<span class='fu'>list</span>()
 
 <span class='co'># set a different cache path from the default</span>
+<span class='no'>CRU_cache</span>$<span class='fu'>cache_path_set</span>(<span class='st'>"~/tmp"</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
