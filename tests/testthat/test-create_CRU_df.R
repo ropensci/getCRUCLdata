@@ -18,7 +18,7 @@ test_that("create_CRU_df fails if no dsn is specified", {
 # Test that create_CRU_df fails if dsn does not contain CRU files --------------
 
 test_that("create_CRU_df fails if dsn does not contain CRU files", {
-  expect_error(create_CRU_df(pre = TRUE, dsn = "/dev/null"))
+  expect_error(create_CRU_df(pre = TRUE, dsn = ""))
 })
 
 # Test that create_CRU_df loads files and creates a proper tibble --------------

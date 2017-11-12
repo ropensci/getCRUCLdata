@@ -1,3 +1,4 @@
+
 #' getCRUCLdata: Download and Create a Data Frame or Raster Stack Object of CRU CL v. 2.0 Climatology Variables
 #'
 #' The getCRUCLdata package provides functions that automate downloading and

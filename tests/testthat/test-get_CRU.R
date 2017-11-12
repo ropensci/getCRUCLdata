@@ -68,6 +68,13 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
 test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
   skip_on_cran()
   skip_on_appveyor()
+
+  unlink(list.files(
+    path = tempdir(),
+    pattern = ".dat.gz$",
+    full.names = TRUE
+  ))
+
   .get_CRU(
     pre = FALSE,
     pre_cv = FALSE,

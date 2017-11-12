@@ -1,3 +1,4 @@
+
 #' @noRd
 .get_CRU <-
   function(pre,
@@ -96,7 +97,7 @@
           utils::setTxtProgressBar(pb, f)
         },
         error = function(x) {
-          do.call(file.remove, list(list.files(cache_dir, full.names = TRUE)))
+          CRU_cache$delete_all()
           stop("\nThe file downloads have failed.\n
                \nPlease start the download again.\n")
         }
@@ -187,7 +188,8 @@
 
   # filter files from cache directory in case there are local files for which
   # we do not want data
-  cache_dir_contents <- as.list(list.files(cache_dir, pattern = ".dat.gz$"))
+  cache_dir_contents <- as.list(list.files(cache_dir,
+                                           pattern = ".dat.gz$"))
 
   files <- cache_dir_contents[cache_dir_contents %in% files]
 

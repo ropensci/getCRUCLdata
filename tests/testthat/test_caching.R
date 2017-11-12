@@ -4,12 +4,12 @@ context("Cache directory handling")
 # test that .set_cache creates a cache directory if none exists ----------------
 test_that("test that set_cache creates a cache directory if none exists", {
   skip_on_cran()
-  unlink(rappdirs::user_cache_dir("getCRUCLdata"), recursive = TRUE)
+  unlink(CRU_cache$cache_path_get(), recursive = TRUE)
   cache <- TRUE
   .set_cache(cache)
-  expect_true(file.exists(file.path(rappdirs::user_cache_dir("getCRUCLdata"))))
+  expect_true(file.exists(CRU_cache$cache_path_get()))
   # cleanup
-  unlink(rappdirs::user_cache_dir("getCRUCLdata"), recursive = TRUE)
+  unlink(CRU_cache$cache_path_get(), recursive = TRUE)
 })
 
 # test that .set_cache does a cache directory if cache is FALSE ----------------
@@ -22,48 +22,42 @@ test_that("test that set_cache does not create a dir if cache == FALSE", {
 
 test_that("cache directory is created if necessary", {
   # if cache directory exists during testing, remove it
-  unlink(rappdirs::user_cache_dir(appname = "getCRUCLdata",
-                                  appauthor = "getCRUCLdata"),
+  unlink(CRU_cache$cache_path_get(),
          recursive = TRUE)
   cache <- TRUE
   cache_dir <- .set_cache(cache)
-  expect_true(dir.exists(
-    rappdirs::user_cache_dir(appname = "getCRUCLdata",
-                             appauthor = "getCRUCLdata")
-  ))
+  expect_true(dir.exists(CRU_cache$cache_path_get()))
 })
 
 test_that("caching utils list files in cache and delete when asked", {
   skip_on_cran()
-  unlink(rappdirs::user_cache_dir(appname = "getCRUCLdata",
-                                  appauthor = "getCRUCLdata"),
-         recursive = TRUE)
+  unlink(
+    list.files(CRU_cache$cache_path_get()),
+    recursive = TRUE
+  )
   cache <- TRUE
   cache_dir <- .set_cache(cache)
-  f <- raster::raster(system.file("external/test.grd", package = "raster"))
-  cache_dir <- rappdirs::user_cache_dir(appname = "getCRUCLdata",
-                                        appauthor = "getCRUCLdata")
+  f <-
+    raster::raster(system.file("external/test.grd", package = "raster"))
+  cache_dir <- CRU_cache$cache_path_get()
   raster::writeRaster(f, file.path(cache_dir, "file1.asc"), format = "ascii")
   raster::writeRaster(f, file.path(cache_dir, "file2.asc"), format = "ascii")
 
   # test getCRUCLdata cache list
-  k <- list.files(rappdirs::user_cache_dir(appname = "getCRUCLdata",
-                                           appauthor = "getCRUCLdata"))
-  expect_equal(basename(CRU_cache_list()), k)
+  k <- list.files(CRU_cache$cache_path_get())
+  expect_equal(basename(CRU_cache$list()), k)
 
   # test delete one file
-  expect_error(CRU_cache_delete("file1.tif"))
+  expect_error(CRU_cache$delete("file1.tif"))
 
-  CRU_cache_delete("file1.asc")
-  l <- list.files(rappdirs::user_cache_dir(appname = "getCRUCLdata",
-                                           appauthor = "getCRUCLdata"))
-  expect_equal(basename(CRU_cache_list()), l)
+  CRU_cache$delete("file1.asc")
+  l <- list.files(CRU_cache$cache_path_get())
+  expect_equal(basename(CRU_cache$list()), l)
 
   # test delete all
-  CRU_cache_delete_all()
-  expect_equal(list.files(rappdirs::user_cache_dir(appname = "getCRUCLdata",
-                                                   appauthor = "getCRUCLdata")
-                          ),
-                          character(0))
-}
-)
+  CRU_cache$delete_all()
+  expect_equal(list.files(
+    CRU_cache$list()
+  ),
+  character(0))
+})

@@ -1,3 +1,4 @@
+
 #' @noRd
 .validate_dsn <- function(dsn) {
   if (is.null(dsn)) {

@@ -1,3 +1,4 @@
+
 #' @noRd
 
 create_df <- function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
@@ -53,11 +54,9 @@ create_df <- function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
 
   # create list of tidied data frames ----------------------------------------
   CRU_list <-
-    purrr::map(
-      .x = .files,
-      .f = .read_cache,
-      .pre_cv = pre_cv
-    )
+    lapply(X = .files,
+           FUN = .read_cache,
+           .pre_cv = pre_cv)
 
   # name the items in the list for the data that they contain ----------------
   names(CRU_list) <- substr(basename(.files), 12, 14)

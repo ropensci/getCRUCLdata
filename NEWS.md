@@ -1,3 +1,12 @@
+
+# getCRUCLdata 0.1.11
+
+## Major changes
+
+- Use _hoardr_ for managing cached files
+
+- Use `lapply` in place of `purrr::map`, _purrr_ is no longer imported
+
 # getCRUCLdata 0.1.10
 
 ## Major changes

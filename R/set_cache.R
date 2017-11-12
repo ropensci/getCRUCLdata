@@ -1,14 +1,12 @@
 
 .set_cache <- function(cache) {
   if (isTRUE(cache)) {
-    cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
-    if (!dir.exists(cache_dir)) {
-      dir.create(rappdirs::user_cache_dir(appname = "getCRUCLdata",
-                                          appauthor = "getCRUCLdata"),
-                 recursive = TRUE)
+    if (!dir.exists(CRU_cache$cache_path_get())) {
+      CRU_cache$mkdir()
     }
+    cache_dir <- CRU_cache$cache_path_get()
   } else {
-    cache_dir <- tempdir()
+   cache_dir <- tempdir()
   }
   return(cache_dir)
 }

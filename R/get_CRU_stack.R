@@ -1,3 +1,4 @@
+
 #' @title Download and Create a List of Raster Stack Objects From CRU CL v. 2.0 Climatology Variables
 #'
 #'@description This function automates downloading and importing CRU CL v. 2.0
@@ -69,7 +70,7 @@
 #'}
 #' @seealso
 #' \code{\link{create_CRU_stack}}
-#' \code{\link{manage_CRU_cache}}
+#' \code{\link{CRU_cache}}
 #'
 #' @return A \code{\link[base]{list}} of \code{\link{raster}}
 #' \code{\link[raster]{stack}} objects of CRU CL v. 2.0 climatology elements

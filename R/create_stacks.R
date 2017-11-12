@@ -33,12 +33,12 @@ create_stacks <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
   # object stack of 12 month data
 
   CRU_stack_list <-
-    purrr::map(.f = .create_stack,
-                files,
-                wrld,
-                month_names,
-                pre,
-                pre_cv)
+    lapply(X = files,
+           FUN = .create_stack,
+           wrld = wrld,
+           month_names = month_names,
+           pre = pre,
+           pre_cv = pre_cv)
 
   names(CRU_stack_list) <- substr(basename(files), 12, 14)
 

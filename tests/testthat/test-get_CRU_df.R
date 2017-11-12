@@ -9,7 +9,7 @@ test_that("get_CRU_df fails if no parameters are TRUE", {
 })
 
 # Test that get_CRU_df will retrieve files from CRU FTP server
-test_that("get_CRU_df will retreive files from CRU FTP server", {
+test_that("get_CRU_df will retrieve files from CRU FTP server", {
 
   skip_on_cran()
 

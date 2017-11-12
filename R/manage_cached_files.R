@@ -1,153 +1,46 @@
+
 #' @title Manage locally cached CRU CL v. 2.0 files
 #'
-#' @description The user is given an option when downloading the CRU CL v. 2.0
-#' data to cache or not to cache the data for later use.  If
-#' \code{cache == TRUE}, then the CRU CL v. 2.0 data files are saved in a
-#' directory in the users' home file space.  These functions provide facilities
-#' for interacting and managing these files.
+#' @description Manage cached `getCRUCLdata` files with \pkg{hoardr}
 #'
 #' @export
-#' @name manage_CRU_cache
-#' @param files Character.  One or more complete file names with no file path
-#' @param force Logical.  Should files be force deleted? Defaults to :
-#' \code{TRUE}
+#' @name CRU_cache
 #'
-#' @details \code{CRU_cache_delete} only accepts one file name, while
-#' \code{CRU_cache_delete_all} does not accept any names, but deletes all files.
-#' For deleting many specific files, use \code{cache_delete} in a
-#' \code{\link{lapply}} type call.
+#' @details The default cache directory is
+#' \code{file.path(rappdirs::user_cache_dir(), "R/getCRUCLdata")}, but you can
+#' set your own path using \code{cache_path_set()}
 #'
-#' We files cache using \code{\link[rappdirs]{user_cache_dir}}, find your
-#' cache folder by executing \code{rappdirs::user_cache_dir("getCRUCLdata")}
+#' \code{cache_delete} only accepts one file name, while \code{cache_delete_all}
+#' does not accept any names, but deletes all files. For deleting many specific
+#' files, use \code{cache_delete} in an \code{\link[base]{lapply}()} type call.
 #'
-#' @section Functions:
+#' @section Useful user functions:
 #' \itemize{
-#'  \item \code{CRU_cache_list()} returns a character vector of full path file
-#'  names
-#'  \item \code{CRU_cache_delete()} deletes one or more files, returns nothing
-#'  \item \code{CRU_cache_delete_all()} delete all files, returns nothing
-#'  \item \code{CRU_cache_details()} prints file name and file size for each
-#'  file, supply with one or more files, or no files (and get details for
-#'  all available)
+#'  \item \code{CRU_cachecache_path_get()} - get cache path
+#'  \item \code{CRU_cachecache_path_set()} - set cache path
+#'  \item \code{CRU_cachelist()} - returns a character vector of full
+#'  path file names
+#'  \item \code{CRU_cachefiles()} - returns file objects with metadata
+#'  \item \code{CRU_cachedetails()} - returns files with details
+#'  \item \code{CRU_cachedelete()} - delete specific files
+#'  \item \code{CRU_cachedelete_all()} - delete all files, returns
+#'  nothing
 #' }
 #'
 #' @examples \dontrun{
-#' # List files in cache
-#' CRU_cache_list()
+#' CRU_cache
 #'
-#' # List info for single files
-#' CRU_cache_details(files = CRU_cache_list()[1])
-#' CRU_cache_details(files = CRU_cache_list()[2])
+#' # list files in cache
+#' CRU_cachelist()
 #'
-#' # List info for all files
-#' CRU_cache_details()
+#' # delete certain database files
+#' # CRU_cachedelete("file path")
+#' # CRU_cachelist()
 #'
-#' # Delete files by name in cache
-#' CRU_cache_delete(files = CRU_cache_list()[1])
+#' # delete all files in cache
+#' # CRU_cachedelete_all()
+#' # CRU_cachelist()
 #'
-#' # Delete all files in cache
-#' CRU_cache_delete_all()
+#' # set a different cache path from the default
 #' }
-#'
-#' @author Original: Scott Chamberlain, \email{scott@ropensci.org}, adapted for
-#' use in this package by Adam H Sparks, \email{adamhsparks@gmail.com}
-#'
-#' @note
-#' These functions were adapted from rOpenSci's \code{\link[ccafs]{cc_cache}}.
-#'
-#' @export
-#' @rdname manage_CRU_cache
-CRU_cache_list <- function() {
-  cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
-  list.files(
-    cache_dir,
-    ignore.case = TRUE,
-    include.dirs = TRUE,
-    recursive = TRUE,
-    full.names = TRUE
-  )
-}
-
-#' @export
-#' @rdname manage_CRU_cache
-CRU_cache_delete <- function(files, force = TRUE) {
-  cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
-  files <- file.path(cache_dir, files)
-  if (!all(file.exists(files))) {
-    stop(
-      "These files don't exist or can't be found: \n",
-      strwrap(file.path(files)[!file.exists(files)], indent = 5),
-      call. = FALSE
-    )
-  }
-  unlink(files, force = force, recursive = TRUE)
-}
-
-#' @export
-#' @rdname manage_CRU_cache
-CRU_cache_delete_all <- function(force = TRUE) {
-  cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
-  files <-
-    list.files(
-      cache_dir,
-      ignore.case = TRUE,
-      include.dirs = TRUE,
-      full.names = TRUE,
-      recursive = TRUE
-    )
-  unlink(files, force = force, recursive = TRUE)
-}
-
-#' @export
-#' @rdname manage_CRU_cache
-CRU_cache_details <- function(files = NULL) {
-  cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
-  if (is.null(files)) {
-    files <-
-      list.files(
-        cache_dir,
-        ignore.case = TRUE,
-        include.dirs = TRUE,
-        full.names = TRUE,
-        recursive = TRUE
-      )
-    structure(lapply(files, file_info_), class = "CRU_cache_info")
-  } else {
-    structure(lapply(files, file_info_), class = "CRU_cache_info")
-  }
-}
-
-file_info_ <- function(x) {
-  if (file.exists(x)) {
-    fs <- file.size(x)
-  } else {
-    fs <- type <- NA
-    x <- paste0(x, " - does not exist")
-  }
-  list(file = x,
-       type = "gz",
-       size = if (!is.na(fs))
-         getsize(fs)
-       else
-         NA)
-}
-
-getsize <- function(x) {
-  round(x / 10 ^ 6, 3)
-}
-
-#' @export
-print.CRU_cache_info <- function(x, ...) {
-  cache_dir <- rappdirs::user_cache_dir("getCRUCLdata")
-  cat("<CRU CL v. 2.0 cached files>", sep = "\n")
-  cat(sprintf("  directory: %s\n", cache_dir), sep = "\n")
-  for (i in seq_along(x)) {
-    cat(paste0("  file: ", sub(cache_dir, "", x[[i]]$file)), sep = "\n")
-    cat(paste0("  size: ", x[[i]]$size, if (is.na(x[[i]]$size))
-      ""
-      else
-        " mb"),
-      sep = "\n")
-    cat("\n")
-  }
-}
+NULL
