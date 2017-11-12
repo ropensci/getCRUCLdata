@@ -1,8 +1,5 @@
 # getCRUCLdata 0.1.10.9000
 
-
-# getCRUCLdata 0.1.11
-
 ## Major changes
 
 - Use _hoardr_ for managing cached files
