@@ -1,5 +1,5 @@
 
-CRU_cache <- NULL # nocov start
+manage_cache <- NULL # nocov start
 
 .onLoad <-
   function(libname = find.package("getCRUCLdata"),
@@ -10,7 +10,7 @@ CRU_cache <- NULL # nocov start
 
       x <- hoardr::hoard()
       x$cache_path_set(path = "getCRUCLdata", type =  "user_cache_dir")
-      CRU_cache <<- x
+      manage_cache <<- x
     }
   }
 

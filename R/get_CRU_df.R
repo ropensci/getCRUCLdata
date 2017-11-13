@@ -70,7 +70,7 @@
 #'
 #' @seealso
 #' \code{\link{create_CRU_stack}}
-#' \code{\link{CRU_cache}}
+#' \code{\link{manage_cache}}
 #'
 #' @return A tidy data frame of CRU CL v. 2.0 climatology elements as a
 #' \code{\link[tibble]{tibble}} object

@@ -3,12 +3,12 @@
 
 test_that("test that .set_cache creates a cache directory if none exists", {
   skip_on_cran()
-  unlink(CRU_cache$cache_path_get(), recursive = TRUE)
+  unlink(manage_cache$cache_path_get(), recursive = TRUE)
   cache <- TRUE
   .set_cache(cache)
-  expect_true(file.exists(CRU_cache$cache_path_get()))
+  expect_true(file.exists(manage_cache$cache_path_get()))
   # cleanup
-  unlink(CRU_cache$cache_path_get(), recursive = TRUE)
+  unlink(manage_cache$cache_path_get(), recursive = TRUE)
 })
 
 # test that .set_cache does a cache directory if cache is FALSE ----------------
