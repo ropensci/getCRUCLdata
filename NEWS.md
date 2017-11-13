@@ -1,4 +1,4 @@
-# getCRUCLdata 0.1.10.9000
+# getCRUCLdata 0.2.0
 
 ## Major changes
 

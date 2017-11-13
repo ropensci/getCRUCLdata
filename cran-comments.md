@@ -9,10 +9,17 @@
 
 0 errors | 0 warnings | 1 note
 
+# New Minor Release
 
-## New minor release
+## Major changes
 
-This is a new minor release that updates the package to be more in-line with CRAN policy
+- Use _hoardr_ for managing cached files
+
+- Use `lapply` in place of `purrr::map`, _purrr_ is no longer imported
+
+## Minor changes
+
+- Correct documentation where examples pointed to a non-existent list
 
 ## Reverse dependencies
 
