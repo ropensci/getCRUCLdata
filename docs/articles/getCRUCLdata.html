@@ -218,12 +218,12 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge
 <p>Because the stacks are in a <code>list()</code>, we need to access each element of the list individually to plot them, that’s what the <code>[[1]]</code> or <code>[[2]]</code> is, the first or second element of the list. Here using <code>[[1]]</code> we will plot the monthly average minimum temperature for all twelve months.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(tmn_tmx[[<span class="dv">1</span>]])</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">1</span>]])</code></pre></div>
 <div class="figure">
 <img src="README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
 </div>
 <p>To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing <code>[[2]]</code> as before but append a <code>$jul</code> to the object. This is the name of the layer in the <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code>. So, we are telling R to plot the second object in the <code>tmn_tmx</code> list, which is <code>tmx</code> and from that raster stack, plot only the layer for July.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(tmn_tmx[[<span class="dv">2</span>]]<span class="op">$</span>jul)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">2</span>]]<span class="op">$</span>jul)</code></pre></div>
 <div class="figure">
 <img src="README-unnamed-chunk-11-1.png" alt="Plot of maximum temperatures for July"><p class="caption">Plot of maximum temperatures for July</p>
 </div>
@@ -235,11 +235,19 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ge
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
 <span class="kw">dir.create</span>(<span class="kw">file.path</span>(<span class="st">"~/Data"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmn, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmn_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)),
-            <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
-
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmx, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)),
-            <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(
+  t<span class="op">$</span>tmn,
+  <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmn_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(t<span class="op">$</span>tmn)),
+  <span class="dt">bylayer =</span> <span class="ot">TRUE</span>,
+  <span class="dt">format =</span> <span class="st">"GTiff"</span>
+  )
+  
+  <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(
+  t<span class="op">$</span>tmx,
+  <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(t<span class="op">$</span>tmn)),
+  <span class="dt">bylayer =</span> <span class="ot">TRUE</span>,
+  <span class="dt">format =</span> <span class="st">"GTiff"</span>
+  )</code></pre></div>
 </div>
 </div>
 <div id="advanced-usage" class="section level2">

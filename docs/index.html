@@ -198,12 +198,12 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <p>Because the stacks are in a <code>list()</code>, we need to access each element of the list individually to plot them, that’s what the <code>[[1]]</code> or <code>[[2]]</code> is, the first or second element of the list. Here using <code>[[1]]</code> we will plot the monthly average minimum temperature for all twelve months.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(tmn_tmx[[<span class="dv">1</span>]])</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">1</span>]])</code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
 </div>
 <p>To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing <code>[[2]]</code> as before but append a <code>$jul</code> to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the <code>tmn_tmx</code> list, which is <code>tmx</code> and from that <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code>, plot only the raster layer for July.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(tmn_tmx[[<span class="dv">2</span>]]<span class="op">$</span>jul)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">2</span>]]<span class="op">$</span>jul)</code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-11-1.png" alt="Plot of maximum temperatures for July"><p class="caption">Plot of maximum temperatures for July</p>
 </div>
@@ -215,9 +215,19 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 
 <span class="kw">dir.create</span>(<span class="kw">file.path</span>(<span class="st">"~/Data"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmn, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmn_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(
+  t<span class="op">$</span>tmn,
+  <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmn_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(t<span class="op">$</span>tmn)),
+  <span class="dt">bylayer =</span> <span class="ot">TRUE</span>,
+  <span class="dt">format =</span> <span class="st">"GTiff"</span>
+  )
 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(tmn_tmx<span class="op">$</span>tmx, <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(tmn_tmx<span class="op">$</span>tmn)), <span class="dt">bylayer =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">"GTiff"</span>)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(
+  t<span class="op">$</span>tmx,
+  <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(t<span class="op">$</span>tmn)),
+  <span class="dt">bylayer =</span> <span class="ot">TRUE</span>,
+  <span class="dt">format =</span> <span class="st">"GTiff"</span>
+  )</code></pre></div>
 </div>
 </div>
 </div>
@@ -229,9 +239,9 @@ CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_C
 <a href="#caching-files-for-later-use" class="anchor"></a>Caching files for later use</h3>
 <p>When using the <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> or <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions, files may be cached in the users’ local space for later use (optional) or stored in a temporary directory and deleted when the R session is closed and not saved (this is the default behaviour already illustrated above). Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future. <em>In order to take advantage of the cached data, you must use the <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> function again in the future</em>. This functionality is somewhat modelled after the <code><a href="http://www.rdocumentation.org/packages/raster/topics/getData">raster::getData()</a></code> function that will not download files that already exist in the working directory, however in this case the function is portable and it will work for any working directory. That is, if you have cached the data and you use <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> again, it will use the cached data no matter what working directory you are in. This functionality will be most useful for writing scripts that may be used several times rather than just once off or if you frequently use the data in multiple analyses the data will not be downloaded again if they have been cached.</p>
 <p>Create a list of raster stacks of maximum and minimum temperature. To take advantage of the previously cached files and save time by not downloading files, specify <code>cache = TRUE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmn_tmx &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,
-                         <span class="dt">tmx =</span> <span class="ot">TRUE</span>,
-                         <span class="dt">cache =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,
+                   <span class="dt">tmx =</span> <span class="ot">TRUE</span>,
+                   <span class="dt">cache =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 <div id="downloading-files-outside-of-r-using-another-ftp-program" class="section level3">
 <h3 class="hasAnchor">

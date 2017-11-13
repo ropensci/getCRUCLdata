@@ -147,7 +147,6 @@ Save the resulting tidy `tibble` to local disk as a comma separated (CSV) file t
 library(readr)
 
 write_csv(t, path = "~/CRU_tmp.csv")
-
 ```
 
 ### Creating raster stacks for use in R and saving for use in another GIS
@@ -186,7 +185,7 @@ Because the stacks are in a `list()`, we need to access each element of the list
 ```{r, eval=FALSE}
 library(raster)
 
-plot(tmn_tmx[[1]])
+plot(t[[1]])
 ```
 
 ![Plot of raster layers from minimum temperature stack](man/figures/README-unnamed-chunk-10-1.png)
@@ -195,7 +194,7 @@ To plot only one month from the stack is also possible. Here we plot maximum tem
 To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing `[[2]]` as before but append a `$jul` to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the `tmn_tmx` list, which is `tmx` and from that `raster::stack()`, plot only the raster layer for July.
 
 ```{r, eval=FALSE}
-plot(tmn_tmx[[2]]$jul)
+plot(t[[2]]$jul)
 ```
 
 ![Plot of maximum temperatures for July](man/figures/README-unnamed-chunk-11-1.png)
@@ -209,9 +208,19 @@ The raster stack objects can be saved to disk as geotiff files (others are avail
 library(raster)
 
 dir.create(file.path("~/Data"), showWarnings = FALSE)
-writeRaster(tmn_tmx$tmn, filename = file.path("~/Data/tmn_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
+writeRaster(
+  t$tmn,
+  filename = file.path("~/Data/tmn_", names(t$tmn)),
+  bylayer = TRUE,
+  format = "GTiff"
+  )
 
-writeRaster(tmn_tmx$tmx, filename = file.path("~/Data/tmx_", names(tmn_tmx$tmn)), bylayer = TRUE, format = "GTiff")
+writeRaster(
+  t$tmx,
+  filename = file.path("~/Data/tmx_", names(t$tmn)),
+  bylayer = TRUE,
+  format = "GTiff"
+  )
 ```
 
 ## Advanced usage
@@ -223,9 +232,9 @@ When using the `get_CRU_df()` or `get_CRU_stack()` functions, files may be cache
 Create a list of raster stacks of maximum and minimum temperature. To take advantage of the previously cached files and save time by not downloading files, specify `cache = TRUE`.
 
 ```{r, eval=FALSE}
-tmn_tmx <- get_CRU_stack(tmn = TRUE,
-                         tmx = TRUE,
-                         cache = TRUE)
+t <- get_CRU_stack(tmn = TRUE,
+                   tmx = TRUE,
+                   cache = TRUE)
 ```
 
 ### Downloading files outside of R using another FTP program

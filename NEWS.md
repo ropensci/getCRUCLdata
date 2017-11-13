@@ -6,6 +6,10 @@
 
 - Use `lapply` in place of `purrr::map`, _purrr_ is no longer imported
 
+## Minor changes
+
+- Correct documentation where examples pointed to a non-existent list
+
 # getCRUCLdata 0.1.10
 
 ## Major changes

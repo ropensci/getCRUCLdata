@@ -206,7 +206,7 @@ minimum temperature for all twelve months.
 ```{r, eval=FALSE}
 library(raster)
 
-plot(tmn_tmx[[1]])
+plot(t[[1]])
 ```
 
 ![Plot of raster layers from minimum temperature stack](README-unnamed-chunk-10-1.png)
@@ -218,7 +218,7 @@ So, we are telling R to plot the second object in the `tmn_tmx` list, which is
 `tmx` and from that raster stack, plot only the layer for July.
 
 ```{r, eval=FALSE}
-plot(tmn_tmx[[2]]$jul)
+plot(t[[2]]$jul)
 ```
 
 ![Plot of maximum temperatures for July](README-unnamed-chunk-11-1.png)
@@ -234,11 +234,19 @@ in the `Data` directory with a tmn or tmx prefix to the month for a file name.
 library(raster)
 
 dir.create(file.path("~/Data"), showWarnings = FALSE)
-writeRaster(tmn_tmx$tmn, filename = file.path("~/Data/tmn_", names(tmn_tmx$tmn)),
-            bylayer = TRUE, format = "GTiff")
-
-writeRaster(tmn_tmx$tmx, filename = file.path("~/Data/tmx_", names(tmn_tmx$tmn)),
-            bylayer = TRUE, format = "GTiff")
+writeRaster(
+  t$tmn,
+  filename = file.path("~/Data/tmn_", names(t$tmn)),
+  bylayer = TRUE,
+  format = "GTiff"
+  )
+  
+  writeRaster(
+  t$tmx,
+  filename = file.path("~/Data/tmx_", names(t$tmn)),
+  bylayer = TRUE,
+  format = "GTiff"
+  )
 ```
 
 ## Advanced usage
