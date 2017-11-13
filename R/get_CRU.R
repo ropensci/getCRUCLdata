@@ -97,7 +97,7 @@
           utils::setTxtProgressBar(pb, f)
         },
         error = function(x) {
-          CRU_cache$delete_all()
+          manage_cache$delete_all()
           stop("\nThe file downloads have failed.\n
                \nPlease start the download again.\n")
         }
