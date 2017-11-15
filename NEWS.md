@@ -10,6 +10,13 @@
 
 - Correct documentation where examples pointed to a non-existent list
 
+## Deprecated functions
+
+`CRU_cache_list()` now superceded by`manage_cache$list()`
+`CRU_cache_details()` now superceded by `manage_cache$details()`
+`CRU_cache_delete()` now superceded by `manage_cache$delete()`
+`CRU_cache_delete_all()` now superceded by `manage_cache$delete_all()`
+
 # getCRUCLdata 0.1.10
 
 ## Major changes
