@@ -4,13 +4,22 @@
 \name{getCRUCLdata-deprecated}
 \alias{getCRUCLdata-deprecated}
 \alias{CRU_cache_list}
-\alias{CRU_cache_delete_all}
-\alias{CRU_cache_delete}
-\alias{CRU_cache_details}
 \alias{getCRUCLdata-deprecated-package}
+\alias{getCRUCLdata-deprecated}
+\alias{CRU_cache_details}
+\alias{getCRUCLdata-deprecated}
+\alias{CRU_cache_delete}
+\alias{getCRUCLdata-deprecated}
+\alias{CRU_cache_delete_all}
 \title{Deprecated function(s) in the getCRUCLdata package}
 \usage{
 CRU_cache_list()
+
+CRU_cache_details()
+
+CRU_cache_delete()
+
+CRU_cache_delete_all()
 }
 \description{
 These functions are now deprecated in \pkg{getCRUCLdata}.
