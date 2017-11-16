@@ -11,15 +11,22 @@
 
 # New Minor Release
 
-## Major changes
-
-- Use _hoardr_ for managing cached files
+- Fixed a bug where the file cache was not in the proper subdirectory. The file
+cache has moved to the proper location in a `R/getCRUCLdata` location rather
+than `getCRUCLdata`.
 
 - Use `lapply` in place of `purrr::map`, _purrr_ is no longer imported
 
 ## Minor changes
 
 - Correct documentation where examples pointed to a non-existent list
+
+## Deprecated functions
+
+`CRU_cache_list()` now superceded by`manage_cache$list()`
+`CRU_cache_details()` now superceded by `manage_cache$details()`
+`CRU_cache_delete()` now superceded by `manage_cache$delete()`
+`CRU_cache_delete_all()` now superceded by `manage_cache$delete_all()`
 
 ## Reverse dependencies
 
