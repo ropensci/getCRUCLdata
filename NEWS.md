@@ -4,6 +4,11 @@
 
 - Use _hoardr_ for managing cached files
 
+- Fixed a bug where the file cache was not in the proper subdirectory. The file
+cache has moved to the proper location in a `R/getCRUCLdata` location rather
+than `getCRUCLdata`. You may wish to move files externally to R in order to keep
+them in the cache where the package will find them
+
 - Use `lapply` in place of `purrr::map`, _purrr_ is no longer imported
 
 ## Minor changes
