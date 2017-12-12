@@ -7,7 +7,7 @@
   "identifier": "getCRUCLdata",
   "description": "Provides functions that automate downloading and importing\n    University of East Anglia Climate Research Unit (CRU) CL v. 2.0 climatology\n    data into R, facilitates the calculation of minimum temperature and maximum\n    temperature and formats the data into a tidy data frame as a tibble or a \n    list of raster stack objects for use in an R session.  CRU CL v. 2.0 data \n    are a gridded climatology of 1961-1990 monthly means released in 2002 and\n    cover all land areas (excluding Antarctica) at 10 arcminutes\n    (0.1666667 degree) resolution.  For more information see the description of\n    the data provided by the University of East Anglia Climate Research Unit,\n    <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.",
   "name": "getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R",
-  "codeRepository": "https://github.com/ropensci/getCRUCLdata.git",
+  "codeRepository": "https://github.com/ropensci/getCRUCLdata",
   "issueTracker": "https://github.com/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.2.0",
@@ -233,9 +233,9 @@
     }
   ],
   "contIntegration": "https://travis-ci.org/ropensci/getCRUCLdata",
-  "releaseNotes": "https://github.com/ropensci/getCRUCLdata.git/blob/devel/NEWS.md",
-  "readme": "https://github.com/ropensci/getCRUCLdata.git/blob/devel/README.md",
-  "fileSize": "936.498KB",
+  "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/devel/NEWS.md",
+  "readme": "https://github.com/ropensci/getCRUCLdata/blob/devel/README.md",
+  "fileSize": "936.581KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -271,5 +271,8 @@
       "email": "myrmecocystus@gmail.com",
       "@id": "https://orcid.org/0000-0003-1444-9135"
     }
-  ]
+  ],
+  "applicationCategory": "Tools",
+  "isPartOf": "https://ropensci.org",
+  "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost"]
 }
