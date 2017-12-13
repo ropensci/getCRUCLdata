@@ -14,10 +14,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.2",
+    "version": "3.4.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.2 (2017-09-28)",
+  "runtimePlatform": "R version 3.4.3 (2017-11-30)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -235,7 +235,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/getCRUCLdata",
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/devel/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/devel/README.md",
-  "fileSize": "936.581KB",
+  "fileSize": "935.628KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
