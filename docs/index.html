@@ -93,17 +93,17 @@
 <h3 class="hasAnchor">
 <a href="#stable-version" class="anchor"></a>Stable version</h3>
 <p>A stable version of <em>getCRUCLdata</em> is available from <a href="https://cran.r-project.org/package=getCRUCLdata">CRAN</a>.</p>
-<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"getCRUCLdata"</span>)</a></code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"getCRUCLdata"</span>)</a></code></pre></div>
 </div>
 <div id="development-version" class="section level3">
 <h3 class="hasAnchor">
 <a href="#development-version" class="anchor"></a>Development version</h3>
 <p>A development version is available from from GitHub. If you wish to install the development version that may have new features (but also may not work properly), install the <a href="https://CRAN.R-project.org/package=devtools">devtools package</a>, available from CRAN. I strive to keep the master branch on GitHub functional and working properly, although this may not always happen.</p>
-<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">}</a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/getCRUCLdata"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre>
+<a class="sourceLine" id="cb2-5" data-line-number="5">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/getCRUCLdata"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="using-getcrucldata" class="section level2">
@@ -114,7 +114,7 @@
 <h3 class="hasAnchor">
 <a href="#creating-tidy-data-frames-for-use-in-r" class="anchor"></a>Creating tidy data frames for use in R</h3>
 <p>The <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> function automates the download process and creates tidy data frames as a <a href="https://github.com/tidyverse/tibble"><em>tibble</em></a> of the CRU CL v. 2.0 climatology elements.</p>
-<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(getCRUCLdata)</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(getCRUCLdata)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_df.html">get_CRU_df</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">                       <span class="dt">pre_cv =</span> <span class="ot">TRUE</span>,</a>
@@ -127,14 +127,14 @@
 <a class="sourceLine" id="cb3-11" data-line-number="11">                       <span class="dt">sunp =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">                       <span class="dt">frs =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb3-13" data-line-number="13">                       <span class="dt">wnd =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">                       <span class="dt">elv =</span> <span class="ot">TRUE</span>)</a></code></pre>
+<a class="sourceLine" id="cb3-14" data-line-number="14">                       <span class="dt">elv =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only.</p>
-<pre class="sourceCode r" id="cb4"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_df.html">get_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>)</a></code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_df.html">get_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <div id="plotting-data-from-the-tidy-dataframe" class="section level4">
 <h4 class="hasAnchor">
 <a href="#plotting-data-from-the-tidy-dataframe" class="anchor"></a>Plotting data from the tidy dataframe</h4>
 <p>Now that we have the data, we can plot it easily using <a href="http://ggplot2.org"><em>ggplot2</em></a> and the fantastic <a href="https://CRAN.R-project.org/package=viridis"><em>viridis</em></a> package for the colour scale.</p>
-<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"ggplot2"</span>)) {</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"ggplot2"</span>)) {</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="kw">install.packages</span>(ggplot2)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">}</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"viridis"</span>)) {</a>
@@ -142,23 +142,23 @@
 <a class="sourceLine" id="cb5-6" data-line-number="6">}</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="kw">library</span>(viridis)</a></code></pre>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="kw">library</span>(viridis)</a></code></pre></div>
 <p>Now that the required packages are installed and loaded, we can generate a figure of temperatures using <em>ggplot2</em> to map the 12 months.</p>
-<pre class="sourceCode r" id="cb6"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> t, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span></a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> t, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile">geom_raster</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">fill =</span> tmp)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/viridis/topics/scale_viridis">scale_fill_viridis</a></span>(<span class="dt">option =</span> <span class="st">"inferno"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_quickmap</a></span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ggtitle</a></span>(<span class="st">"Global Mean Monthly Temperatures 1961-1990"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(<span class="op">~</span><span class="st"> </span>month, <span class="dt">nrow =</span> <span class="dv">4</span>)</a></code></pre>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(<span class="op">~</span><span class="st"> </span>month, <span class="dt">nrow =</span> <span class="dv">4</span>)</a></code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperatures 1961-1990"><p class="caption">Plot of global mean monthly temperatures 1961-1990</p>
 </div>
 <p>We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.</p>
-<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> t, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span></a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> t, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_violin">geom_violin</a></span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Temperature (˚C)"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"Global Monthly Mean Land Surface Temperatures From 1960-1991"</span>,</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">       <span class="dt">subtitle =</span> <span class="st">"Excludes Antarctica"</span>)</a></code></pre>
+<a class="sourceLine" id="cb7-5" data-line-number="5">       <span class="dt">subtitle =</span> <span class="st">"Excludes Antarctica"</span>)</a></code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-7-1.png" alt="Violin plot of global mean temperatures 1961-1990"><p class="caption">Violin plot of global mean temperatures 1961-1990</p>
 </div>
@@ -167,9 +167,9 @@
 <h4 class="hasAnchor">
 <a href="#saving-the-tidy-tibble-as-a-csv-comma-separated-values-file-locally" class="anchor"></a>Saving the tidy <code>tibble</code> as a CSV (comma separated values file) locally</h4>
 <p>Save the resulting tidy <code>tibble</code> to local disk as a comma separated (CSV) file to local disk.</p>
-<pre class="sourceCode r" id="cb8"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/readr/topics/write_delim">write_csv</a></span>(t, <span class="dt">path =</span> <span class="st">"~/CRU_tmp.csv"</span>)</a></code></pre>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/readr/topics/write_delim">write_csv</a></span>(t, <span class="dt">path =</span> <span class="st">"~/CRU_tmp.csv"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="creating-raster-stacks-for-use-in-r-and-saving-for-use-in-another-gis" class="section level3">
@@ -178,7 +178,7 @@
 <p>For working with spatial data, <em>getCRUCLdata</em> provides a function that create lists of <a href="https://CRAN.R-project.org/package=raster"><em>raster</em></a> stacks of the data.</p>
 <p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions provide similar functionality to <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code>, but rather than returning a tidy data frame, it returns a list of <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> objects for use in an R session.</p>
 <p>The <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> function automates the download process and creates a <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> object of the CRU CL v. 2.0 climatology elements. Illustrated here is creating a <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> of all CRU CL v. 2.0 climatology elements available.</p>
-<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">CRU_stack &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,</a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">CRU_stack &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">                           <span class="dt">pre_cv =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3">                           <span class="dt">rd0 =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb9-4" data-line-number="4">                           <span class="dt">tmp =</span> <span class="ot">TRUE</span>,</a>
@@ -189,21 +189,21 @@
 <a class="sourceLine" id="cb9-9" data-line-number="9">                           <span class="dt">sunp =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb9-10" data-line-number="10">                           <span class="dt">frs =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb9-11" data-line-number="11">                           <span class="dt">wnd =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb9-12" data-line-number="12">                           <span class="dt">elv =</span> <span class="ot">TRUE</span>)</a></code></pre>
+<a class="sourceLine" id="cb9-12" data-line-number="12">                           <span class="dt">elv =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>The <code><a href="reference/create_CRU_stack.html">create_CRU_stack()</a></code> function works in the same way with only one minor difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import.</p>
-<pre class="sourceCode r" id="cb10"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>, <span class="dt">dsn =</span> <span class="st">"~/Downloads"</span>)</a></code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_stack.html">create_CRU_stack</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>, <span class="dt">dsn =</span> <span class="st">"~/Downloads"</span>)</a></code></pre></div>
 <div id="plotting-raster-stacks-of-tmin-and-tmax" class="section level4">
 <h4 class="hasAnchor">
 <a href="#plotting-raster-stacks-of-tmin-and-tmax" class="anchor"></a>Plotting raster stacks of tmin and tmax</h4>
 <p>Because the stacks are in a <code>list()</code>, we need to access each element of the list individually to plot them, that’s what the <code>[[1]]</code> or <code>[[2]]</code> is, the first or second element of the list. Here using <code>[[1]]</code> we will plot the monthly average minimum temperature for all twelve months.</p>
-<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">1</span>]])</a></code></pre>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">1</span>]])</a></code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
 </div>
 <p>To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing <code>[[2]]</code> as before but append a <code>$jul</code> to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the <code>tmn_tmx</code> list, which is <code>tmx</code> and from that <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code>, plot only the raster layer for July.</p>
-<pre class="sourceCode r" id="cb12"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">2</span>]]<span class="op">$</span>jul)</a></code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">2</span>]]<span class="op">$</span>jul)</a></code></pre></div>
 <div class="figure">
 <img src="reference/figures/README-unnamed-chunk-11-1.png" alt="Plot of maximum temperatures for July"><p class="caption">Plot of maximum temperatures for July</p>
 </div>
@@ -212,7 +212,7 @@
 <h4 class="hasAnchor">
 <a href="#saving-raster-objects-to-local-disk" class="anchor"></a>Saving raster objects to local disk</h4>
 <p>The raster stack objects can be saved to disk as geotiff files (others are available, see help for <code><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster()</a></code> and <code><a href="http://www.rdocumentation.org/packages/raster/topics/writeFormats">writeFormats()</a></code> for more options) in the <code>Data</code> directory with a tmn or tmx prefix to the month for a file name.</p>
-<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">dir.create</span>(<span class="kw">file.path</span>(<span class="st">"~/Data"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(</a>
@@ -227,7 +227,7 @@
 <a class="sourceLine" id="cb13-13" data-line-number="13">  <span class="dt">filename =</span> <span class="kw">file.path</span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(t<span class="op">$</span>tmn)),</a>
 <a class="sourceLine" id="cb13-14" data-line-number="14">  <span class="dt">bylayer =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb13-15" data-line-number="15">  <span class="dt">format =</span> <span class="st">"GTiff"</span></a>
-<a class="sourceLine" id="cb13-16" data-line-number="16">  )</a></code></pre>
+<a class="sourceLine" id="cb13-16" data-line-number="16">  )</a></code></pre></div>
 </div>
 </div>
 </div>
@@ -239,9 +239,9 @@
 <a href="#caching-files-for-later-use" class="anchor"></a>Caching files for later use</h3>
 <p>When using the <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> or <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions, files may be cached in the users’ local space for later use (optional) or stored in a temporary directory and deleted when the R session is closed and not saved (this is the default behaviour already illustrated above). Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache them to save time in the future. <em>In order to take advantage of the cached data, you must use the <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> function again in the future</em>. This functionality is somewhat modelled after the <code><a href="http://www.rdocumentation.org/packages/raster/topics/getData">raster::getData()</a></code> function that will not download files that already exist in the working directory, however in this case the function is portable and it will work for any working directory. That is, if you have cached the data and you use <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> again, it will use the cached data no matter what working directory you are in. This functionality will be most useful for writing scripts that may be used several times rather than just once off or if you frequently use the data in multiple analyses the data will not be downloaded again if they have been cached.</p>
 <p>Create a list of raster stacks of maximum and minimum temperature. To take advantage of the previously cached files and save time by not downloading files, specify <code>cache = TRUE</code>.</p>
-<pre class="sourceCode r" id="cb14"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,</a>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_CRU_stack.html">get_CRU_stack</a></span>(<span class="dt">tmn =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2">                   <span class="dt">tmx =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">                   <span class="dt">cache =</span> <span class="ot">TRUE</span>)</a></code></pre>
+<a class="sourceLine" id="cb14-3" data-line-number="3">                   <span class="dt">cache =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="downloading-files-outside-of-r-using-another-ftp-program" class="section level3">
 <h3 class="hasAnchor">
@@ -249,7 +249,7 @@
 <p>A second set of functions, <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="reference/create_CRU_stack.html">create_CRU_stack()</a></code>, is provided for users that may have connectivity issues or simply wish to use something other than R to download the data files. You may also wish to use these if you want to download the data and specify where it is stored rather than using the <code>cache</code> functionality of <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code>.</p>
 <p>The <code><a href="reference/create_CRU_df.html">create_CRU_df()</a></code> and <code><a href="reference/create_CRU_stack.html">create_CRU_stack()</a></code> functions work in the same way as <code><a href="reference/get_CRU_df.html">get_CRU_df()</a></code> and <code><a href="reference/get_CRU_stack.html">get_CRU_stack()</a></code> functions with only one major difference. You must supply the location of the files on the local disk (<code>dsn</code>) that you wish to import. That is, the CRU CL v. 2.0 data files <em>must</em> be downloaded prior to the use of these functions using a program external to R, e.g., FileZilla or some other FTP program. In this instance it is recommended to use an FTP client (<em>e.g.</em>, <a href="https://filezilla-project.org">FileZilla</a>), a web browser* or command line command (e.g., <a href="https://www.gnu.org/software/wget/">wget</a> or <a href="https://curl.haxx.se">cURL</a>) to download the files, save locally and use one of these functions to import the data into R and generate your desired object to work with.</p>
 <p>*Beware, if using Safari, macOS will automatically unzip the files. This will cause the functions in R to fail as they expect a gzipped file.</p>
-<pre class="sourceCode r" id="cb15"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>, <span class="dt">dsn =</span> <span class="st">"~/Downloads"</span>)</a></code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">t &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_CRU_df.html">create_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>, <span class="dt">dsn =</span> <span class="st">"~/Downloads"</span>)</a></code></pre></div>
 <hr>
 </div>
 </div>
@@ -325,9 +325,8 @@
 </ul>
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Adam Sparks <br><small class="roles"> Author, maintainer </small> <br><small>(https://orcid.org/0000-0002-0061-8359)</small>
+<li>Adam Sparks <br><small class="roles"> Author, maintainer </small> <br><small>(0000-0002-0061-8359)</small>
 </li>
-<li><a href="authors.html">All authors...</a></li>
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
