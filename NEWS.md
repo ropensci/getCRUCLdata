@@ -1,3 +1,11 @@
+# getCRUCLdata 0.2.1
+
+## Minor changes
+
+- Fix ORCID entry in DESCRIPTION per CRAN maintainer's request
+
+- Remove Scott as contributor, the code contributed has been removed
+
 # getCRUCLdata 0.2.0
 
 ## Major changes
