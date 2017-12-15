@@ -13,9 +13,7 @@
 
 ## Minor changes
 
-- Fix ORCID entry in DESCRIPTION per CRAN maintainer's request
-
-- Remove Scott as contributor, the code contributed has been removed
+- Fix mistake in ORCID entry in author field
 
 ## Reverse dependencies
 
