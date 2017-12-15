@@ -4,7 +4,7 @@ Title: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 Version: 0.2.1
 Authors@R: c(person(given = "Adam", family = "Sparks", 
                   email = "adamhsparks@gmail.com", role = c("aut", "cre"),
-                  comment = "0000-0002-0061-8359"))
+                  comment = "ORCID = 0000-0002-0061-8359"))
 Description: Provides functions that automate downloading and importing
     University of East Anglia Climate Research Unit (CRU) CL v. 2.0 climatology
     data into R, facilitates the calculation of minimum temperature and maximum
