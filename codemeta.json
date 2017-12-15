@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/getCRUCLdata",
   "issueTracker": "https://github.com/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -29,14 +29,16 @@
       "@type": "Person",
       "givenName": "Adam",
       "familyName": "Sparks",
-      "email": "adamhsparks@gmail.com"
+      "email": "adamhsparks@gmail.com",
+      "@id": "https://orcid.org/0000-0002-0061-8359"
     }
   ],
   "maintainer": {
     "@type": "Person",
     "givenName": "Adam",
     "familyName": "Sparks",
-    "email": "adamhsparks@gmail.com"
+    "email": "adamhsparks@gmail.com",
+    "@id": "https://orcid.org/0000-0002-0061-8359"
   },
   "softwareSuggestions": [
     {
@@ -233,7 +235,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/getCRUCLdata",
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
-  "fileSize": "935.661KB",
+  "fileSize": "936.599KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
