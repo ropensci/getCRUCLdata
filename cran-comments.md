@@ -13,7 +13,8 @@
 
 ## Minor changes
 
-- Fix mistake in ORCID entry in author field
+- Per my e-mail communication with Kurt, I made another mistake when I
+submitted this yesterday. This fixes the mistake in ORCID entry in author field
 
 ## Reverse dependencies
 
