@@ -31,7 +31,10 @@ manage_cache <- NULL # nocov start
       "\n",
       "New, M., Lister, D., Hulme, M. and Makin, I., 2002: A\n",
       "high-resolution data set of surface climate over global\n",
-      "land areas. Climate Research 21:1-25\n"
+      "land areas. Climate Research 21:1-25\n",
+      "\n",
+      "If you use getCRUCLdata, please cite it properly. For citation\n",
+      "information see `citation(getCRUCLdata)`."
     )
   packageStartupMessage(msg)
 }
