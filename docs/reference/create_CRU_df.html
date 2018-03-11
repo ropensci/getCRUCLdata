@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,31 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Create a Tidy Data Frame From CRU CL v.2.0 Climatology Variables on Local Disk — create_CRU_df" />
+
+<meta property="og:description" content="This function automates importing CRU CL v.2.0 climatology data
+into R and creates a tidy data frame of the data.  If requested, minimum and
+maximum temperature may also be automatically calculated as described in the
+data readme.txt file.  This function can be useful if you have network
+connection issues that mean automated downloading of the files using R
+does not work properly.  In this instance it is recommended to use an FTP
+client (e.g., FileZilla), web browser or command line command (e.g., wget or
+curl) to download the files, save locally and use this function to import the
+data into R.
+Nomenclature and units from readme.txt:
+preprecipitation (millimetres/month)" />
+
+<meta property="og:description" content="rd0wet-days (number days with &gt;0.1mm rain per month)
+tmpmean temperature (degrees Celsius)
+dtrmean diurnal temperature range (degrees Celsius)
+rehrelative humidity (percent)
+sunpsunshine (percent of maximum possible (percent of day length))
+frsground-frost (number of days with ground-frost per month)
+wnd10 metre windspeed (metres/second)
+elvelevation (automatically converted to metres)
+For more information see the description of the data provided by CRU,
+https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -238,7 +265,7 @@ Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -246,3 +273,4 @@ Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 
   </body>
 </html>
+
