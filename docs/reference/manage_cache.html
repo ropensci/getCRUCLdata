@@ -25,8 +25,6 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
 <meta property="og:title" content="Manage locally cached CRU CL v. 2.0 files — manage_cache" />
 
 <meta property="og:description" content="Manage cached getCRUCLdata files with hoardr" />
@@ -70,7 +68,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -93,6 +91,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Manage locally cached CRU CL v. 2.0 files</h1>
+    <small>Source: <a href='https:/github.com/ropensci/getCRUCLdata/blob/master/R/manage_cached_files.R'><code>R/manage_cached_files.R</code></a></small>
     </div>
 
     
@@ -104,8 +103,8 @@
 
     <p>The default cache directory is
 <code>file.path(rappdirs::user_cache_dir(), "R/getCRUCLdata")</code>, but you can
-set your own path using <code>manage_cache$cache_path_set()</code>
-    <code>manage_cache$cache_delete</code> only accepts one file name, while
+set your own path using <code>manage_cache$cache_path_set()</code></p>
+<p><code>manage_cache$cache_delete</code> only accepts one file name, while
 <code>manage_cache$cache_delete_all</code>
 does not accept any names, but deletes all files. For deleting many specific
 files, use <code>manage_cache$cache_delete</code> in an
