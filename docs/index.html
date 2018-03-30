@@ -27,7 +27,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -36,8 +36,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">getCRUCLdata</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="index.html">getCRUCLdata</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
@@ -47,7 +51,7 @@
   </a>
 </li>
 <li>
-  <a href="articles/getCRUCLdata.html">Get Started</a>
+  <a href="articles/getCRUCLdata.html">Get started</a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
@@ -73,12 +77,11 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     
 
     
     
-<div class="contents">
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p>Author/Maintainer: Adam Sparks</p>
@@ -163,7 +166,7 @@
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ggtitle</a></span>(<span class="st">"Global Mean Monthly Temperatures 1961-1990"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(<span class="op">~</span><span class="st"> </span>month, <span class="dt">nrow =</span> <span class="dv">4</span>)</a></code></pre></div>
 <div class="figure">
-<img src="/Users/adamsparks/Development/getCRUCLdata/man/figures/README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperatures 1961-1990"><p class="caption">Plot of global mean monthly temperatures 1961-1990</p>
+<img src="reference/figures/README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperatures 1961-1990"><p class="caption">Plot of global mean monthly temperatures 1961-1990</p>
 </div>
 <p>We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> t, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span></a>
@@ -172,7 +175,7 @@
 <a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"Global Monthly Mean Land Surface Temperatures From 1960-1991"</span>,</a>
 <a class="sourceLine" id="cb7-5" data-line-number="5">       <span class="dt">subtitle =</span> <span class="st">"Excludes Antarctica"</span>)</a></code></pre></div>
 <div class="figure">
-<img src="/Users/adamsparks/Development/getCRUCLdata/man/figures/README-unnamed-chunk-7-1.png" alt="Violin plot of global mean temperatures 1961-1990"><p class="caption">Violin plot of global mean temperatures 1961-1990</p>
+<img src="reference/figures/README-unnamed-chunk-7-1.png" alt="Violin plot of global mean temperatures 1961-1990"><p class="caption">Violin plot of global mean temperatures 1961-1990</p>
 </div>
 </div>
 <div id="saving-the-tidy-tibble-as-a-csv-comma-separated-values-file-locally" class="section level4">
@@ -212,12 +215,12 @@
 <a class="sourceLine" id="cb11-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">1</span>]])</a></code></pre></div>
 <div class="figure">
-<img src="/Users/adamsparks/Development/getCRUCLdata/man/figures/README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
+<img src="reference/figures/README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
 </div>
 <p>To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing <code>[[2]]</code> as before but append a <code>$jul</code> to the object. This is the name of the layer in the raster stack. So, we are telling R to plot the second object in the <code>tmn_tmx</code> list, which is <code>tmx</code> and from that <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code>, plot only the raster layer for July.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">2</span>]]<span class="op">$</span>jul)</a></code></pre></div>
 <div class="figure">
-<img src="/Users/adamsparks/Development/getCRUCLdata/man/figures/README-unnamed-chunk-11-1.png" alt="Plot of maximum temperatures for July"><p class="caption">Plot of maximum temperatures for July</p>
+<img src="reference/figures/README-unnamed-chunk-11-1.png" alt="Plot of maximum temperatures for July"><p class="caption">Plot of maximum temperatures for July</p>
 </div>
 </div>
 <div id="saving-raster-objects-to-local-disk" class="section level4">
@@ -315,30 +318,42 @@
 <p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/github_footer.png" alt="ropensci"></a></p>
 </div>
 </div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2 class="hasAnchor">
-<a href="#sidebar" class="anchor"></a>Links</h2>
+    <div class="links">
+<h2>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=getCRUCLdata">https://​cran.r-project.org/​package=getCRUCLdata</a>
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=getCRUCLdata">https://​cloud.r-project.org/​package=getCRUCLdata</a>
 </li>
 <li>Browse source code at <br><a href="https://github.com/ropensci/getCRUCLdata">https://​github.com/​ropensci/​getCRUCLdata</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/ropensci/getCRUCLdata/issues">https://​github.com/​ropensci/​getCRUCLdata/​issues</a>
 </li>
 </ul>
+</div>
+<div class="license">
 <h2>License</h2>
-<p><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></p>
+<ul class="list-unstyled">
+<li>
+<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+</li>
+</ul>
+</div>
+<div class="citation">
 <h2>Citation</h2>
 <ul class="list-unstyled">
 <li><a href="authors.html">Citing getCRUCLdata</a></li>
 </ul>
+</div>
+<div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Adam Sparks <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-0061-8359" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid"></a> </li>
+<li>Adam Sparks <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-0061-8359" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" height="16"></a> </li>
 </ul>
+</div>
+
+      <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/"><img src="https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master" alt="Travis-CI Build Status"></a></li>
@@ -349,6 +364,7 @@
 <li><a href="http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15"><img src="http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15/status.svg" alt="status"></a></li>
 <li><a href="https://github.com/ropensci/onboarding/issues/96"><img src="https://badges.ropensci.org/96_status.svg"></a></li>
 </ul>
+</div>
 </div>
 
 </div>
@@ -364,6 +380,8 @@
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>

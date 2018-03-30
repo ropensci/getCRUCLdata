@@ -18,7 +18,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -27,8 +27,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">getCRUCLdata</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">getCRUCLdata</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
@@ -38,7 +42,7 @@
   </a>
 </li>
 <li>
-  <a href="../articles/getCRUCLdata.html">Get Started</a>
+  <a href="../articles/getCRUCLdata.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -64,20 +68,19 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>getCRUCLdata</h1>
                         <h4 class="author">Adam H. Sparks</h4>
             
-            <h4 class="date">2018-03-17</h4>
+            <h4 class="date">2018-03-30</h4>
       
-      <small>Source: <a href="https:/github.com/ropensci/getCRUCLdata/blob/master/vignettes/getCRUCLdata.Rmd"><code>vignettes/getCRUCLdata.Rmd</code></a></small>
+      <small>Source: <a href="https://github.com/ropensci/getCRUCLdata/blob/master/vignettes/getCRUCLdata.Rmd"><code>vignettes/getCRUCLdata.Rmd</code></a></small>
 
     </div>
 
     
     
-<div class="contents">
 <div id="introduction-to-getcrucldata" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction-to-getcrucldata" class="anchor"></a>Introduction to <em>getCRUCLdata</em>
@@ -177,7 +180,7 @@
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ggtitle</a></span>(<span class="st">"Global Mean Monthly Temperatures 1961-1990"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(<span class="op">~</span><span class="st"> </span>month, <span class="dt">nrow =</span> <span class="dv">4</span>)</a></code></pre></div>
 <div class="figure">
-<img src="/Users/adamsparks/Development/getCRUCLdata/vignettes/README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperatures 1961-1990"><p class="caption">Plot of global mean monthly temperatures 1961-1990</p>
+<img src="README-unnamed-chunk-6-1.png" alt="Plot of global mean monthly temperatures 1961-1990"><p class="caption">Plot of global mean monthly temperatures 1961-1990</p>
 </div>
 <p>We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> t, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> month, <span class="dt">y =</span> tmp)) <span class="op">+</span></a>
@@ -186,7 +189,7 @@
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"Global Monthly Mean Land Surface Temperatures From 1960-1991"</span>,</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">       <span class="dt">subtitle =</span> <span class="st">"Excludes Antarctica"</span>)</a></code></pre></div>
 <div class="figure">
-<img src="/Users/adamsparks/Development/getCRUCLdata/vignettes/README-unnamed-chunk-7-1.png" alt="Violin plot of global mean temperatures 1961-1990"><p class="caption">Violin plot of global mean temperatures 1961-1990</p>
+<img src="README-unnamed-chunk-7-1.png" alt="Violin plot of global mean temperatures 1961-1990"><p class="caption">Violin plot of global mean temperatures 1961-1990</p>
 </div>
 </div>
 <div id="saving-the-tidy-tibble-as-a-csv-comma-separated-values-file-locally" class="section level4">
@@ -226,12 +229,12 @@
 <a class="sourceLine" id="cb9-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">1</span>]])</a></code></pre></div>
 <div class="figure">
-<img src="/Users/adamsparks/Development/getCRUCLdata/vignettes/README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
+<img src="README-unnamed-chunk-10-1.png" alt="Plot of raster layers from minimum temperature stack"><p class="caption">Plot of raster layers from minimum temperature stack</p>
 </div>
 <p>To plot only one month from the stack is also possible. Here we plot maximum temperature for July. Note that we use indexing <code>[[2]]</code> as before but append a <code>$jul</code> to the object. This is the name of the layer in the <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code>. So, we are telling R to plot the second object in the <code>tmn_tmx</code> list, which is <code>tmx</code> and from that raster stack, plot only the layer for July.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(t[[<span class="dv">2</span>]]<span class="op">$</span>jul)</a></code></pre></div>
 <div class="figure">
-<img src="/Users/adamsparks/Development/getCRUCLdata/vignettes/README-unnamed-chunk-11-1.png" alt="Plot of maximum temperatures for July"><p class="caption">Plot of maximum temperatures for July</p>
+<img src="README-unnamed-chunk-11-1.png" alt="Plot of maximum temperatures for July"><p class="caption">Plot of maximum temperatures for July</p>
 </div>
 </div>
 <div id="saving-raster-objects-to-local-disk" class="section level4">
@@ -287,7 +290,6 @@ A high-resolution data set of surface climate over global land areas Climate Res
 (4) International Water Management Institute, PO Box 2075, Colombo, Sri Lanka</p>
 <p><strong>ABSTRACT:</strong> We describe the construction of a 10-minute latitude/longitude data set of mean monthly surface climate over global land areas, excluding Antarctica. The climatology includes 8 climate elements - precipitation, wet-day frequency, temperature, diurnal temperature range, relative humidity,sunshine duration, ground frost frequency and windspeed - and was interpolated from a data set of station means for the period centred on 1961 to 1990. Precipitation was first defined in terms of the parameters of the Gamma distribution, enabling the calculation of monthly precipitation at any given return period. The data are compared to an earlier data set at 0.5 degrees latitude/longitude resolution and show added value over most regions. The data will have many applications in applied climatology, biogeochemical modelling, hydrology and agricultural meteorology and are available through the School of Geography Oxford (<a href="http://www.geog.ox.ac.uk" class="uri">http://www.geog.ox.ac.uk</a>), the International Water Management Institute “World Water and Climate Atlas” (<a href="http://www.iwmi.org" class="uri">http://www.iwmi.org</a>) and the Climatic Research Unit (<a href="http://www.cru.uea.ac.uk" class="uri">http://www.cru.uea.ac.uk</a>).</p>
 </div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -320,6 +322,8 @@ A high-resolution data set of surface climate over global land areas Climate Res
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>
