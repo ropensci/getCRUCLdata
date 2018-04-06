@@ -1,3 +1,11 @@
+# getCRUCLdata 0.2.2
+
+## Bug fixes
+
+- Fix incorrect ORCID entry author field
+
+--------------------------------------------------------------------------------
+
 # getCRUCLdata 0.2.1
 
 ## Minor changes
@@ -5,6 +13,8 @@
 - Fix ORCID entry in DESCRIPTION per CRAN maintainer's request
 
 - Remove Scott as contributor, the code contributed has been removed
+
+--------------------------------------------------------------------------------
 
 # getCRUCLdata 0.2.0
 
@@ -29,6 +39,8 @@ them in the cache where the package will find them
 `CRU_cache_details()` now superceded by `manage_cache$details()`
 `CRU_cache_delete()` now superceded by `manage_cache$delete()`
 `CRU_cache_delete_all()` now superceded by `manage_cache$delete_all()`
+
+--------------------------------------------------------------------------------
 
 # getCRUCLdata 0.1.10
 
