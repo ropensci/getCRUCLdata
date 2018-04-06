@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/getCRUCLdata",
   "issueTracker": "https://github.com/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.3",
+    "version": "3.4.4",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.3 (2017-11-30)",
+  "runtimePlatform": "R version 3.4.4 (2018-03-15)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -29,14 +29,16 @@
       "@type": "Person",
       "givenName": "Adam",
       "familyName": "Sparks",
-      "email": "adamhsparks@gmail.com"
+      "email": "adamhsparks@gmail.com",
+      "@id": "https://orcid.org/0000-0002-0061-8359"
     }
   ],
   "maintainer": {
     "@type": "Person",
     "givenName": "Adam",
     "familyName": "Sparks",
-    "email": "adamhsparks@gmail.com"
+    "email": "adamhsparks@gmail.com",
+    "@id": "https://orcid.org/0000-0002-0061-8359"
   },
   "softwareSuggestions": [
     {
@@ -233,7 +235,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/getCRUCLdata",
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
-  "fileSize": "935.661KB",
+  "fileSize": "936.665KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
