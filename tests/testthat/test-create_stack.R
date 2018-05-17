@@ -485,21 +485,17 @@ test_that("create_CRU_stack creates a list of raster stacks of pre and tmp", {
     )
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.dat.gz"), "w")
-  utils::write.table(
-    pre_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(pre_data,
+                     file = gz1,
+                     col.names = FALSE,
+                     row.names = FALSE)
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
-  utils::write.table(
-    tmp_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(tmp_data,
+                     file = gz1,
+                     col.names = FALSE,
+                     row.names = FALSE)
   close(gz1)
 
   pre_cv <- TRUE
@@ -515,12 +511,12 @@ test_that("create_CRU_stack creates a list of raster stacks of pre and tmp", {
   pre_cv <- FALSE
 
   stacks <-
-    plyr::llply(.fun = .create_stack,
-                files,
-                wrld,
-                month_names,
-                pre,
-                pre_cv)
+    lapply(FUN = .create_stack,
+           X = files,
+           wrld,
+           month_names,
+           pre,
+           pre_cv)
 
   expect_true(is.list(stacks))
   expect_named(
@@ -563,7 +559,6 @@ test_that("create_CRU_stack creates a list of raster stacks of pre and tmp", {
 # Test that create_CRU_stack creates a list containing only elv ----------------
 
 test_that("create_CRU_stack creates a list containing only elv", {
-
   skip_on_cran()
 
   unlink(list.files(
@@ -625,12 +620,10 @@ test_that("create_CRU_stack creates a list containing only elv", {
   )
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_elv.dat.gz"), "w")
-  utils::write.table(
-    elv_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(elv_data,
+                     file = gz1,
+                     col.names = FALSE,
+                     row.names = FALSE)
   close(gz1)
 
 
@@ -641,12 +634,12 @@ test_that("create_CRU_stack creates a list containing only elv", {
   pre_cv <- FALSE
 
   stacks <-
-    plyr::llply(.fun = .create_stack,
-                files,
-                wrld,
-                month_names,
-                pre,
-                pre_cv)
+    lapply(FUN = .create_stack,
+           X = files,
+           wrld,
+           month_names,
+           pre,
+           pre_cv)
 
   expect_named(stacks[[1]], "elv")
   expect_equal(raster::cellStats(stacks[[1]], max), 239)
@@ -659,31 +652,32 @@ test_that("create_CRU_stack creates a list containing only elv", {
 
 # Test that wrld raster object resolution and extent are appropriate -----------
 
-test_that("Test thatwrld raster object resolution and extent are appropriate", {
-  skip_on_cran()
+test_that("Test thatwrld raster object resolution and extent are appropriate",
+          {
+            skip_on_cran()
 
-  wrld <- raster::raster(
-    nrows = 930,
-    ncols = 2160,
-    ymn = -65,
-    ymx = 90,
-    xmn = -180,
-    xmx = 180
-  )
+            wrld <- raster::raster(
+              nrows = 930,
+              ncols = 2160,
+              ymn = -65,
+              ymx = 90,
+              xmn = -180,
+              xmx = 180
+            )
 
-  wrld[] <- NA
+            wrld[] <- NA
 
-  expect_type(wrld, "S4")
-  expect_equal(wrld@extent[1], -180)
-  expect_equal(wrld@extent[2], 180)
-  expect_equal(wrld@extent[3], -65)
-  expect_equal(wrld@extent[4], 90)
-  expect_equal(wrld@ncols, 2160)
-  expect_equal(wrld@nrows, 930)
-  expect_true(is.na(wrld@data@values[raster::ncell(wrld)]))
-  expect_true(is.na(wrld@data@values[1]))
-  expect_true(is.na(wrld@data@values[1004400]))
-})
+            expect_type(wrld, "S4")
+            expect_equal(wrld@extent[1], -180)
+            expect_equal(wrld@extent[2], 180)
+            expect_equal(wrld@extent[3], -65)
+            expect_equal(wrld@extent[4], 90)
+            expect_equal(wrld@ncols, 2160)
+            expect_equal(wrld@nrows, 930)
+            expect_true(is.na(wrld@data@values[raster::ncell(wrld)]))
+            expect_true(is.na(wrld@data@values[1]))
+            expect_true(is.na(wrld@data@values[1004400]))
+          })
 
 
 test_that("month names are appropriate", {
@@ -1177,21 +1171,17 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
     )
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.dat.gz"), "w")
-  utils::write.table(
-    pre_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(pre_data,
+                     file = gz1,
+                     col.names = FALSE,
+                     row.names = FALSE)
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
-  utils::write.table(
-    tmp_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(tmp_data,
+                     file = gz1,
+                     col.names = FALSE,
+                     row.names = FALSE)
   close(gz1)
 
   files <-
@@ -1226,13 +1216,14 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
   pre_cv <- TRUE
 
   CRU_stack_list <-
-    plyr::llply(.fun = .create_stack,
-                files,
-                wrld,
-                month_names,
-                pre,
-                pre_cv,
-                .progress = "text")
+    lapply(
+      FUN = .create_stack,
+      X = files,
+      wrld,
+      month_names,
+      pre,
+      pre_cv
+    )
 
   names(CRU_stack_list) <- substr(basename(files), 12, 14)
 
