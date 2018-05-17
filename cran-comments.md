@@ -1,9 +1,9 @@
 ## Test environments
 
-* local macOS install, 3.4.3 (2017-11-30)
-* Ubuntu 14.04.5 LTS (on travis-ci), R version 3.4.3 (2017-11-30)
-* win-builder R Under development (unstable) (2017-09-12 r73242)
-* win-builder R version R version 3.4.3 (2017-11-30)
+* local macOS install, 3.5.0 (2017-11-30)
+* Ubuntu 14.04.5 LTS (on travis-ci), R version 3.5.0 (2017-11-30)
+* win-builder R Under development (unstable) (2018-05-15 r74727)
+* win-builder R version R version 3.5.0 (2018-04-23)
 
 ## R CMD check results
 
@@ -13,8 +13,8 @@
 
 ## Minor changes
 
-- Per my e-mail communication with Kurt, I made another mistake when I
-submitted this yesterday. This fixes the mistake in ORCID entry in author field
+- Fix imports by stating in DESCRIPTION, rappdirs and removing plyr function
+from use
 
 ## Reverse dependencies
 
