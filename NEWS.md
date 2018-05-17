@@ -1,3 +1,16 @@
+
+# getCRUCLdata 0.2.2.9000
+
+## Bug fixes
+
+- Fix missing import for `rappdirs`
+
+## Minor changes
+
+- Remove the use of `plyr` in tests
+
+--------------------------------------------------------------------------------
+
 # getCRUCLdata 0.2.2
 
 ## Bug fixes
@@ -5,7 +18,6 @@
 - Fix incorrect ORCID entry author field
 
 --------------------------------------------------------------------------------
-
 # getCRUCLdata 0.2.1
 
 ## Minor changes

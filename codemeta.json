@@ -10,7 +10,11 @@
   "codeRepository": "https://github.com/ropensci/getCRUCLdata",
   "issueTracker": "https://github.com/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
+<<<<<<< HEAD
   "version": "0.2.2",
+=======
+  "version": "0.2.2.9000",
+>>>>>>> devel
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -235,7 +239,11 @@
   "contIntegration": "https://travis-ci.org/ropensci/getCRUCLdata",
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
+<<<<<<< HEAD
   "fileSize": "936.665KB",
+=======
+  "fileSize": "936.685KB",
+>>>>>>> devel
   "citation": [
     {
       "@type": "ScholarlyArticle",
