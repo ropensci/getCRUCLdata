@@ -25,6 +25,7 @@ Imports:
     dplyr,
     httr,
     hoardr,
+    rappdirs,
     raster,
     tidyr,
     tibble,
