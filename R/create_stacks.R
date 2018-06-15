@@ -54,14 +54,10 @@ create_stacks <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
   }
 
   # cleanup if tmn/tmx specified but tmp/dtr not -----------------------------
-  if (!isTRUE(tmp) | !isTRUE(dtr) & isTRUE(tmx) | isTRUE(tmn)) {
-    CRU_stack_list[which(names(CRU_stack_list) %in% c("tmp", "dtr"))] <-
-      NULL
-  }
-  if (!isTRUE(dtr) & isTRUE(tmx) | isTRUE(tmn)) {
+  if (any(c(isTRUE(tmx), isTRUE(tmn))) & !isTRUE(dtr)) {
     CRU_stack_list[which(names(CRU_stack_list) %in% "dtr")] <- NULL
   }
-  if (!isTRUE(tmp) & isTRUE(tmx) | isTRUE(tmn)) {
+  if (any(c(isTRUE(tmx), isTRUE(tmn))) & !isTRUE(tmp)) {
     CRU_stack_list[which(names(CRU_stack_list) %in% "tmp")] <- NULL
   }
   return(CRU_stack_list)
