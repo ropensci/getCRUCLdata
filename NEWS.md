@@ -1,5 +1,18 @@
 # getCRUCLdata 0.2.3.9000
 
+## Bug fixes
+
+- Fix bug where `tmp` and `dtr` could not be returned with `tmn` or `tmx` raster
+stacks
+
+## Minor changes
+
+- Fix documentation formatting issues
+
+- Enhance `stop` messages for user, just print message, not the function that
+called it to clarify
+
+--------------------------------------------------------------------------------
 
 # getCRUCLdata 0.2.3
 
