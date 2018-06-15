@@ -30,6 +30,13 @@ set of surface climate over global land areas. \emph{Climate Research}
 \code{\link{create_CRU_df}}
 
 \code{\link{create_CRU_stack}}
+
+\strong{Useful links:}
+ \itemize{
+ \item{Development repository: \url{https://github.com/ropensci/getCRUCLdata}}
+ \item{Static documentation: \url{https://ropensci.github.io/getCRUCLdata/}}
+ \item{Report bugs at \url{https://github.com/ropensci/getCRUCLdata/issues}}
+}
 }
 \author{
 Adam H Sparks
