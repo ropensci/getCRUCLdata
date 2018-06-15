@@ -43,7 +43,7 @@ Suggests:
     sp,
     testthat,
     viridis
-URL: https://github.com/ropensci/getCRUCLdata
+URL: https://github.com/ropensci/getCRUCLdata, https://ropensci.github.io/getCRUCLdata/
 BugReports: https://github.com/ropensci/getCRUCLdata/issues
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
