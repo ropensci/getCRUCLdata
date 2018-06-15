@@ -195,7 +195,8 @@
 
   if (length(files) < 0) {
     stop(
-      "There are no CRU CL v. 2.0 data files available in this directory."
+      "\nThere are no CRU CL v. 2.0 data files available in this directory.\n",
+      call. = FALSE
     )
   }
 

@@ -2,9 +2,10 @@
 #' @noRd
 .validate_dsn <- function(dsn) {
   if (is.null(dsn)) {
-    stop("You must define the dsn where you have stored the local files
-         for import. If you want to download files using R, use one of the
-         'get_CRU_*()' functions provided.")
+    stop("\nYou must define the dsn where you have stored the local files\n",
+         "for import. If you want to download files using R, use one of the\n",
+         "'get_CRU_*()' functions provided.\n",
+         call. = FALSE)
   } else {
     dsn <- trimws(dsn)
     if (substr(dsn, nchar(dsn) - 1, nchar(dsn)) == "//") {
@@ -16,7 +17,8 @@
       p <- dsn
     }
     if (!file.exists(p) & !file.exists(dsn)) {
-      stop("\nFile directory does not exist: ", dsn, ".\n")
+      stop("\nFile directory does not exist: ", dsn, ".\n",
+           call. = FALSE)
     }
   }
 }

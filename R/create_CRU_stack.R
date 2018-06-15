@@ -97,7 +97,8 @@ create_CRU_stack <- function(pre = FALSE,
   if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
       !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
       !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
-    stop("\nYou must select at least one element for importing.\n")
+    stop("\nYou must select at least one element for importing.\n",
+         call. = FALSE)
   }
 
   .validate_dsn(dsn)
@@ -121,7 +122,8 @@ create_CRU_stack <- function(pre = FALSE,
       "\nNo CRU CL 2.0 data files were found in ",
       dsn,
       ". ",
-      "Please check that you have the proper file location.\n"
+      "Please check that you have the proper file location.\n",
+      call. = FALSE
     )
   }
 

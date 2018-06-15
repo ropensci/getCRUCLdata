@@ -107,7 +107,8 @@ get_CRU_stack <-
         !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
         !isTRUE(sunp) &
         !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
-      stop("You must select at least one element for download.")
+      stop("\nYou must select at least one element for download.\n",
+           call. = FALSE)
     }
 
     cache_dir <- .set_cache(cache)
