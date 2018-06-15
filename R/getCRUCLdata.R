@@ -20,6 +20,14 @@
 #'
 #' @seealso \code{\link{create_CRU_stack}}
 #'
+#' @seealso
+#' \strong{Useful links:}
+#'  \itemize{
+#'  \item{Development repository: \url{https://github.com/ropensci/getCRUCLdata}}
+#'  \item{Static documentation: \url{https://ropensci.github.io/getCRUCLdata/}}
+#'  \item{Report bugs at \url{https://github.com/ropensci/getCRUCLdata/issues}}
+#' }
+#'
 #' @references
 #' \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/}
 #'
