@@ -5,6 +5,9 @@
 - Fix bug where `tmp` and `dtr` could not be returned with `tmn` or `tmx` raster
 stacks
 
+- Move `rappdirs` to SUGGESTS to fix NOTEs on
+https://cran.rstudio.com/web/checks/check_results_getCRUCLdata.html
+
 ## Minor changes
 
 - Fix documentation formatting issues
