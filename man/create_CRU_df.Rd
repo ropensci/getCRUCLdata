@@ -4,9 +4,10 @@
 \alias{create_CRU_df}
 \title{Create a Tidy Data Frame From CRU CL v.2.0 Climatology Variables on Local Disk}
 \usage{
-create_CRU_df(pre = FALSE, pre_cv = FALSE, rd0 = FALSE, tmp = FALSE,
-  dtr = FALSE, reh = FALSE, tmn = FALSE, tmx = FALSE, sunp = FALSE,
-  frs = FALSE, wnd = FALSE, elv = FALSE, dsn = "")
+create_CRU_df(pre = FALSE, pre_cv = FALSE, rd0 = FALSE,
+  tmp = FALSE, dtr = FALSE, reh = FALSE, tmn = FALSE,
+  tmx = FALSE, sunp = FALSE, frs = FALSE, wnd = FALSE,
+  elv = FALSE, dsn = "")
 }
 \arguments{
 \item{pre}{Logical. Fetch precipitation (millimetres/month) from server and

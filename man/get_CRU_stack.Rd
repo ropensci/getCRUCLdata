@@ -4,9 +4,10 @@
 \alias{get_CRU_stack}
 \title{Download and Create a List of Raster Stack Objects From CRU CL v. 2.0 Climatology Variables}
 \usage{
-get_CRU_stack(pre = FALSE, pre_cv = FALSE, rd0 = FALSE, tmp = FALSE,
-  dtr = FALSE, reh = FALSE, tmn = FALSE, tmx = FALSE, sunp = FALSE,
-  frs = FALSE, wnd = FALSE, elv = FALSE, cache = FALSE)
+get_CRU_stack(pre = FALSE, pre_cv = FALSE, rd0 = FALSE,
+  tmp = FALSE, dtr = FALSE, reh = FALSE, tmn = FALSE,
+  tmx = FALSE, sunp = FALSE, frs = FALSE, wnd = FALSE,
+  elv = FALSE, cache = FALSE)
 }
 \arguments{
 \item{pre}{Logical.  Fetch precipitation (millimetres/month) from server and
