@@ -30,7 +30,7 @@ Imports:
     tibble,
     utils
 LazyData: TRUE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 ByteCompile: TRUE
 Suggests:
     covr,
