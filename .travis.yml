@@ -1,24 +1,18 @@
 language: r
+warnings_are_errors: true
 sudo: required
-dist: trusty
-group: deprecated-2017Q4
 cache: packages
 
 ## Set up the matrix of different runs
-env:
-  matrix:
-  - r: release
-    not_cran: true
-    r_check_args: "--no-manual"
-  - r: release
-    not_cran: false
-    r_check_args: "--no-manual --as--cran"
-  - r: devel
-    not_cran: true
-    r_check_args: "--no-manual"
-  - r: devel
-    not_cran: false
-    r_check_args: "--no-manual --as--cran"
+matrix:
+    include:
+        - os: linux
+          r: release
+          dist: trusty # 14.04
+          env: R_CODECOV=true
+        - os: linux
+          r: devel
+          dist: trusty
 
 before_install:
 - sudo apt-get install -y libgdal-dev libproj-dev
