@@ -134,9 +134,8 @@ For complete documentation see the package website:
   - Get citation information for *getCRUCLdata* in R typing
     `citation(package = "getCRUCLdata")`
 
-  - Please note that this project is released with a [Contributor Code
-    of Conduct](CONDUCT.md). By participating in this project you agree
-    to abide by its
-terms.
+  - Please note that the *getCRUCLdata* project is released with a
+  [Contributor Code of Conduct](CONDUCT.md). By participating in the
+  *getCRUCLdata* project you agree to abide by its terms.
 
 [![ropensci](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
