@@ -1,7 +1,7 @@
 Package: getCRUCLdata
 Type: Package
 Title: Use and Explore CRU CL v. 2.0 Climatology Elements in R
-Version: 0.2.4
+Version: 0.2.4.9000
 Authors@R: person(given = "Adam",
                   family = "Sparks", 
                   email = "adamhsparks@gmail.com",
