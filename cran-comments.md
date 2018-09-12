@@ -1,12 +1,12 @@
 # Test environments
 
-- local macOS install, 3.5.0 (2018-04-23)
+- local macOS install, 3.5.1 (2018-04-23)
 
-- local Ubuntu 18.04, R version 3.5.0 (2018-04-23)
+- local Ubuntu 18.04, R version 3.5.1 (2018-04-23)
 
-- win-builder R Under development (unstable) (2018-06-13 r74894)
+- win-builder R Under development (unstable) (2018-09-10 r75281)
 
-- win-builder R version R version 3.5.0 (2018-04-23)
+- win-builder R version 3.5.1 (2018-07-02)
 
 # R CMD check results
 
@@ -14,20 +14,15 @@
 
 # New Patch Release
 
-## Bug fixes
-
-- Fix bug where `tmp` and `dtr` could not be returned with `tmn` or `tmx` raster
-stacks
-
-- Move `rappdirs` to SUGGESTS to fix NOTEs on
-https://cran.rstudio.com/web/checks/check_results_getCRUCLdata.html
-
 ## Minor changes
 
-- Fix documentation formatting issues
+- Clarify README file to indicate that the COC applies to this R package
+only
 
-- Enhance `stop` messages for user, just print message, not the function that
-called it to clarify
+- Removes startup message, instead placing information in CITATION file
+
+- Reorganises internal functions consolidating functions all in a single file
+and following a standard naming scheme for all internal functions
 
 # Reverse dependencies
 

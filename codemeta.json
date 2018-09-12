@@ -265,7 +265,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/getCRUCLdata",
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
-  "fileSize": "934.111KB",
+  "fileSize": "934.014KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
