@@ -131,6 +131,6 @@ get_CRU_stack <-
       pre <- TRUE
     }
 
-    s <- create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
+    s <- .create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
     return(s)
   }

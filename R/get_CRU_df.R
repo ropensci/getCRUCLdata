@@ -118,7 +118,6 @@ get_CRU_df <- function(pre = FALSE,
                     elv,
                     cache_dir)
 
-  message("\nCreating data frame now.\n")
-  d <- create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
+  d <- .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
   return(d)
 }

@@ -1,8 +1,8 @@
 
-context("create_df")
+context(".create_df")
 
 # Test that create_df creates a tidy dataframe of pre, pre_cv and tmp ---------
-test_that("Test that create_df creates a tidy df of pre, pre_cv and tmp", {
+test_that("Test that .create_df() creates a tidy df of pre, pre_cv and tmp", {
 
   unlink(list.files(
     path = tempdir(),
@@ -492,7 +492,7 @@ files <-
   list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
 CRU_df <-
-  create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
+  .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
 
 expect_true(is.data.frame(CRU_df))
 expect_named(CRU_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
@@ -504,9 +504,7 @@ expect_is(CRU_df$pre_cv, "numeric")
 expect_is(CRU_df$tmp, "numeric")
 })
 
-# Test that create_df creates a tidy dataframe of pre, tmp, elv ----------------
-
-test_that("Test that create_df creates a tidy dataframe of pre, tmp, elv", {
+test_that("Test that .create_df() creates a tidy dataframe of pre, tmp, elv", {
 
   # These data are taken from the raw elevation data file
   elv_data <- cbind(
@@ -574,7 +572,7 @@ test_that("Test that create_df creates a tidy dataframe of pre, tmp, elv", {
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
   CRU_df <-
-    create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
+    .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
 
   expect_true(is.data.frame(CRU_df))
   expect_named(CRU_df, c("lat", "lon", "month", "pre", "tmp", "elv"))
@@ -591,7 +589,7 @@ unlink(list.files(
 
 # Test that create_df creates tmn if requested ---------------------------------
 
-test_that("Test that create_df creates a tidy dataframe of pre, tmp, elv", {
+test_that("Test that .create_df() creates a tidy dataframe of pre, tmp, elv", {
 
   dtr_data <- rbind(
     c(
@@ -953,7 +951,7 @@ test_that("Test that create_df creates a tidy dataframe of pre, tmp, elv", {
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
   CRU_df <-
-    create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
+    .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
 
   expect_named(CRU_df, c("lat", "lon", "month", "tmn"))
   expect_equal(CRU_df$tmn[1], 0.1)
@@ -967,7 +965,7 @@ unlink(list.files(
 ))
 
 # Test that create_df creates tmx if requested ---------------------------------
-test_that("Test that create_df creates tmx if requested", {
+test_that("Test that .create_df() creates tmx if requested", {
 
 dtr_data <- rbind(
   c(
@@ -1329,7 +1327,7 @@ files <-
   list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
 CRU_df <-
-  create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
+  .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
 
 expect_named(CRU_df, c("lat", "lon", "month", "tmx"))
 expect_equal(CRU_df$tmx[1], 0.3)
