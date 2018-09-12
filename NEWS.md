@@ -2,10 +2,12 @@
 
 ## Minor changes
 
-- Removes startup message in, instead placing information in CITATION file
+- Removes startup message, instead placing information in CITATION file
 
 - Reorganises internal functions consolidating functions all in a single file
 and following a standard naming scheme for all internal functions
+
+--------------------------------------------------------------------------------
 
 # getCRUCLdata 0.2.4
 
