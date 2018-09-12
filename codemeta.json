@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/getCRUCLdata",
   "issueTracker": "https://github.com/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.0",
+    "version": "3.5.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.0 (2018-04-23)",
+  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -119,7 +119,7 @@
       "@type": "SoftwareApplication",
       "identifier": "roxygen2",
       "name": "roxygen2",
-      "version": ">= 6.0.1",
+      "version": ">= 6.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -265,7 +265,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/getCRUCLdata",
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
-  "fileSize": "936.594KB",
+  "fileSize": "934.111KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -295,12 +295,15 @@
   ],
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package"],
+  "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package", "peer-reviewed"],
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/onboarding/issues/96",
     "provider": "http://ropensci.org"
   },
-  "relatedLink": ["https://CRAN.R-project.org/package=getCRUCLdata", "https://ropensci.github.io/getCRUCLdata/"],
+  "relatedLink": [
+    "https://CRAN.R-project.org/package=getCRUCLdata",
+    "https://ropensci.github.io/getCRUCLdata/"
+  ],
   "developmentStatus": "http://www.repostatus.org/#active"
 }

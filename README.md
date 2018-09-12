@@ -1,20 +1,13 @@
 getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 ================
 
-
-
-[![Build
-Status](https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master)](https://travis-ci.org/ropensci/getCRUCLdata)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/ropensci/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/getCRUCLdata)
+[![Build Status](https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master)](https://travis-ci.org/ropensci/getCRUCLdata)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/getCRUCLdata)
 [![codecov](https://codecov.io/gh/ropensci/getCRUCLdata/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/getCRUCLdata)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata)
-[![Project Status: Active – The project has reached a stable, usable
-state and is being actively
-developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![JOSS
-status](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15/status.svg)](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![JOSS status](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15/status.svg)](http://joss.theoj.org/papers/421837399efdbef2a248d0cf4a6c1d15)
 [![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/onboarding/issues/96)
 
 Author/Maintainer: Adam Sparks
