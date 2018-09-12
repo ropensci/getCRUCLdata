@@ -1,7 +1,7 @@
 getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 ================
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 
 [![Build
 Status](https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master)](https://travis-ci.org/ropensci/getCRUCLdata)
@@ -75,7 +75,7 @@ if (!require("remotes")) {
   install.packages("remotes")
 }
 
-remotes::install_github("ropensci/getCRUCLdata", build_vignettes = TRUE)
+install_github("ropensci/getCRUCLdata", build_vignettes = TRUE)
 ```
 
 -----
