@@ -108,6 +108,14 @@
 <h1 class="page-header">
 <a href="#getcrucldata-0-2-4-9000" class="anchor"></a>getCRUCLdata 0.2.4.9000<small> Unreleased </small>
 </h1>
+<div id="minor-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
+<ul>
+<li><p>Removes startup message in, instead placing information in CITATION file</p></li>
+<li><p>Reorganises internal functions consolidating functions all in a single file and following a standard naming scheme for all internal functions</p></li>
+</ul>
+</div>
 </div>
     <div id="getcrucldata-0-2-4" class="section level1">
 <h1 class="page-header">
@@ -121,9 +129,9 @@
 <li><p>Move <code>rappdirs</code> to SUGGESTS to fix NOTEs on <a href="https://cran.rstudio.com/web/checks/check_results_getCRUCLdata.html" class="uri">https://cran.rstudio.com/web/checks/check_results_getCRUCLdata.html</a></p></li>
 </ul>
 </div>
-<div id="minor-changes" class="section level2">
+<div id="minor-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Fix documentation formatting issues</p></li>
 <li><p>Enhance <code>stop</code> messages for user, just print message, not the function that called it to clarify</p></li>
@@ -143,9 +151,9 @@
 </li>
 </ul>
 </div>
-<div id="minor-changes-1" class="section level2">
+<div id="minor-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Remove the use of <code>plyr</code> in tests</li>
 </ul>
@@ -169,9 +177,9 @@
 <h1 class="page-header">
 <a href="#getcrucldata-0-2-1" class="anchor"></a>getCRUCLdata 0.2.1<small> 2017-12-15 </small>
 </h1>
-<div id="minor-changes-2" class="section level2">
+<div id="minor-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Fix ORCID entry in DESCRIPTION per CRAN maintainer’s request</p></li>
 <li><p>Remove Scott as contributor, the code contributed has been removed</p></li>
@@ -192,9 +200,9 @@
 <li><p>Use <code>lapply</code> in place of <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map">purrr::map</a></code>, <em>purrr</em> is no longer imported</p></li>
 </ul>
 </div>
-<div id="minor-changes-3" class="section level2">
+<div id="minor-changes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-4" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Correct documentation where examples pointed to a non-existent list</li>
 </ul>
@@ -244,9 +252,9 @@
 <li><p>Fix bug where tmx was returned when <em>either</em> tmn <em>or</em> tmx was requested for data frame, tmn now returned when requested and tmx now returned when requested. Raster stacks were not affected by this bug</p></li>
 </ul>
 </div>
-<div id="minor-changes-4" class="section level2">
+<div id="minor-changes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-4" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-5" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li>Replaced <code>for f in 1:length()</code> with <code>for f in seq_along()</code> for better programming practices</li>
 </ul>
@@ -257,9 +265,9 @@
 <h1 class="page-header">
 <a href="#getcrucldata-0-1-7" class="anchor"></a>getCRUCLdata 0.1.7<small> 2017-06-26 </small>
 </h1>
-<div id="minor-changes-5" class="section level2">
+<div id="minor-changes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-5" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-6" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li>Use <code>file.path</code> in place of <code>paste0</code>
 </li>
@@ -279,9 +287,9 @@
 <h1 class="page-header">
 <a href="#getcrucldata-0-1-6" class="anchor"></a>getCRUCLdata 0.1.6<small> 2017-06-13 </small>
 </h1>
-<div id="minor-changes-6" class="section level2">
+<div id="minor-changes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-6" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-7" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li><p>Use <em>purrr</em> in place of <em>plyr</em> functions</p></li>
 <li><p>Update DESCRIPTION file to be more complete</p></li>
@@ -311,9 +319,9 @@
 <li><p>Data can be cached using either <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> or <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> for later use</p></li>
 </ul>
 </div>
-<div id="minor-changes-7" class="section level2">
+<div id="minor-changes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-7" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-8" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li><p>Improved documentation with examples on mapping and graphing and more detail regarding the data itself</p></li>
 <li><p>Change the method in which files are downloaded to use <code><a href="http://www.rdocumentation.org/packages/httr/topics/GET">httr::GET()</a></code></p></li>
@@ -328,9 +336,9 @@
 <h1 class="page-header">
 <a href="#getcrucldata-0-1-4" class="anchor"></a>getCRUCLdata 0.1.4<small> 2017-02-03 </small>
 </h1>
-<div id="minor-changes-8" class="section level2">
+<div id="minor-changes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-8" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-9" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li>Correct fix bug in data frame object generation where elevation was improperly handled and function would stop</li>
 </ul>
@@ -340,9 +348,9 @@
 <h1 class="page-header">
 <a href="#getcrucldata-0-1-3" class="anchor"></a>getCRUCLdata 0.1.3<small> 2017-02-01 </small>
 </h1>
-<div id="minor-changes-9" class="section level2">
+<div id="minor-changes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-9" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-10" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li><p>Correct fix bug in raster object generation where the objects were incorrectly cropped</p></li>
 <li><p>Update documentation with ROxygen 6.0.0</p></li>
@@ -355,9 +363,9 @@
 <h1 class="page-header">
 <a href="#getcrucldata-0-1-2" class="anchor"></a>getCRUCLdata 0.1.2<small> 2017-01-18 </small>
 </h1>
-<div id="minor-changes-10" class="section level2">
+<div id="minor-changes-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-10" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-11" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li><p>Correct documentation to read that the data resolution is 10 minute, not 10 seconds</p></li>
 <li><p>Correct URLs in DESCRIPTION file</p></li>
@@ -372,9 +380,9 @@
 <h1 class="page-header">
 <a href="#getcrucldata-0-1-1" class="anchor"></a>getCRUCLdata 0.1.1<small> 2017-01-05 </small>
 </h1>
-<div id="minor-changes-11" class="section level2">
+<div id="minor-changes-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-11" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-12" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li><p>Renamed to getCRUdata as suggested by CRAN maintainers</p></li>
 <li><p>Revised description file as requested by CRAN maintainers</p></li>
@@ -386,9 +394,9 @@
 <h2 class="hasAnchor">
 <a href="#getcrucl2-0-0-1-0" class="anchor"></a>getCRUCL2.0 0.1.0</h2>
 </div>
-<div id="minor-changes-12" class="section level2">
+<div id="minor-changes-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-12" class="anchor"></a>Minor Changes</h2>
+<a href="#minor-changes-13" class="anchor"></a>Minor Changes</h2>
 <ul>
 <li>Initial submission to CRAN</li>
 </ul>
