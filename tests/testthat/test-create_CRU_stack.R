@@ -865,7 +865,8 @@ test_that("Test that create_stack creates tmx if requested", {
     .create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
 
   expect_named(CRU_stack_list, c("tmx"))
-  expect_equal(raster::maxValue(CRU_stack_list[[1]][[1]]), 12.9)
+  expect_equal(raster::maxValue(CRU_stack_list[[1]][[1]]), 12.9,
+  tolerance = 0.1)
   unlink(list.files(
     path = tempdir(),
     pattern = ".dat.gz$",
@@ -1230,7 +1231,8 @@ test_that("Test that create_stack creates tmn if requested", {
     .create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
 
   expect_named(CRU_stack_list, c("tmn"))
-  expect_equal(raster::maxValue(CRU_stack_list[[1]][[1]]), 4.3)
+  expect_equal(raster::maxValue(CRU_stack_list[[1]][[1]]), 4.3,
+  tolerance = 0.1)
   unlink(list.files(
     path = tempdir(),
     pattern = ".dat.gz$",
