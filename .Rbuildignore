@@ -11,3 +11,4 @@
 ^docs$
 ^codecov\.yml$
 ^codemeta\.json$
+^getCRUCLdata.code-workspace$

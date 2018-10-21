@@ -132,7 +132,7 @@
       "dec")
 
   x <-
-    tibble::as_tibble(data.table::fread(paste0("gzip -dc ", .files),
+    tibble::as_tibble(data.table::fread(cmd = paste0("gzip -dc ", .files),
                                         header = FALSE))
 
   if (ncol(x) == 14) {
@@ -251,7 +251,7 @@
                           pre,
                           pre_cv) {
   wvar <-
-    data.frame(data.table::fread(paste0("gzip -dc ", files[[1]]),
+    data.frame(data.table::fread(cmd = paste0("gzip -dc ", files[[1]]),
                                  header = FALSE))
   cells <- raster::cellFromXY(wrld, wvar[, c(2, 1)])
   if (ncol(wvar) == 14) {
