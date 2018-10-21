@@ -2,7 +2,7 @@ getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 ================
 
 [![Build Status](https://travis-ci.org/ropensci/getCRUCLdata.svg?branch=master)](https://travis-ci.org/ropensci/getCRUCLdata)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/getCRUCLdata?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/getCRUCLdata)
+[![Build status](https://ci.appveyor.com/api/projects/status/bo3n24y950175a79/branch/master?svg=true)](https://ci.appveyor.com/project/adamhsparks/getcrucldata/branch/master)
 [![codecov](https://codecov.io/gh/ropensci/getCRUCLdata/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/getCRUCLdata)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata)
