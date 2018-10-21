@@ -60,7 +60,7 @@
 #' @examples
 #' \donttest{
 #' # Create a raster stack of precipitation and temperature from locally
-#' # available files in the \code{\link[base]tempdir}} directory.
+#' # available files in the tempdir() directory.
 #' CRU_pre_tmp <- create_CRU_df(pre = TRUE, tmp = TRUE, dsn = tempdir())
 #'}
 #'

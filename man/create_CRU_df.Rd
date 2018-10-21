@@ -11,58 +11,60 @@ create_CRU_df(pre = FALSE, pre_cv = FALSE, rd0 = FALSE,
 }
 \arguments{
 \item{pre}{Logical. Fetch precipitation (millimetres/month) from server and
-return in the data frame? Defaults to FALSE.}
+return in the data frame? Defaults to \code{FALSE}.}
 
 \item{pre_cv}{Logical. Fetch cv of precipitation (percent) from server and
-return in the data frame? Defaults to FALSE. NOTE. Setting this to TRUE
-will always results in \strong{pre} being set to TRUE and returned as well.}
+return in the data frame? Defaults to \code{FALSE}. NOTE. Setting this to
+\code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
+returned as well.}
 
 \item{rd0}{Logical. Fetch wet-days (number days with >0.1millimetres rain per
-month) and return in the data frame? Defaults to FALSE.}
+month) and return in the data frame? Defaults to \code{FALSE}.}
 
 \item{tmp}{Logical. Fetch temperature (degrees Celsius) and return it in the
-data frame? Defaults to FALSE.}
+data frame? Defaults to \code{FALSE}.}
 
 \item{dtr}{Logical. Fetch mean diurnal temperature range (degrees Celsius)
-and return it in the data frame? Defaults to FALSE.}
+and return it in the data frame? Defaults to \code{FALSE}.}
 
 \item{reh}{Logical. Fetch relative humidity and return it in the data frame?
-Defaults to FALSE.}
+Defaults to \code{FALSE}.}
 
 \item{tmn}{Logical. Calculate minimum temperature values (degrees Celsius)
-and return it in the data frame? Defaults to FALSE.}
+and return it in the data frame? Defaults to \code{FALSE}.}
 
 \item{tmx}{Logical. Calculate maximum temperature (degrees Celsius) and
-return it in the data frame? Defaults to FALSE.}
+return it in the data frame? Defaults to \code{FALSE}.}
 
 \item{sunp}{Logical. Fetch sunshine, percent of maximum possible (percent of
-day length) and return it in data frame? Defaults to FALSE.}
+day length) and return it in data frame? Defaults to \code{FALSE}.}
 
 \item{frs}{Logical. Fetch ground-frost records (number of days with ground-
-frost per month) and return it in data frame? Defaults to FALSE.}
+frost per month) and return it in data frame? Defaults to \code{FALSE}.}
 
 \item{wnd}{Logical. Fetch 10m wind speed (metres/second) and return it in the
-data frame? Defaults to FALSE.}
+data frame? Defaults to \code{FALSE}.}
 
 \item{elv}{Logical. Fetch elevation (converted to metres) and return it in
-the data frame? Defaults to FALSE.}
+the data frame? Defaults to \code{FALSE}.}
 
-\item{dsn}{Local file path where CRU CL v.2.0 .dat.gz files are located.}
+\item{dsn}{Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
+files are located.}
 }
 \value{
-A tidy data frame of CRU CL v. 2.0 climatology elements as a
-\code{\link[tibble]{tibble}} object
+A tidy data frame of \acronym{CRU} \acronym{CL} v. 2.0 climatology
+elements as a \code{\link[tibble]{tibble}} object
 }
 \description{
-This function automates importing CRU CL v.2.0 climatology data
-into R and creates a tidy data frame of the data.  If requested, minimum and
+Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
+data and creates a tidy data frame of the data.  If requested, minimum and
 maximum temperature may also be automatically calculated as described in the
 data readme.txt file.  This function can be useful if you have network
-connection issues that mean automated downloading of the files using R
-does not work properly.  In this instance it is recommended to use an FTP
-client (e.g., FileZilla), web browser or command line command (e.g., wget or
-curl) to download the files, save locally and use this function to import the
-data into R.
+connection issues that mean automated downloading of the files using \pkg{R}
+does not work properly.  In this instance it is recommended to use an
+\acronym{FTP} client (\emph{e.g.}, FileZilla), web browser or command line
+command (\emph{e.g.}, wget or curl) to download the files, save locally and
+use this function to import the data into \pkg{R}.
 
 Nomenclature and units from readme.txt:
 \describe{
@@ -79,18 +81,18 @@ Nomenclature and units from readme.txt:
 \item{wnd}{10 metre windspeed (metres/second)}
 \item{elv}{elevation (automatically converted to metres)}
 }
-For more information see the description of the data provided by CRU,
-\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
+For more information see the description of the data provided by
+\acronym{CRU}, \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 }
 \note{
 This package automatically converts elevation values from kilometres to
 metres.
 }
 \examples{
+\donttest{
 # Create a raster stack of precipitation and temperature from locally
-# available files
-\dontrun{
-CRU_pre_tmp <- create_CRU_df(pre = TRUE, tmp = TRUE, dsn = "~/Downloads")
+# available files in the tempdir() directory.
+CRU_pre_tmp <- create_CRU_df(pre = TRUE, tmp = TRUE, dsn = tempdir())
 }
 
 }

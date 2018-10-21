@@ -59,7 +59,7 @@
 #' @examples
 #' \donttest{
 #' # Create a raster stack of precipitation and temperature from pre and tmp
-#' # files in the \code{\link[base]tempdir}} directory.
+#' # files in the tempdir() directory.
 #'
 #' CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE, dsn = tempdir())
 #'}

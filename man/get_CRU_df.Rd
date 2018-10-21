@@ -54,23 +54,23 @@ To take advantage of cached files in future sessions, use \code{cache = TRUE}
 after the initial download and caching.  Defaults to \code{FALSE}.}
 }
 \value{
-A tidy data frame of CRU CL v. 2.0 climatology elements as a
-\code{\link[tibble]{tibble}} object
+A tidy data frame of \acronym{CRU} \acronym{CL} v. 2.0 climatology
+elements as a \code{\link[tibble]{tibble}} object
 }
 \description{
-This function automates downloading and importing CRU CL v. 2.0
-climatology data into R and creates a tidy data frame of the data.  If
-requested, minimum and maximum temperature may also be automatically
-calculated as described in the data readme.txt file.  Data may be cached for
-later use by this function, saving time downloading files in future use of the
-function.
+This function automates downloading and importing \acronym{CRU}
+\acronym{CL} v. 2.0 climatology data and creates a tidy data frame of the
+data.  If requested, minimum and maximum temperature may also be
+automatically calculated as described in the data readme.txt file.  Data may
+be cached for later use by this function, saving time downloading files in
+future use of the function.
 
 Nomenclature and units from readme.txt:
 \describe{
 \item{pre}{precipitation (millimetres/month)}
- \describe{
+  \describe{
    \item{cv}{cv of precipitation (percent)}
- }
+  }
 \item{rd0}{wet-days (number days with >0.1mm rain per month)}
 \item{tmp}{mean temperature (degrees Celsius)}
 \item{dtr}{mean diurnal temperature range (degrees Celsius)}
@@ -80,23 +80,18 @@ Nomenclature and units from readme.txt:
 \item{wnd}{10 metre windspeed (metres/second)}
 \item{elv}{elevation (automatically converted to metres)}
 }
-For more information see the description of the data provided by CRU,
-\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
+For more information see the description of the data provided by
+\acronym{CRU}, \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 }
 \note{
 This package automatically converts elevation values from kilometres to
 metres.
 }
 \examples{
-\dontrun{
+\dontest{
 # Download data and create a data frame of precipitation and temperature
 # without caching the data files
 CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
-
-# Download temperature and calculate tmin and tmax, save the temperature file
-# for later use by caching
-
-CRU_tmp <- get_CRU_df(tmp = TRUE, tmn = TRUE, tmx = TRUE, cache = TRUE)
 }
 
 }

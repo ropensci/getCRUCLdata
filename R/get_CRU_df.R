@@ -1,29 +1,29 @@
 #' @title Download and Create a Tidy Data Frame of CRU CL v. 2.0 Climatology Variables
 #'
-#'@description This function automates downloading and importing CRU CL v. 2.0
-#'climatology data into R and creates a tidy data frame of the data.  If
-#'requested, minimum and maximum temperature may also be automatically
-#'calculated as described in the data readme.txt file.  Data may be cached for
-#'later use by this function, saving time downloading files in future use of the
-#'function.
+#' @description This function automates downloading and importing \acronym{CRU}
+#' \acronym{CL} v. 2.0 climatology data and creates a tidy data frame of the
+#' data.  If requested, minimum and maximum temperature may also be
+#' automatically calculated as described in the data readme.txt file.  Data may
+#' be cached for later use by this function, saving time downloading files in
+#' future use of the function.
 #'
-#'Nomenclature and units from readme.txt:
-#'\describe{
-#'\item{pre}{precipitation (millimetres/month)}
-#'  \describe{
+#' Nomenclature and units from readme.txt:
+#' \describe{
+#' \item{pre}{precipitation (millimetres/month)}
+#'   \describe{
 #'    \item{cv}{cv of precipitation (percent)}
-#'  }
-#'\item{rd0}{wet-days (number days with >0.1mm rain per month)}
-#'\item{tmp}{mean temperature (degrees Celsius)}
-#'\item{dtr}{mean diurnal temperature range (degrees Celsius)}
-#'\item{reh}{relative humidity (percent)}
-#'\item{sunp}{sunshine (percent of maximum possible (percent of day length))}
-#'\item{frs}{ground-frost (number of days with ground-frost per month)}
-#'\item{wnd}{10 metre windspeed (metres/second)}
-#'\item{elv}{elevation (automatically converted to metres)}
-#'}
-#'For more information see the description of the data provided by CRU,
-#'\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
+#'   }
+#' \item{rd0}{wet-days (number days with >0.1mm rain per month)}
+#' \item{tmp}{mean temperature (degrees Celsius)}
+#' \item{dtr}{mean diurnal temperature range (degrees Celsius)}
+#' \item{reh}{relative humidity (percent)}
+#' \item{sunp}{sunshine (percent of maximum possible (percent of day length))}
+#' \item{frs}{ground-frost (number of days with ground-frost per month)}
+#' \item{wnd}{10 metre windspeed (metres/second)}
+#' \item{elv}{elevation (automatically converted to metres)}
+#' }
+#' For more information see the description of the data provided by
+#' \acronym{CRU}, \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 #'
 #' @param pre Logical.  Fetch precipitation (millimetres/month) from server and
 #' return in the data frame?  Defaults to \code{FALSE}.
@@ -57,23 +57,18 @@
 #' after the initial download and caching.  Defaults to \code{FALSE}.
 #'
 #' @examples
-#' \dontrun{
+#' \dontest{
 #' # Download data and create a data frame of precipitation and temperature
 #' # without caching the data files
 #' CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
-#'
-#' # Download temperature and calculate tmin and tmax, save the temperature file
-#' # for later use by caching
-#'
-#' CRU_tmp <- get_CRU_df(tmp = TRUE, tmn = TRUE, tmx = TRUE, cache = TRUE)
-#'}
+#' }
 #'
 #' @seealso
 #' \code{\link{create_CRU_stack}}
 #' \code{\link{manage_cache}}
 #'
-#' @return A tidy data frame of CRU CL v. 2.0 climatology elements as a
-#' \code{\link[tibble]{tibble}} object
+#' @return A tidy data frame of \acronym{CRU} \acronym{CL} v. 2.0 climatology
+#' elements as a \code{\link[tibble]{tibble}} object
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #'
@@ -82,6 +77,7 @@
 #' metres.
 #'
 #' @export
+
 get_CRU_df <- function(pre = FALSE,
                        pre_cv = FALSE,
                        rd0 = FALSE,
