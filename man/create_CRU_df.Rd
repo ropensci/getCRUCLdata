@@ -90,9 +90,15 @@ metres.
 }
 \examples{
 \donttest{
-# Create a raster stack of precipitation and temperature from locally
-# available files in the tempdir() directory.
-CRU_pre_tmp <- create_CRU_df(pre = TRUE, tmp = TRUE, dsn = tempdir())
+# Create a data frame of temperature from locally available files in the
+# tempdir() directory.
+
+download.file(
+  url = "https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz",
+  destfile = file.path(tempdir(), "grid_10min_tmp.dat.gz")
+)
+
+CRU_tmp <- create_CRU_df(tmp = TRUE, dsn = tempdir())
 }
 
 }

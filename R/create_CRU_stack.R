@@ -1,3 +1,4 @@
+
 #' @title Create a List of Raster Stack Objects From CRU CL v. 2.0 Climatology Variables on Local Disk
 #'
 #'@description Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
@@ -58,10 +59,15 @@
 #' files are located.
 #' @examples
 #' \donttest{
-#' # Create a raster stack of precipitation and temperature from pre and tmp
+#' # Create a raster stack of temperature from tmp
 #' # files in the tempdir() directory.
 #'
-#' CRU_pre_tmp <- create_CRU_stack(pre = TRUE, tmp = TRUE, dsn = tempdir())
+#' download.file(
+#'   url = "https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz",
+#'   destfile = file.path(tempdir(), "grid_10min_tmp.dat.gz")
+#' )
+#'
+#' CRU_tmp <- create_CRU_stack(tmp = TRUE, dsn = tempdir())
 #'}
 #'
 #' @seealso
