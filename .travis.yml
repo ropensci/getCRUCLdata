@@ -39,3 +39,5 @@ deploy:
   local-dir: docs
   on:
     branch: master
+
+r_check_args: "--as-cran --run-donttest"
