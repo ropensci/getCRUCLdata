@@ -1,5 +1,13 @@
 # getCRUCLdata 0.2.5.9000
 
+## Minor changes
+
+- Update package to follow CRAN policies
+
+- Update tests that spuriously failed on some systems due to tolerances
+
+- Enhance documentation
+
 # getCRUCLdata 0.2.5
 
 ## Minor changes
