@@ -20,8 +20,6 @@ before_install:
 after_failure:
   - ./pkg-build.sh dump_logs
 
-r_check_args: "--as-cran --run-donttest"
-
 notifications:
   email:
     on_success: change
@@ -31,3 +29,15 @@ notifications:
 
 after_success:
   - Rscript -e 'covr::codecov()'
+  - Rscript -e 'pkgdown::build_site()'
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_PAT
+  keep-history: true
+  local-dir: docs
+  on:
+    branch: master
+
+r_check_args: "--as-cran --run-donttest"
