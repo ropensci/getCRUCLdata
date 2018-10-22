@@ -502,8 +502,8 @@ test_that("create_CRU_df loads files and creates a proper tibble", {
 
   CRU_df <- create_CRU_df(pre = TRUE, pre_cv = TRUE, tmp = TRUE, dsn = dsn)
 
-  expect_equal(max(CRU_df$pre), 163.5)
-  expect_equal(max(CRU_df$tmp), 8.6)
+  expect_equal(max(CRU_df$pre), 163.5, tolerance = 0.1)
+  expect_equal(max(CRU_df$tmp), 8.6, tolerance = 0.1)
   expect_named(CRU_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
   expect_type(CRU_df, "list")
 })

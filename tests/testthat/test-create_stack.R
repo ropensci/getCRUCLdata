@@ -642,8 +642,8 @@ test_that("create_CRU_stack creates a list containing only elv", {
            pre_cv)
 
   expect_named(stacks[[1]], "elv")
-  expect_equal(raster::cellStats(stacks[[1]], max), 239)
-  expect_equal(raster::cellStats(stacks[[1]], min), 19)
+  expect_equal(raster::cellStats(stacks[[1]], max), 239, tolerance = 0.1)
+  expect_equal(raster::cellStats(stacks[[1]], min), 19, tolerance = 0.1)
   expect_equal(raster::extent(stacks[[1]])[1], -180)
   expect_equal(raster::extent(stacks[[1]])[2], 180)
   expect_equal(raster::extent(stacks[[1]])[3], -60)
