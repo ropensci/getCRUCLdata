@@ -58,8 +58,8 @@ install.packages("getCRUCLdata")
 
 A development version is available from from GitHub. If you wish to
 install the development version that may have new features (but also may
-not work properly), install the [devtools
-package](https://CRAN.R-project.org/package=devtools), available from
+not work properly), install the `tidyverse` [`remotes
+package`](https://CRAN.R-project.org/package=remotes), available from
 CRAN. I strive to keep the master branch on GitHub functional and
 working properly, although this may not always happen.
 
