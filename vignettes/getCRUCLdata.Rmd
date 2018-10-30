@@ -103,7 +103,7 @@ t <- get_CRU_df(tmp = TRUE)
 #### Plotting data from the tidy dataframe
 
 Now that we have the data, we can plot it easily using
-[_ggplot2_](http://ggplot2.org) and the 
+[_ggplot2_](http://ggplot2.tidyverse.org) and the 
 [_viridis_](https://CRAN.R-project.org/package=viridis) package for the colour
 scale.
 
