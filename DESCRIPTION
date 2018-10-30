@@ -21,9 +21,9 @@ License: MIT + file LICENSE
 Depends:
     R (>= 3.2.0)
 Imports:
+    curl,
     data.table,
     dplyr,
-    httr,
     hoardr,
     raster,
     tidyr,

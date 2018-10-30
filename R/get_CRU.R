@@ -1,4 +1,5 @@
 
+
 #' @noRd
 .get_CRU <-
   function(pre,
@@ -89,11 +90,12 @@
         )
       tryCatch(
         for (f in seq_along(dl_files)) {
-          httr::GET(url = dl_files[[f]],
-                    httr::write_disk(file.path(
-                      cache_dir, basename(dl_files[[f]])
-                    ),
-                    overwrite = TRUE))
+          curl::curl_download(
+            url = dl_files[[f]],
+            destfile = (file.path(cache_dir, basename(dl_files[[f]]))),
+            mode = "wb",
+            quiet = FALSE
+          )
           utils::setTxtProgressBar(pb, f)
         },
         error = function(x) {
@@ -118,7 +120,7 @@
     files <- gsub(" ", "\\ ", files, fixed = TRUE)
 
     return(files)
-  }
+    }
 
 #' @noRd
 .get_local <- function(pre,
@@ -194,10 +196,8 @@
   files <- cache_dir_contents[cache_dir_contents %in% files]
 
   if (length(files) < 0) {
-    stop(
-      "\nThere are no CRU CL v. 2.0 data files available in this directory.\n",
-      call. = FALSE
-    )
+    stop("\nThere are no CRU CL v. 2.0 data files available in this directory.\n",
+         call. = FALSE)
   }
 
   # add full file path to the files
