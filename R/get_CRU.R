@@ -1,5 +1,4 @@
 
-
 #' @noRd
 .get_CRU <-
   function(pre,
@@ -81,22 +80,13 @@
       CRU_url <- "https://crudata.uea.ac.uk/cru/data/hrg/tmc/"
       dl_files <- as.list(paste0(CRU_url, dl_files))
 
-      pb <-
-        utils::txtProgressBar(
-          min = 0,
-          max = length(dl_files),
-          initial = 0,
-          style = 3
-        )
       tryCatch(
         for (f in seq_along(dl_files)) {
           curl::curl_download(
             url = dl_files[[f]],
             destfile = (file.path(cache_dir, basename(dl_files[[f]]))),
-            mode = "wb",
-            quiet = FALSE
+            mode = "wb"
           )
-          utils::setTxtProgressBar(pb, f)
         },
         error = function(x) {
           manage_cache$delete_all()

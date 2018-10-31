@@ -102,10 +102,8 @@ t <- get_CRU_df(tmp = TRUE)
 
 #### Plotting data from the tidy dataframe
 
-Now that we have the data, we can plot it easily using
-[_ggplot2_](http://ggplot2.org) and the 
-[_viridis_](https://CRAN.R-project.org/package=viridis) package for the colour
-scale.
+Now that we have the data, we can plot it easily using [_ggplot2_] and the
+[_viridis_] package for the colour scale.
 
 ```{r, eval=FALSE}
 if (!require("ggplot2")) {
@@ -161,8 +159,7 @@ write_csv(t, path = "~/CRU_tmp.csv")
 ### Creating raster stacks for use in R and saving for use in another GIS
 
 For working with spatial data, _getCRUCLdata_ provides a function that create
-lists of [_raster_](https://CRAN.R-project.org/package=raster) stacks of the
-data.
+lists of [_raster_] stacks of the data.
 
 The `get_CRU_stack()` functions provide similar functionality to `get_CRU_df()`,
 but rather than returning a tidy data frame, it returns a list of
