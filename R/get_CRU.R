@@ -85,8 +85,7 @@
           curl::curl_download(
             url = dl_files[[f]],
             destfile = (file.path(cache_dir, basename(dl_files[[f]]))),
-            mode = "wb",
-            quiet = FALSE
+            mode = "wb"
           )
         },
         error = function(x) {
