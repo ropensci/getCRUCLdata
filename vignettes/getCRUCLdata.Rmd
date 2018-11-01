@@ -16,12 +16,8 @@ vignette: >
 The _getCRUCLdata_ package provides functions that automate importing CRU CL v.
 2.0 climatology data into R, facilitate the calculation of minimum temperature
 and maximum temperature, and formats the data into a 
-[tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) as a [`tibble::tibble()`](https://www.rdocumentation.org/packages/tibble/versions/1.2)
-or a
-[`list()`](https://www.rdocumentation.org/packages/base/versions/3.4.0/topics/list)
-of
-[`raster::stack()`](https://www.rdocumentation.org/packages/raster/versions/2.5-8/topics/stack)
-objects for use in an R session.
+[tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) as a `tibble` or
+a `list` of _raster_ `stack` objects for use.
 
 CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released
 in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes
@@ -73,8 +69,7 @@ path where CRU CL v. 2.0 .dat.gz files are located.
 ### Creating tidy data frames for use in R
 
 The `get_CRU_df()` function automates the download process and creates tidy data
-frames as a [_tibble_](https://github.com/tidyverse/tibble) of the CRU CL v. 2.0
-climatology elements. 
+frames as a _tibble_ of the CRU CL v. 2.0 climatology elements. 
 
 ```{r, eval=FALSE}
 library(getCRUCLdata)
@@ -102,8 +97,8 @@ t <- get_CRU_df(tmp = TRUE)
 
 #### Plotting data from the tidy dataframe
 
-Now that we have the data, we can plot it easily using [_ggplot2_] and the
-[_viridis_] package for the colour scale.
+Now that we have the data, we can plot it easily using _ggplot2_ and _viridis_
+for the colour scale.
 
 ```{r, eval=FALSE}
 if (!require("ggplot2")) {
