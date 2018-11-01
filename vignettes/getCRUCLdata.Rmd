@@ -16,8 +16,8 @@ vignette: >
 The _getCRUCLdata_ package provides functions that automate importing CRU CL v.
 2.0 climatology data into R, facilitate the calculation of minimum temperature
 and maximum temperature, and formats the data into a 
-[tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) as a `tibble` or
-a `list` of _raster_ `stack` objects for use.
+[tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) as a `tibble()`
+or `list()` of `raster::stack()` objects for use.
 
 CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released
 in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes
@@ -141,7 +141,7 @@ ggplot(data = t, aes(x = month, y = tmp)) +
 
 #### Saving the tidy `tibble` as a CSV (comma separated values file) locally
 
-Save the resulting tidy `tibble` to local disk as a comma separated (CSV) file
+Save the resulting tidy `tibble()` to local disk as a comma separated (CSV) file
 to local disk.
 
 ```{r, eval=FALSE}
@@ -219,8 +219,9 @@ plot(t[[2]]$jul)
 #### Saving raster objects to local disk
 
 The raster stack objects can be saved to disk as geotiff files (others are
-available, see help for `writeRaster()` and `writeFormats()` for more options)
-in the `Data` directory with a tmn or tmx prefix to the month for a file name.
+available, see help for `raster::writeRaster()` and `raster::writeFormats()` for
+more options) on the `Data` directory with a tmn or tmx prefix to the month for
+a file name.
 
 ```{r, eval=FALSE}
 library(raster)
