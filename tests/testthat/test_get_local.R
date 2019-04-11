@@ -1,8 +1,9 @@
 context(".get_local")
 
-# Test that .get_local creates a tibble of only specified elements -------------
+# Test that .get_local lists local files ---------------------------------------
 
-test_that("Test that .get_local creates tibble of only specified elements", {
+test_that("Test that .get_local lists local files",
+          {
   skip_on_cran()
 
   # create files for testing, these data are the first 10 lines of pre and tmp
