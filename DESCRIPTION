@@ -1,7 +1,7 @@
 Package: getCRUCLdata
 Type: Package
 Title: Use and Explore 'CRU' 'CL' v. 2.0 Climatology Elements
-Version: 0.2.5.9000
+Version: 0.3.0
 Authors@R: person(given = "Adam",
                   family = "Sparks", 
                   email = "adamhsparks@gmail.com",
@@ -47,3 +47,4 @@ VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: anglia-cru, climate-data, cru-cl2, temperature, rainfall, elevation, data-access, wind, relative-humidity, solar-radiation, diurnal-temperature, frost
 X-schema.org-isPartOf: https://ropensci.org
+Language: en-GB
