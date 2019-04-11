@@ -16,8 +16,8 @@ vignette: >
 The _getCRUCLdata_ package provides functions that automate importing CRU CL v.
 2.0 climatology data into R, facilitate the calculation of minimum temperature
 and maximum temperature, and formats the data into a 
-[tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) as a [`tibble::tibble()`](https://www.rdocumentation.org/packages/tibble/versions/1.2)
-or a
+[tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) as a `tibble::tibble()`
+object or a
 [`list()`](https://www.rdocumentation.org/packages/base/versions/3.4.0/topics/list)
 of
 [`raster::stack()`](https://www.rdocumentation.org/packages/raster/versions/2.5-8/topics/stack)
@@ -73,8 +73,10 @@ path where CRU CL v. 2.0 .dat.gz files are located.
 ### Creating tidy data frames for use in R
 
 The `get_CRU_df()` function automates the download process and creates tidy data
-frames as a [_tibble_](https://github.com/tidyverse/tibble) of the CRU CL v. 2.0
-climatology elements. 
+frames as a `tibble::tibble()` of the CRU CL v. 2.0 climatology elements. However,
+it is not required that _tibble_ even be installed on your system to use the
+package. It will work as a normal `data.frame` if _tibble_ is not installed or
+loaded in your current R session.
 
 ```{r, eval=FALSE}
 library(getCRUCLdata)
@@ -91,6 +93,12 @@ CRU_data <- get_CRU_df(pre = TRUE,
                        frs = TRUE,
                        wnd = TRUE,
                        elv = TRUE)
+
+CRU_data
+
+# load tibble library
+library(tibble)
+CRU_data
 ```
 
 Perhaps you only need one or two elements, it is easy to create a tidy data
@@ -102,8 +110,8 @@ t <- get_CRU_df(tmp = TRUE)
 
 #### Plotting data from the tidy dataframe
 
-Now that we have the data, we can plot it easily using [_ggplot2_] and the
-[_viridis_] package for the colour scale.
+Now that we have the data, we can plot it easily using _ggplot2_ and the
+_viridis_ package for the colour scale.
 
 ```{r, eval=FALSE}
 if (!require("ggplot2")) {
@@ -144,22 +152,19 @@ ggplot(data = t, aes(x = month, y = tmp)) +
 
 ![Violin plot of global mean temperatures 1961-1990](README-unnamed-chunk-7-1.png)
 
-#### Saving the tidy `tibble` as a CSV (comma separated values file) locally
+#### Saving the tidy `data.frame` as a CSV (comma separated values file) locally
 
-Save the resulting tidy `tibble` to local disk as a comma separated (CSV) file
-to local disk.
+Save the resulting tidy `data.frame` to local disk as a comma separated (CSV)
+file to local disk, using _data.table_'s `fwrite()`.
 
 ```{r, eval=FALSE}
-library(readr)
-
-write_csv(t, path = "~/CRU_tmp.csv")
-
+fwrite(x = t, file = "~/CRU_tmp.csv")
 ```
 
 ### Creating raster stacks for use in R and saving for use in another GIS
 
 For working with spatial data, _getCRUCLdata_ provides a function that create
-lists of [_raster_] stacks of the data.
+lists of _raster_ stacks of the data.
 
 The `get_CRU_stack()` functions provide similar functionality to `get_CRU_df()`,
 but rather than returning a tidy data frame, it returns a list of
