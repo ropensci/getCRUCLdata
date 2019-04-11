@@ -58,6 +58,11 @@
 #' @param dsn Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
 #' files are located.
 #'
+#' @note While \pkg{getCRUCLdata} does return a [tibble][tibble()] object, it
+#' is not necessary to have this package installed to work with the resulting
+#' `data.frame`, however it will give enhanced capabilities if the \pkg{tibble}
+#' package is loaded in your current \R session.
+#'
 #' @examples
 #' \donttest{
 #' # Create a data frame of temperature from locally available files in the
@@ -69,6 +74,12 @@
 #' )
 #'
 #' CRU_tmp <- create_CRU_df(tmp = TRUE, dsn = tempdir())
+#'
+#'
+#' head(CRU_tmp)
+#'
+#' library(tibble)
+#' CRU_tmp
 #'}
 #'
 #' @seealso
@@ -130,5 +141,5 @@ create_CRU_df <-   function(pre = FALSE,
   }
 
   d <- .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
-  return(d)
+  return(setattr(d, "class", c("tbl", "tbl_df", "data.frame")))
 }

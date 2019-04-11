@@ -1,11 +1,16 @@
-
+#' Validates User Entered dsn value
+#'
+#' @param dsn User provided value for checking
+#'
 #' @noRd
 .validate_dsn <- function(dsn) {
   if (is.null(dsn)) {
-    stop("\nYou must define the dsn where you have stored the local files\n",
-         "for import. If you want to download files using R, use one of the\n",
-         "'get_CRU_*()' functions provided.\n",
-         call. = FALSE)
+    stop(
+      "\nYou must define the dsn where you have stored the local files\n",
+      "for import. If you want to download files using R, use one of the\n",
+      "'get_CRU_*()' functions provided.\n",
+      call. = FALSE
+    )
   } else {
     dsn <- trimws(dsn)
     if (substr(dsn, nchar(dsn) - 1, nchar(dsn)) == "//") {
@@ -23,59 +28,71 @@
   }
 }
 
-
+#' Creates a Data Frame from the CRU Data
+#'
+#' @param tmn Is tmn to be calculated? Boolean
+#' @param tmn Is tmx to be calculated? Boolean
+#' @param dtr Is dtr to be returned? Boolean
+#' @param pre Is pre to be returned? Boolean
+#' @param pre_cv Is pre_cv to be returned? Boolean
+#' @param elv Is elv to be returned? Boolean
+#' @param files File list to be used for creating data frame
+#'
+#' @return Data frame of all requested values
+#'
+#' @importFrom data.table :=
 #' @noRd
-.create_df <- function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
-  month <- NULL
+.create_df <-
+  function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
+    month <- NULL
 
-  CRU_df <-
-    .tidy_df(pre_cv, elv, tmn, tmx, .files = files)
+    CRU_df <-
+      .tidy_df(pre_cv, elv, tmn, tmx, .files = files)
 
-  if (isTRUE(tmx)) {
-    CRU_df <- dplyr::mutate(CRU_df, tmx =  tmp + (0.5 * dtr))
-  }
-
-  if (isTRUE(tmn)) {
-    CRU_df <- dplyr::mutate(CRU_df, tmn =  tmp - (0.5 * dtr))
-  }
-
-  # Remove tmp/dtr if they aren't specified (necessary for tmn/tmx)
-  if (isTRUE(tmx) | isTRUE(tmn)) {
-    if (!isTRUE(tmp)) {
-      CRU_df <- subset(CRU_df, select = -tmp)
+    if (isTRUE(tmx)) {
+      CRU_df[, tmx := tmp + (0.5 * dtr)]
     }
 
-    if (!isTRUE(dtr)) {
-      CRU_df <- subset(CRU_df, select = -dtr)
+    if (isTRUE(tmn)) {
+      CRU_df[, tmn := tmp - (0.5 * dtr)]
     }
-  }
-  CRU_df$month <- factor(
-    CRU_df$month,
-    levels <-  c(
-      "jan",
-      "feb",
-      "mar",
-      "apr",
-      "may",
-      "jun",
-      "jul",
-      "aug",
-      "sep",
-      "oct",
-      "nov",
-      "dec"
+
+    # Remove tmp/dtr if they aren't specified (necessary for tmn/tmx)
+    if (isTRUE(tmx) | isTRUE(tmn)) {
+      if (!isTRUE(tmp)) {
+        CRU_df <- subset(CRU_df, select = -tmp)
+      }
+
+      if (!isTRUE(dtr)) {
+        CRU_df <- subset(CRU_df, select = -dtr)
+      }
+    }
+    CRU_df$month <- factor(
+      CRU_df$month,
+      levels = c(
+        "jan",
+        "feb",
+        "mar",
+        "apr",
+        "may",
+        "jun",
+        "jul",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec"
+      )
     )
-  )
 
-  CRU_df <- dplyr::arrange(CRU_df, month)
+    data.table::setorder(CRU_df, month)
 
-  return(tibble::as_tibble(CRU_df))
-}
+    return(CRU_df)
+  }
 
+#' Read Files from Disk Directory and Tidy Them
 #' @noRd
 .tidy_df <- function(pre_cv, elv, tmn, tmx, .files) {
-  # internal function to read files from cache directory and tidy them -------
-
   # create list of tidied data frames ----------------------------------------
   CRU_list <-
     lapply(X = .files,
@@ -93,19 +110,21 @@
   }
 
   # lastly merge the data frames into one tidy (large) data frame --------------
+
   if (!isTRUE(elv)) {
     CRU_df <- Reduce(function(...)
-      dplyr::full_join(..., by = c("lat", "lon", "month")), CRU_list)
+      merge(..., by = c("lat", "lon", "month")), CRU_list)
+
   } else if (isTRUE(elv) & length(CRU_list) > 1) {
-    elv_df <- as.data.frame(CRU_list["elv"])
-    names(elv_df) <- c("lat", "lon", "elv")
-    CRU_list[which(names(CRU_list) %in% c("elv"))] <- NULL
+    elv_df <- CRU_list[which(names(CRU_list) %in% "elv")]
+    CRU_list[which(names(CRU_list) %in% "elv")] <- NULL
     CRU_df <- Reduce(function(...)
-      dplyr::full_join(..., by = c("lat", "lon", "month")), CRU_list)
-    CRU_df <- dplyr::left_join(CRU_df, elv_df, by = c("lat", "lon"))
+      merge(..., by = c("lat", "lon", "month")), CRU_list)
+
+    CRU_df <- CRU_df[elv_df$elv, on = c("lat", "lon")]
+
   } else if (isTRUE(elv)) {
-    CRU_df <- as.data.frame(CRU_list["elv"])
-    names(CRU_df) <- c("lat", "lon", "elv")
+    CRU_df <- CRU_list["elv"]
   }
   return(CRU_df)
 
@@ -115,8 +134,7 @@
 
 #' @noRd
 .read_cache <- function(.files, .pre_cv) {
-  lat <- NULL
-  lon <- NULL
+  pre_cv <- i.pre_cv <- elv <- NULL
   month_names <-
     c("jan",
       "feb",
@@ -132,49 +150,61 @@
       "dec")
 
   x <-
-    tibble::as_tibble(data.table::fread(cmd = paste0("gzip -dc ", .files),
-                                        header = FALSE))
+    data.table::fread(cmd = paste0("gzip -dc ", .files),
+                      header = FALSE)
 
   if (ncol(x) == 14) {
-    names(x) <- c("lat", "lon", month_names)
+    data.table::setnames(x, c("lat", "lon", month_names))
     x_df <-
-      tidyr::gather(x,
-                    key = "month",
-                    value = "wvar",
-                    dplyr::everything(),
-                    -c(lat, lon))
+      data.table::melt(
+        data = x,
+        measure.vars = month_names,
+        variable.name = "month"
+      )
+    data.table::setnames(x_df, c("lat", "lon", "month", "wvar"))
+
   } else if (ncol(x) == 26) {
     if (isTRUE(.pre_cv)) {
-      x_df1 <- x[, c(1:14)]
-      names(x_df1) <- c("lat", "lon", month_names)
-      x_df1 <- tidyr::gather(x_df1,
-                             key = "month",
-                             value = "pre",
-                             dplyr::everything(),
-                             -c(lat, lon))
-      x_df2 <- x[, c(1:2, 15:26)]
-      names(x_df2) <- c("lat", "lon", month_names)
+      x_df <- x[, c(1:14)]
+      data.table::setnames(x_df, c("lat", "lon", month_names))
+      x_df <- data.table::melt(
+        data = x_df,
+        id.vars = c("lat", "lon"),
+        measure.vars = month_names,
+        variable.name = "month"
+      )
+      data.table::setnames(x_df, c("lat", "lon", "month", "pre"))
 
-      x_df2 <- tidyr::gather(x_df2,
-                             key = "month",
-                             value = "pre_cv",
-                             dplyr::everything(),
-                             -c(lat, lon))
-      x_df <-
-        dplyr::left_join(x_df1, x_df2, by = c("lat", "lon", "month"))
+      x_df2 <- x[, c(1:2, 15:26)]
+      data.table::setnames(x_df2, c("lat", "lon", month_names))
+
+      x_df2 <- data.table::melt(
+        data = x_df2,
+        measure.vars = month_names,
+        variable.name = "month"
+      )
+      data.table::setnames(x_df2, c("lat", "lon", "month", "pre_cv"))
+
+      keycols <- c("lat", "lon", "month")
+      data.table::setkeyv(x_df, cols = keycols)
+      data.table::setkeyv(x_df2, cols = keycols)
+      x_df[x_df2, on = c("lat", "lon", "month"), pre_cv := i.pre_cv]
+
     } else {
       x_df <- x[, c(1:14)]
       names(x_df) <- c("lat", "lon", month_names)
-      x_df <-
-        tidyr::gather(x_df,
-                      key = "month",
-                      value = "pre",
-                      dplyr::everything(),
-                      -c(lat, lon))
+      x_df <- data.table::melt(
+        data = x_df,
+        id.vars = c("lat", "lon"),
+        measure.vars = month_names,
+        variable.name = "month"
+      )
+      data.table::setnames(x_df, c("lat", "lon", "month", "pre"))
     }
-  }
-  else if (ncol(x) == 3) {
-    x_df <- data.frame(x[, c(1, 2)], x[, 3] * 1000)
+  } else  if (ncol(x) == 3) {
+    x_df <- x
+    data.table::setnames(x_df, c("lat", "lon", "elv"))
+    x_df[, elv := (elv * 1000)]
   }
   return(x_df)
 }
@@ -214,12 +244,14 @@
   # object stack of 12 month data
 
   CRU_stack_list <-
-    lapply(X = files,
-           FUN = .create_stack,
-           wrld = wrld,
-           month_names = month_names,
-           pre = pre,
-           pre_cv = pre_cv)
+    lapply(
+      X = files,
+      FUN = .create_stack,
+      wrld = wrld,
+      month_names = month_names,
+      pre = pre,
+      pre_cv = pre_cv
+    )
 
   names(CRU_stack_list) <- substr(basename(files), 12, 14)
 
@@ -316,4 +348,91 @@
     cache_dir <- tempdir()
   }
   return(cache_dir)
+}
+
+#' @noRd
+.get_local <- function(pre,
+                       pre_cv,
+                       rd0,
+                       tmp,
+                       dtr,
+                       reh,
+                       tmn,
+                       tmx,
+                       sunp,
+                       frs,
+                       wnd,
+                       elv,
+                       cache_dir) {
+  # check if pre_cv or tmx/tmn (derived) are true, make sure proper ----------
+  # parameters set TRUE
+  if (isTRUE(pre_cv)) {
+    pre <- TRUE
+  }
+
+  if (isTRUE(tmn) | isTRUE(tmx)) {
+    dtr <- tmp <- TRUE
+  }
+
+  dtr_file <- "grid_10min_dtr.dat.gz"
+  tmp_file <- "grid_10min_tmp.dat.gz"
+  reh_file <- "grid_10min_reh.dat.gz"
+  elv_file <- "grid_10min_elv.dat.gz"
+  pre_file <- "grid_10min_pre.dat.gz"
+  sun_file <- "grid_10min_sunp.dat.gz"
+  wnd_file <- "grid_10min_wnd.dat.gz"
+  frs_file <- "grid_10min_frs.dat.gz"
+  rd0_file <- "grid_10min_rd0.dat.gz"
+
+  object_list <- c(dtr, tmp, reh, elv, pre, sunp, wnd, frs, rd0)
+
+  files <-
+    c(
+      dtr_file,
+      tmp_file,
+      reh_file,
+      elv_file,
+      pre_file,
+      sun_file,
+      wnd_file,
+      frs_file,
+      rd0_file
+    )
+  names(files) <-
+    names(object_list) <-
+    c(
+      "dtr_file",
+      "tmp_file",
+      "reh_file",
+      "elv_file",
+      "pre_file",
+      "sun_file",
+      "wnd_file",
+      "frs_file",
+      "rd0_file"
+    )
+
+  # filter files -------------------------------------------------------------
+  # which files are being requested?
+  files <- files[object_list %in% !isTRUE(files)]
+
+  # filter files from cache directory in case there are local files for which
+  # we do not want data
+  cache_dir_contents <- as.list(list.files(cache_dir,
+                                           pattern = ".dat.gz$"))
+
+  files <- cache_dir_contents[cache_dir_contents %in% files]
+
+  if (length(files) < 0) {
+    stop("\nThere are no CRU CL v. 2.0 data files available in this directory.\n",
+         call. = FALSE)
+  }
+
+  # add full file path to the files
+  files <- file.path(cache_dir, files)
+
+  # fill the space with a "\" for R, if one exists
+  files <- gsub(" ", "\\ ", files, fixed = TRUE)
+
+  return(files)
 }

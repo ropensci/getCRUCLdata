@@ -1,5 +1,14 @@
 # getCRUCLdata 0.2.5.9000
 
+## Major changes
+
+- Remove Imports for [_dplyr_], [_tibble_] and [_tidyr_] to lessen dependencies
+
+- Remove Suggests for [_readr_] and [_sp_]
+
+- Add [_tibble_] to Suggests. [_tibble_] is no longer required for use of this
+package
+
 ## Minor changes
 
 - Update package to follow CRAN policies
