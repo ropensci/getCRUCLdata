@@ -10,10 +10,10 @@ Authors@R: person(given = "Adam",
 Description: Provides functions that automate downloading and importing
     University of East Anglia Climate Research Unit ('CRU') 'CL' v. 2.0
     climatology data, facilitates the calculation of minimum temperature and
-    maximum temperature and formats the data into a tidy data frame as a tibble
-    or a list of raster stack objects for use.  'CRU' 'CL' v. 2.0 data are a
-    gridded climatology of 1961-1990 monthly means released in 2002 and
-    cover all land areas (excluding Antarctica) at 10 arcminutes
+    maximum temperature and formats the data into a tidy data frame as a
+    'tibble' or a list of 'raster' 'stack' objects for use.  'CRU' 'CL' v. 2.0
+    data are a gridded climatology of 1961-1990 monthly means released in 2002
+    and cover all land areas (excluding Antarctica) at 10 arcminutes
     (0.1666667 degree) resolution.  For more information see the description of
     the data provided by the University of East Anglia Climate Research Unit,
     <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
@@ -23,26 +23,22 @@ Depends:
 Imports:
     curl,
     data.table,
-    dplyr,
     hoardr,
     raster,
-    tidyr,
-    tibble,
     utils
 LazyData: TRUE
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 ByteCompile: TRUE
 Suggests:
     covr,
     ggplot2,
     knitr,
     pkgdown,
-    readr,
     rmarkdown,
     rappdirs,
     roxygen2 (>= 6.1.0),
-    sp,
     testthat,
+    tibble,
     viridis
 Encoding: UTF-8
 URL: https://github.com/ropensci/getCRUCLdata, https://ropensci.github.io/getCRUCLdata/
