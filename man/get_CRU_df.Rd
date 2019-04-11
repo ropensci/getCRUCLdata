@@ -84,11 +84,6 @@ For more information see the description of the data provided by
 \acronym{CRU}, \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 }
 \note{
-While \pkg{getCRUCLdata} does return a [tibble][tibble()] object, it
-is not necessary to have this package installed to work with the resulting
-`data.frame`, however it will give enhanced capabilities if the \pkg{tibble}
-package is loaded in your current \R session.
-
 This package automatically converts elevation values from kilometres to
 metres.
 }
@@ -98,9 +93,6 @@ metres.
 # without caching the data files
 CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
 
-head(CRU_pre_tmp)
-
-library(tibble)
 CRU_pre_tmp
 }
 

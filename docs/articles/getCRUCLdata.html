@@ -144,7 +144,7 @@
 <div id="creating-tidy-data-frames-for-use-in-r" class="section level3">
 <h3 class="hasAnchor">
 <a href="#creating-tidy-data-frames-for-use-in-r" class="anchor"></a>Creating tidy data frames for use in R</h3>
-<p>The <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> function automates the download process and creates tidy data frames as a <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble::tibble()</a></code> of the CRU CL v. 2.0 climatology elements. However, it is not required that <em>tibble</em> even be installed on your system to use the package. It will work as a normal <code>data.frame</code> if <em>tibble</em> is not installed or loaded in your current R session.</p>
+<p>The <code><a href="../reference/get_CRU_df.html">get_CRU_df()</a></code> function automates the download process and creates tidy data frames as a <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble::tibble()</a></code> of the CRU CL v. 2.0 climatology elements.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(getCRUCLdata)</a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
 <a class="sourceLine" id="cb1-3" title="3">CRU_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_CRU_df.html">get_CRU_df</a></span>(<span class="dt">pre =</span> <span class="ot">TRUE</span>,</a>
@@ -160,11 +160,7 @@
 <a class="sourceLine" id="cb1-13" title="13">                       <span class="dt">wnd =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb1-14" title="14">                       <span class="dt">elv =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb1-15" title="15"></a>
-<a class="sourceLine" id="cb1-16" title="16">CRU_data</a>
-<a class="sourceLine" id="cb1-17" title="17"></a>
-<a class="sourceLine" id="cb1-18" title="18"><span class="co"># load tibble library</span></a>
-<a class="sourceLine" id="cb1-19" title="19"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)</a>
-<a class="sourceLine" id="cb1-20" title="20">CRU_data</a></code></pre></div>
+<a class="sourceLine" id="cb1-16" title="16">CRU_data</a></code></pre></div>
 <p>Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_CRU_df.html">get_CRU_df</a></span>(<span class="dt">tmp =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <div id="plotting-data-from-the-tidy-dataframe" class="section level4">
