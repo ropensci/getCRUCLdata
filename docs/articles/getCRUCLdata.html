@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">getCRUCLdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -246,7 +246,7 @@
 <div id="saving-raster-objects-to-local-disk" class="section level4">
 <h4 class="hasAnchor">
 <a href="#saving-raster-objects-to-local-disk" class="anchor"></a>Saving raster objects to local disk</h4>
-<p>The raster stack objects can be saved to disk as geotiff files (others are available, see help for <code><a href="https://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster()</a></code> and <code><a href="https://www.rdocumentation.org/packages/raster/topics/writeFormats">writeFormats()</a></code> for more options) in the <code>Data</code> directory with a tmn or tmx prefix to the month for a file name.</p>
+<p>The raster stack objects can be saved to disk as geotiff files (others are available, see help for <code><a href="https://www.rdocumentation.org/packages/raster/topics/writeRaster">raster::writeRaster()</a></code> and <code><a href="https://www.rdocumentation.org/packages/raster/topics/writeFormats">raster::writeFormats()</a></code> for more options) on the <code>Data</code> directory with a tmn or tmx prefix to the month for a file name.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(raster)</a>
 <a class="sourceLine" id="cb11-2" title="2"></a>
 <a class="sourceLine" id="cb11-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/files2">dir.create</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(<span class="st">"~/Data"</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</a>
@@ -256,7 +256,7 @@
 <a class="sourceLine" id="cb11-7" title="7">  <span class="dt">bylayer =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb11-8" title="8">  <span class="dt">format =</span> <span class="st">"GTiff"</span></a>
 <a class="sourceLine" id="cb11-9" title="9">  )</a>
-<a class="sourceLine" id="cb11-10" title="10">  </a>
+<a class="sourceLine" id="cb11-10" title="10"></a>
 <a class="sourceLine" id="cb11-11" title="11">  <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/writeRaster">writeRaster</a></span>(</a>
 <a class="sourceLine" id="cb11-12" title="12">  t<span class="op">$</span>tmx,</a>
 <a class="sourceLine" id="cb11-13" title="13">  <span class="dt">filename =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(<span class="st">"~/Data/tmx_"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(t<span class="op">$</span>tmn)),</a>
