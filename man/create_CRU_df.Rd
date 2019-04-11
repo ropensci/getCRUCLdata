@@ -105,6 +105,10 @@ download.file(
 
 CRU_tmp <- create_CRU_df(tmp = TRUE, dsn = tempdir())
 
+
+head(CRU_tmp)
+
+library(tibble)
 CRU_tmp
 }
 

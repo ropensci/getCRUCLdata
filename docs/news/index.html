@@ -110,6 +110,15 @@
 <h1 class="page-header">
 <a href="#getcrucldata-0259000" class="anchor"></a>getCRUCLdata 0.2.5.9000<small> Unreleased </small>
 </h1>
+<div id="major-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<ul>
+<li><p>Remove Imports for [<em>dplyr</em>], [<em>tibble</em>] and [<em>tidyr</em>] to lessen dependencies</p></li>
+<li><p>Remove Suggests for [<em>readr</em>] and [<em>sp</em>]</p></li>
+<li><p>Add [<em>tibble</em>] to Suggests. [<em>tibble</em>] is no longer required for use of this package</p></li>
+</ul>
+</div>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
@@ -208,9 +217,9 @@
 <h1 class="page-header">
 <a href="#getcrucldata-020" class="anchor"></a>getCRUCLdata 0.2.0<small> 2017-11-16 </small>
 </h1>
-<div id="major-changes" class="section level2">
+<div id="major-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
 <ul>
 <li><p>Use <em>hoardr</em> for managing cached files</p></li>
 <li><p>Fixed a bug where the file cache was not in the proper subdirectory. The file cache has moved to the proper location in a <code>R/getCRUCLdata</code> location rather than <code>getCRUCLdata</code>. You may wish to move files externally to R in order to keep them in the cache where the package will find them</p></li>
@@ -235,9 +244,9 @@
 <h1 class="page-header">
 <a href="#getcrucldata-0110" class="anchor"></a>getCRUCLdata 0.1.10<small> 2017-10-26 </small>
 </h1>
-<div id="major-changes-1" class="section level2">
+<div id="major-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-2" class="anchor"></a>Major changes</h2>
 <ul>
 <li><p>Add startup message regarding data source, use and citation</p></li>
 <li><p>Include Scott Chamberlain as copyright holder and contributor for file caching functionality</p></li>
@@ -327,9 +336,9 @@
 <h1 class="page-header">
 <a href="#getcrucldata-015" class="anchor"></a>getCRUCLdata 0.1.5<small> 2017-04-07 </small>
 </h1>
-<div id="major-changes-2" class="section level2">
+<div id="major-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-2" class="anchor"></a>Major Changes</h2>
+<a href="#major-changes-3" class="anchor"></a>Major Changes</h2>
 <ul>
 <li><p><code><a href="../reference/create_CRU_stack.html">create_CRU_stack()</a></code> and <code><a href="../reference/create_CRU_df.html">create_CRU_df()</a></code> now only work with locally available files. If you need to fetch and create a data frame or raster stack of the data, please use the new functions, <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code> and <code><a href="../reference/get_CRU_stack.html">get_CRU_stack()</a></code></p></li>
 <li><p>R &gt;=3.2.0 now required</p></li>

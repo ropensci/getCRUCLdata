@@ -97,6 +97,10 @@ metres.
 # Download data and create a data frame of precipitation and temperature
 # without caching the data files
 CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
+
+head(CRU_pre_temp)
+
+library(tibble)
 CRU_pre_temp
 }
 
