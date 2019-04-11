@@ -68,6 +68,8 @@
 #' )
 #'
 #' CRU_tmp <- create_CRU_stack(tmp = TRUE, dsn = tempdir())
+#'
+#' CRU_tmp
 #'}
 #'
 #' @seealso
