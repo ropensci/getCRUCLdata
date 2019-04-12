@@ -17,6 +17,8 @@ package
 
 - Update package to follow CRAN policies
 
+--------------------------------------------------------------------------------
+
 # getCRUCLdata 0.2.5
 
 ## Minor changes
