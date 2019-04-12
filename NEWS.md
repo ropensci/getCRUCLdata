@@ -6,9 +6,6 @@
 
 - Remove Suggests for _readr_ and _sp_
 
-- Add _tibble_ to Suggests. _tibble_ is no longer required for use of this
-package
-
 - Enhance documentation
 
 ## Bug fixes
