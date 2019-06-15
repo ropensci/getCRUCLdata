@@ -1,9 +1,9 @@
 Package: getCRUCLdata
 Type: Package
-Title: Use and Explore 'CRU' 'CL' v. 2.0 Climatology Elements
-Version: 0.3.0
+Title: 'CRU' 'CL' v. 2.0 Climatology Client
+Version: 0.2.5.9000
 Authors@R: person(given = "Adam",
-                  family = "Sparks", 
+                  family = "Sparks",
                   email = "adamhsparks@gmail.com",
                   role = c("aut", "cre"),
                   comment = c(ORCID = "0000-0002-0061-8359"))
@@ -41,7 +41,7 @@ Suggests:
     testthat,
     viridis
 Encoding: UTF-8
-URL: https://github.com/ropensci/getCRUCLdata, https://docs.ropensci.org/getCRUCLdata/ 
+URL: https://github.com/ropensci/getCRUCLdata, https://docs.ropensci.org/getCRUCLdata/
 BugReports: https://github.com/ropensci/getCRUCLdata/issues
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
