@@ -1,6 +1,6 @@
 Package: getCRUCLdata
 Type: Package
-Title: Use and Explore 'CRU' 'CL' v. 2.0 Climatology Elements
+Title: 'CRU' 'CL' v. 2.0 Climatology Client 
 Version: 0.2.5.9000
 Authors@R: person(given = "Adam",
                   family = "Sparks", 
