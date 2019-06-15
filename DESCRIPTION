@@ -41,7 +41,7 @@ Suggests:
     tibble,
     viridis
 Encoding: UTF-8
-URL: https://github.com/ropensci/getCRUCLdata, https://ropensci.github.io/getCRUCLdata/
+URL: https://github.com/ropensci/getCRUCLdata, https://docs.ropensci.org/getCRUCLdata/ 
 BugReports: https://github.com/ropensci/getCRUCLdata/issues
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
