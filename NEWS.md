@@ -1,8 +1,18 @@
-# getCRUCLdata (development version)
+# getCRUCLdata 0.3.1
+
+## Bug fixes
+
+- Fix bug in documentation that prevented example from working
+
+## Minor changes
+
+- Update URL in DESCRIPTION file
+
+--------------------------------------------------------------------------------
 
 # getCRUCLdata 0.3.0
 
-## Minor changes
+## Major changes
 
 - Remove Imports for _dplyr_, _tibble_ and _tidyr_ to lessen dependencies
 
