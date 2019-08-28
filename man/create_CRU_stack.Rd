@@ -114,5 +114,5 @@ CRU_tmp
 \code{\link{get_CRU_stack}}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com}
+Adam H. Sparks, \email{adamhsparks@gmail.com}
 }

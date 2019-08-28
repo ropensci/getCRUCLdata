@@ -25,7 +25,7 @@
 #' \strong{Useful links:}
 #'  \itemize{
 #'  \item{Development repository: \url{https://github.com/ropensci/getCRUCLdata}}
-#'  \item{Static documentation: \url{https://ropensci.github.io/getCRUCLdata/}}
+#'  \item{Static documentation: \url{https://docs.ropensci.org/getCRUCLdata/}}
 #'  \item{Report bugs at: \url{https://github.com/ropensci/getCRUCLdata/issues}}
 #' }
 #'
@@ -38,5 +38,5 @@
 #' (\href{https://crudata.uea.ac.uk/cru/data/hrg/tmc/}{abstract},
 #' \href{http://www.int-res.com/articles/cr2002/21/c021p001.pdf}{paper})
 #'
-#'@author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 NULL

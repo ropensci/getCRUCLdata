@@ -79,7 +79,7 @@
 #' \code{\link[raster]{stack}} objects of \acronym{CRU} \acronym{CL} v. 2.0
 #' climatology elements
 #'
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
 #' @note
 #' This package automatically converts elevation values from kilometres to

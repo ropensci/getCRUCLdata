@@ -105,5 +105,5 @@ CRU_pre_tmp
 \code{\link{manage_cache}}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com}
+Adam H. Sparks, \email{adamhsparks@gmail.com}
 }

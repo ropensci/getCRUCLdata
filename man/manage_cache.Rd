@@ -50,3 +50,6 @@ manage_cache$list()
 manage_cache$cache_path_set("~/tmp")
 }
 }
+\author{
+Adam H. Sparks, \email{adamhsparks@gmail.com}
+}

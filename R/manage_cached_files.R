@@ -29,6 +29,8 @@
 #'  nothing
 #' }
 #'
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
+#'
 #' @examples \dontrun{
 #'
 #' # list files in cache
