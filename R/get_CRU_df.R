@@ -56,11 +56,6 @@
 #' To take advantage of cached files in future sessions, use \code{cache = TRUE}
 #' after the initial download and caching.  Defaults to \code{FALSE}.
 #'
-#' @note While \pkg{getCRUCLdata} does return a [tibble][tibble()] object, it
-#' is not necessary to have this package installed to work with the resulting
-#' `data.frame`, however it will give enhanced capabilities if the \pkg{tibble}
-#' package is loaded in your current \R session.
-#'
 #' @examples
 #' \donttest{
 #' # Download data and create a data frame of precipitation and temperature
@@ -125,5 +120,5 @@ get_CRU_df <- function(pre = FALSE,
                     cache_dir)
 
   d <- .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
-  return(setattr(d, "class", c("tbl", "tbl_df", "data.frame")))
+  return(tibble::as_tibble(d))
 }

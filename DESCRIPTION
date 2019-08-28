@@ -1,9 +1,9 @@
 Package: getCRUCLdata
 Type: Package
-Title: 'CRU' 'CL' v. 2.0 Climatology Client 
-Version: 0.2.5.9000
+Title: 'CRU' 'CL' v. 2.0 Climatology Client
+Version: 0.3.0
 Authors@R: person(given = "Adam",
-                  family = "Sparks", 
+                  family = "Sparks",
                   email = "adamhsparks@gmail.com",
                   role = c("aut", "cre"),
                   comment = c(ORCID = "0000-0002-0061-8359"))
@@ -25,6 +25,7 @@ Imports:
     data.table,
     hoardr,
     raster,
+    tibble,
     utils
 LazyData: TRUE
 RoxygenNote: 6.1.1
@@ -38,12 +39,12 @@ Suggests:
     rappdirs,
     roxygen2 (>= 6.1.0),
     testthat,
-    tibble,
     viridis
 Encoding: UTF-8
-URL: https://docs.ropensci.org/getCRUCLdata/ 
+URL: https://docs.ropensci.org/getCRUCLdata/
 BugReports: https://github.com/ropensci/getCRUCLdata/issues
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: anglia-cru, climate-data, cru-cl2, temperature, rainfall, elevation, data-access, wind, relative-humidity, solar-radiation, diurnal-temperature, frost
 X-schema.org-isPartOf: https://ropensci.org
+Language: en-GB

@@ -62,6 +62,8 @@
 #' # Download data and create a raster stack of precipitation and temperature
 #' # without caching the data files
 #' CRU_pre_tmp <- get_CRU_stack(pre = TRUE, tmp = TRUE)
+#'
+#' CRU_pre_tmp
 #' }
 #'
 #' @seealso
