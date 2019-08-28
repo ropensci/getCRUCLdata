@@ -1,4 +1,3 @@
-dist: xenial
 language: r
 cache: packages
 r_check_args: --as-cran --run-donttest
