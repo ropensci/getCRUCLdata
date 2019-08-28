@@ -93,6 +93,9 @@ metres.
 # without caching the data files
 CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
 
+head(CRU_pre_tmp)
+
+library(tibble)
 CRU_pre_tmp
 }
 
