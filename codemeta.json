@@ -238,7 +238,7 @@
   "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost"],
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
-  "fileSize": "934.265KB",
+  "fileSize": "934.264KB",
   "contIntegration": [
     "https://travis-ci.org/ropensci/getCRUCLdata",
     "https://ci.appveyor.com/project/adamhsparks/getcrucldata/branch/master",
