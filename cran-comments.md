@@ -14,6 +14,10 @@
 
 # New patch release
 
+## Note
+
+- This is a resubmission to address a URL issue raised by CRAN maintainers
+
 ## Bug fixes
 
 - Fix bug in documentation that prevented example from working
