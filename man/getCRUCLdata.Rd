@@ -35,7 +35,7 @@ set of surface climate over global land areas. \emph{Climate Research}
 \strong{Useful links:}
  \itemize{
  \item{Development repository: \url{https://github.com/ropensci/getCRUCLdata}}
- \item{Static documentation: \url{https://ropensci.github.io/getCRUCLdata/}}
+ \item{Static documentation: \url{https://docs.ropensci.org/getCRUCLdata/}}
  \item{Report bugs at: \url{https://github.com/ropensci/getCRUCLdata/issues}}
 }
 }

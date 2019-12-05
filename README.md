@@ -76,7 +76,7 @@ install_github("ropensci/getCRUCLdata", build_vignettes = TRUE)
 # Documentation
 
 For complete documentation see the package website:
-<https://ropensci.github.io/getCRUCLdata/>
+<https://docs.ropensci.org/getCRUCLdata/>
 
 # Meta
 
