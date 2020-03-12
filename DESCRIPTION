@@ -2,7 +2,7 @@ Package: getCRUCLdata
 Type: Package
 Title: 'CRU' 'CL' v. 2.0 Climatology Client
 Version: 0.2.5.9000
-Authors@R: person(given = "Adam H.",
+Authors@R: person(given = "Adam",
                   family = "Sparks",
                   email = "adamhsparks@gmail.com",
                   role = c("aut", "cre"),
@@ -28,7 +28,7 @@ Imports:
     tibble,
     utils
 LazyData: TRUE
-RoxygenNote: 7.0.2
+RoxygenNote: 6.1.1
 ByteCompile: TRUE
 Suggests:
     covr,
