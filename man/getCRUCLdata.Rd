@@ -3,7 +3,6 @@
 \docType{package}
 \name{getCRUCLdata}
 \alias{getCRUCLdata}
-\alias{getCRUCLdata-package}
 \title{getCRUCLdata: Download and Create a Data Frame or Raster Stack Object of CRU CL v. 2.0 Climatology Variables}
 \description{
 The \pkg{getCRUCLdata} package provides functions that automate downloading
