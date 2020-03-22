@@ -31,7 +31,7 @@
   "author": [
     {
       "@type": "Person",
-      "givenName": "Adam H.",
+      "givenName": "Adam",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
@@ -43,7 +43,7 @@
   "maintainer": [
     {
       "@type": "Person",
-      "givenName": "Adam H.",
+      "givenName": "Adam",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
@@ -238,7 +238,7 @@
   "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost"],
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
-  "fileSize": "934.122KB",
+  "fileSize": "934.157KB",
   "contIntegration": [
     "https://travis-ci.org/ropensci/getCRUCLdata",
     "https://ci.appveyor.com/project/adamhsparks/getcrucldata/branch/master",
