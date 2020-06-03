@@ -28,16 +28,15 @@ Imports:
     tibble,
     utils
 LazyData: TRUE
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 ByteCompile: TRUE
 Suggests:
     covr,
     ggplot2,
     knitr,
-    pkgdown,
     rmarkdown,
     rappdirs,
-    roxygen2 (>= 6.1.0),
+    roxygen2,
     testthat,
     viridis
 Encoding: UTF-8
