@@ -1,6 +1,7 @@
 getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 ================
 
+![R CMD Check via {tic}](https://github.com/ropensci/getCRUCLdata/workflows/R%20CMD%20Check%20via%20%7Btic%7D/badge.svg)
 [![Codecov test coverage](https://codecov.io/gh/ropensci/getCRUCLdata/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/getCRUCLdata?branch=master)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata)
