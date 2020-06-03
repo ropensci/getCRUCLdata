@@ -13,3 +13,5 @@
 ^codemeta\.json$
 ^getCRUCLdata.code-workspace$
 ^CRAN-RELEASE$
+^\.ccache$
+^tic\.R$
