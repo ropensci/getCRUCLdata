@@ -1,5 +1,11 @@
 # getCRUCLdata (development version)
 
+## Minor changes
+
+* Remove pkgdown as a Suggests
+
+* Move CI to GitHub Actions
+
 # getCRUCLdata 0.3.1
 
 ## Bug fixes
