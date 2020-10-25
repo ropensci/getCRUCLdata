@@ -9,3 +9,5 @@ inst/doc
 .DS_Store
 *.code-workspace
 docs/
+doc
+Meta

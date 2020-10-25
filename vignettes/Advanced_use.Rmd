@@ -1,0 +1,50 @@
+---
+title: "Advanced usage of getCRUCLdata"
+author: "Adam H. Sparks"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Advanced usage of getCRUCLdata}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Caching files for later use
+
+When using the `get_CRU_df()` or `get_CRU_stack()` functions, files may be cached in the users' local space for later use (optional) or stored in a temporary directory and deleted when the R session is closed and not saved (this is the default behaviour already illustrated above).
+Illustrated here, create a tidy data frame of all CRU CL v. 2.0 climatology elements available and cache
+them to save time in the future.
+*In order to take advantage of the cached data, you must use the `get_CRU_df()` function again in the future*.
+This functionality is somewhat modelled after the `raster::getData()` function that will not download files that already exist in the working directory, however in this case the function is portable and it will work for any working directory.
+That is, if you have cached the data and you use `get_CRU_df()` again, it will use the cached data no matter what working directory you are in.
+This functionality will be most useful for writing scripts that may be used several times rather than just once off or if you frequently use the data in multiple analyses the data will not be downloaded again if they have been cached.
+
+Create a list of raster stacks of maximum and minimum temperature.
+To take advantage of the previously cached files and save time by not downloading files, specify `cache = TRUE`.
+
+```{r, eval=FALSE}
+tmn_tmx <- get_CRU_stack(tmn = TRUE,
+                         tmx = TRUE,
+                         cache = TRUE)
+```
+
+## Handling files downloaded outside of R
+
+A second set of functions, `create_CRU_df()` and `create_CRU_stack()`, is provided for users that may have connectivity issues or simply wish to use something other than R to download the data files.
+You may also wish to use these if you want to download the data and specify where it is stored rather than using the `cache` functionality of `get_CRU_df()` and `get_CRU_stack()`.
+
+The `create_CRU_df()` and `create_CRU_stack()` functions work in the same way as `get_CRU_df()` and `get_CRU_stack()` functions with only one major difference.
+You must supply the location of the files on the local disk (`dsn`) that you wish to import.
+That is, the CRU CL v. 2.0 data files *must* be downloaded prior to the use of these functions using a program external to R, _e.g._, FileZilla or some other FTP program.
+In this instance it is recommended to use an FTP client (_e.g._, [FileZilla](https://filezilla-project.org)) to download the files, save locally and use one of these functions to import the data into R and generate your desired object to work with.
+
+```{r, eval=FALSE}
+t <- create_CRU_df(tmp = TRUE, dsn = "~/Downloads")
+```
