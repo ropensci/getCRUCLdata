@@ -6,7 +6,6 @@ getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 [![Codecov test coverage](https://codecov.io/gh/ropensci/getCRUCLdata/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/getCRUCLdata?branch=master)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata)
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![JOSS status](http://joss.theoj.org/papers/10.21105/joss.00230/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00230)
 [![](https://badges.ropensci.org/software-review/issues/96_status.svg)](https://github.com/ropensci/software-review/issues/96)
 
@@ -14,19 +13,16 @@ Author/Maintainer: Adam Sparks
 
 ## Introduction to *getCRUCLdata*
 
-The *getCRUCLdata* package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a
-[tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) as a [`tibble::tibble()`](https://www.rdocumentation.org/packages/tibble/versions/1.2) or a
-[`list()`](https://www.rdocumentation.org/packages/base/versions/3.4.0/topics/list) of
-[`raster::stack()`](https://www.rdocumentation.org/packages/raster/versions/2.5-8/topics/stack) objects for use in an R session.
+The *getCRUCLdata* package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a [tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) as a [`tibble::tibble()`](https://www.rdocumentation.org/packages/tibble/versions/1.2) or a [`list()`](https://www.rdocumentation.org/packages/base/versions/3.4.0/topics/list) of [`raster::stack()`](https://www.rdocumentation.org/packages/raster/versions/2.5-8/topics/stack) objects for use in an R session.
 
-CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU),
-<https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
+CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution.
+For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
 ## Changes to original CRU CL v. 2.0 data
 
 This package automatically converts elevation values from kilometres to metres.
 
-This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xmin = -180, xmax = 180.\ Note that the original wind data include land area for parts of Antarctica.
+This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xmin = -180, xmax = 180. Note that the original wind data include land area for parts of Antarctica.
 
 # Quick Start
 
