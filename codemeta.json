@@ -17,7 +17,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -27,7 +27,7 @@
   "author": [
     {
       "@type": "Person",
-      "givenName": "Adam",
+      "givenName": "Adam H.",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
@@ -39,7 +39,7 @@
   "maintainer": [
     {
       "@type": "Person",
-      "givenName": "Adam",
+      "givenName": "Adam H.",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
@@ -81,6 +81,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "markdown",
+      "name": "markdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=markdown"
     },
     {
       "@type": "SoftwareApplication",
@@ -221,9 +233,8 @@
   "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package", "peer-reviewed"],
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
-  "fileSize": "1110.846KB",
+  "fileSize": "1455.338KB",
   "contIntegration": "https://codecov.io/gh/ropensci/getCRUCLdata?branch=master",
-  "developmentStatus": "http://www.repostatus.org/#active",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/software-review/issues/96",
@@ -255,5 +266,6 @@
         }
       }
     }
-  ]
+  ],
+  "developmentStatus": "https://www.repostatus.org/"
 }
