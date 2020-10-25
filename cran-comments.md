@@ -16,7 +16,9 @@
 
 ## Note
 
-- This is a maintenance release that fixes link redirects and formatting in documentation
+- This is a maintenance release that fixes link redirects and formatting in documentation and updates vignettes
+
+- {pkgdown} has been removed from Suggests
 
 # Reverse dependencies
 
