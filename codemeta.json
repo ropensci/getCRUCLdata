@@ -11,7 +11,7 @@
   "relatedLink": ["https://docs.ropensci.org/getCRUCLdata/", "https://CRAN.R-project.org/package=getCRUCLdata"],
   "issueTracker": "https://github.com/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.1.9000",
+  "version": "0.3.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -233,7 +233,7 @@
   "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package", "peer-reviewed"],
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
-  "fileSize": "1455.338KB",
+  "fileSize": "85407.44KB",
   "contIntegration": "https://codecov.io/gh/ropensci/getCRUCLdata?branch=master",
   "review": {
     "@type": "Review",
