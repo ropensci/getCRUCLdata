@@ -1,27 +1,45 @@
-# Setup
+# Platform
 
-## Platform
-
-|setting  |value                        |
+|field    |value                        |
 |:--------|:----------------------------|
-|version  |R version 3.4.0 (2017-04-21) |
-|system   |x86_64, darwin15.6.0         |
-|ui       |RStudio (1.0.143)            |
+|version  |R version 4.0.3 (2020-10-10) |
+|os       |macOS Catalina 10.15.7       |
+|system   |x86_64, darwin17.0           |
+|ui       |RStudio                      |
 |language |(EN)                         |
 |collate  |en_AU.UTF-8                  |
+|ctype    |en_AU.UTF-8                  |
 |tz       |Australia/Brisbane           |
-|date     |2017-06-26                   |
+|date     |2020-10-25                   |
 
-## Packages
+# Dependencies
 
-|package      |*  |version |date       |source                              |
-|:------------|:--|:-------|:----------|:-----------------------------------|
-|getCRUCLdata |*  |0.1.7   |2017-06-26 |local (adamhsparks/getCRUCLdata@NA) |
+|package      |old    |new        |Δ  |
+|:------------|:------|:----------|:--|
+|getCRUCLdata |0.3.1  |0.3.1.9000 |*  |
+|assertthat   |0.2.1  |0.2.1      |   |
+|cli          |2.1.0  |2.1.0      |   |
+|crayon       |1.3.4  |1.3.4      |   |
+|curl         |4.3    |4.3        |   |
+|data.table   |1.13.2 |1.13.2     |   |
+|digest       |0.6.27 |0.6.27     |   |
+|ellipsis     |0.3.1  |0.3.1      |   |
+|fansi        |0.4.1  |0.4.1      |   |
+|glue         |1.4.2  |1.4.2      |   |
+|hoardr       |0.5.2  |0.5.2      |   |
+|lifecycle    |0.2.0  |0.2.0      |   |
+|magrittr     |1.5    |1.5        |   |
+|pillar       |1.4.6  |1.4.6      |   |
+|pkgconfig    |2.0.3  |2.0.3      |   |
+|R6           |2.4.1  |2.4.1      |   |
+|rappdirs     |0.3.1  |0.3.1      |   |
+|raster       |3.3-13 |3.3-13     |   |
+|Rcpp         |1.0.5  |1.0.5      |   |
+|rlang        |0.4.8  |0.4.8      |   |
+|sp           |1.4-4  |1.4-4      |   |
+|tibble       |3.0.4  |3.0.4      |   |
+|utf8         |1.1.4  |1.1.4      |   |
+|vctrs        |0.3.4  |0.3.4      |   |
 
-# Check results
-
-0 packages
-
-
-
+# Revdeps
 
