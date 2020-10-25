@@ -6,10 +6,10 @@
 #' minimum and maximum temperature may also be automatically calculated as
 #' described in the data readme.txt file.  This function can be useful if you
 #' have network connection issues that mean automated downloading of the files
-#' using \pkg{R} does not work properly.  In this instance it is recommended to
+#' using \R does not work properly.  In this instance it is recommended to
 #' use an \acronym{FTP} client (\emph{e.g.}, FileZilla), web browser or command
 #' line command (\emph{e.g.}, wget or curl) to download the files, save locally
-#' and use this function to import the data into \pkg{R}.
+#' and use this function to import the data into \R.
 #'
 #' Nomenclature and units from readme.txt:
 #' \describe{
