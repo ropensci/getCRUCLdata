@@ -1,12 +1,12 @@
+# getCRUCLdata v0.3.2
+
 # Test environments
 
-- local macOS install, 3.6.1 (2019-07-05)
+- local macOS install, R version 4.0.3 (2020-10-10)
 
-- Ubuntu 18.04 LTS, R version 3.6.1 (2019-07-05)
+- win-builder R Under development (unstable) (2020-10-23 r79366)
 
-- win-builder Under development (unstable) (2019-08-27 r77080)
-
-- win-builder R version 3.6.1 (2019-07-05)
+- win-builder, R version 4.0.3 (2020-10-10)
 
 # R CMD check results
 
@@ -16,15 +16,7 @@
 
 ## Note
 
-- This is a resubmission to address a URL issue raised by CRAN maintainers
-
-## Bug fixes
-
-- Fix bug in documentation that prevented example from working
-
-## Minor changes
-
-- Update URL in DESCRIPTION file
+- This is a maintenance release that fixes link redirects and formatting in documentation
 
 # Reverse dependencies
 
