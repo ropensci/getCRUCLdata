@@ -212,7 +212,6 @@
 #' @noRd
 #'
 .create_stacks <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
-  message("\nCreating raster stack now.\n")
   wrld <-
     raster::raster(
       nrows = 930,

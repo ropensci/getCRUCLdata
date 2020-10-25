@@ -76,7 +76,6 @@
 
     # download files -----------------------------------------------------------
     if (length(dl_files) > 0) {
-      message(" \nDownloading requested data files.\n ")
 
       CRU_url <- "https://crudata.uea.ac.uk/cru/data/hrg/tmc/"
       dl_files <- as.list(paste0(CRU_url, dl_files))
