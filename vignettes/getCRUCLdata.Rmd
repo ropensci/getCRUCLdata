@@ -1,7 +1,7 @@
 ---
 title: "getCRUCLdata"
 author: "Adam H. Sparks"
-date: "2020-10-25"
+date: "2020-10-26"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -90,20 +90,19 @@ CRU_data <- get_CRU_df(pre = TRUE,
 
 CRU_data
 #> # A tibble: 6,795,150 x 15
-#>      lat   lon month   dtr   frs   pre pre_cv   rd0   reh   sun
-#>    <dbl> <dbl> <fct> <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>
-#>  1  30.9  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA  
-#>  2  31.1  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA  
-#>  3  31.2  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA  
-#>  4  31.4  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA  
-#>  5  31.8  35.6 <NA>   NA    NA    NA     NA    NA    NA    NA  
-#>  6  31.9  35.6 <NA>   NA    NA    NA     NA    NA    NA    NA  
-#>  7 -59.1 -26.6 jan     2.3  18.7 105.    35.2  17.1  88.6   9.4
-#>  8 -58.4 -26.4 jan     2.5  18.5 107.    36.2  17.2  88.5   9.9
-#>  9 -58.4 -26.2 jan     2.4  18.4 106.    36.2  17.1  88.5  10  
-#> 10 -55.9 -67.2 jan     7.6   8    73.1   44.1  13.3  80.7  34.3
-#> # … with 6,795,140 more rows, and 5 more variables: tmp <dbl>,
-#> #   wnd <dbl>, elv <dbl>, tmx <dbl>, tmn <dbl>
+#>      lat   lon month   dtr   frs   pre pre_cv   rd0   reh   sun   tmp   wnd   elv   tmx   tmn
+#>    <dbl> <dbl> <fct> <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1  30.9  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -260 NA    NA   
+#>  2  31.1  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -361 NA    NA   
+#>  3  31.2  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -336 NA    NA   
+#>  4  31.4  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -284 NA    NA   
+#>  5  31.8  35.6 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -248 NA    NA   
+#>  6  31.9  35.6 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -210 NA    NA   
+#>  7 -59.1 -26.6 jan     2.3  18.7 105.    35.2  17.1  88.6   9.4   0.2   6.4   193  1.35 -0.95
+#>  8 -58.4 -26.4 jan     2.5  18.5 107.    36.2  17.2  88.5   9.9   0.4   6.4   239  1.65 -0.85
+#>  9 -58.4 -26.2 jan     2.4  18.4 106.    36.2  17.1  88.5  10     0.6   6.4   194  1.8  -0.6 
+#> 10 -55.9 -67.2 jan     7.6   8    73.1   44.1  13.3  80.7  34.3   8     5      64 11.8   4.2 
+#> # … with 6,795,140 more rows
 ```
 
 Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only.
@@ -201,7 +200,7 @@ CRU_stack
 #> $dtr
 #> class      : RasterBrick 
 #> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1667, 0.1667  (x, y)
+#> resolution : 0.1666667, 0.1666667  (x, y)
 #> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +no_defs 
 #> source     : memory
@@ -213,7 +212,7 @@ CRU_stack
 #> $elv
 #> class      : RasterLayer 
 #> dimensions : 870, 2160, 1879200  (nrow, ncol, ncell)
-#> resolution : 0.1667, 0.1667  (x, y)
+#> resolution : 0.1666667, 0.1666667  (x, y)
 #> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +no_defs 
 #> source     : memory
@@ -224,7 +223,7 @@ CRU_stack
 #> $frs
 #> class      : RasterBrick 
 #> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1667, 0.1667  (x, y)
+#> resolution : 0.1666667, 0.1666667  (x, y)
 #> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +no_defs 
 #> source     : memory
@@ -236,7 +235,7 @@ CRU_stack
 #> $pre
 #> class      : RasterBrick 
 #> dimensions : 870, 2160, 1879200, 24  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1667, 0.1667  (x, y)
+#> resolution : 0.1666667, 0.1666667  (x, y)
 #> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +no_defs 
 #> source     : memory
@@ -248,10 +247,10 @@ CRU_stack
 #> $rd0
 #> class      : RasterBrick 
 #> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1667, 0.1667  (x, y)
+#> resolution : 0.1666667, 0.1666667  (x, y)
 #> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : /private/var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T/RtmpChJTyO/raster/r_tmp_2020-10-25_192549_67590_06403.grd 
+#> source     : memory
 #> names      :  jan,  feb,  mar,  apr,  may,  jun,  jul,  aug,  sep,  oct,  nov,  dec 
 #> min values :    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0 
 #> max values : 31.0, 28.2, 31.0, 30.0, 30.7, 30.0, 31.0, 31.0, 29.1, 28.4, 28.5, 30.3 
@@ -260,10 +259,10 @@ CRU_stack
 #> $reh
 #> class      : RasterBrick 
 #> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1667, 0.1667  (x, y)
+#> resolution : 0.1666667, 0.1666667  (x, y)
 #> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : /private/var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T/RtmpChJTyO/raster/r_tmp_2020-10-25_192552_67590_50237.grd 
+#> source     : memory
 #> names      :   jan,   feb,   mar,   apr,   may,   jun,   jul,   aug,   sep,   oct,   nov,   dec 
 #> min values :  18.4,  14.6,  13.5,  13.4,  15.5,  10.2,  10.8,  10.1,  11.0,  14.2,  19.0,  19.7 
 #> max values : 100.0, 100.0, 100.0, 100.0,  96.9,  95.1,  96.9,  97.1,  95.5, 100.0, 100.0, 100.0 
@@ -272,7 +271,7 @@ CRU_stack
 #> $sun
 #> class      : RasterBrick 
 #> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1667, 0.1667  (x, y)
+#> resolution : 0.1666667, 0.1666667  (x, y)
 #> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +no_defs 
 #> source     : memory
@@ -284,7 +283,7 @@ CRU_stack
 #> $tmp
 #> class      : RasterBrick 
 #> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1667, 0.1667  (x, y)
+#> resolution : 0.1666667, 0.1666667  (x, y)
 #> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +no_defs 
 #> source     : memory
@@ -296,7 +295,7 @@ CRU_stack
 #> $wnd
 #> class      : RasterBrick 
 #> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1667, 0.1667  (x, y)
+#> resolution : 0.1666667, 0.1666667  (x, y)
 #> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +no_defs 
 #> source     : memory
@@ -308,10 +307,10 @@ CRU_stack
 #> $tmn
 #> class      : RasterBrick 
 #> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1667, 0.1667  (x, y)
+#> resolution : 0.1666667, 0.1666667  (x, y)
 #> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : /private/var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T/RtmpChJTyO/raster/r_tmp_2020-10-25_192604_67590_20475.grd 
+#> source     : /private/var/folders/1q/045gnpqd7dnfgzshmdn8hshw0000gp/T/Rtmp4VtMtp/raster/r_tmp_2020-10-26_111004_18359_15367.grd 
 #> names      : layer.1, layer.2, layer.3, layer.4, layer.5, layer.6, layer.7, layer.8, layer.9, layer.10, layer.11, layer.12 
 #> min values :  -55.05,  -52.95,  -48.75,  -41.35,  -28.00,  -21.40,  -18.75,  -22.55,  -31.45,   -40.60,   -45.75,   -52.50 
 #> max values :   26.30,   26.25,   27.40,   27.50,   30.00,   30.65,   30.60,   30.40,   28.75,    26.95,    25.90,    26.55 
@@ -320,10 +319,10 @@ CRU_stack
 #> $tmx
 #> class      : RasterBrick 
 #> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1667, 0.1667  (x, y)
+#> resolution : 0.1666667, 0.1666667  (x, y)
 #> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : /private/var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T/RtmpChJTyO/raster/r_tmp_2020-10-25_192609_67590_56302.grd 
+#> source     : /private/var/folders/1q/045gnpqd7dnfgzshmdn8hshw0000gp/T/Rtmp4VtMtp/raster/r_tmp_2020-10-26_111006_18359_67835.grd 
 #> names      : layer.1, layer.2, layer.3, layer.4, layer.5, layer.6, layer.7, layer.8, layer.9, layer.10, layer.11, layer.12 
 #> min values :  -48.20,  -43.35,  -41.65,  -32.45,  -17.55,  -11.50,  -10.85,  -12.30,  -21.65,   -32.05,   -37.55,   -45.50 
 #> max values :   39.70,   38.40,   40.25,   41.85,   43.60,   45.95,   45.70,   44.85,   42.35,    39.50,    39.20,    39.90
@@ -407,5 +406,5 @@ and show added value over most regions. The data will have many applications in
 applied climatology, biogeochemical modelling, hydrology and agricultural
 meteorology and are available through the School of Geography Oxford
 (http://www.geog.ox.ac.uk), the International Water Management Institute
-"World Water and Climate Atlas" (http://www.iwmi.org) and the Climatic
+"World Water and Climate Atlas" (https://www.iwmi.cgiar.org/) and the Climatic
 Research Unit (http://www.cru.uea.ac.uk).

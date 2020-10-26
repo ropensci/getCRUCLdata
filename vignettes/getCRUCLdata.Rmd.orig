@@ -109,7 +109,7 @@ t
 
 Now that we have the data, we can plot it easily using _ggplot2_ and the _viridis_ package for the colour scale.
 
-```{r plot_t, eval=TRUE}
+```{r plot_t, eval=TRUE, message=FALSE}
 library(ggplot2)
 library(viridis)
 
@@ -242,5 +242,5 @@ and show added value over most regions. The data will have many applications in
 applied climatology, biogeochemical modelling, hydrology and agricultural
 meteorology and are available through the School of Geography Oxford
 (http://www.geog.ox.ac.uk), the International Water Management Institute
-"World Water and Climate Atlas" (http://www.iwmi.org) and the Climatic
+"World Water and Climate Atlas" (https://www.iwmi.cgiar.org/) and the Climatic
 Research Unit (http://www.cru.uea.ac.uk).

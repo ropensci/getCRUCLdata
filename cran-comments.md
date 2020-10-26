@@ -12,13 +12,11 @@
 
 0 errors | 0 warnings | 1 note
 
-# New patch release
+# Resubmission as requested by CRAN maintainers
 
 ## Note
 
-- This is a maintenance release that fixes link redirects and formatting in documentation and updates vignettes
-
-- {pkgdown} has been removed from Suggests
+- This is a resubmission that fixes a link redirect as requested
 
 # Reverse dependencies
 
