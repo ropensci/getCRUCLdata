@@ -7,11 +7,14 @@
   "identifier": "getCRUCLdata",
   "description": "Provides functions that automate downloading and importing\n    University of East Anglia Climate Research Unit ('CRU') 'CL' v. 2.0\n    climatology data, facilitates the calculation of minimum temperature and\n    maximum temperature and formats the data into a tidy data frame as a\n    'tibble' or a list of 'raster' 'stack' objects for use.  'CRU' 'CL' v. 2.0\n    data are a gridded climatology of 1961-1990 monthly means released in 2002\n    and cover all land areas (excluding Antarctica) at 10 arcminutes\n    (0.1666667 degree) resolution.  For more information see the description of\n    the data provided by the University of East Anglia Climate Research Unit,\n    <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.",
   "name": "getCRUCLdata: 'CRU' 'CL' v. 2.0 Climatology Client",
-  "codeRepository": "https://github.com/ropensci/getCRUCLdata",
-  "relatedLink": ["https://docs.ropensci.org/getCRUCLdata/", "https://CRAN.R-project.org/package=getCRUCLdata"],
+  "codeRepository": "https://docs.ropensci.org/getCRUCLdata/",
+  "relatedLink": [
+    "https://docs.ropensci.org/getCRUCLdata/",
+    "https://CRAN.R-project.org/package=getCRUCLdata"
+  ],
   "issueTracker": "https://github.com/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.2",
+  "version": "0.3.2.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -230,16 +233,9 @@
   ],
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package", "peer-reviewed"],
-  "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
-  "fileSize": "85407.712KB",
+  "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost"],
+  "fileSize": "70452.097KB",
   "contIntegration": "https://codecov.io/gh/ropensci/getCRUCLdata?branch=master",
-  "review": {
-    "@type": "Review",
-    "url": "https://github.com/ropensci/software-review/issues/96",
-    "provider": "https://ropensci.org"
-  },
   "citation": [
     {
       "@type": "ScholarlyArticle",
