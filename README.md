@@ -110,5 +110,3 @@ For complete documentation see the package website: <https://docs.ropensci.org/g
   [Contributor Code of Conduct](https://github.com/ropensci/getCRUCLdata/blob/master/CONDUCT.md).
   By participating in the *getCRUCLdata* project you agree to abide by its
   terms.
-
-[![ropensci](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
