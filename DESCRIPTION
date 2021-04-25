@@ -46,4 +46,4 @@ VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: anglia-cru, climate-data, cru-cl2, temperature, rainfall, elevation, data-access, wind, relative-humidity, solar-radiation, diurnal-temperature, frost
 X-schema.org-isPartOf: https://ropensci.org
-Language: en-GB
+Language: en-US
