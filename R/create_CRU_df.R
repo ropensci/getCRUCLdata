@@ -58,8 +58,7 @@
 #' @param dsn Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
 #' files are located.
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf interactive()
 #' # Create a data frame of temperature from locally available files in the
 #' # tempdir() directory.
 #'
@@ -71,13 +70,12 @@
 #' CRU_tmp <- create_CRU_df(tmp = TRUE, dsn = tempdir())
 #'
 #' CRU_tmp
-#'}
 #'
 #' @seealso
 #' \code{\link{get_CRU_df}}
 #'
 #' @return A tidy data frame of \acronym{CRU} \acronym{CL} v. 2.0 climatology
-#' elements as a \code{\link[tibble]{tibble}} object
+#' elements as a \code{\link[base]{data.frame}} object
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #'
@@ -131,6 +129,5 @@ create_CRU_df <-   function(pre = FALSE,
     )
   }
 
-  d <- .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
-  return(tibble::as_tibble(d))
+  return(d <- .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
 }

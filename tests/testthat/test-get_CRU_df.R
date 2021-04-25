@@ -8,14 +8,12 @@ test_that("get_CRU_df fails if no parameters are TRUE", {
                "You must select at least one element for download.")
 })
 
-# Test that get_CRU_df will retrieve files from CRU FTP server
-test_that("get_CRU_df will retrieve files from CRU FTP server", {
-
+# Test that get_CRU_df will retrieve files from CRU server
+test_that("get_CRU_df will retrieve files from CRU server", {
   skip_on_cran()
-
   rm(CRU_tmp)
   CRU_tmp <- get_CRU_df(tmp = TRUE, tmn = FALSE, tmx = FALSE, cache = FALSE)
-  expect_is(CRU_tmp, "tbl_df")
+  expect_is(CRU_tmp, "data.frame")
 })
 
 # Test that get_CRU_df lists only .dat.gz files in the given dsn ------------

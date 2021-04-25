@@ -1,5 +1,5 @@
 
-#' @title Create a List of Raster Stack Objects From CRU CL v. 2.0 Climatology Variables on Local Disk
+#' @title Create a list of raster stack objects From CRU CL v. 2.0 climatology variables from local disk
 #'
 #'@description Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
 #' data and creates a \code{\link[raster]{stack}} of the data.  If requested,
@@ -57,8 +57,7 @@
 #' the data frame? Defaults to \code{FALSE}.
 #' @param dsn Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
 #' files are located.
-#' @examples
-#' \donttest{
+#' @examplesIf interactive()
 #' # Create a raster stack of temperature from tmp
 #' # files in the tempdir() directory.
 #'
@@ -70,7 +69,6 @@
 #' CRU_tmp <- create_CRU_stack(tmp = TRUE, dsn = tempdir())
 #'
 #' CRU_tmp
-#'}
 #'
 #' @seealso
 #' \code{\link{get_CRU_stack}}

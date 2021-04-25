@@ -1,11 +1,12 @@
-#' @title Download and Create a Tidy Data Frame of CRU CL v. 2.0 Climatology Variables
+
+#' @title Download and create a data frame of CRU CL v. 2.0 climatology variables
 #'
 #' @description This function automates downloading and importing \acronym{CRU}
-#' \acronym{CL} v. 2.0 climatology data and creates a tidy data frame of the
-#' data.  If requested, minimum and maximum temperature may also be
-#' automatically calculated as described in the data readme.txt file.  Data may
-#' be cached for later use by this function, saving time downloading files in
-#' future use of the function.
+#' \acronym{CL} v. 2.0 climatology data and creates a data frame of the data.
+#' If requested, minimum and maximum temperature may also be automatically
+#' calculated as described in the data readme.txt file.  Data may be cached for
+#' later use by this function, saving time downloading files in future use of
+#' the function.
 #'
 #' Nomenclature and units from readme.txt:
 #' \describe{
@@ -31,7 +32,7 @@
 #' return in the data frame?  Defaults to \code{FALSE}.  NOTE.  Setting this to
 #' \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
 #' returned as well.
-#' @param rd0 Logical.  Fetch wet-days (number days with >0.1millimetres rain
+#' @param rd0 Logical.  Fetch wet-days (number days with >0.1 millimetres rain
 #' per month) and return in the data frame?  Defaults to \code{FALSE}.
 #' @param dtr Logical.  Fetch mean diurnal temperature range (degrees Celsius)
 #' and return it in the data frame?  Defaults to \code{FALSE}.
@@ -56,17 +57,13 @@
 #' To take advantage of cached files in future sessions, use \code{cache = TRUE}
 #' after the initial download and caching.  Defaults to \code{FALSE}.
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf interactive()
 #' # Download data and create a data frame of precipitation and temperature
 #' # without caching the data files
 #' CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
 #'
 #' head(CRU_pre_tmp)
-#'
-#' library(tibble)
 #' CRU_pre_tmp
-#' }
 #'
 #' @seealso
 #' \code{\link{create_CRU_stack}}

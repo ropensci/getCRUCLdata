@@ -64,7 +64,7 @@ files are located.}
 }
 \value{
 A tidy data frame of \acronym{CRU} \acronym{CL} v. 2.0 climatology
-elements as a \code{\link[tibble]{tibble}} object
+elements as a \code{\link[base]{data.frame}} object
 }
 \description{
 Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
@@ -100,7 +100,7 @@ This package automatically converts elevation values from kilometres to
 metres.
 }
 \examples{
-\donttest{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Create a data frame of temperature from locally available files in the
 # tempdir() directory.
 
@@ -112,8 +112,7 @@ download.file(
 CRU_tmp <- create_CRU_df(tmp = TRUE, dsn = tempdir())
 
 CRU_tmp
-}
-
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{get_CRU_df}}

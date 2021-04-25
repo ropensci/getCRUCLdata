@@ -25,13 +25,10 @@ knitr::opts_chunk$set(collapse = TRUE,
 
 ## Introduction to _getCRUCLdata_
 
-The _getCRUCLdata_ package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a
-[tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) as a `tibble::tibble()`
-object or a [`list()`](https://www.rdocumentation.org/packages/base/versions/3.4.0/topics/list)
-of [`raster::stack()`](https://www.rdocumentation.org/packages/raster/versions/2.5-8/topics/stack)
-objects for use in an R session.
+The _getCRUCLdata_ package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a [base::data.frame()] object or a [base::list()]
+of [raster::stack()] objects.
 
-CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution.
+CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 arc degree) resolution.
 For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
 ## Changes to original CRU CL v. 2.0 data
@@ -76,7 +73,7 @@ Local file path where CRU CL v. 2.0 .dat.gz files are located.
 
 ### Creating tidy data frames for use in R
 
-The `get_CRU_df()` function automates the download process and creates tidy data frames as a `tibble::tibble()` of the CRU CL v. 2.0 climatology elements.
+The `get_CRU_df()` function automates the download process and creates data frames of the climatology elements.
 
 ```{r get_cru_df, eval=TRUE}
 library(getCRUCLdata)

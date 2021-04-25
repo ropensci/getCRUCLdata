@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_CRU_df.R
 \name{get_CRU_df}
 \alias{get_CRU_df}
-\title{Download and Create a Tidy Data Frame of CRU CL v. 2.0 Climatology Variables}
+\title{Download and create a data frame of CRU CL v. 2.0 climatology variables}
 \usage{
 get_CRU_df(
   pre = FALSE,
@@ -29,7 +29,7 @@ return in the data frame?  Defaults to \code{FALSE}.  NOTE.  Setting this to
 \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
 returned as well.}
 
-\item{rd0}{Logical.  Fetch wet-days (number days with >0.1millimetres rain
+\item{rd0}{Logical.  Fetch wet-days (number days with >0.1 millimetres rain
 per month) and return in the data frame?  Defaults to \code{FALSE}.}
 
 \item{tmp}{Logical.  Fetch temperature (degrees Celsius) and return it in the
@@ -70,11 +70,11 @@ elements as a \code{\link[tibble]{tibble}} object
 }
 \description{
 This function automates downloading and importing \acronym{CRU}
-\acronym{CL} v. 2.0 climatology data and creates a tidy data frame of the
-data.  If requested, minimum and maximum temperature may also be
-automatically calculated as described in the data readme.txt file.  Data may
-be cached for later use by this function, saving time downloading files in
-future use of the function.
+\acronym{CL} v. 2.0 climatology data and creates a data frame of the data.
+If requested, minimum and maximum temperature may also be automatically
+calculated as described in the data readme.txt file.  Data may be cached for
+later use by this function, saving time downloading files in future use of
+the function.
 
 Nomenclature and units from readme.txt:
 \describe{
@@ -99,17 +99,14 @@ This package automatically converts elevation values from kilometres to
 metres.
 }
 \examples{
-\donttest{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Download data and create a data frame of precipitation and temperature
 # without caching the data files
 CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
 
 head(CRU_pre_tmp)
-
-library(tibble)
 CRU_pre_tmp
-}
-
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{create_CRU_stack}}

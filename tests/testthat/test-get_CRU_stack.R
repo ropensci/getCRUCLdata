@@ -1,7 +1,7 @@
 context("get_CRU_stack")
 
-# Test that get_CRU_stack will retrieve files from CRU FTP server --------------
-test_that("get_CRU_stack will retreive files from CRU FTP server", {
+# Test that get_CRU_stack will retrieve files from CRU server --------------
+test_that("get_CRU_stack will retreive files from CRU server", {
   skip_on_cran()
   rm(CRU_tmp)
 
