@@ -25,19 +25,18 @@ Imports:
     data.table,
     hoardr,
     raster,
-    tibble,
     utils
 LazyData: TRUE
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.1.9001
 ByteCompile: TRUE
 Suggests:
     covr,
     ggplot2,
     knitr,
-    markdown,
     rmarkdown,
     rappdirs,
     roxygen2,
+    spelling,
     testthat,
     viridis
 Encoding: UTF-8

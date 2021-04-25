@@ -119,6 +119,5 @@ get_CRU_df <- function(pre = FALSE,
                     elv,
                     cache_dir)
 
-  d <- .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
-  return(tibble::as_tibble(d))
+  return(d <- .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
 }

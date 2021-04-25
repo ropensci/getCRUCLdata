@@ -21,9 +21,9 @@ test_that("create_CRU_df fails if dsn does not contain CRU files", {
   expect_error(create_CRU_df(pre = TRUE, dsn = ""))
 })
 
-# Test that create_CRU_df loads files and creates a proper tibble --------------
+# Test that create_CRU_df loads files and creates a proper df --------------
 
-test_that("create_CRU_df loads files and creates a proper tibble", {
+test_that("create_CRU_df loads files and creates a proper df", {
   skip_on_cran()
 
   # create files for testing, these data are the first 10 lines of pre and tmp

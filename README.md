@@ -14,7 +14,7 @@ Author/Maintainer: Adam Sparks
 
 ## Introduction to *getCRUCLdata*
 
-The *getCRUCLdata* package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a [tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) as a [`tibble::tibble()`](https://www.rdocumentation.org/packages/tibble/versions/1.2) or a [`list()`](https://www.rdocumentation.org/packages/base/versions/3.4.0/topics/list) of [`raster::stack()`](https://www.rdocumentation.org/packages/raster/versions/2.5-8/topics/stack) objects for use in an R session.
+The *getCRUCLdata* package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a data frame or a [base::list()] of [raster::stack()] objects for use.
 
 CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution.
 For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
