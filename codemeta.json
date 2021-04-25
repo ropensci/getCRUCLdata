@@ -5,13 +5,10 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "getCRUCLdata",
-  "description": "Provides functions that automate downloading and importing\n    University of East Anglia Climate Research Unit ('CRU') 'CL' v. 2.0\n    climatology data, facilitates the calculation of minimum temperature and\n    maximum temperature and formats the data into a tidy data frame as a\n    'tibble' or a list of 'raster' 'stack' objects for use.  'CRU' 'CL' v. 2.0\n    data are a gridded climatology of 1961-1990 monthly means released in 2002\n    and cover all land areas (excluding Antarctica) at 10 arcminutes\n    (0.1666667 degree) resolution.  For more information see the description of\n    the data provided by the University of East Anglia Climate Research Unit,\n    <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.",
+  "description": "Provides functions that automate downloading and importing\n    University of East Anglia Climate Research Unit ('CRU') 'CL' v. 2.0\n    climatology data, facilitates the calculation of minimum temperature and\n    maximum temperature and formats the data into a data frame or a list of\n    'terra' 'rast' objects.  'CRU' 'CL' v. 2.0 data are a gridded\n    climatology of 1961-1990 monthly means released in 2002 and cover all land\n    areas (excluding Antarctica) at 10 arcminutes (0.1666667 arc degree) \n    resolution.  For more information see the description of the data provided\n    by the University of East Anglia Climate Research Unit,\n    <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.",
   "name": "getCRUCLdata: 'CRU' 'CL' v. 2.0 Climatology Client",
-  "codeRepository": "https://docs.ropensci.org/getCRUCLdata/",
-  "relatedLink": [
-    "https://docs.ropensci.org/getCRUCLdata/",
-    "https://CRAN.R-project.org/package=getCRUCLdata"
-  ],
+  "codeRepository": "https://github.com/ropensci/getCRUCLdata",
+  "relatedLink": ["https://docs.ropensci.org/getCRUCLdata/", "https://CRAN.R-project.org/package=getCRUCLdata"],
   "issueTracker": "https://github.com/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.3.2.9000",
@@ -20,7 +17,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
+  "runtimePlatform": "R version 4.0.5 (2021-03-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -87,18 +84,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "markdown",
-      "name": "markdown",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=markdown"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "rmarkdown",
       "name": "rmarkdown",
       "provider": {
@@ -132,6 +117,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=roxygen2"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "spelling",
+      "name": "spelling",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=spelling"
     },
     {
       "@type": "SoftwareApplication",
@@ -215,26 +212,14 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "tibble",
-      "name": "tibble",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=tibble"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     }
   ],
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost"],
-  "fileSize": "70452.097KB",
+  "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package", "peer-reviewed"],
+  "fileSize": "70451.925KB",
   "contIntegration": "https://codecov.io/gh/ropensci/getCRUCLdata?branch=master",
   "citation": [
     {
@@ -263,5 +248,12 @@
       }
     }
   ],
-  "developmentStatus": "https://www.repostatus.org/"
+  "developmentStatus": "https://www.repostatus.org/",
+  "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/getCRUCLdata/blob/master/README.md",
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/software-review/issues/96",
+    "provider": "https://ropensci.org"
+  }
 }
