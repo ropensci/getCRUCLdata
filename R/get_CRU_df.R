@@ -116,5 +116,5 @@ get_CRU_df <- function(pre = FALSE,
                     elv,
                     cache_dir)
 
-  return(d <- .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
+  return(.create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
 }

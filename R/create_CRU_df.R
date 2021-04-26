@@ -126,5 +126,5 @@ create_CRU_df <-   function(pre = FALSE,
     )
   }
 
-  return(d <- .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
+  return(.create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
 }
