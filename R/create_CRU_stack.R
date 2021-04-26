@@ -1,5 +1,5 @@
 
-#' @title Create a list of raster stack objects From CRU CL v. 2.0 climatology variables from local disk
+#' @title Create a list of raster stack objects from local disk files
 #'
 #'@description Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
 #' data and creates a \code{\link[raster]{stack}} of the data.  If requested,

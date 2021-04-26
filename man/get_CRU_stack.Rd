@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_CRU_stack.R
 \name{get_CRU_stack}
 \alias{get_CRU_stack}
-\title{Download and Create a List of Raster Stack Objects From CRU CL v. 2.0 Climatology Variables}
+\title{Download and create a list of raster stacks of climatology parameters}
 \usage{
 get_CRU_stack(
   pre = FALSE,

@@ -1,5 +1,5 @@
 
-#' @title Download and create a data frame of CRU CL v. 2.0 climatology variables
+#' @title Download and create a data frame of climatology parameters
 #'
 #' @description This function automates downloading and importing \acronym{CRU}
 #' \acronym{CL} v. 2.0 climatology data and creates a data frame of the data.

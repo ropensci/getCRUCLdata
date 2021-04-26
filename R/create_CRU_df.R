@@ -1,5 +1,5 @@
 
-#' @title Create a Tidy Data Frame From CRU CL v.2.0 Climatology Variables on Local Disk
+#' @title Create a data of climatology variables from local disk files
 #'
 #'@description Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
 #' data and creates a tidy data frame of the data.  If requested, minimum and

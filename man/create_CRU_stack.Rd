@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_CRU_stack.R
 \name{create_CRU_stack}
 \alias{create_CRU_stack}
-\title{Create a list of raster stack objects From CRU CL v. 2.0 climatology variables from local disk}
+\title{Create a list of raster stack objects from local disk files}
 \usage{
 create_CRU_stack(
   pre = FALSE,
