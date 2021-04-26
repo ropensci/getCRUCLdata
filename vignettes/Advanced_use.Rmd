@@ -42,8 +42,7 @@ You may also wish to use these if you want to download the data and specify wher
 
 The `create_CRU_df()` and `create_CRU_stack()` functions work in the same way as `get_CRU_df()` and `get_CRU_stack()` functions with only one major difference.
 You must supply the location of the files on the local disk (`dsn`) that you wish to import.
-That is, the CRU CL v. 2.0 data files *must* be downloaded prior to the use of these functions using a program external to R, _e.g._, FileZilla or some other FTP program.
-In this instance it is recommended to use an FTP client (_e.g._, [FileZilla](https://filezilla-project.org)) to download the files, save locally and use one of these functions to import the data into R and generate your desired object to work with.
+That is, the CRU CL v. 2.0 data files *must* be downloaded prior to the use of these functions using a program external to R.
 
 ```{r, eval=FALSE}
 t <- create_CRU_df(tmp = TRUE, dsn = "~/Downloads")
