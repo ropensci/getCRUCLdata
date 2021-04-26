@@ -4,7 +4,7 @@
 \alias{manage_cache}
 \title{Manage locally cached CRU CL v. 2.0 files}
 \description{
-Manage cached \pkg{getCRUCLdata} files with \pkg{hoardr}
+Manage cached \CRANpkg{getCRUCLdata} files with \CRANpkg{hoardr}
 }
 \details{
 The default cache directory is
