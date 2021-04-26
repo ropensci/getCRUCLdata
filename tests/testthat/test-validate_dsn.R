@@ -1,4 +1,3 @@
-context(".validate_dsn")
 
 # Test that .validate_dsn stops if the dsn is not provided ---------------------
 

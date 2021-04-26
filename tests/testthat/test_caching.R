@@ -1,6 +1,4 @@
 
-context("Cache directory handling")
-
 # test that .set_cache creates a cache directory if none exists ----------------
 test_that("test that set_cache creates a cache directory if none exists", {
   skip_on_cran()

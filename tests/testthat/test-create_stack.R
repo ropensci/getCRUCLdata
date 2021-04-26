@@ -1,6 +1,4 @@
 
-context("create_stack")
-
 unlink(list.files(
   path = tempdir(),
   pattern = ".dat.gz$",

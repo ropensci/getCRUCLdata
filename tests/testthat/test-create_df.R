@@ -1,6 +1,4 @@
 
-context(".create_df")
-
 # Test that create_df creates a tidy dataframe of pre, pre_cv and tmp ---------
 test_that("Test that .create_df() creates a tidy df of pre, pre_cv and tmp", {
 

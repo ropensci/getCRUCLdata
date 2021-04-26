@@ -1,6 +1,4 @@
 
-context("get_CRU_df")
-
 # Test that get_CRU_df fails if no parameters are TRUE -------------------------
 
 test_that("get_CRU_df fails if no parameters are TRUE", {

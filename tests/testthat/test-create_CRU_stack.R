@@ -1,6 +1,4 @@
 
-context("create_CRU_stack")
-
 # Test that create_CRU_stack fails if no dsn is specified ----------------------
 
 test_that("create_CRU_stack fails if no dsn is specified", {

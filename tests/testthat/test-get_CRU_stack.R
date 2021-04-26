@@ -1,4 +1,3 @@
-context("get_CRU_stack")
 
 # Test that get_CRU_stack will retrieve files from CRU server --------------
 test_that("get_CRU_stack will retreive files from CRU server", {

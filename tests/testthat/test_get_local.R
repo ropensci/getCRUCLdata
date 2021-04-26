@@ -1,4 +1,3 @@
-context(".get_local")
 
 # Test that .get_local lists local files ---------------------------------------
 

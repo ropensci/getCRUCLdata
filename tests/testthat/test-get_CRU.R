@@ -1,6 +1,4 @@
 
-context(".get_CRU")
-
 # Test that get_CRU will retrieve only precipitation file when pre_cv TRUE -----
 test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
   unlink(list.files(
