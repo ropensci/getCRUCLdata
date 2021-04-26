@@ -2,7 +2,6 @@ CRU
 Centre
 Codecov
 DOI
-FileZilla
 Hulme
 JOSS
 Makin
@@ -54,14 +53,12 @@ pkgdown
 plyr
 pre
 purrr
-rast
 readme
 readr
 reh
 ropensci
 sp
 sunp
-terra
 tibble
 tidyr
 tmax
@@ -74,7 +71,6 @@ uea
 uk
 viridis
 visualise
-wget
 windspeed
 wnd
 www
