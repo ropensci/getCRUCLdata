@@ -4,17 +4,17 @@
 
 ## Minor changes
 
-* Correct link redirects in README
+- Correct link redirects in README
 
-* Correct formatting in documentation
+- Correct formatting in documentation
 
-* Precompile main vignette
+- Precompile main vignette
 
-* Add second vignette to illustrate advanced usage
+- Add second vignette to illustrate advanced usage
 
-* Remove {pkgdown} from Suggests
+- Remove _pkgdown_ from Suggests
 
-* Move CI to GitHub Actions
+- Move CI to GitHub Actions
 
 # getCRUCLdata 0.3.1
 
