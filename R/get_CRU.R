@@ -1,6 +1,5 @@
 
 #' @noRd
-#' @import data.table
 .get_CRU <-
   function(pre,
            pre_cv,

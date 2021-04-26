@@ -40,7 +40,6 @@
 #'
 #' @return Data frame of all requested values
 #'
-#' @importFrom data.table :=
 #' @noRd
 .create_df <-
   function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
