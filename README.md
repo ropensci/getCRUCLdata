@@ -16,32 +16,22 @@ Author/Maintainer: Adam Sparks
 
 The *getCRUCLdata* package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a data frame or a [base::list()] of [raster::stack()] objects for use.
 
-CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution.
+CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc minutes (0.1666667 degree) resolution.
 For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
 ## Changes to original CRU CL v. 2.0 data
 
 This package automatically converts elevation values from kilometres to metres.
 
-This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xmin = -180, xmax = 180. Note that the original wind data include land area for parts of Antarctica.
+This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xmin = -180, xmax = 180.
+Note that the original wind data include land area for parts of Antarctica.
 
 # Quick Start
 
 ## Install
 
-### Stable version
-
-A stable version of *getCRUCLdata* is available from [CRAN](https://cran.r-project.org/package=getCRUCLdata).
-
-``` r
-install.packages("getCRUCLdata")
-```
-
-### Development version
-
-A development version is available from from GitHub.
-If you wish to install the development version that may have new features (but also may not work properly), install the `tidyverse` [`remotes package`](https://CRAN.R-project.org/package=remotes), available from CRAN.
-I strive to keep the master branch on GitHub functional and working properly, although this may not always happen.
+_getCRUCLdata_ is not available from CRAN.
+You can install it from GitHub as follows.
 
 ``` r
 if (!require("remotes")) {
@@ -51,11 +41,22 @@ if (!require("remotes")) {
 install_github("ropensci/getCRUCLdata", build_vignettes = TRUE)
 ```
 
+Or you can install it from the rOpenSci Universe.
+
+``` r
+# Enable the rOpenSci universe
+options(repos = c(
+    rOpenSci = "https://ropensci.r-universe.dev",
+    CRAN = "https://cloud.r-project.org""))
+# Install the package
+install.packages("getCRUCLdata")
+```
+
 -----
 
 # Documentation
 
-For complete documentation see the package website: <https://docs.ropensci.org/getCRUCLdata/>
+For complete documentation see the package website: <https://docs.ropensci.org/getCRUCLdata/>.
 
 # Meta
 
@@ -63,7 +64,7 @@ For complete documentation see the package website: <https://docs.ropensci.org/g
 
 > Mark New (1,\*), David Lister (2), Mike Hulme (3), Ian Makin (4)
 
-> A high-resolution data set of surface climate over global land areas
+> A high-resolution data set of surface climate over global land areas 
 > Climate Research, 2000, Vol 21, pg 1-25
 
 > 1)  School of Geography and the Environment, University of Oxford,
@@ -103,10 +104,8 @@ For complete documentation see the package website: <https://docs.ropensci.org/g
 
   - License: MIT
 
-  - Get citation information for *getCRUCLdata* in R typing
-    `citation(package = "getCRUCLdata")`
+  - Get citation information for *getCRUCLdata* in R typing `citation(package = "getCRUCLdata")`
 
   - Please note that the *getCRUCLdata* project is released with a
   [Contributor Code of Conduct](https://github.com/ropensci/getCRUCLdata/blob/master/CONDUCT.md).
-  By participating in the *getCRUCLdata* project you agree to abide by its
-  terms.
+  By participating in the *getCRUCLdata* project you agree to abide by its terms.
