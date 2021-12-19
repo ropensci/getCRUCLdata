@@ -27,7 +27,7 @@ Imports:
     raster,
     utils
 LazyData: TRUE
-RoxygenNote: 7.1.1.9001
+RoxygenNote: 7.1.2
 ByteCompile: TRUE
 Suggests:
     ggplot2,
