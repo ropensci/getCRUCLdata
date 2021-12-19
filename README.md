@@ -2,13 +2,14 @@ getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 ================
 
 <!-- badges: start -->
-[![tic](https://github.com/ropensci/getCRUCLdata/workflows/tic/badge.svg?branch=master)](https://github.com/ropensci/getCRUCLdata/actions)
-[![Codecov test coverage](https://codecov.io/gh/ropensci/getCRUCLdata/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/getCRUCLdata?branch=master)
+[![tic](https://github.com/ropensci/getCRUCLdata/workflows/tic/badge.svg?branch=main)](https://github.com/ropensci/getCRUCLdata/actions)
+[![Codecov test coverage](https://codecov.io/gh/ropensci/getCRUCLdata/branch/main/graph/badge.svg)](https://codecov.io/gh/ropensci/getCRUCLdata?branch=main)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata)
 [![JOSS status](http://joss.theoj.org/papers/10.21105/joss.00230/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00230)
 [![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/software-review/issues/96)
+<!-- badges: end -->
 
 Author/Maintainer: Adam Sparks
 
@@ -107,5 +108,5 @@ For complete documentation see the package website: <https://docs.ropensci.org/g
   - Get citation information for *getCRUCLdata* in R typing `citation(package = "getCRUCLdata")`
 
   - Please note that the *getCRUCLdata* project is released with a
-  [Contributor Code of Conduct](https://github.com/ropensci/getCRUCLdata/blob/master/CONDUCT.md).
+  [Contributor Code of Conduct](https://github.com/ropensci/getCRUCLdata/blob/main/CONDUCT.md).
   By participating in the *getCRUCLdata* project you agree to abide by its terms.
