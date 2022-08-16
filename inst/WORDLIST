@@ -32,6 +32,7 @@ frs
 geotiff
 getCRUCL
 getCRUdata
+getData
 ggplot
 gridded
 gz
@@ -53,12 +54,15 @@ pkgdown
 plyr
 pre
 purrr
+rOpenSci
+rast
 readme
 readr
 reh
 ropensci
 sp
 sunp
+terra
 tibble
 tidyr
 tmax
