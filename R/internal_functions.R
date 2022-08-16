@@ -155,11 +155,9 @@
   if (ncol(x) == 14) {
     data.table::setnames(x, c("lat", "lon", month_names))
     x_df <-
-      data.table::melt(
-        data = x,
-        measure.vars = month_names,
-        variable.name = "month"
-      )
+      data.table::melt(data = x,
+                       measure.vars = month_names,
+                       variable.name = "month")
     data.table::setnames(x_df, c("lat", "lon", "month", "wvar"))
 
   } else if (ncol(x) == 26) {
@@ -212,13 +210,13 @@
 #'
 .create_stacks <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
   wrld <-
-    raster::raster(
+    terra::rast(
       nrows = 930,
       ncols = 2160,
-      ymn = -65,
-      ymx = 90,
-      xmn = -180,
-      xmx = 180
+      ymin = -65,
+      ymax = 90,
+      xmin = -180,
+      xmax = 180
     )
 
   wrld[] <- NA
@@ -237,8 +235,8 @@
       "nov",
       "dec")
 
-  # Create raster objects using cellFromXY and generate a raster stack
-  # create.stack takes pre, tmp, tmn and tmx and creates a raster
+  # Create terra objects using cellFromXY and generate a terra rast
+  # create.stack takes pre, tmp, tmn and tmx and creates a terra rast
   # object stack of 12 month data
 
   CRU_stack_list <-
@@ -283,14 +281,14 @@
   wvar <-
     data.frame(data.table::fread(cmd = paste0("gzip -dc ", files[[1]]),
                                  header = FALSE))
-  cells <- raster::cellFromXY(wrld, wvar[, c(2, 1)])
+  cells <- terra::cellFromXY(wrld, wvar[, c(2, 1)])
   if (ncol(wvar) == 14) {
     for (j in 3:14) {
       wrld[cells] <- wvar[, j]
       if (j == 3) {
         y <- wrld
       } else
-        y <- raster::stack(y, wrld)
+        y <- c(y, wrld)
     }
     names(y) <- month_names
   } else if (ncol(wvar) == 26) {
@@ -300,7 +298,7 @@
         if (k == 3) {
           y <- wrld
         } else
-          y <- raster::stack(y, wrld)
+          y <- c(y, wrld)
       }
       names(y) <- c(month_names, paste0("pre_cv_", month_names))
     } else if (isTRUE(pre)) {
@@ -309,7 +307,7 @@
         if (k == 3) {
           y <- wrld
         } else
-          y <- raster::stack(y, wrld)
+          y <- c(y, wrld)
       }
       names(y) <- month_names
     } else if (isTRUE(pre_cv)) {
@@ -318,7 +316,7 @@
         if (k == 15) {
           y <- wrld
         } else
-          y <- raster::stack(y, wrld)
+          y <- c(y, wrld)
       }
       names(y) <- paste0("pre_cv_", month_names)
     }
@@ -329,10 +327,10 @@
     names(y) <- "elv"
   }
 
-  y <- raster::crop(y, raster::extent(-180,
-                                      180,
-                                      -60,
-                                      85))
+  y <- terra::crop(y, terra::ext(-180,
+                                 180,
+                                 -60,
+                                 85))
   return(y)
 }
 

@@ -1,22 +1,23 @@
 
+
 unlink(list.files(
   path = tempdir(),
   pattern = ".dat.gz$",
   full.names = TRUE
 ))
 
-# Test that create_CRU_stack creates a list of raster stacks of pre and tmp ----
-test_that("create_CRU_stack creates a list of raster stacks of pre and tmp", {
+# Test that create_CRU_stack creates a list of terra rast of pre and tmp ----
+test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
   skip_on_cran()
 
   wrld <-
-    raster::raster(
+    terra::rast(
       nrows = 930,
       ncols = 2160,
-      ymn = -65,
-      ymx = 90,
-      xmn = -180,
-      xmx = 180
+      ymin = -65,
+      ymax = 90,
+      xmin = -180,
+      xmax = 180
     )
 
   wrld[] <- NA
@@ -566,13 +567,13 @@ test_that("create_CRU_stack creates a list containing only elv", {
   ))
 
   wrld <-
-    raster::raster(
+    terra::rast(
       nrows = 930,
       ncols = 2160,
-      ymn = -65,
-      ymx = 90,
-      xmn = -180,
-      xmx = 180
+      ymin = -65,
+      ymax = 90,
+      xmin = -180,
+      xmax = 180
     )
 
   wrld[] <- NA
@@ -640,41 +641,38 @@ test_that("create_CRU_stack creates a list containing only elv", {
            pre_cv)
 
   expect_named(stacks[[1]], "elv")
-  expect_equal(raster::cellStats(stacks[[1]], max), 239, tolerance = 0.1)
-  expect_equal(raster::cellStats(stacks[[1]], min), 19, tolerance = 0.1)
-  expect_equal(raster::extent(stacks[[1]])[1], -180)
-  expect_equal(raster::extent(stacks[[1]])[2], 180)
-  expect_equal(raster::extent(stacks[[1]])[3], -60)
-  expect_equal(raster::extent(stacks[[1]])[4], 85)
+  expect_equal(terra::minmax(stacks[[1]])[[2]], 239, tolerance = 0.1)
+  expect_equal(terra::minmax(stacks[[1]])[[1]], 19, tolerance = 0.1)
+  expect_equal(as.numeric(terra::ext(stacks[[1]])[1]), -180)
+  expect_equal(as.numeric(terra::ext(stacks[[1]])[2]), 180)
+  expect_equal(as.numeric(terra::ext(stacks[[1]])[3]), -60)
+  expect_equal(as.numeric(terra::ext(stacks[[1]])[4]), 85)
 })
 
 # Test that wrld raster object resolution and extent are appropriate -----------
 
-test_that("Test thatwrld raster object resolution and extent are appropriate",
+test_that("Test that wrld raster object resolution and extent are appropriate",
           {
             skip_on_cran()
 
-            wrld <- raster::raster(
+            wrld <- terra::rast(
               nrows = 930,
               ncols = 2160,
-              ymn = -65,
-              ymx = 90,
-              xmn = -180,
-              xmx = 180
+              ymin = -65,
+              ymax = 90,
+              xmin = -180,
+              xmax = 180
             )
 
             wrld[] <- NA
 
             expect_type(wrld, "S4")
-            expect_equal(wrld@extent[1], -180)
-            expect_equal(wrld@extent[2], 180)
-            expect_equal(wrld@extent[3], -65)
-            expect_equal(wrld@extent[4], 90)
-            expect_equal(wrld@ncols, 2160)
-            expect_equal(wrld@nrows, 930)
-            expect_true(is.na(wrld@data@values[raster::ncell(wrld)]))
-            expect_true(is.na(wrld@data@values[1]))
-            expect_true(is.na(wrld@data@values[1004400]))
+            expect_equal(as.numeric(terra::ext(wrld)[1]), -180)
+            expect_equal(as.numeric(terra::ext(wrld)[2]), 180)
+            expect_equal(as.numeric(terra::ext(wrld)[3]), -65)
+            expect_equal(as.numeric(terra::ext(wrld)[4]), 90)
+            expect_equal(ncol(wrld), 2160)
+            expect_equal(nrow(wrld), 930)
           })
 
 
@@ -1185,13 +1183,13 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
   files <-
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
-  wrld <- raster::raster(
+  wrld <- terra::rast(
     nrows = 930,
     ncols = 2160,
-    ymn = -65,
-    ymx = 90,
-    xmn = -180,
-    xmx = 180
+    ymin = -65,
+    ymax = 90,
+    xmin = -180,
+    xmax = 180
   )
 
   wrld[] <- NA
@@ -1214,21 +1212,19 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
   pre_cv <- TRUE
 
   CRU_stack_list <-
-    lapply(
-      FUN = .create_stack,
-      X = files,
-      wrld,
-      month_names,
-      pre,
-      pre_cv
-    )
+    lapply(FUN = .create_stack,
+           X = files,
+           wrld,
+           month_names,
+           pre,
+           pre_cv)
 
   names(CRU_stack_list) <- substr(basename(files), 12, 14)
 
   expect_named(CRU_stack_list, c("pre", "tmp"))
   expect_type(CRU_stack_list, "list")
-  expect_equal(raster::extent(CRU_stack_list[[1]])[1], -180)
-  expect_equal(raster::extent(CRU_stack_list[[1]])[2], 180)
-  expect_equal(raster::extent(CRU_stack_list[[1]])[3], -60)
-  expect_equal(raster::extent(CRU_stack_list[[1]])[4], 85)
+  expect_equal(as.numeric(terra::ext(CRU_stack_list[[1]])[1]), -180)
+  expect_equal(as.numeric(terra::ext(CRU_stack_list[[1]])[2]), 180)
+  expect_equal(as.numeric(terra::ext(CRU_stack_list[[1]])[3]), -60)
+  expect_equal(as.numeric(terra::ext(CRU_stack_list[[1]])[4]), 85)
 })

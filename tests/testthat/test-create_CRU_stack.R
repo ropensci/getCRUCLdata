@@ -13,15 +13,15 @@ test_that("create_CRU_stack fails if no parameters are TRUE", {
                "You must select at least one element for importing")
 })
 
-# Test that create_CRU_stack fails if dsn does not contain CRU files ------------
+# Test that create_CRU_stack fails if dsn does not contain CRU files -----------
 
 test_that("create_CRU_stack fails if dsn does not contain CRU files", {
   expect_error(create_CRU_stack(pre = TRUE, dsn = "/dev/null"))
 })
 
-# Test that create_CRU_stack returns a list of raster stacks -------------------
+# Test that create_CRU_stack returns a list of terra objects -------------------
 
-test_that("create_CRU_stack returns a list of raster stacks", {
+test_that("create_CRU_stack returns a list of terra rast objects", {
 
   skip_on_cran()
 
@@ -494,7 +494,7 @@ test_that("create_CRU_stack returns a list of raster stacks", {
   CRU_stack <- create_CRU_stack(pre = TRUE, dsn = dsn)
 
   expect_named(CRU_stack, "pre")
-  expect_equal(raster::nlayers(CRU_stack$pre), 12)
+  expect_equal(terra::nlyr(CRU_stack$pre), 12)
   expect_equal(length(CRU_stack), 1)
 
   unlink(list.files(
@@ -863,7 +863,7 @@ test_that("Test that create_stack creates tmx if requested", {
     .create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
 
   expect_named(CRU_stack_list, c("tmx"))
-  expect_equal(raster::maxValue(CRU_stack_list[[1]][[1]]), 12.9,
+  expect_equal(terra::minmax(CRU_stack_list[[1]])[[2]][[1]], 12.9,
                tolerance = 0.1)
   unlink(list.files(
     path = tempdir(),
@@ -1229,7 +1229,7 @@ test_that("Test that create_stack creates tmn if requested", {
     .create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
 
   expect_named(CRU_stack_list, c("tmn"))
-  expect_equal(raster::maxValue(CRU_stack_list[[1]][[1]]), 4.3,
+  expect_equal(terra::minmax(CRU_stack_list[[1]])[[2]][[1]], 4.3,
   tolerance = 0.1)
   unlink(list.files(
     path = tempdir(),

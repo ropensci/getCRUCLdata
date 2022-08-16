@@ -29,17 +29,15 @@ test_that("cache directory is created if necessary", {
 
 test_that("caching utils list files in cache and delete when asked", {
   skip_on_cran()
-  unlink(
-    list.files(manage_cache$cache_path_get()),
-    recursive = TRUE
-  )
+  unlink(list.files(manage_cache$cache_path_get()),
+         recursive = TRUE)
   cache <- TRUE
   cache_dir <- .set_cache(cache)
   f <-
-    raster::raster(system.file("external/test.grd", package = "raster"))
+    terra::rast(system.file("ex/test.grd", package = "terra"))
   cache_dir <- manage_cache$cache_path_get()
-  raster::writeRaster(f, file.path(cache_dir, "file1.asc"), format = "ascii")
-  raster::writeRaster(f, file.path(cache_dir, "file2.asc"), format = "ascii")
+  terra::writeRaster(f, file.path(cache_dir, "file1.asc"))
+  terra::writeRaster(f, file.path(cache_dir, "file2.asc"))
 
   # test getCRUCLdata cache list
   k <- list.files(manage_cache$cache_path_get())
@@ -54,8 +52,6 @@ test_that("caching utils list files in cache and delete when asked", {
 
   # test delete all
   manage_cache$delete_all()
-  expect_equal(list.files(
-    manage_cache$list()
-  ),
-  character(0))
+  expect_equal(list.files(manage_cache$list()),
+               character(0))
 })

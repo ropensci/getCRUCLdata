@@ -14,7 +14,7 @@ test_that("get_CRU_df will retrieve files from CRU server", {
   expect_is(CRU_tmp, "data.frame")
 })
 
-# Test that get_CRU_df lists only .dat.gz files in the given dsn ------------
+# Test that get_CRU_df lists only .dat.gz files in the given dsn ---------------
 
 test_that("get_CRU_df lists only .dat.gz files in the given dsn", {
   # create files for testing, these data are the first 10 lines of pre and tmp
