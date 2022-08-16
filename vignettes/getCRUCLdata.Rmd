@@ -1,7 +1,7 @@
 ---
 title: "getCRUCLdata"
 author: "Adam H. Sparks"
-date: "2020-10-26"
+date: "2022-08-16"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown_notangle}
   %\VignetteIndexEntry{getCRUCLdata}
   %\VignetteEncoding{UTF-8}
-  %\VignetteDepends{raster}
+  %\VignetteDepends{terra}
   %\VignetteDepends{ggplot2}
   %\VignetteDepends{viridis}
 ---
@@ -18,13 +18,10 @@ vignette: >
 
 ## Introduction to _getCRUCLdata_
 
-The _getCRUCLdata_ package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a
-[tidy data frame](http://vita.had.co.nz/papers/tidy-data.html) as a `tibble::tibble()`
-object or a [`list()`](https://www.rdocumentation.org/packages/base/versions/3.4.0/topics/list)
-of [`raster::stack()`](https://www.rdocumentation.org/packages/raster/versions/2.5-8/topics/stack)
-objects for use in an R session.
+The _getCRUCLdata_ package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a [base::data.frame()] object or a [base::list()]
+of [terra::rast()] objects.
 
-CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 degree) resolution.
+CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 arc degree) resolution.
 For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 
 ## Changes to original CRU CL v. 2.0 data
@@ -69,7 +66,7 @@ Local file path where CRU CL v. 2.0 .dat.gz files are located.
 
 ### Creating tidy data frames for use in R
 
-The `get_CRU_df()` function automates the download process and creates tidy data frames as a `tibble::tibble()` of the CRU CL v. 2.0 climatology elements.
+The `get_CRU_df()` function automates the download process and creates data frames of the climatology elements.
 
 
 ```r
@@ -89,20 +86,32 @@ CRU_data <- get_CRU_df(pre = TRUE,
                        elv = TRUE)
 
 CRU_data
-#> # A tibble: 6,795,150 x 15
-#>      lat   lon month   dtr   frs   pre pre_cv   rd0   reh   sun   tmp   wnd   elv   tmx   tmn
-#>    <dbl> <dbl> <fct> <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1  30.9  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -260 NA    NA   
-#>  2  31.1  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -361 NA    NA   
-#>  3  31.2  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -336 NA    NA   
-#>  4  31.4  35.4 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -284 NA    NA   
-#>  5  31.8  35.6 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -248 NA    NA   
-#>  6  31.9  35.6 <NA>   NA    NA    NA     NA    NA    NA    NA    NA    NA    -210 NA    NA   
-#>  7 -59.1 -26.6 jan     2.3  18.7 105.    35.2  17.1  88.6   9.4   0.2   6.4   193  1.35 -0.95
-#>  8 -58.4 -26.4 jan     2.5  18.5 107.    36.2  17.2  88.5   9.9   0.4   6.4   239  1.65 -0.85
-#>  9 -58.4 -26.2 jan     2.4  18.4 106.    36.2  17.1  88.5  10     0.6   6.4   194  1.8  -0.6 
-#> 10 -55.9 -67.2 jan     7.6   8    73.1   44.1  13.3  80.7  34.3   8     5      64 11.8   4.2 
-#> # … with 6,795,140 more rows
+#>             lat     lon  month   dtr   frs   pre pre_cv   rd0   reh   sun   tmp   wnd   elv
+#>           <num>   <num> <fctr> <num> <num> <num>  <num> <num> <num> <num> <num> <num> <num>
+#>       1: 30.917  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -260
+#>       2: 31.083  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -361
+#>       3: 31.250  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -336
+#>       4: 31.417  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -284
+#>       5: 31.750  35.583   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -248
+#>      ---                                                                                   
+#> 6795146: 83.583 -30.083    dec   8.7    31   0.1   72.7   5.1  70.6     0 -31.3   5.6   283
+#> 6795147: 83.583 -29.917    dec   8.6    31   0.1   72.8   4.9  70.6     0 -30.7   5.6   186
+#> 6795148: 83.583 -29.750    dec   8.6    31   0.1   72.9   4.9  70.6     0 -30.8   5.6   195
+#> 6795149: 83.583 -29.583    dec   8.6    31   0.1   73.0   5.0  70.6     0 -31.2   5.6   268
+#> 6795150: 83.583 -29.417    dec   8.6    31   0.1   73.1   5.1  70.6     0 -31.5   5.6   328
+#>             tmx    tmn
+#>           <num>  <num>
+#>       1:     NA     NA
+#>       2:     NA     NA
+#>       3:     NA     NA
+#>       4:     NA     NA
+#>       5:     NA     NA
+#>      ---              
+#> 6795146: -26.95 -35.65
+#> 6795147: -26.40 -35.00
+#> 6795148: -26.50 -35.10
+#> 6795149: -26.90 -35.50
+#> 6795150: -27.20 -35.80
 ```
 
 Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only.
@@ -112,20 +121,19 @@ Perhaps you only need one or two elements, it is easy to create a tidy data fram
 t <- get_CRU_df(tmp = TRUE)
 
 t
-#> # A tibble: 6,795,144 x 4
-#>      lat   lon month   tmp
-#>    <dbl> <dbl> <fct> <dbl>
-#>  1 -59.1 -26.6 jan     0.2
-#>  2 -58.4 -26.2 jan     0.6
-#>  3 -58.4 -26.4 jan     0.4
-#>  4 -55.9 -67.2 jan     8  
-#>  5 -55.8 -67.2 jan     8.2
-#>  6 -55.8 -67.4 jan     8  
-#>  7 -55.8 -67.6 jan     8.4
-#>  8 -55.6 -67.4 jan     8.3
-#>  9 -55.6 -67.6 jan     8.6
-#> 10 -55.6 -68.1 jan     8.2
-#> # … with 6,795,134 more rows
+#>              lat     lon  month   tmp
+#>            <num>   <num> <fctr> <num>
+#>       1: -59.083 -26.583    jan   0.2
+#>       2: -58.417 -26.250    jan   0.6
+#>       3: -58.417 -26.417    jan   0.4
+#>       4: -55.917 -67.250    jan   8.0
+#>       5: -55.750 -67.250    jan   8.2
+#>      ---                             
+#> 6795140:  83.583 -36.083    dec -32.6
+#> 6795141:  83.583 -36.250    dec -33.0
+#> 6795142:  83.583 -36.417    dec -33.4
+#> 6795143:  83.583 -36.583    dec -33.3
+#> 6795144:  83.583 -36.750    dec -33.3
 ```
 
 #### Plotting data from the tidy dataframe
@@ -170,14 +178,14 @@ file to local disk, using _data.table_'s `fwrite()`.
 fwrite(x = t, file = "~/CRU_tmp.csv")
 ```
 
-### Creating raster stacks for use in R and saving for use in another GIS
+### Creating terra raster stacks for use in R and saving for use in another GIS
 
-For working with spatial data, _getCRUCLdata_ provides a function that create lists of _raster_ stacks of the data.
+For working with spatial data, _getCRUCLdata_ provides a function that create lists of _terra_ stacks of the data.
 
-The `get_CRU_stack()` functions provide similar functionality to `get_CRU_df()`, but rather than returning a tidy data frame, it returns a list of `raster::stack()` objects for use in an R session.
+The `get_CRU_stack()` functions provide similar functionality to `get_CRU_df()`, but rather than returning a tidy data frame, it returns a list of `terra::rast()` objects for use in an R session.
 
-The `get_CRU_stack()` function automates the download process and creates a `raster::stack()` object of the CRU CL v. 2.0 climatology elements.
-Illustrated here is creating a `raster::stack()` of all CRU CL v. 2.0 climatology elements available.
+The `get_CRU_stack()` function automates the download process and creates a `terra::rast()` object of the CRU CL v. 2.0 climatology elements.
+Illustrated here is creating a `terra::rast()` of all CRU CL v. 2.0 climatology elements available.
 
 
 ```r
@@ -198,134 +206,125 @@ CRU_stack <- get_CRU_stack(
 
 CRU_stack
 #> $dtr
-#> class      : RasterBrick 
-#> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1666667, 0.1666667  (x, y)
-#> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : memory
-#> names      :  jan,  feb,  mar,  apr,  may,  jun,  jul,  aug,  sep,  oct,  nov,  dec 
-#> min values :  2.3,  2.1,  2.2,  2.3,  1.8,  2.5,  2.8,  2.4,  2.2,  2.8,  2.6,  2.0 
-#> max values : 22.7, 23.1, 23.5, 24.0, 24.0, 25.2, 25.8, 25.6, 25.5, 22.6, 22.9, 21.9 
-#> 
+#> class       : SpatRaster 
+#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source      : memory 
+#> names       :  jan,  feb,  mar,  apr,  may,  jun, ... 
+#> min values  :  2.3,  2.1,  2.2,  2.3,  1.8,  2.5, ... 
+#> max values  : 22.7, 23.1, 23.5, 24.0, 24.0, 25.2, ... 
 #> 
 #> $elv
-#> class      : RasterLayer 
-#> dimensions : 870, 2160, 1879200  (nrow, ncol, ncell)
-#> resolution : 0.1666667, 0.1666667  (x, y)
-#> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : memory
-#> names      : elv 
-#> values     : -361, 6486  (min, max)
-#> 
+#> class       : SpatRaster 
+#> dimensions  : 870, 2160, 1  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source      : memory 
+#> name        :  elv 
+#> min value   : -361 
+#> max value   : 6486 
 #> 
 #> $frs
-#> class      : RasterBrick 
-#> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1666667, 0.1666667  (x, y)
-#> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : memory
-#> names      :  jan,  feb,  mar,  apr,  may,  jun,  jul,  aug,  sep,  oct,  nov,  dec 
-#> min values :    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0 
-#> max values : 31.0, 28.3, 31.0, 30.0, 31.0, 30.0, 31.0, 31.0, 30.0, 31.0, 30.0, 31.0 
-#> 
+#> class       : SpatRaster 
+#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source      : memory 
+#> names       : jan,  feb, mar, apr, may, jun, ... 
+#> min values  :   0,  0.0,   0,   0,   0,   0, ... 
+#> max values  :  31, 28.3,  31,  30,  31,  30, ... 
 #> 
 #> $pre
-#> class      : RasterBrick 
-#> dimensions : 870, 2160, 1879200, 24  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1666667, 0.1666667  (x, y)
-#> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : memory
-#> names      :    jan,    feb,    mar,    apr,    may,    jun,    jul,    aug,    sep,    oct,    nov,    dec, pre_cv_jan, pre_cv_feb, pre_cv_mar, ... 
-#> min values :    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,        0.0,      -10.5,        5.8, ... 
-#> max values :  910.1,  824.3,  727.3,  741.3, 1100.0, 2512.6, 2505.5, 1799.4,  849.8,  851.6,  843.7,  733.3,      496.2,      495.5,      482.0, ... 
-#> 
+#> class       : SpatRaster 
+#> dimensions  : 870, 2160, 24  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source      : memory 
+#> names       :   jan,   feb,   mar,   apr,  may,    jun, ... 
+#> min values  :   0.0,   0.0,   0.0,   0.0,    0,    0.0, ... 
+#> max values  : 910.1, 824.3, 727.3, 741.3, 1100, 2512.6, ... 
 #> 
 #> $rd0
-#> class      : RasterBrick 
-#> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1666667, 0.1666667  (x, y)
-#> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : memory
-#> names      :  jan,  feb,  mar,  apr,  may,  jun,  jul,  aug,  sep,  oct,  nov,  dec 
-#> min values :    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0 
-#> max values : 31.0, 28.2, 31.0, 30.0, 30.7, 30.0, 31.0, 31.0, 29.1, 28.4, 28.5, 30.3 
-#> 
+#> class       : SpatRaster 
+#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source      : memory 
+#> names       : jan,  feb, mar, apr,  may, jun, ... 
+#> min values  :   0,  0.0,   0,   0,  0.0,   0, ... 
+#> max values  :  31, 28.2,  31,  30, 30.7,  30, ... 
 #> 
 #> $reh
-#> class      : RasterBrick 
-#> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1666667, 0.1666667  (x, y)
-#> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : memory
-#> names      :   jan,   feb,   mar,   apr,   may,   jun,   jul,   aug,   sep,   oct,   nov,   dec 
-#> min values :  18.4,  14.6,  13.5,  13.4,  15.5,  10.2,  10.8,  10.1,  11.0,  14.2,  19.0,  19.7 
-#> max values : 100.0, 100.0, 100.0, 100.0,  96.9,  95.1,  96.9,  97.1,  95.5, 100.0, 100.0, 100.0 
-#> 
+#> class       : SpatRaster 
+#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source      : memory 
+#> names       :   jan,   feb,   mar,   apr,  may,  jun, ... 
+#> min values  :  18.4,  14.6,  13.5,  13.4, 15.5, 10.2, ... 
+#> max values  : 100.0, 100.0, 100.0, 100.0, 96.9, 95.1, ... 
 #> 
 #> $sun
-#> class      : RasterBrick 
-#> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1666667, 0.1666667  (x, y)
-#> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : memory
-#> names      :  jan,  feb,  mar,  apr,  may,  jun,  jul,  aug,  sep,  oct,  nov,  dec 
-#> min values :  0.0,  0.0,  3.3,  4.3,  8.1,  6.6,  5.3,  8.4,  4.5,  0.8,  0.0,  0.0 
-#> max values : 92.8, 93.0, 90.2, 93.1, 94.0, 98.9, 98.8, 98.8, 99.1, 95.8, 94.6, 93.1 
-#> 
+#> class       : SpatRaster 
+#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source      : memory 
+#> names       :  jan, feb,  mar,  apr,  may,  jun, ... 
+#> min values  :  0.0,   0,  3.3,  4.3,  8.1,  6.6, ... 
+#> max values  : 92.8,  93, 90.2, 93.1, 94.0, 98.9, ... 
 #> 
 #> $tmp
-#> class      : RasterBrick 
-#> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1666667, 0.1666667  (x, y)
-#> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : memory
-#> names      :   jan,   feb,   mar,   apr,   may,   jun,   jul,   aug,   sep,   oct,   nov,   dec 
-#> min values : -51.6, -47.6, -45.2, -36.6, -22.2, -16.3, -14.0, -17.3, -26.4, -36.3, -41.6, -49.0 
-#> max values :  32.5,  32.1,  32.4,  34.3,  36.0,  38.3,  37.8,  36.8,  34.8,  32.8,  32.4,  32.2 
-#> 
+#> class       : SpatRaster 
+#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source      : memory 
+#> names       :   jan,   feb,   mar,   apr,   may,   jun, ... 
+#> min values  : -51.6, -47.6, -45.2, -36.6, -22.2, -16.3, ... 
+#> max values  :  32.5,  32.1,  32.4,  34.3,  36.0,  38.3, ... 
 #> 
 #> $wnd
-#> class      : RasterBrick 
-#> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1666667, 0.1666667  (x, y)
-#> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : memory
-#> names      : jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec 
-#> min values : 0.1, 0.1, 0.3, 0.4, 0.3, 0.2, 0.3, 0.4, 0.5, 0.4, 0.2, 0.2 
-#> max values : 9.8, 9.6, 9.4, 9.0, 8.7, 8.6, 9.1, 9.3, 9.3, 9.7, 9.6, 9.4 
-#> 
+#> class       : SpatRaster 
+#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source      : memory 
+#> names       : jan, feb, mar, apr, may, jun, ... 
+#> min values  : 0.1, 0.1, 0.3, 0.4, 0.3, 0.2, ... 
+#> max values  : 9.8, 9.6, 9.4, 9.0, 8.7, 8.6, ... 
 #> 
 #> $tmn
-#> class      : RasterBrick 
-#> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1666667, 0.1666667  (x, y)
-#> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : /private/var/folders/1q/045gnpqd7dnfgzshmdn8hshw0000gp/T/Rtmp4VtMtp/raster/r_tmp_2020-10-26_111004_18359_15367.grd 
-#> names      : layer.1, layer.2, layer.3, layer.4, layer.5, layer.6, layer.7, layer.8, layer.9, layer.10, layer.11, layer.12 
-#> min values :  -55.05,  -52.95,  -48.75,  -41.35,  -28.00,  -21.40,  -18.75,  -22.55,  -31.45,   -40.60,   -45.75,   -52.50 
-#> max values :   26.30,   26.25,   27.40,   27.50,   30.00,   30.65,   30.60,   30.40,   28.75,    26.95,    25.90,    26.55 
-#> 
+#> class       : SpatRaster 
+#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source      : memory 
+#> names       :    jan,    feb,    mar,    apr, may,    jun, ... 
+#> min values  : -55.05, -52.95, -48.75, -41.35, -28, -21.40, ... 
+#> max values  :  26.30,  26.25,  27.40,  27.50,  30,  30.65, ... 
 #> 
 #> $tmx
-#> class      : RasterBrick 
-#> dimensions : 870, 2160, 1879200, 12  (nrow, ncol, ncell, nlayers)
-#> resolution : 0.1666667, 0.1666667  (x, y)
-#> extent     : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> crs        : +proj=longlat +datum=WGS84 +no_defs 
-#> source     : /private/var/folders/1q/045gnpqd7dnfgzshmdn8hshw0000gp/T/Rtmp4VtMtp/raster/r_tmp_2020-10-26_111006_18359_67835.grd 
-#> names      : layer.1, layer.2, layer.3, layer.4, layer.5, layer.6, layer.7, layer.8, layer.9, layer.10, layer.11, layer.12 
-#> min values :  -48.20,  -43.35,  -41.65,  -32.45,  -17.55,  -11.50,  -10.85,  -12.30,  -21.65,   -32.05,   -37.55,   -45.50 
-#> max values :   39.70,   38.40,   40.25,   41.85,   43.60,   45.95,   45.70,   44.85,   42.35,    39.50,    39.20,    39.90
+#> class       : SpatRaster 
+#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source      : memory 
+#> names       :   jan,    feb,    mar,    apr,    may,    jun, ... 
+#> min values  : -48.2, -43.35, -41.65, -32.45, -17.55, -11.50, ... 
+#> max values  :  39.7,  38.40,  40.25,  41.85,  43.60,  45.95, ...
 ```
 
 The `create_CRU_stack()` function works in the same way with only one minor difference.
@@ -336,35 +335,35 @@ You must supply the location of the files on the local disk (`dsn`) that you wis
 t <- create_CRU_stack(tmp = TRUE, dsn = "~/Downloads")
 ```
 
-#### Plotting raster stacks of tmin and tmax
+#### Plotting terra rast objects of tmin and tmax
 
 Because the stacks are in a `list()`, we need to access each element of the list individually to plot them, that's what the `[[1]]` or `[[2]]` is, the first or second element of the list.
 Here using `[[7]]` we will plot the monthly average minimum temperature for all twelve months.
 
 
 ```r
-library(raster)
+library(terra)
 
 plot(CRU_stack[[7]])
 ```
 
 To plot only one month from the stack is also possible. Here we plot maximum temperature for July.
 Note that we use indexing `[[2]]` as before but append a `$jul` to the object.
-This is the name of the layer in the `raster::stack()`.
-So, we are telling R to plot the second object in the `CRU_stack` list, which is `tmx` and from that raster stack, plot only the layer for July.
+This is the name of the layer in the `terra::rast()`.
+So, we are telling R to plot the second object in the `CRU_stack` list, which is `tmx` and from that terra rast, plot only the layer for July.
 
 
 ```r
 plot(t[[8]]$jul)
 ```
 
-#### Saving raster objects to local disk
+#### Saving terra objects to local disk
 
-The raster stack objects can be saved to disk as geotiff files (others are available, see help for `raster::writeRaster()` and `raster::writeFormats()` for more options) on the `Data` directory with a tmn or tmx prefix to the month for a file name.
+The terra rast stack objects can be saved to disk as geotiff files (others are available, see help for `terra::writeRaster()` and `terra::writeFormats()` for more options) on the `Data` directory with a tmn or tmx prefix to the month for a file name.
 
 
 ```r
-library(raster)
+library(terra)
 
 dir.create(file.path("~/Data"), showWarnings = FALSE)
 writeRaster(

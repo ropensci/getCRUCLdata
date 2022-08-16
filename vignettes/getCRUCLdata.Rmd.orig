@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown_notangle}
   %\VignetteIndexEntry{getCRUCLdata}
   %\VignetteEncoding{UTF-8}
-  %\VignetteDepends{raster}
+  %\VignetteDepends{terra}
   %\VignetteDepends{ggplot2}
   %\VignetteDepends{viridis}
 ---
@@ -26,7 +26,7 @@ knitr::opts_chunk$set(collapse = TRUE,
 ## Introduction to _getCRUCLdata_
 
 The _getCRUCLdata_ package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a [base::data.frame()] object or a [base::list()]
-of [raster::stack()] objects.
+of [terra::rast()] objects.
 
 CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 arc degree) resolution.
 For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
@@ -137,14 +137,14 @@ file to local disk, using _data.table_'s `fwrite()`.
 fwrite(x = t, file = "~/CRU_tmp.csv")
 ```
 
-### Creating raster stacks for use in R and saving for use in another GIS
+### Creating terra raster stacks for use in R and saving for use in another GIS
 
-For working with spatial data, _getCRUCLdata_ provides a function that create lists of _raster_ stacks of the data.
+For working with spatial data, _getCRUCLdata_ provides a function that create lists of _terra_ stacks of the data.
 
-The `get_CRU_stack()` functions provide similar functionality to `get_CRU_df()`, but rather than returning a tidy data frame, it returns a list of `raster::stack()` objects for use in an R session.
+The `get_CRU_stack()` functions provide similar functionality to `get_CRU_df()`, but rather than returning a tidy data frame, it returns a list of `terra::rast()` objects for use in an R session.
 
-The `get_CRU_stack()` function automates the download process and creates a `raster::stack()` object of the CRU CL v. 2.0 climatology elements.
-Illustrated here is creating a `raster::stack()` of all CRU CL v. 2.0 climatology elements available.
+The `get_CRU_stack()` function automates the download process and creates a `terra::rast()` object of the CRU CL v. 2.0 climatology elements.
+Illustrated here is creating a `terra::rast()` of all CRU CL v. 2.0 climatology elements available.
 
 ```{r get_cru_stack, eval = TRUE}
 CRU_stack <- get_CRU_stack(
@@ -172,32 +172,32 @@ You must supply the location of the files on the local disk (`dsn`) that you wis
 t <- create_CRU_stack(tmp = TRUE, dsn = "~/Downloads")
 ```
 
-#### Plotting raster stacks of tmin and tmax
+#### Plotting terra rast objects of tmin and tmax
 
 Because the stacks are in a `list()`, we need to access each element of the list individually to plot them, that's what the `[[1]]` or `[[2]]` is, the first or second element of the list.
 Here using `[[7]]` we will plot the monthly average minimum temperature for all twelve months.
 
 ```{r plot_cru_stack_tmn, eval=FALSE}
-library(raster)
+library(terra)
 
 plot(CRU_stack[[7]])
 ```
 
 To plot only one month from the stack is also possible. Here we plot maximum temperature for July.
 Note that we use indexing `[[2]]` as before but append a `$jul` to the object.
-This is the name of the layer in the `raster::stack()`.
-So, we are telling R to plot the second object in the `CRU_stack` list, which is `tmx` and from that raster stack, plot only the layer for July.
+This is the name of the layer in the `terra::rast()`.
+So, we are telling R to plot the second object in the `CRU_stack` list, which is `tmx` and from that terra rast, plot only the layer for July.
 
 ```{r plot_cru_stack_tmx, eval=FALSE}
 plot(t[[8]]$jul)
 ```
 
-#### Saving raster objects to local disk
+#### Saving terra objects to local disk
 
-The raster stack objects can be saved to disk as geotiff files (others are available, see help for `raster::writeRaster()` and `raster::writeFormats()` for more options) on the `Data` directory with a tmn or tmx prefix to the month for a file name.
+The terra rast stack objects can be saved to disk as geotiff files (others are available, see help for `terra::writeRaster()` and `terra::writeFormats()` for more options) on the `Data` directory with a tmn or tmx prefix to the month for a file name.
 
 ```{r save_stack, eval=FALSE}
-library(raster)
+library(terra)
 
 dir.create(file.path("~/Data"), showWarnings = FALSE)
 writeRaster(
