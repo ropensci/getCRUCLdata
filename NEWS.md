@@ -1,4 +1,10 @@
-# getCRUCLdata (development version)
+# getCRUCLdata 0.3.3
+
+## Minor changes
+
+- Replace _raster_ package with _terra_
+
+- Update URLs
 
 # getCRUCLdata 0.3.2
 
