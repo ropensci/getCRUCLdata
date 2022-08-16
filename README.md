@@ -13,9 +13,9 @@ getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 
 Author/Maintainer: Adam Sparks
 
-## Introduction to *getCRUCLdata*
+## Introduction to _getCRUCLdata_
 
-The *getCRUCLdata* package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a data frame or a [base::list()] of [raster::stack()] objects for use.
+The _getCRUCLdata_ package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a data frame or a [base::list()] of [terra::rast()] objects for use.
 
 CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc minutes (0.1666667 degree) resolution.
 For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
@@ -105,8 +105,8 @@ For complete documentation see the package website: <https://docs.ropensci.org/g
 
   - License: MIT
 
-  - Get citation information for *getCRUCLdata* in R typing `citation(package = "getCRUCLdata")`
+  - Get citation information for _getCRUCLdata_ in R typing `citation(package = "getCRUCLdata")`
 
-  - Please note that the *getCRUCLdata* project is released with a
+  - Please note that the _getCRUCLdata_ project is released with a
   [Contributor Code of Conduct](https://github.com/ropensci/getCRUCLdata/blob/main/CONDUCT.md).
-  By participating in the *getCRUCLdata* project you agree to abide by its terms.
+  By participating in the _getCRUCLdata_ project you agree to abide by its terms.
