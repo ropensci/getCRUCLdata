@@ -4,7 +4,7 @@
   "identifier": "getCRUCLdata",
   "description": "Provides functions that automate downloading and importing University of East Anglia Climate Research Unit ('CRU') 'CL' v. 2.0 climatology data, facilitates the calculation of minimum temperature and maximum temperature and formats the data into a data frame or a list of 'terra' 'rast' objects for use. 'CRU' 'CL' v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc minutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit, <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.",
   "name": "getCRUCLdata: 'CRU' 'CL' v. 2.0 Climatology Client",
-  "codeRepository": "https://docs.ropensci.org/getCRUCLdata/",
+  "codeRepository": "https://github.com/ropensci/getCRUCLdata",
   "issueTracker": "https://github.com/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.3.3",
@@ -13,7 +13,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
+  "runtimePlatform": "R version 4.3.3 (2024-02-29)",
   "author": [
     {
       "@type": "Person",
@@ -194,8 +194,8 @@
   },
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost"],
-  "fileSize": "909.71KB",
+  "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package", "peer-reviewed"],
+  "fileSize": "909.619KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -223,7 +223,10 @@
       }
     }
   ],
-  "contIntegration": ["https://github.com/ropensci/getCRUCLdata/actions", "https://app.codecov.io/gh/ropensci/getCRUCLdata?branch=main"],
+  "relatedLink": "https://docs.ropensci.org/getCRUCLdata/",
+  "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/getCRUCLdata/blob/main/README.md",
+  "contIntegration": ["https://app.codecov.io/gh/ropensci/getCRUCLdata?branch=main", "https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml"],
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
     "@type": "Review",
