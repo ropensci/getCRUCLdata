@@ -9,6 +9,10 @@ getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 [![JOSS status](http://joss.theoj.org/papers/10.21105/joss.00230/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00230)
 [![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/software-review/issues/96)
 [![R-CMD-check](https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml)
+<<<<<<< HEAD
+=======
+[![Codecov test coverage](https://codecov.io/gh/ropensci/getCRUCLdata/graph/badge.svg)](https://app.codecov.io/gh/ropensci/getCRUCLdata)
+>>>>>>> 82efe3f (Update github actions workflows)
 <!-- badges: end -->
 
 Author/Maintainer: Adam Sparks
