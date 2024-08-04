@@ -2,17 +2,13 @@ getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 ================
 
 <!-- badges: start -->
-[![Codecov test coverage](https://codecov.io/gh/ropensci/getCRUCLdata/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ropensci/getCRUCLdata?branch=main)
+nsci/getCRUCLdata?branch=main)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/getCRUCLdata)](https://cran.r-project.org/package=getCRUCLdata)
 [![JOSS status](http://joss.theoj.org/papers/10.21105/joss.00230/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00230)
 [![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/software-review/issues/96)
-[![R-CMD-check](https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml)
-<<<<<<< HEAD
-=======
 [![Codecov test coverage](https://codecov.io/gh/ropensci/getCRUCLdata/graph/badge.svg)](https://app.codecov.io/gh/ropensci/getCRUCLdata)
->>>>>>> 82efe3f (Update github actions workflows)
 <!-- badges: end -->
 
 Author/Maintainer: Adam Sparks
