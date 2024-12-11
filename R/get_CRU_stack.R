@@ -1,7 +1,6 @@
-
 #' @title Download and create a list of terra rast objects of climatology parameters
 #'
-#'@description This function automates downloading and importing CRU CL v. 2.0
+#' @description This function automates downloading and importing CRU CL v. 2.0
 #' climatology data into \R and creates a list of \code{\link{terra}}
 #' \code{\link[terra]{rast}} of the data.  If requested, minimum and maximum
 #' temperature may also be automatically calculated as described in the data
@@ -101,27 +100,30 @@ get_CRU_stack <-
            elv = FALSE,
            cache = FALSE) {
     if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
-        !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
-        !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
+      !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
+      !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
       stop("\nYou must select at least one element for download.\n",
-           call. = FALSE)
+        call. = FALSE
+      )
     }
 
     cache_dir <- .set_cache(cache)
 
-    files <- .get_CRU(pre,
-                      pre_cv,
-                      rd0,
-                      tmp,
-                      dtr,
-                      reh,
-                      tmn,
-                      tmx,
-                      sunp,
-                      frs,
-                      wnd,
-                      elv,
-                      cache_dir)
+    files <- .get_CRU(
+      pre,
+      pre_cv,
+      rd0,
+      tmp,
+      dtr,
+      reh,
+      tmn,
+      tmx,
+      sunp,
+      frs,
+      wnd,
+      elv,
+      cache_dir
+    )
 
     if (isTRUE(pre_cv)) {
       pre <- TRUE

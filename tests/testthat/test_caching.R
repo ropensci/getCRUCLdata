@@ -1,4 +1,3 @@
-
 # test that .set_cache creates a cache directory if none exists ----------------
 test_that("test that set_cache creates a cache directory if none exists", {
   skip_on_cran()
@@ -21,7 +20,8 @@ test_that("test that set_cache does not create a dir if cache == FALSE", {
 test_that("cache directory is created if necessary", {
   # if cache directory exists during testing, remove it
   unlink(manage_cache$cache_path_get(),
-         recursive = TRUE)
+    recursive = TRUE
+  )
   cache <- TRUE
   cache_dir <- .set_cache(cache)
   expect_true(dir.exists(manage_cache$cache_path_get()))
@@ -30,7 +30,8 @@ test_that("cache directory is created if necessary", {
 test_that("caching utils list files in cache and delete when asked", {
   skip_on_cran()
   unlink(list.files(manage_cache$cache_path_get()),
-         recursive = TRUE)
+    recursive = TRUE
+  )
   cache <- TRUE
   cache_dir <- .set_cache(cache)
   f <-
@@ -52,6 +53,8 @@ test_that("caching utils list files in cache and delete when asked", {
 
   # test delete all
   manage_cache$delete_all()
-  expect_equal(list.files(manage_cache$list()),
-               character(0))
+  expect_equal(
+    list.files(manage_cache$list()),
+    character(0)
+  )
 })

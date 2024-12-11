@@ -1,4 +1,3 @@
-
 #' @title Manage locally cached CRU CL v. 2.0 files
 #'
 #' @description Manage cached \CRANpkg{getCRUCLdata} files with \CRANpkg{hoardr}

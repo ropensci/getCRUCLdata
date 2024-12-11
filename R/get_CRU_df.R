@@ -1,4 +1,3 @@
-
 #' @title Download and create a data frame of climatology parameters
 #'
 #' @description This function automates downloading and importing \acronym{CRU}
@@ -94,27 +93,30 @@ get_CRU_df <- function(pre = FALSE,
                        elv = FALSE,
                        cache = FALSE) {
   if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
-      !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
-      !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
+    !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
+    !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
     stop("\nYou must select at least one element for download.\n",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   cache_dir <- .set_cache(cache)
 
-  files <- .get_CRU(pre,
-                    pre_cv,
-                    rd0,
-                    tmp,
-                    dtr,
-                    reh,
-                    tmn,
-                    tmx,
-                    sunp,
-                    frs,
-                    wnd,
-                    elv,
-                    cache_dir)
+  files <- .get_CRU(
+    pre,
+    pre_cv,
+    rd0,
+    tmp,
+    dtr,
+    reh,
+    tmn,
+    tmx,
+    sunp,
+    frs,
+    wnd,
+    elv,
+    cache_dir
+  )
 
   return(.create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
 }

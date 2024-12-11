@@ -1,16 +1,19 @@
-
 # Test that create_CRU_stack fails if no dsn is specified ----------------------
 
 test_that("create_CRU_stack fails if no dsn is specified", {
-  expect_error(create_CRU_stack(pre = TRUE),
-               "File directory does not exist: .")
+  expect_error(
+    create_CRU_stack(pre = TRUE),
+    "File directory does not exist: ."
+  )
 })
 
 # Test that create_CRU_stack fails if no parameters are TRUE -------------------
 
 test_that("create_CRU_stack fails if no parameters are TRUE", {
-  expect_error(create_CRU_stack(dsn = "~/"),
-               "You must select at least one element for importing")
+  expect_error(
+    create_CRU_stack(dsn = "~/"),
+    "You must select at least one element for importing"
+  )
 })
 
 # Test that create_CRU_stack fails if dsn does not contain CRU files -----------
@@ -22,7 +25,6 @@ test_that("create_CRU_stack fails if dsn does not contain CRU files", {
 # Test that create_CRU_stack returns a list of terra objects -------------------
 
 test_that("create_CRU_stack returns a list of terra rast objects", {
-
   skip_on_cran()
 
   unlink(list.files(
@@ -478,16 +480,18 @@ test_that("create_CRU_stack returns a list of terra rast objects", {
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.dat.gz"), "w")
   utils::write.table(pre_data,
-                     file = gz1,
-                     col.names = FALSE,
-                     row.names = FALSE)
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
   utils::write.table(tmp_data,
-                     file = gz1,
-                     col.names = FALSE,
-                     row.names = FALSE)
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
   close(gz1)
 
   dsn <- tempdir()
@@ -502,8 +506,7 @@ test_that("create_CRU_stack returns a list of terra rast objects", {
     pattern = ".dat.gz$",
     full.names = TRUE
   ))
-
-  })
+})
 
 
 # Test that create_stack creates tmx if requested ------------------------------
@@ -835,16 +838,18 @@ test_that("Test that create_stack creates tmx if requested", {
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_dtr.dat.gz"), "w")
   utils::write.table(dtr_data,
-                     file = gz1,
-                     col.names = FALSE,
-                     row.names = FALSE)
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
   utils::write.table(tmp_data,
-                     file = gz1,
-                     col.names = FALSE,
-                     row.names = FALSE)
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
   close(gz1)
 
   pre_cv <- FALSE
@@ -864,7 +869,8 @@ test_that("Test that create_stack creates tmx if requested", {
 
   expect_named(CRU_stack_list, c("tmx"))
   expect_equal(terra::minmax(CRU_stack_list[[1]])[[2]][[1]], 12.9,
-               tolerance = 0.1)
+    tolerance = 0.1
+  )
   unlink(list.files(
     path = tempdir(),
     pattern = ".dat.gz$",
@@ -1201,16 +1207,18 @@ test_that("Test that create_stack creates tmn if requested", {
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_dtr.dat.gz"), "w")
   utils::write.table(dtr_data,
-                     file = gz1,
-                     col.names = FALSE,
-                     row.names = FALSE)
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
   utils::write.table(tmp_data,
-                     file = gz1,
-                     col.names = FALSE,
-                     row.names = FALSE)
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
   close(gz1)
 
   pre_cv <- FALSE
@@ -1230,7 +1238,8 @@ test_that("Test that create_stack creates tmn if requested", {
 
   expect_named(CRU_stack_list, c("tmn"))
   expect_equal(terra::minmax(CRU_stack_list[[1]])[[2]][[1]], 4.3,
-  tolerance = 0.1)
+    tolerance = 0.1
+  )
   unlink(list.files(
     path = tempdir(),
     pattern = ".dat.gz$",

@@ -1,5 +1,3 @@
-
-
 unlink(list.files(
   path = tempdir(),
   pattern = ".dat.gz$",
@@ -23,7 +21,8 @@ test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
   wrld[] <- NA
 
   month_names <-
-    c("jan",
+    c(
+      "jan",
       "feb",
       "mar",
       "apr",
@@ -34,7 +33,8 @@ test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
       "sep",
       "oct",
       "nov",
-      "dec")
+      "dec"
+    )
 
   # create files for testing, these data are the first 10 lines of pre and tmp
   # from the CRU CL v. 2.0 data
@@ -485,16 +485,18 @@ test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.dat.gz"), "w")
   utils::write.table(pre_data,
-                     file = gz1,
-                     col.names = FALSE,
-                     row.names = FALSE)
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
   utils::write.table(tmp_data,
-                     file = gz1,
-                     col.names = FALSE,
-                     row.names = FALSE)
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
   close(gz1)
 
   pre_cv <- TRUE
@@ -510,12 +512,14 @@ test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
   pre_cv <- FALSE
 
   stacks <-
-    lapply(FUN = .create_stack,
-           X = files,
-           wrld,
-           month_names,
-           pre,
-           pre_cv)
+    lapply(
+      FUN = .create_stack,
+      X = files,
+      wrld,
+      month_names,
+      pre,
+      pre_cv
+    )
 
   expect_true(is.list(stacks))
   expect_named(
@@ -620,25 +624,30 @@ test_that("create_CRU_stack creates a list containing only elv", {
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_elv.dat.gz"), "w")
   utils::write.table(elv_data,
-                     file = gz1,
-                     col.names = FALSE,
-                     row.names = FALSE)
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
   close(gz1)
 
 
-  files <- list.files(path = tempdir(),
-                      pattern = ".dat.gz$",
-                      full.names = TRUE)
+  files <- list.files(
+    path = tempdir(),
+    pattern = ".dat.gz$",
+    full.names = TRUE
+  )
 
   pre_cv <- FALSE
 
   stacks <-
-    lapply(FUN = .create_stack,
-           X = files,
-           wrld,
-           month_names,
-           pre,
-           pre_cv)
+    lapply(
+      FUN = .create_stack,
+      X = files,
+      wrld,
+      month_names,
+      pre,
+      pre_cv
+    )
 
   expect_named(stacks[[1]], "elv")
   expect_equal(terra::minmax(stacks[[1]])[[2]], 239, tolerance = 0.1)
@@ -651,34 +660,34 @@ test_that("create_CRU_stack creates a list containing only elv", {
 
 # Test that wrld raster object resolution and extent are appropriate -----------
 
-test_that("Test that wrld raster object resolution and extent are appropriate",
-          {
-            skip_on_cran()
+test_that("Test that wrld raster object resolution and extent are appropriate", {
+  skip_on_cran()
 
-            wrld <- terra::rast(
-              nrows = 930,
-              ncols = 2160,
-              ymin = -65,
-              ymax = 90,
-              xmin = -180,
-              xmax = 180
-            )
+  wrld <- terra::rast(
+    nrows = 930,
+    ncols = 2160,
+    ymin = -65,
+    ymax = 90,
+    xmin = -180,
+    xmax = 180
+  )
 
-            wrld[] <- NA
+  wrld[] <- NA
 
-            expect_type(wrld, "S4")
-            expect_equal(as.numeric(terra::ext(wrld)[1]), -180)
-            expect_equal(as.numeric(terra::ext(wrld)[2]), 180)
-            expect_equal(as.numeric(terra::ext(wrld)[3]), -65)
-            expect_equal(as.numeric(terra::ext(wrld)[4]), 90)
-            expect_equal(ncol(wrld), 2160)
-            expect_equal(nrow(wrld), 930)
-          })
+  expect_type(wrld, "S4")
+  expect_equal(as.numeric(terra::ext(wrld)[1]), -180)
+  expect_equal(as.numeric(terra::ext(wrld)[2]), 180)
+  expect_equal(as.numeric(terra::ext(wrld)[3]), -65)
+  expect_equal(as.numeric(terra::ext(wrld)[4]), 90)
+  expect_equal(ncol(wrld), 2160)
+  expect_equal(nrow(wrld), 930)
+})
 
 
 test_that("month names are appropriate", {
   month_names <-
-    c("jan",
+    c(
+      "jan",
       "feb",
       "mar",
       "apr",
@@ -689,7 +698,8 @@ test_that("month names are appropriate", {
       "sep",
       "oct",
       "nov",
-      "dec")
+      "dec"
+    )
 
   expect_equal(
     month_names,
@@ -1168,16 +1178,18 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.dat.gz"), "w")
   utils::write.table(pre_data,
-                     file = gz1,
-                     col.names = FALSE,
-                     row.names = FALSE)
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
   utils::write.table(tmp_data,
-                     file = gz1,
-                     col.names = FALSE,
-                     row.names = FALSE)
+    file = gz1,
+    col.names = FALSE,
+    row.names = FALSE
+  )
   close(gz1)
 
   files <-
@@ -1195,7 +1207,8 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
   wrld[] <- NA
 
   month_names <-
-    c("jan",
+    c(
+      "jan",
       "feb",
       "mar",
       "apr",
@@ -1206,18 +1219,21 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
       "sep",
       "oct",
       "nov",
-      "dec")
+      "dec"
+    )
 
   pre <- TRUE
   pre_cv <- TRUE
 
   CRU_stack_list <-
-    lapply(FUN = .create_stack,
-           X = files,
-           wrld,
-           month_names,
-           pre,
-           pre_cv)
+    lapply(
+      FUN = .create_stack,
+      X = files,
+      wrld,
+      month_names,
+      pre,
+      pre_cv
+    )
 
   names(CRU_stack_list) <- substr(basename(files), 12, 14)
 

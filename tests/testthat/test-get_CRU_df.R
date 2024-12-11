@@ -1,9 +1,10 @@
-
 # Test that get_CRU_df fails if no parameters are TRUE -------------------------
 
 test_that("get_CRU_df fails if no parameters are TRUE", {
-  expect_error(get_CRU_df(),
-               "You must select at least one element for download.")
+  expect_error(
+    get_CRU_df(),
+    "You must select at least one element for download."
+  )
 })
 
 # Test that get_CRU_df will retrieve files from CRU server
@@ -501,38 +502,36 @@ test_that("get_CRU_df lists only .dat.gz files in the given dsn", {
 # Test that get_CRU_df sets the cache directory properly when cache is TRUE ----
 
 test_that("get_CRU_df sets the cache directory properly when cache is TRUE", {
-            skip_on_cran()
+  skip_on_cran()
 
-            cache <- TRUE
+  cache <- TRUE
 
-            if (isTRUE(cache)) {
-              cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
-              if (!file.exists(cache_dir)) {
-                dir.create(cache_dir)
-              }
-            } else {
-              cache_dir <- tempdir()
-            }
+  if (isTRUE(cache)) {
+    cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
+    if (!file.exists(cache_dir)) {
+      dir.create(cache_dir)
+    }
+  } else {
+    cache_dir <- tempdir()
+  }
 
-            expect_equal(cache_dir, rappdirs::user_config_dir("getCRUCLdata"))
-
-          })
+  expect_equal(cache_dir, rappdirs::user_config_dir("getCRUCLdata"))
+})
 
 # Test that get_CRU_df sets the cache dir properly when cache is FALSE ---------
 
 test_that("get_CRU_df sets the cache directory properly when cache is FALSE", {
+  skip_on_cran()
+  cache <- FALSE
 
-            skip_on_cran()
-            cache <- FALSE
+  if (isTRUE(cache)) {
+    cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
+    if (!file.exists(cache_dir)) {
+      dir.create(cache_dir)
+    }
+  } else {
+    cache_dir <- tempdir()
+  }
 
-            if (isTRUE(cache)) {
-              cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
-              if (!file.exists(cache_dir)) {
-                dir.create(cache_dir)
-              }
-            } else {
-              cache_dir <- tempdir()
-            }
-
-            expect_equal(cache_dir, tempdir())
-          })
+  expect_equal(cache_dir, tempdir())
+})

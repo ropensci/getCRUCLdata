@@ -1,4 +1,3 @@
-
 manage_cache <- NULL # nocov start
 
 .onLoad <-
@@ -12,7 +11,7 @@ manage_cache <- NULL # nocov start
       x$cache_path_set(path = "getCRUCLdata", type = "user_cache_dir")
       manage_cache <<- x
     }
-  } 
+  }
 
 #' @import data.table
 NULL

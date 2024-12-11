@@ -30,9 +30,11 @@ Create a list of raster stacks of maximum and minimum temperature.
 To take advantage of the previously cached files and save time by not downloading files, specify `cache = TRUE`.
 
 ```{r, eval=FALSE}
-tmn_tmx <- get_CRU_stack(tmn = TRUE,
-                         tmx = TRUE,
-                         cache = TRUE)
+tmn_tmx <- get_CRU_stack(
+  tmn = TRUE,
+  tmx = TRUE,
+  cache = TRUE
+)
 ```
 
 ## Handling files downloaded outside of R

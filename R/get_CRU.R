@@ -1,4 +1,3 @@
-
 #' @noRd
 .get_CRU <-
   function(pre,
@@ -75,7 +74,6 @@
 
     # download files -----------------------------------------------------------
     if (length(dl_files) > 0) {
-
       CRU_url <- "https://crudata.uea.ac.uk/cru/data/hrg/tmc/"
       dl_files <- as.list(paste0(CRU_url, dl_files))
 
@@ -98,7 +96,8 @@
     # filter files from cache directory in case there are local files for which
     # we do not want data
     cache_dir_contents <- as.list(list.files(cache_dir,
-                                             pattern = ".dat.gz$"))
+      pattern = ".dat.gz$"
+    ))
 
     files <- cache_dir_contents[cache_dir_contents %in% files]
 
@@ -109,4 +108,4 @@
     files <- gsub(" ", "\\ ", files, fixed = TRUE)
 
     return(files)
-    }
+  }

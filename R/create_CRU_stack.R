@@ -1,7 +1,6 @@
-
 #' @title Create a list of terra rast objects from local disk files
 #'
-#'@description Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
+#' @description Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
 #' data and creates a \code{\link{terra}} \code{\link[terra]{rast}} of the
 #' data.  If requested, minimum and maximum temperature may also be
 #' automatically calculated as described in the data readme.txt file.  This
@@ -22,8 +21,8 @@
 #' \item{frs}{ground-frost (number of days with ground-frost per month)}
 #' \item{wnd}{10 metre windspeed (metres/second)}
 #' \item{elv}{elevation (automatically converted to metres)}
-#'}
-#'For more information see the description of the data provided by
+#' }
+#' For more information see the description of the data provided by
 #' \acronym{CRU}, \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 #'
 #' @param pre Logical. Fetch precipitation (millimetres/month) from server and
@@ -101,27 +100,29 @@ create_CRU_stack <- function(pre = FALSE,
                              elv = FALSE,
                              dsn = "") {
   if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
-      !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
-      !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
+    !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
+    !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
     stop("\nYou must select at least one element for importing.\n",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   .validate_dsn(dsn)
 
   files <- .get_local(pre,
-                      pre_cv,
-                      rd0,
-                      tmp,
-                      dtr,
-                      reh,
-                      tmn,
-                      tmx,
-                      sunp,
-                      frs,
-                      wnd,
-                      elv,
-                      cache_dir = dsn)
+    pre_cv,
+    rd0,
+    tmp,
+    dtr,
+    reh,
+    tmn,
+    tmx,
+    sunp,
+    frs,
+    wnd,
+    elv,
+    cache_dir = dsn
+  )
 
   if (length(files) == 0) {
     stop(

@@ -16,14 +16,15 @@
     if (substr(dsn, nchar(dsn) - 1, nchar(dsn)) == "//") {
       p <- substr(dsn, 1, nchar(dsn) - 2)
     } else if (substr(dsn, nchar(dsn), nchar(dsn)) == "/" |
-               substr(dsn, nchar(dsn), nchar(dsn)) == "\\") {
+      substr(dsn, nchar(dsn), nchar(dsn)) == "\\") {
       p <- substr(dsn, 1, nchar(dsn) - 1)
     } else {
       p <- dsn
     }
     if (!file.exists(p) & !file.exists(dsn)) {
       stop("\nFile directory does not exist: ", dsn, ".\n",
-           call. = FALSE)
+        call. = FALSE
+      )
     }
   }
 }
@@ -94,9 +95,11 @@
 .tidy_df <- function(pre_cv, elv, tmn, tmx, .files) {
   # create list of tidied data frames ----------------------------------------
   CRU_list <-
-    lapply(X = .files,
-           FUN = .read_cache,
-           .pre_cv = pre_cv)
+    lapply(
+      X = .files,
+      FUN = .read_cache,
+      .pre_cv = pre_cv
+    )
 
   # name the items in the list for the data that they contain ----------------
   names(CRU_list) <- substr(basename(.files), 12, 14)
@@ -111,17 +114,17 @@
   # lastly merge the data frames into one tidy (large) data frame --------------
 
   if (!isTRUE(elv)) {
-    CRU_df <- Reduce(function(...)
-      merge(..., by = c("lat", "lon", "month")), CRU_list)
-
+    CRU_df <- Reduce(function(...) {
+      merge(..., by = c("lat", "lon", "month"))
+    }, CRU_list)
   } else if (isTRUE(elv) & length(CRU_list) > 1) {
     elv_df <- CRU_list[which(names(CRU_list) %in% "elv")]
     CRU_list[which(names(CRU_list) %in% "elv")] <- NULL
-    CRU_df <- Reduce(function(...)
-      merge(..., by = c("lat", "lon", "month")), CRU_list)
+    CRU_df <- Reduce(function(...) {
+      merge(..., by = c("lat", "lon", "month"))
+    }, CRU_list)
 
     CRU_df <- CRU_df[elv_df$elv, on = c("lat", "lon")]
-
   } else if (isTRUE(elv)) {
     CRU_df <- CRU_list["elv"]
   }
@@ -135,7 +138,8 @@
 .read_cache <- function(.files, .pre_cv) {
   pre_cv <- i.pre_cv <- elv <- NULL
   month_names <-
-    c("jan",
+    c(
+      "jan",
       "feb",
       "mar",
       "apr",
@@ -146,20 +150,24 @@
       "sep",
       "oct",
       "nov",
-      "dec")
+      "dec"
+    )
 
   x <-
-    data.table::fread(cmd = paste0("gzip -dc ", .files),
-                      header = FALSE)
+    data.table::fread(
+      cmd = paste0("gzip -dc ", .files),
+      header = FALSE
+    )
 
   if (ncol(x) == 14) {
     data.table::setnames(x, c("lat", "lon", month_names))
     x_df <-
-      data.table::melt(data = x,
-                       measure.vars = month_names,
-                       variable.name = "month")
+      data.table::melt(
+        data = x,
+        measure.vars = month_names,
+        variable.name = "month"
+      )
     data.table::setnames(x_df, c("lat", "lon", "month", "wvar"))
-
   } else if (ncol(x) == 26) {
     if (isTRUE(.pre_cv)) {
       x_df <- x[, c(1:14)]
@@ -186,7 +194,6 @@
       data.table::setkeyv(x_df, cols = keycols)
       data.table::setkeyv(x_df2, cols = keycols)
       x_df[x_df2, on = c("lat", "lon", "month"), pre_cv := i.pre_cv]
-
     } else {
       x_df <- x[, c(1:14)]
       names(x_df) <- c("lat", "lon", month_names)
@@ -198,7 +205,7 @@
       )
       data.table::setnames(x_df, c("lat", "lon", "month", "pre"))
     }
-  } else  if (ncol(x) == 3) {
+  } else if (ncol(x) == 3) {
     x_df <- x
     data.table::setnames(x_df, c("lat", "lon", "elv"))
     x_df[, elv := (elv * 1000)]
@@ -222,7 +229,8 @@
   wrld[] <- NA
 
   month_names <-
-    c("jan",
+    c(
+      "jan",
       "feb",
       "mar",
       "apr",
@@ -233,7 +241,8 @@
       "sep",
       "oct",
       "nov",
-      "dec")
+      "dec"
+    )
 
   # Create terra objects using cellFromXY and generate a terra rast
   # create.stack takes pre, tmp, tmn and tmx and creates a terra rast
@@ -279,16 +288,19 @@
                           pre,
                           pre_cv) {
   wvar <-
-    data.frame(data.table::fread(cmd = paste0("gzip -dc ", files[[1]]),
-                                 header = FALSE))
+    data.frame(data.table::fread(
+      cmd = paste0("gzip -dc ", files[[1]]),
+      header = FALSE
+    ))
   cells <- terra::cellFromXY(wrld, wvar[, c(2, 1)])
   if (ncol(wvar) == 14) {
     for (j in 3:14) {
       wrld[cells] <- wvar[, j]
       if (j == 3) {
         y <- wrld
-      } else
+      } else {
         y <- c(y, wrld)
+      }
     }
     names(y) <- month_names
   } else if (ncol(wvar) == 26) {
@@ -297,8 +309,9 @@
         wrld[cells] <- wvar[, k]
         if (k == 3) {
           y <- wrld
-        } else
+        } else {
           y <- c(y, wrld)
+        }
       }
       names(y) <- c(month_names, paste0("pre_cv_", month_names))
     } else if (isTRUE(pre)) {
@@ -306,8 +319,9 @@
         wrld[cells] <- wvar[, k]
         if (k == 3) {
           y <- wrld
-        } else
+        } else {
           y <- c(y, wrld)
+        }
       }
       names(y) <- month_names
     } else if (isTRUE(pre_cv)) {
@@ -315,22 +329,24 @@
         wrld[cells] <- wvar[, k]
         if (k == 15) {
           y <- wrld
-        } else
+        } else {
           y <- c(y, wrld)
+        }
       }
       names(y) <- paste0("pre_cv_", month_names)
     }
-
   } else if (ncol(wvar) == 3) {
     wrld[cells] <- wvar[, 3] * 1000
     y <- wrld
     names(y) <- "elv"
   }
 
-  y <- terra::crop(y, terra::ext(-180,
-                                 180,
-                                 -60,
-                                 85))
+  y <- terra::crop(y, terra::ext(
+    -180,
+    180,
+    -60,
+    85
+  ))
   return(y)
 }
 
@@ -415,13 +431,15 @@
   # filter files from cache directory in case there are local files for which
   # we do not want data
   cache_dir_contents <- as.list(list.files(cache_dir,
-                                           pattern = ".dat.gz$"))
+    pattern = ".dat.gz$"
+  ))
 
   files <- cache_dir_contents[cache_dir_contents %in% files]
 
   if (length(files) < 0) {
     stop("\nThere are no CRU CL v. 2.0 data files available in this directory.\n",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   # add full file path to the files
