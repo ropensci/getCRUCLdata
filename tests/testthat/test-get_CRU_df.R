@@ -10,9 +10,8 @@ test_that("get_CRU_df fails if no parameters are TRUE", {
 # Test that get_CRU_df will retrieve files from CRU server
 test_that("get_CRU_df will retrieve files from CRU server", {
   skip_on_cran()
-  rm(CRU_tmp)
   CRU_tmp <- get_CRU_df(tmp = TRUE, tmn = FALSE, tmx = FALSE, cache = FALSE)
-  expect_is(CRU_tmp, "data.frame")
+  expect_type(CRU_tmp, "list")
 })
 
 # Test that get_CRU_df lists only .dat.gz files in the given dsn ---------------

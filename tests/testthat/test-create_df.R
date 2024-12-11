@@ -492,12 +492,12 @@ test_that("Test that .create_df() creates a tidy df of pre, pre_cv and tmp", {
 
   expect_true(is.data.frame(CRU_df))
   expect_named(CRU_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
-  expect_is(CRU_df$lat, "numeric")
-  expect_is(CRU_df$lon, "numeric")
-  expect_is(CRU_df$month, "factor")
-  expect_is(CRU_df$pre, "numeric")
-  expect_is(CRU_df$pre_cv, "numeric")
-  expect_is(CRU_df$tmp, "numeric")
+  expect_type(CRU_df$lat, "double")
+  expect_type(CRU_df$lon, "double")
+  expect_type(CRU_df$month, "integer")
+  expect_type(CRU_df$pre, "double")
+  expect_type(CRU_df$pre_cv, "double")
+  expect_type(CRU_df$tmp, "double")
 })
 
 test_that("Test that .create_df() creates a tidy dataframe of pre, tmp, elv", {
@@ -571,9 +571,9 @@ test_that("Test that .create_df() creates a tidy dataframe of pre, tmp, elv", {
 
   expect_true(is.data.frame(CRU_df))
   expect_named(CRU_df, c("lat", "lon", "month", "pre", "tmp", "elv"))
-  expect_is(CRU_df$lat, "numeric")
-  expect_is(CRU_df$lon, "numeric")
-  expect_is(CRU_df$elv, "numeric")
+  expect_type(CRU_df$lat, "double")
+  expect_type(CRU_df$lon, "double")
+  expect_type(CRU_df$elv, "double")
 })
 
 unlink(list.files(

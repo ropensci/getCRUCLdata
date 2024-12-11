@@ -1,23 +1,24 @@
-Package: getCRUCLdata
 Type: Package
+Package: getCRUCLdata
 Title: 'CRU' 'CL' v. 2.0 Climatology Client
 Version: 0.3.3
-Authors@R: person(given = "Adam H.",
-                  family = "Sparks",
-                  email = "adamhsparks@gmail.com",
-                  role = c("aut", "cre"),
-                  comment = c(ORCID = "0000-0002-0061-8359"))
+Authors@R: 
+    person("Adam H.", "Sparks", , "adamhsparks@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-0061-8359"))
 Description: Provides functions that automate downloading and importing
     University of East Anglia Climate Research Unit ('CRU') 'CL' v. 2.0
-    climatology data, facilitates the calculation of minimum temperature and
-    maximum temperature and formats the data into a data frame or a list of
-    'terra' 'rast' objects for use.  'CRU' 'CL' v. 2.0 data are a gridded
-    climatology of 1961-1990 monthly means released in 2002 and cover all land
-    areas (excluding Antarctica) at 10 arc minutes (0.1666667 degree)
-    resolution.  For more information see the description of the data provided
-    by the University of East Anglia Climate Research Unit,
+    climatology data, facilitates the calculation of minimum temperature
+    and maximum temperature and formats the data into a data frame or a
+    list of 'terra' 'rast' objects for use.  'CRU' 'CL' v. 2.0 data are a
+    gridded climatology of 1961-1990 monthly means released in 2002 and
+    cover all land areas (excluding Antarctica) at 10 arc minutes
+    (0.1666667 degree) resolution.  For more information see the
+    description of the data provided by the University of East Anglia
+    Climate Research Unit,
     <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 License: MIT + file LICENSE
+URL: https://docs.ropensci.org/getCRUCLdata/
+BugReports: https://github.com/ropensci/getCRUCLdata/issues
 Depends:
     R (>= 3.2.0)
 Imports:
@@ -26,22 +27,25 @@ Imports:
     hoardr,
     terra,
     utils
-RoxygenNote: 7.3.1
-ByteCompile: TRUE
 Suggests:
     ggplot2,
     knitr,
-    rmarkdown,
     rappdirs,
+    rmarkdown,
     roxygen2,
     spelling,
     testthat,
     viridis
+VignetteBuilder: 
+    knitr
+ByteCompile: TRUE
+Config/testthat/edition: 3
+Config/testthat/parallel: true
 Encoding: UTF-8
-URL: https://docs.ropensci.org/getCRUCLdata/
-BugReports: https://github.com/ropensci/getCRUCLdata/issues
-VignetteBuilder: knitr
-X-schema.org-applicationCategory: Tools
-X-schema.org-keywords: anglia-cru, climate-data, cru-cl2, temperature, rainfall, elevation, data-access, wind, relative-humidity, solar-radiation, diurnal-temperature, frost
-X-schema.org-isPartOf: https://ropensci.org
 Language: en-US
+RoxygenNote: 7.3.1
+X-schema.org-applicationCategory: Tools
+X-schema.org-isPartOf: https://ropensci.org
+X-schema.org-keywords: anglia-cru, climate-data, cru-cl2, temperature,
+    rainfall, elevation, data-access, wind, relative-humidity,
+    solar-radiation, diurnal-temperature, frost

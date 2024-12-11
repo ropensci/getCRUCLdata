@@ -3,7 +3,7 @@ test_that("get_CRU_stack will retrieve files from CRU server", {
   skip_on_cran()
 
   CRU_tmp <- get_CRU_stack(tmp = TRUE, tmn = FALSE, tmx = FALSE, cache = FALSE)
-  expect_is(CRU_tmp, "list")
+  expect_type(CRU_tmp, "list")
 })
 
 # Test that get_CRU_stack fails if no parameters are TRUE ----------------------
