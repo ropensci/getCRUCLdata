@@ -1,7 +1,7 @@
 ---
 title: "getCRUCLdata"
 author: "Adam H. Sparks"
-date: "2024-03-30"
+date: "2024-12-11"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -69,7 +69,7 @@ Local file path where CRU CL v. 2.0 .dat.gz files are located.
 The `get_CRU_df()` function automates the download process and creates data frames of the climatology elements.
 
 
-```r
+``` r
 library(getCRUCLdata)
 
 CRU_data <- get_CRU_df(pre = TRUE,
@@ -86,38 +86,38 @@ CRU_data <- get_CRU_df(pre = TRUE,
                        elv = TRUE)
 
 CRU_data
-#>             lat     lon  month   dtr   frs   pre pre_cv   rd0
-#>           <num>   <num> <fctr> <num> <num> <num>  <num> <num>
-#>       1: 30.917  35.417   <NA>    NA    NA    NA     NA    NA
-#>       2: 31.083  35.417   <NA>    NA    NA    NA     NA    NA
-#>       3: 31.250  35.417   <NA>    NA    NA    NA     NA    NA
-#>       4: 31.417  35.417   <NA>    NA    NA    NA     NA    NA
-#>       5: 31.750  35.583   <NA>    NA    NA    NA     NA    NA
-#>      ---                                                     
-#> 6795146: 83.583 -30.083    dec   8.7    31   0.1   72.7   5.1
-#> 6795147: 83.583 -29.917    dec   8.6    31   0.1   72.8   4.9
-#> 6795148: 83.583 -29.750    dec   8.6    31   0.1   72.9   4.9
-#> 6795149: 83.583 -29.583    dec   8.6    31   0.1   73.0   5.0
-#> 6795150: 83.583 -29.417    dec   8.6    31   0.1   73.1   5.1
-#>            reh   sun   tmp   wnd   elv    tmx    tmn
-#>          <num> <num> <num> <num> <num>  <num>  <num>
-#>       1:    NA    NA    NA    NA  -260     NA     NA
-#>       2:    NA    NA    NA    NA  -361     NA     NA
-#>       3:    NA    NA    NA    NA  -336     NA     NA
-#>       4:    NA    NA    NA    NA  -284     NA     NA
-#>       5:    NA    NA    NA    NA  -248     NA     NA
-#>      ---                                            
-#> 6795146:  70.6     0 -31.3   5.6   283 -26.95 -35.65
-#> 6795147:  70.6     0 -30.7   5.6   186 -26.40 -35.00
-#> 6795148:  70.6     0 -30.8   5.6   195 -26.50 -35.10
-#> 6795149:  70.6     0 -31.2   5.6   268 -26.90 -35.50
-#> 6795150:  70.6     0 -31.5   5.6   328 -27.20 -35.80
+#>             lat     lon  month   dtr   frs   pre pre_cv   rd0   reh   sun   tmp   wnd   elv    tmx
+#>           <num>   <num> <fctr> <num> <num> <num>  <num> <num> <num> <num> <num> <num> <num>  <num>
+#>       1: 30.917  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -260     NA
+#>       2: 31.083  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -361     NA
+#>       3: 31.250  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -336     NA
+#>       4: 31.417  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -284     NA
+#>       5: 31.750  35.583   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -248     NA
+#>      ---                                                                                          
+#> 6795146: 83.583 -30.083    dec   8.7    31   0.1   72.7   5.1  70.6     0 -31.3   5.6   283 -26.95
+#> 6795147: 83.583 -29.917    dec   8.6    31   0.1   72.8   4.9  70.6     0 -30.7   5.6   186 -26.40
+#> 6795148: 83.583 -29.750    dec   8.6    31   0.1   72.9   4.9  70.6     0 -30.8   5.6   195 -26.50
+#> 6795149: 83.583 -29.583    dec   8.6    31   0.1   73.0   5.0  70.6     0 -31.2   5.6   268 -26.90
+#> 6795150: 83.583 -29.417    dec   8.6    31   0.1   73.1   5.1  70.6     0 -31.5   5.6   328 -27.20
+#>             tmn
+#>           <num>
+#>       1:     NA
+#>       2:     NA
+#>       3:     NA
+#>       4:     NA
+#>       5:     NA
+#>      ---       
+#> 6795146: -35.65
+#> 6795147: -35.00
+#> 6795148: -35.10
+#> 6795149: -35.50
+#> 6795150: -35.80
 ```
 
 Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only.
 
 
-```r
+``` r
 t <- get_CRU_df(tmp = TRUE)
 
 t
@@ -141,7 +141,7 @@ t
 Now that we have the data, we can plot it easily using _ggplot2_ and the _viridis_ package for the colour scale.
 
 
-```r
+``` r
 library(ggplot2)
 library(viridis)
 
@@ -161,7 +161,7 @@ ggplot(data = t, aes(x = lon, y = lat, fill = tmp)) +
 We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.
 
 
-```r
+``` r
 ggplot(data = t, aes(x = month, y = tmp)) +
   geom_violin() +
   ylab("Temperature (˚C)") +
@@ -180,7 +180,7 @@ Save the resulting tidy `data.frame` to local disk as a comma separated (CSV)
 file to local disk, using _data.table_'s `fwrite()`.
 
 
-```r
+``` r
 fwrite(x = t, file = "~/CRU_tmp.csv")
 ```
 
@@ -194,7 +194,7 @@ The `get_CRU_stack()` function automates the download process and creates a `ter
 Illustrated here is creating a `terra::rast()` of all CRU CL v. 2.0 climatology elements available.
 
 
-```r
+``` r
 CRU_stack <- get_CRU_stack(
   pre = TRUE,
   pre_cv = TRUE,
@@ -209,6 +209,10 @@ CRU_stack <- get_CRU_stack(
   wnd = TRUE,
   elv = TRUE
 )
+#> 
+|---------|---------|---------|---------|
+=========================================
+                                          
 
 CRU_stack
 #> $dtr
@@ -216,7 +220,7 @@ CRU_stack
 #> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 #> source(s)   : memory
 #> names       :  jan,  feb,  mar,  apr,  may,  jun, ... 
 #> min values  :  2.3,  2.1,  2.2,  2.3,  1.8,  2.5, ... 
@@ -227,7 +231,7 @@ CRU_stack
 #> dimensions  : 870, 2160, 1  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 #> source(s)   : memory
 #> name        :  elv 
 #> min value   : -361 
@@ -238,7 +242,7 @@ CRU_stack
 #> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 #> source(s)   : memory
 #> names       : jan,  feb, mar, apr, may, jun, ... 
 #> min values  :   0,  0.0,   0,   0,   0,   0, ... 
@@ -249,8 +253,8 @@ CRU_stack
 #> dimensions  : 870, 2160, 24  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
+#> source      : spat_120a218a42dee_73890_SskviV5XwhZb4QV.tif 
 #> names       :   jan,   feb,   mar,   apr,  may,    jun, ... 
 #> min values  :   0.0,   0.0,   0.0,   0.0,    0,    0.0, ... 
 #> max values  : 910.1, 824.3, 727.3, 741.3, 1100, 2512.6, ... 
@@ -260,7 +264,7 @@ CRU_stack
 #> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 #> source(s)   : memory
 #> names       : jan,  feb, mar, apr,  may, jun, ... 
 #> min values  :   0,  0.0,   0,   0,  0.0,   0, ... 
@@ -271,7 +275,7 @@ CRU_stack
 #> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 #> source(s)   : memory
 #> names       :   jan,   feb,   mar,   apr,  may,  jun, ... 
 #> min values  :  18.4,  14.6,  13.5,  13.4, 15.5, 10.2, ... 
@@ -282,7 +286,7 @@ CRU_stack
 #> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 #> source(s)   : memory
 #> names       :  jan, feb,  mar,  apr,  may,  jun, ... 
 #> min values  :  0.0,   0,  3.3,  4.3,  8.1,  6.6, ... 
@@ -293,7 +297,7 @@ CRU_stack
 #> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 #> source(s)   : memory
 #> names       :   jan,   feb,   mar,   apr,   may,   jun, ... 
 #> min values  : -51.6, -47.6, -45.2, -36.6, -22.2, -16.3, ... 
@@ -304,7 +308,7 @@ CRU_stack
 #> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 #> source(s)   : memory
 #> names       : jan, feb, mar, apr, may, jun, ... 
 #> min values  : 0.1, 0.1, 0.3, 0.4, 0.3, 0.2, ... 
@@ -315,7 +319,7 @@ CRU_stack
 #> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 #> source(s)   : memory
 #> names       :    jan,    feb,    mar,    apr, may,    jun, ... 
 #> min values  : -55.05, -52.95, -48.75, -41.35, -28, -21.40, ... 
@@ -326,7 +330,7 @@ CRU_stack
 #> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
 #> source(s)   : memory
 #> names       :   jan,    feb,    mar,    apr,    may,    jun, ... 
 #> min values  : -48.2, -43.35, -41.65, -32.45, -17.55, -11.50, ... 
@@ -337,7 +341,7 @@ The `create_CRU_stack()` function works in the same way with only one minor diff
 You must supply the location of the files on the local disk (`dsn`) that you wish to import.
 
 
-```r
+``` r
 t <- create_CRU_stack(tmp = TRUE, dsn = "~/Downloads")
 ```
 
@@ -347,7 +351,7 @@ Because the stacks are in a `list()`, we need to access each element of the list
 Here using `[[7]]` we will plot the monthly average minimum temperature for all twelve months.
 
 
-```r
+``` r
 library(terra)
 
 plot(CRU_stack[[7]])
@@ -359,7 +363,7 @@ This is the name of the layer in the `terra::rast()`.
 So, we are telling R to plot the second object in the `CRU_stack` list, which is `tmx` and from that terra rast, plot only the layer for July.
 
 
-```r
+``` r
 plot(t[[8]]$jul)
 ```
 
@@ -368,7 +372,7 @@ plot(t[[8]]$jul)
 The terra rast stack objects can be saved to disk as geotiff files (others are available, see help for `terra::writeRaster()` and `terra::writeFormats()` for more options) on the `Data` directory with a tmn or tmx prefix to the month for a file name.
 
 
-```r
+``` r
 library(terra)
 
 dir.create(file.path("~/Data"), showWarnings = FALSE)
