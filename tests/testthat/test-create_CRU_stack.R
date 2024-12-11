@@ -499,7 +499,7 @@ test_that("create_CRU_stack returns a list of terra rast objects", {
 
   expect_named(CRU_stack, "pre")
   expect_identical(terra::nlyr(CRU_stack$pre), 12)
-  expeexpect_length(CRU_stack, 1)
+  expect_length(CRU_stack, 1)
 
   unlink(list.files(
     path = tempdir(),

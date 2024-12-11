@@ -503,6 +503,6 @@ test_that("Test that .get_local lists local files", {
     cache_dir
   )
 
-  expeexpect_length(files, 1)
+  expect_length(files, 1)
   expect_identical(basename(files[1]), "grid_10min_pre.dat.gz")
 })
