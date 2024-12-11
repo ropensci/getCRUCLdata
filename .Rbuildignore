@@ -17,3 +17,7 @@
 ^tic\.R$
 ^doc$
 ^Meta$
+
+
+# flint files
+^flint$
