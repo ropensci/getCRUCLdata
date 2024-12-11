@@ -130,8 +130,6 @@
   }
   return(CRU_df)
 
-  # cleanup before we go -----------------------------------------------------
-  rm(c(CRU_list))
 }
 
 #' @noRd
