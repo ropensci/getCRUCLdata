@@ -104,7 +104,7 @@ test_that("get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE", {
   pre <- FALSE
   pre_cv <- TRUE
 
-  expect_true(!isTRUE(pre))
+  expect_false(isTRUE(pre))
 
   if (isTRUE(pre_cv)) {
     pre <- TRUE
@@ -123,8 +123,8 @@ test_that("get_CRU will set tmp and dtr to TRUE if tmn or tmx
   dtr <- FALSE
   tmn <- TRUE
   tmx <- TRUE
-  expect_true(!isTRUE(tmp))
-  expect_true(!isTRUE(dtr))
+  expect_false(isTRUE(tmp))
+  expect_false(isTRUE(dtr))
 
   if (isTRUE(tmn) | isTRUE(tmx)) {
     dtr <- tmp <- TRUE

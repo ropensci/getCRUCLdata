@@ -42,19 +42,16 @@ test_that("caching utils list files in cache and delete when asked", {
 
   # test getCRUCLdata cache list
   k <- list.files(manage_cache$cache_path_get())
-  expect_equal(basename(manage_cache$list()), k)
+  expect_identical(basename(manage_cache$list()), k)
 
   # test delete one file
   expect_error(manage_cache$delete("file1.tif"))
 
   manage_cache$delete("file1.asc")
   l <- list.files(manage_cache$cache_path_get())
-  expect_equal(basename(manage_cache$list()), l)
+  expect_identical(basename(manage_cache$list()), l)
 
   # test delete all
   manage_cache$delete_all()
-  expect_equal(
-    list.files(manage_cache$list()),
-    character(0)
-  )
+  expect_identical(list.files(manage_cache$list()), character(0))
 })

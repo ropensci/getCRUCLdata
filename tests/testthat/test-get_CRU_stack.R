@@ -494,7 +494,7 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
     list.files(dsn, pattern = ".dat.gz$", full.names = TRUE)
 
   expect_type(files, "character")
-  expect_equal(files, file.path(tempdir(), "grid_10min_tmp.dat.gz"))
+  expect_identical(files, file.path(tempdir(), "grid_10min_tmp.dat.gz"))
 })
 
 # Test that get_CRU_stack sets the cache dir properly when cache is TRUE -------
@@ -512,7 +512,7 @@ test_that("get_CRU_stack sets the cache dir properly when cache is TRUE", {
     cache_dir <- tempdir()
   }
 
-  expect_equal(cache_dir, rappdirs::user_config_dir("getCRUCLdata"))
+  expect_identical(cache_dir, rappdirs::user_config_dir("getCRUCLdata"))
 })
 
 # Test that get_CRU_stack sets the cache dir properly when cache is FALSE ------
@@ -530,5 +530,5 @@ test_that("get_CRU_stack sets the cache dir properly when cache is FALSE", {
     cache_dir <- tempdir()
   }
 
-  expect_equal(cache_dir, tempdir())
+  expect_identical(cache_dir, tempdir())
 })
