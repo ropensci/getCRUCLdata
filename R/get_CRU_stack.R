@@ -52,13 +52,20 @@ get_CRU_stack <-
            wnd = FALSE,
            elv = FALSE,
            cache = FALSE) {
-    if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
-      !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
-      !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
-      stop("\nYou must select at least one element for download.\n",
-        call. = FALSE
-      )
-    }
+    .check_vars_FALSE(
+      pre,
+      pre_cv,
+      rd0,
+      tmp,
+      dtr,
+      reh,
+      tmn,
+      tmx,
+      sunp,
+      frs,
+      wnd,
+      elv
+    )
 
     cache_dir <- .set_cache(cache)
 

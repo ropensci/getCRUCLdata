@@ -76,14 +76,21 @@ create_CRU_df <- function(pre = FALSE,
                           frs = FALSE,
                           wnd = FALSE,
                           elv = FALSE,
-                          dsn = "") {
-  if (!isTRUE(pre) & !isTRUE(pre_cv) & !isTRUE(rd0) & !isTRUE(tmp) &
-    !isTRUE(dtr) & !isTRUE(reh) & !isTRUE(tmn) & !isTRUE(tmx) &
-    !isTRUE(sunp) & !isTRUE(frs) & !isTRUE(wnd) & !isTRUE(elv)) {
-    stop("\nYou must select at least one element for importing.\n",
-      call. = FALSE
-    )
-  }
+                          dsn) {
+  .check_vars_FALSE(
+    pre,
+    pre_cv,
+    rd0,
+    tmp,
+    dtr,
+    reh,
+    tmn,
+    tmx,
+    sunp,
+    frs,
+    wnd,
+    elv
+  )
 
   .validate_dsn(dsn)
 

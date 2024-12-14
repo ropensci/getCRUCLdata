@@ -1,15 +1,80 @@
+#' Check That at Least One var is Requested
+#' @param pre Logical.  Fetch precipitation (millimetres/month) from server and
+#' return in the data frame?  Defaults to `FALSE`.
+#' @param pre_cv Logical.  Fetch cv of precipitation (percent) from server and
+#' return in the data frame?  Defaults to `FALSE`.  NOTE.  Setting this to
+#' `TRUE` will always results in **pre** being set to `TRUE` and
+#' returned as well.
+#' @param rd0 Logical.  Fetch wet-days (number days with >0.1 millimetres rain
+#' per month) and return in the data frame?  Defaults to `FALSE`.
+#' @param dtr Logical.  Fetch mean diurnal temperature range (degrees Celsius)
+#' and return it in the data frame?  Defaults to `FALSE`.
+#' @param tmp Logical.  Fetch temperature (degrees Celsius) and return it in the
+#' data frame?  Defaults to `FALSE`.
+#' @param tmn Logical.  Calculate minimum temperature values (degrees Celsius)
+#' and return it in the data frame?  Defaults to `FALSE`.
+#' @param tmx Logical.  Calculate maximum temperature (degrees Celsius) and
+#' return it in the data frame?  Defaults to `FALSE`.
+#' @param reh Logical.  Fetch relative humidity and return it in the data frame?
+#' Defaults to FALSE.
+#' @param sunp Logical.  Fetch sunshine, percent of maximum possible (percent of
+#' day length) and return it in data frame?  Defaults to `FALSE`.
+#' @param frs Logical.  Fetch ground-frost records (number of days with ground-
+#' frost per month) and return it in data frame?  Defaults to `FALSE`.
+#' @param wnd Logical.  Fetch 10m wind speed (metres/second) and return it in the
+#' data frame? Defaults to `FALSE`.
+#' @param elv Logical.  Fetch elevation (converted to metres) and return it in
+#' the data frame?  Defaults to `FALSE`.
+#'
+#' @examples
+#' .check_vars_FALSE(
+#'   pre,
+#'   pre_cv,
+#'   rd0,
+#'   tmp,
+#'   dtr,
+#'   reh,
+#'   tmn,
+#'   tmx,
+#'   sunp,
+#'   frs,
+#'   wnd,
+#'   elv
+#' )
+#' @noRd
+#' @keywords Internal
+
+.check_vars_FALSE <- function(pre,
+                              pre_cv,
+                              rd0,
+                              tmp,
+                              dtr,
+                              reh,
+                              tmn,
+                              tmx,
+                              sunp,
+                              frs,
+                              wnd,
+                              elv) {
+  if (!any(pre, pre_cv, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)) {
+    cli::cli_abort("You must select at least one element for download or import.",
+      call = rlang::caller_env()
+    )
+  }
+}
+
 #' Validates User Entered dsn value
 #'
 #' @param dsn User provided value for checking
 #'
 #' @noRd
 .validate_dsn <- function(dsn) {
-  if (is.null(dsn)) {
-    stop(
-      "\nYou must define the dsn where you have stored the local files\n",
-      "for import. If you want to download files using R, use one of the\n",
-      "'get_CRU_*()' functions provided.\n",
-      call. = FALSE
+  if (missing(dsn)) {
+    cli::cli_abort(
+      "You must define the dsn where you have stored the local files
+      for import. If you want to download files using R, use one of the
+      {.fn get_CRU} functions provided.",
+      call = rlang::caller_env()
     )
   } else {
     dsn <- trimws(dsn)
