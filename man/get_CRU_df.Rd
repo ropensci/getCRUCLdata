@@ -66,7 +66,7 @@ after the initial download and caching.  Defaults to \code{FALSE}.}
 }
 \value{
 A tidy data frame of \acronym{CRU} \acronym{CL} v. 2.0 climatology
-elements as a \code{\link[tibble]{tibble}} object
+elements as a \code{\link[tibble:tibble]{tibble::tibble()}} object
 }
 \description{
 This function automates downloading and importing \acronym{CRU}
@@ -75,13 +75,18 @@ If requested, minimum and maximum temperature may also be automatically
 calculated as described in the data readme.txt file.  Data may be cached for
 later use by this function, saving time downloading files in future use of
 the function.
+}
+\note{
+This package automatically converts elevation values from kilometres to
+metres.
+}
+\section{Nomenclature and Units}{
 
-Nomenclature and units from readme.txt:
 \describe{
 \item{pre}{precipitation (millimetres/month)}
-  \describe{
-   \item{cv}{cv of precipitation (percent)}
-  }
+\describe{
+\item{cv}{cv of precipitation (percent)}
+}
 \item{rd0}{wet-days (number days with >0.1mm rain per month)}
 \item{tmp}{mean temperature (degrees Celsius)}
 \item{dtr}{mean diurnal temperature range (degrees Celsius)}
@@ -94,10 +99,7 @@ Nomenclature and units from readme.txt:
 For more information see the description of the data provided by
 \acronym{CRU}, \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 }
-\note{
-This package automatically converts elevation values from kilometres to
-metres.
-}
+
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Download data and create a data frame of precipitation and temperature
@@ -109,8 +111,8 @@ CRU_pre_tmp
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link{create_CRU_stack}}
-\code{\link{manage_cache}}
+\code{\link[=create_CRU_stack]{create_CRU_stack()}}
+\code{\link[=manage_cache]{manage_cache()}}
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com}
