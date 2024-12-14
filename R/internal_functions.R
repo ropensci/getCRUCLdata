@@ -124,11 +124,11 @@
 
     # Remove tmp/dtr if they aren't specified (necessary for tmn/tmx)
     if (isTRUE(tmx) | isTRUE(tmn)) {
-      if (!isTRUE(tmp)) {
+      if (isFALSE(tmp)) {
         CRU_df <- subset(CRU_df, select = -tmp)
       }
 
-      if (!isTRUE(dtr)) {
+      if (isFALSE(dtr)) {
         CRU_df <- subset(CRU_df, select = -dtr)
       }
     }
@@ -178,7 +178,7 @@
 
   # lastly merge the data frames into one tidy (large) data frame --------------
 
-  if (!isTRUE(elv)) {
+  if (isFALSE(elv)) {
     CRU_df <- Reduce(function(...) {
       merge(..., by = c("lat", "lon", "month"))
     }, CRU_list)
@@ -194,7 +194,6 @@
     CRU_df <- CRU_list["elv"]
   }
   return(CRU_df)
-
 }
 
 #' @noRd
@@ -284,8 +283,7 @@
       nrows = 930,
       ncols = 2160,
       ymin = -65,
-      ymax = 90,
-      xmin = -180,
+      ymax = 90, xmin = -180,
       xmax = 180
     )
 
@@ -335,10 +333,10 @@
   }
 
   # cleanup if tmn/tmx specified but tmp/dtr not -----------------------------
-  if (any(c(isTRUE(tmx), isTRUE(tmn))) & !isTRUE(dtr)) {
+  if (any(tmx, tmn) && isFALSE(dtr)) {
     CRU_stack_list[which(names(CRU_stack_list) %in% "dtr")] <- NULL
   }
-  if (any(c(isTRUE(tmx), isTRUE(tmn))) & !isTRUE(tmp)) {
+  if (any(tmx, tmn) && isFALSE(tmp)) {
     CRU_stack_list[which(names(CRU_stack_list) %in% "tmp")] <- NULL
   }
   return(CRU_stack_list)
@@ -489,7 +487,7 @@
 
   # filter files -------------------------------------------------------------
   # which files are being requested?
-  files <- files[object_list %in% !isTRUE(files)]
+  files <- files[which(object_list)]
 
   # filter files from cache directory in case there are local files for which
   # we do not want data
@@ -500,8 +498,8 @@
   files <- cache_dir_contents[cache_dir_contents %in% files]
 
   if (length(files) < 0) {
-    stop("\nThere are no CRU CL v. 2.0 data files available in this directory.\n",
-      call. = FALSE
+    cli::cli_abort("There are no CRU CL v. 2.0 data files available in this directory.",
+      call = rlang::caller_env()
     )
   }
 

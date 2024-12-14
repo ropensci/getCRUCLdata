@@ -29,7 +29,7 @@
       pre <- TRUE
     }
 
-    if (isTRUE(tmn) | isTRUE(tmx)) {
+    if (isTRUE(tmn) || isTRUE(tmx)) {
       dtr <- tmp <- TRUE
     }
     # create object list to filter downloads -----------------------------------
@@ -63,7 +63,7 @@
 
     # filter downloaded --------------------------------------------------------
     # which files are being requested?
-    files <- files[object_list %in% !isTRUE(files)]
+    files <- files[which(object_list)]
 
     # which files are locally available?
     cache_dir_contents <-
