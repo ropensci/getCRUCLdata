@@ -652,10 +652,10 @@ test_that("create_CRU_stack creates a list containing only elv", {
   expect_named(stacks[[1]], "elv")
   expect_equal(terra::minmax(stacks[[1]])[[2]], 239, tolerance = 0.1)
   expect_equal(terra::minmax(stacks[[1]])[[1]], 19, tolerance = 0.1)
-  expect_identical(as.integer(terra::ext(stacks[[1]])[1]), -180L)
-  expect_identical(as.integer(terra::ext(stacks[[1]])[2]), 179L)
-  expect_identical(as.integer(terra::ext(stacks[[1]])[3]), -59L)
-  expect_identical(as.integer(terra::ext(stacks[[1]])[4]), 85L)
+  expect_equal(as.integer(terra::ext(stacks[[1]])[1]), -180)
+  expect_equal(as.integer(terra::ext(stacks[[1]])[2]), 180)
+  expect_equal(as.integer(terra::ext(stacks[[1]])[3]), -60)
+  expect_equal(as.integer(terra::ext(stacks[[1]])[4]), 85)
 })
 
 # Test that wrld raster object resolution and extent are appropriate -----------
@@ -1236,8 +1236,8 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
 
   expect_named(CRU_stack_list, c("pre", "tmp"))
   expect_type(CRU_stack_list, "list")
-  expect_identical(as.integer(terra::ext(CRU_stack_list[[1]])[1]), -180L)
-  expect_identical(as.integer(terra::ext(CRU_stack_list[[1]])[2]), 179L)
-  expect_identical(as.integer(terra::ext(CRU_stack_list[[1]])[3]), -59L)
-  expect_identical(as.integer(terra::ext(CRU_stack_list[[1]])[4]), 85L)
+  expect_equal(as.integer(terra::ext(CRU_stack_list[[1]])[1]), -180)
+  expect_equal(as.integer(terra::ext(CRU_stack_list[[1]])[2]), 180)
+  expect_equal(as.integer(terra::ext(CRU_stack_list[[1]])[3]), -60)
+  expect_equal(as.integer(terra::ext(CRU_stack_list[[1]])[4]), 85)
 })
