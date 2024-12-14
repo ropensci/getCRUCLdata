@@ -110,11 +110,9 @@ create_CRU_df <- function(pre = FALSE,
   )
 
   if (length(files) == 0) {
-    stop(
-      "\nNo CRU CL 2.0 data files were found in ",
-      dsn,
-      ". ",
-      "Please check that you have the proper file location.\n"
+    cli::cli_abort(
+      "No CRU CL 2.0 data files were found in {.var dsn}.
+      Please check that you have the proper file location."
     )
   }
 

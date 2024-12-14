@@ -86,9 +86,9 @@
     } else {
       p <- dsn
     }
-    if (!file.exists(p) & !file.exists(dsn)) {
-      stop("\nFile directory does not exist: ", dsn, ".\n",
-        call. = FALSE
+    if (!file.exists(p) || !file.exists(dsn)) {
+      cli::cli_abort("File directory does not exist: {.var dsn}.",
+        call = rlang::caller_env()
       )
     }
   }

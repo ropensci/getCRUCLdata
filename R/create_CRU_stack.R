@@ -87,12 +87,9 @@ create_CRU_stack <- function(pre = FALSE,
   )
 
   if (length(files) == 0) {
-    stop(
-      "\nNo CRU CL 2.0 data files were found in ",
-      dsn,
-      ". ",
-      "Please check that you have the proper file location.\n",
-      call. = FALSE
+    cli::cli_abort(
+      "No CRU CL 2.0 data files were found in {.var dsn}.
+      Please check that you have the proper file location."
     )
   }
 

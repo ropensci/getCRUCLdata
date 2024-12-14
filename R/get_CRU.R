@@ -87,8 +87,8 @@
         },
         error = function(x) {
           manage_cache$delete_all()
-          stop("\nThe file downloads have failed.\n
-               \nPlease start the download again.\n")
+          cli::cli_abort("The file downloads have failed.
+          Please start the download again.")
         }
       )
     }
