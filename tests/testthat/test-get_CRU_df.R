@@ -10,7 +10,7 @@ test_that("get_CRU_df fails if no parameters are TRUE", {
 # Test that get_CRU_df will retrieve files from CRU server
 test_that("get_CRU_df will retrieve files from CRU server", {
   skip_on_cran()
-  CRU_tmp <- get_CRU_df(tmp = TRUE, tmn = FALSE, tmx = FALSE, cache = FALSE)
+  CRU_tmp <- get_CRU_df(tmp = TRUE, cache = FALSE)
   expect_type(CRU_tmp, "list")
 })
 

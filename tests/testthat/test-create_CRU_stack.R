@@ -3,7 +3,7 @@
 test_that("create_CRU_stack fails if no dsn is specified", {
   expect_error(
     create_CRU_stack(pre = TRUE),
-    "File directory does not exist: ."
+    "You must define the dsn where you have stored the local files for import."
   )
 })
 
@@ -11,8 +11,8 @@ test_that("create_CRU_stack fails if no dsn is specified", {
 
 test_that("create_CRU_stack fails if no parameters are TRUE", {
   expect_error(
-    create_CRU_stack(dsn = "~/"),
-    "You must select at least one element for importing"
+    create_CRU_stack(),
+    "You must select at least one element for download or import."
   )
 })
 

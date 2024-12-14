@@ -702,19 +702,19 @@ test_that("month names are appropriate", {
     )
 
   expect_identical(month_names, c(
-      "jan",
-      "feb",
-      "mar",
-      "apr",
-      "may",
-      "jun",
-      "jul",
-      "aug",
-      "sep",
-      "oct",
-      "nov",
-      "dec"
-    ))
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec"
+  ))
 })
 
 # Test that CRU_stack_list returns list of raster stacks with proper names -----
