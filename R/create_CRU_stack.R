@@ -1,61 +1,16 @@
-#' @title Create a list of terra rast objects from local disk files
+#' Create a list of terra rast objects from local disk files
 #'
-#' @description Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
-#' data and creates a \code{\link{terra}} \code{\link[terra]{rast}} of the
+#' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
+#' data and creates a [terra()] [terra::rast()] of the
 #' data.  If requested, minimum and maximum temperature may also be
 #' automatically calculated as described in the data readme.txt file.  This
 #' function can be useful if you have network connection issues that mean
 #' automated downloading of the files using \R does not work properly.
 #'
-#' Nomenclature and units from readme.txt:
-#' \describe{
-#' \item{pre}{precipitation (millimetres/month)}
-#'   \describe{
-#'     \item{cv}{cv of precipitation (percent)}
-#'   }
-#' \item{rd0}{wet-days (number days with >0.1mm rain per month)}
-#' \item{tmp}{mean temperature (degrees Celsius)}
-#' \item{dtr}{mean diurnal temperature range (degrees Celsius)}
-#' \item{reh}{relative humidity (percent)}
-#' \item{sunp}{sunshine (percent of maximum possible (percent of day length))}
-#' \item{frs}{ground-frost (number of days with ground-frost per month)}
-#' \item{wnd}{10 metre windspeed (metres/second)}
-#' \item{elv}{elevation (automatically converted to metres)}
-#' }
-#' For more information see the description of the data provided by
-#' \acronym{CRU}, \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
+#' @inheritSection get_CRU_df Nomenclature and Units
+#' @inheritParams create_CRU_df
 #'
-#' @param pre Logical. Fetch precipitation (millimetres/month) from server and
-#'  return in the data frame? Defaults to \code{FALSE}.
-#' @param pre_cv Logical. Fetch cv of precipitation (percent) from server and
-#' return in the data frame? Defaults to \code{FALSE}. NOTE. Setting this to
-#' \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
-#' returned as well.
-#' @param rd0 Logical. Fetch wet-days (number days with >0.1millimetres rain per
-#' month) and return in the data frame? Defaults to \code{FALSE}.
-#' @param dtr Logical. Fetch mean diurnal temperature range (degrees Celsius)
-#' and return it in the data frame? Defaults to \code{FALSE}.
-#' @param tmp Logical. Fetch temperature (degrees Celsius) and return it in the
-#' data frame? Defaults to \code{FALSE}.
-#' @param tmn Logical. Calculate minimum temperature values (degrees Celsius)
-#' and return it in the data frame? Defaults to \code{FALSE}.
-#' @param tmx Logical. Calculate maximum temperature (degrees Celsius) and
-#' return it in the data frame? Defaults to \code{FALSE}.
-#' @param reh Logical. Fetch relative humidity and return it in the data frame?
-#' Defaults to \code{FALSE}.
-#' @param sunp Logical. Fetch sunshine, percent of maximum possible (percent of
-#' day length) and return it in data frame? Defaults to \code{FALSE}.
-#' @param frs Logical. Fetch ground-frost records (number of days with ground-
-#' frost per month) and return it in data frame? Defaults to \code{FALSE}.
-#' @param wnd Logical. Fetch 10m wind speed (metres/second) and return it in the
-#' data frame? Defaults to \code{FALSE}.
-#' @param elv Logical. Fetch elevation (converted to metres) and return it in
-#' the data frame? Defaults to \code{FALSE}.
-#' @param dsn Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
-#' files are located.
 #' @examplesIf interactive()
-#' # Create a terra rast object of temperature from tmp files in the tempdir()
-#' # directory.
 #'
 #' download.file(
 #'   url = "https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz",
@@ -67,10 +22,10 @@
 #' CRU_tmp
 #'
 #' @seealso
-#' \code{\link{get_CRU_stack}}
+#' [get_CRU_stack()]
 #'
-#' @return A \code{\link[base]{list}} of \code{\link{terra}}
-#' \code{\link[terra]{rast}} objects of \acronym{CRU} \acronym{CL} v. 2.0
+#' @return A [base::list()] of [terra()]
+#' [terra::rast()] objects of \acronym{CRU} \acronym{CL} v. 2.0
 #' climatology elements
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}

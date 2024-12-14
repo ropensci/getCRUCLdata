@@ -1,76 +1,29 @@
-#' @title Download and create a list of terra rast objects of climatology parameters
+#' Download and create a list of terra rast objects of climatology parameters
 #'
-#' @description This function automates downloading and importing CRU CL v. 2.0
-#' climatology data into \R and creates a list of \code{\link{terra}}
-#' \code{\link[terra]{rast}} of the data.  If requested, minimum and maximum
+#' This function automates downloading and importing CRU CL v. 2.0
+#' climatology data into \R and creates a list of [terra()]
+#' [terra::rast()] of the data.  If requested, minimum and maximum
 #' temperature may also be automatically calculated as described in the data
 #' readme.txt file.  Data may be cached for later use by this function, saving
 #' time downloading files in future use of the function.
 #'
-#' Nomenclature and units from readme.txt:
-#' \describe{
-#' \item{pre}{precipitation (millimetres/month)}
-#'   \describe{
-#'     \item{cv}{cv of precipitation (percent)}
-#'   }
-#' \item{rd0}{wet-days (number days with >0.1mm rain per month)}
-#' \item{tmp}{mean temperature (degrees Celsius)}
-#' \item{dtr}{mean diurnal temperature range (degrees Celsius)}
-#' \item{reh}{relative humidity (percent)}
-#' \item{sunp}{sunshine (percent of maximum possible (percent of day length))}
-#' \item{frs}{ground-frost (number of days with ground-frost per month)}
-#' \item{wnd}{10 metre windspeed (metres/second)}
-#' \item{elv}{elevation (automatically converted to metres)}
-#' }
-#' For more information see the description of the data provided by CRU,
-#' \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
+#' @inheritSection get_CRU_df Nomenclature and Units
+#' @inheritParams get_CRU_df
+#' @examplesIf interactive()
 #'
-#' @param pre Logical.  Fetch precipitation (millimetres/month) from server and
-#' return in the data frame?  Defaults to \code{FALSE}.
-#' @param pre_cv Logical.  Fetch cv of precipitation (percent) from server and
-#' return in the data frame?  Defaults to \code{FALSE}.  NOTE.  Setting this to
-#' \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
-#' returned as well.
-#' @param rd0 Logical.  Fetch wet-days (number days with >0.1millimetres rain
-#' per month) and return in the data frame? Defaults to \code{FALSE}.
-#' @param dtr Logical.  Fetch mean diurnal temperature range (degrees Celsius)
-#' and return it in the data frame?  Defaults to \code{FALSE}.
-#' @param tmp Logical.  Fetch temperature (degrees Celsius) and return it in the
-#' data frame?  Defaults to \code{FALSE}.
-#' @param tmn Logical.  Calculate minimum temperature values (degrees Celsius)
-#' and return it in the data frame?  Defaults to \code{FALSE}.
-#' @param tmx Logical.  Calculate maximum temperature (degrees Celsius) and
-#' return it in the data frame?  Defaults to \code{FALSE}.
-#' @param reh Logical.  Fetch relative humidity and return it in the data frame?
-#' Defaults to FALSE.
-#' @param sunp Logical.  Fetch sunshine, percent of maximum possible (percent of
-#' day length) and return it in data frame?  Defaults to \code{FALSE}.
-#' @param frs Logical. Fetch ground-frost records (number of days with ground-
-#' frost per month) and return it in data frame?  Defaults to \code{FALSE}.
-#' @param wnd Logical.  Fetch 10m wind speed (metres/second) and return it in
-#' the data frame? Defaults to \code{FALSE}.
-#' @param elv Logical.  Fetch elevation (converted to metres) and return it in
-#' the data frame?  Defaults to \code{FALSE}.
-#' @param cache Logical.  Store CRU CL v. 2.0 data files locally for later use?
-#' If \code{FALSE}, the downloaded files are removed when R session is closed.
-#' To take advantage of cached files in future sessions, use \code{cache = TRUE}
-#' after the initial download and caching.  Defaults to \code{FALSE}.
-#'
-#' @examples
-#' \donttest{
-#' # Download data and create a \code{\link{terra}} \code{\link[terra]{rast}}
+#' # Download data and create a [terra()] [terra::rast()]
 #' # object of precipitation and temperature without caching the data files
 #' CRU_pre_tmp <- get_CRU_stack(pre = TRUE, tmp = TRUE)
 #'
 #' CRU_pre_tmp
-#' }
+#'
 #'
 #' @seealso
-#' \code{\link{create_CRU_stack}}
-#' \code{\link{manage_cache}}
+#' [create_CRU_stack()]
+#' [manage_cache()]
 #'
-#' @return A \code{\link[base]{list}} of \code{\link{terra}}
-#' \code{\link[terra]{rast}} objects of CRU CL v. 2.0 climatology elements
+#' @return A [base::list()] of [terra()]
+#' [terra::rast()] objects of CRU CL v. 2.0 climatology elements
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'

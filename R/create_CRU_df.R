@@ -1,56 +1,40 @@
-#' @title Create a data of climatology variables from local disk files
+#' Create a data of climatology variables from local disk files
 #'
-#' @description Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
+#' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
 #' data and creates a tidy data frame of the data.  If requested, minimum and
 #' maximum temperature may also be automatically calculated as described in the
 #' data readme.txt file.  This function can be useful if you have network
 #' connection issues that mean automated downloading of the files using \R
 #' does not work properly.
 #'
-#' Nomenclature and units from readme.txt:
-#' \describe{
-#' \item{pre}{precipitation (millimetres/month)}
-#'  \describe{
-#'    \item{cv}{cv of precipitation (percent)}
-#'  }
-#' \item{rd0}{wet-days (number days with >0.1mm rain per month)}
-#' \item{tmp}{mean temperature (degrees Celsius)}
-#' \item{dtr}{mean diurnal temperature range (degrees Celsius)}
-#' \item{reh}{relative humidity (percent)}
-#' \item{sunp}{sunshine (percent of maximum possible (percent of day length))}
-#' \item{frs}{ground-frost (number of days with ground-frost per month)}
-#' \item{wnd}{10 metre windspeed (metres/second)}
-#' \item{elv}{elevation (automatically converted to metres)}
-#' }
-#' For more information see the description of the data provided by
-#' \acronym{CRU}, \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
+#' @inheritSection get_CRU_df Nomenclature and Units
 #'
-#' @param pre Logical. Fetch precipitation (millimetres/month) from server and
-#'  return in the data frame? Defaults to \code{FALSE}.
-#' @param pre_cv Logical. Fetch cv of precipitation (percent) from server and
-#' return in the data frame? Defaults to \code{FALSE}. NOTE. Setting this to
-#' \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
+#' @param pre Logical. Load precipitation (millimetres/month) from server and
+#'  return in the data frame? Defaults to `FALSE`.
+#' @param pre_cv Logical. Load cv of precipitation (percent) from server and
+#' return in the data frame? Defaults to `FALSE`. NOTE. Setting this to
+#' `TRUE` will always results in **pre** being set to `TRUE` and
 #' returned as well.
-#' @param rd0 Logical. Fetch wet-days (number days with >0.1millimetres rain per
-#' month) and return in the data frame? Defaults to \code{FALSE}.
-#' @param dtr Logical. Fetch mean diurnal temperature range (degrees Celsius)
-#' and return it in the data frame? Defaults to \code{FALSE}.
-#' @param tmp Logical. Fetch temperature (degrees Celsius) and return it in the
-#' data frame? Defaults to \code{FALSE}.
+#' @param rd0 Logical. Load wet-days (number days with >0.1millimetres rain per
+#' month) and return in the data frame? Defaults to `FALSE`.
+#' @param dtr Logical. Load mean diurnal temperature range (degrees Celsius)
+#' and return it in the data frame? Defaults to `FALSE`.
+#' @param tmp Logical. Load temperature (degrees Celsius) and return it in the
+#' data frame? Defaults to `FALSE`.
 #' @param tmn Logical. Calculate minimum temperature values (degrees Celsius)
-#' and return it in the data frame? Defaults to \code{FALSE}.
+#' and return it in the data frame? Defaults to `FALSE`.
 #' @param tmx Logical. Calculate maximum temperature (degrees Celsius) and
-#' return it in the data frame? Defaults to \code{FALSE}.
-#' @param reh Logical. Fetch relative humidity and return it in the data frame?
-#' Defaults to \code{FALSE}.
-#' @param sunp Logical. Fetch sunshine, percent of maximum possible (percent of
-#' day length) and return it in data frame? Defaults to \code{FALSE}.
-#' @param frs Logical. Fetch ground-frost records (number of days with ground-
-#' frost per month) and return it in data frame? Defaults to \code{FALSE}.
-#' @param wnd Logical. Fetch 10m wind speed (metres/second) and return it in the
-#' data frame? Defaults to \code{FALSE}.
-#' @param elv Logical. Fetch elevation (converted to metres) and return it in
-#' the data frame? Defaults to \code{FALSE}.
+#' return it in the data frame? Defaults to `FALSE`.
+#' @param reh Logical. Load relative humidity and return it in the data frame?
+#' Defaults to `FALSE`.
+#' @param sunp Logical. Load sunshine, percent of maximum possible (percent of
+#' day length) and return it in data frame? Defaults to `FALSE`.
+#' @param frs Logical. Load ground-frost records (number of days with ground-
+#' frost per month) and return it in data frame? Defaults to `FALSE`.
+#' @param wnd Logical. Load 10m wind speed (metres/second) and return it in the
+#' data frame? Defaults to `FALSE`.
+#' @param elv Logical. Load elevation (converted to metres) and return it in
+#' the data frame? Defaults to `FALSE`.
 #' @param dsn Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
 #' files are located.
 #'
@@ -68,10 +52,10 @@
 #' CRU_tmp
 #'
 #' @seealso
-#' \code{\link{get_CRU_df}}
+#' [get_CRU_df()]
 #'
 #' @return A tidy data frame of \acronym{CRU} \acronym{CL} v. 2.0 climatology
-#' elements as a \code{\link[base]{data.frame}} object
+#' elements as a [base::data.frame()] object
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #'
