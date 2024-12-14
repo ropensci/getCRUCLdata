@@ -95,7 +95,77 @@ For complete documentation see the package website: <https://docs.ropensci.org/g
 
 ## Contributors
 
-  - [Adam H. Sparks](https://github.com/adamhsparks)
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropensci/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+
+### Code
+
+<table>
+
+<tr>
+<td align="center">
+<a href="https://github.com/adamhsparks">
+<img src="https://avatars.githubusercontent.com/u/3195906?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/getCRUCLdata/commits?author=adamhsparks">adamhsparks</a>
+</td>
+<td align="center">
+<a href="https://github.com/sckott">
+<img src="https://avatars.githubusercontent.com/u/577668?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/getCRUCLdata/commits?author=sckott">sckott</a>
+</td>
+<td align="center">
+<a href="https://github.com/jeroen">
+<img src="https://avatars.githubusercontent.com/u/216319?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/getCRUCLdata/commits?author=jeroen">jeroen</a>
+</td>
+<td align="center">
+<a href="https://github.com/karthik">
+<img src="https://avatars.githubusercontent.com/u/138494?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/getCRUCLdata/commits?author=karthik">karthik</a>
+</td>
+</tr>
+
+</table>
+
+
+### Issues
+
+<table>
+
+<tr>
+<td align="center">
+<a href="https://github.com/ivanhanigan">
+<img src="https://avatars.githubusercontent.com/u/1305767?u=151f7c98a1bb78ccceac6297d28750acb42ec877&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/getCRUCLdata/issues?q=is%3Aissue+author%3Aivanhanigan">ivanhanigan</a>
+</td>
+<td align="center">
+<a href="https://github.com/sunjj878">
+<img src="https://avatars.githubusercontent.com/u/77564290?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/getCRUCLdata/issues?q=is%3Aissue+author%3Asunjj878">sunjj878</a>
+</td>
+<td align="center">
+<a href="https://github.com/mhesselbarth">
+<img src="https://avatars.githubusercontent.com/u/29225293?u=326393156ff083af6e10548ff16a1c8e439ebdf9&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/getCRUCLdata/issues?q=is%3Aissue+author%3Amhesselbarth">mhesselbarth</a>
+</td>
+</tr>
+
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## Other
 
