@@ -1,3 +1,17 @@
+# getCRUCLdata 1.0.0
+
+## Major changes
+
+- The cache is now where ever `tools::R_user_dir(package = "getCRUCLdata", which = "cache")` is defined by R (>= 4.0.0)
+
+- Depends on R (>= 4.0.0)
+
+## Minor changes
+
+- {cli} is used for errors that are emitted to the user
+
+- Many internal changes including code linting and styling to improve code smells
+
 # getCRUCLdata 0.3.3
 
 ## Minor changes
@@ -32,8 +46,6 @@
 
 - Update URL in DESCRIPTION file
 
---------------------------------------------------------------------------------
-
 # getCRUCLdata 0.3.0
 
 ## Major changes
@@ -50,8 +62,6 @@
 
 - Update package to follow CRAN policies
 
---------------------------------------------------------------------------------
-
 # getCRUCLdata 0.2.5
 
 ## Minor changes
@@ -61,8 +71,6 @@
 - Reorganises internal functions consolidating functions all in a single file
 and following a standard naming scheme for all internal functions
 
---------------------------------------------------------------------------------
-
 # getCRUCLdata 0.2.4
 
 ## Bug fixes
@@ -71,7 +79,7 @@ and following a standard naming scheme for all internal functions
 stacks
 
 - Move `rappdirs` to SUGGESTS to fix NOTEs on
-https://cran.rstudio.com/web/checks/check_results_getCRUCLdata.html
+<https://cran.rstudio.com/web/checks/check_results_getCRUCLdata.html>
 
 ## Minor changes
 
@@ -79,8 +87,6 @@ https://cran.rstudio.com/web/checks/check_results_getCRUCLdata.html
 
 - Enhance `stop` messages for user, just print message, not the function that
 called it to clarify
-
---------------------------------------------------------------------------------
 
 # getCRUCLdata 0.2.3
 
@@ -92,15 +98,12 @@ called it to clarify
 
 - Remove the use of `plyr` in tests
 
---------------------------------------------------------------------------------
-
 # getCRUCLdata 0.2.2
 
 ## Bug fixes
 
 - Fix incorrect ORCID entry author field
 
---------------------------------------------------------------------------------
 # getCRUCLdata 0.2.1
 
 ## Minor changes
@@ -108,8 +111,6 @@ called it to clarify
 - Fix ORCID entry in DESCRIPTION per CRAN maintainer's request
 
 - Remove Scott as contributor, the code contributed has been removed
-
---------------------------------------------------------------------------------
 
 # getCRUCLdata 0.2.0
 
@@ -134,8 +135,6 @@ them in the cache where the package will find them
 `CRU_cache_details()` now superseded by `manage_cache$details()`
 `CRU_cache_delete()` now superseded by `manage_cache$delete()`
 `CRU_cache_delete_all()` now superseded by `manage_cache$delete_all()`
-
---------------------------------------------------------------------------------
 
 # getCRUCLdata 0.1.10
 
@@ -170,8 +169,6 @@ Raster stacks were not affected by this bug
 - Replaced `for f in 1:length()` with `for f in seq_along()` for better
 programming practices
 
---------------------------------------------------------------------------------
-
 # getCRUCLdata 0.1.7
 
 ## Minor Changes
@@ -182,8 +179,6 @@ programming practices
 
 - Fix bug where `rappdirs::user_config_dir()` was incorrectly used in place of
 `rappdirs::user_cache_dir()`
-
---------------------------------------------------------------------------------
 
 # getCRUCLdata 0.1.6
 
@@ -200,8 +195,6 @@ programming practices
 - Fix bugs in CITATION file
 
 - Format NEWS.md to be more markdown standards compliant
-
---------------------------------------------------------------------------------
 
 # getCRUCLdata 0.1.5
 
@@ -232,8 +225,6 @@ current R session, if so data file(s) are not requested for download again
 
 - Months are returned as a factor object in the tidy data frame
 
---------------------------------------------------------------------------------
-
 # getCRUCLdata 0.1.4
 
 ## Minor Changes
@@ -252,8 +243,6 @@ cropped
 
 - Minor edits to documentation for clarity
 
---------------------------------------------------------------------------------
-
 # getCRUCLdata 0.1.2
 
 ## Minor Changes
@@ -269,8 +258,6 @@ seconds
 
 - Corrected URL pointing to CRU readme.txt file
 
---------------------------------------------------------------------------------
-
 # getCRUCLdata 0.1.1
 
 ## Minor Changes
@@ -280,8 +267,6 @@ seconds
 - Revised description file as requested by CRAN maintainers
 
 - Enhanced vignette
-
---------------------------------------------------------------------------------
 
 ## getCRUCL2.0 0.1.0
 
