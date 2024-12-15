@@ -17,7 +17,8 @@ Description: Provides functions that automate downloading and importing
     Climate Research Unit,
     <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
 License: MIT + file LICENSE
-URL: https://docs.ropensci.org/getCRUCLdata/
+URL: https://github.com/ropensci/getCRUCLdata,
+    https://docs.ropensci.org/getCRUCLdata/
 BugReports: https://github.com/ropensci/getCRUCLdata/issues
 Depends:
     R (>= 4.0.0)
@@ -43,6 +44,8 @@ Suggests:
 VignetteBuilder: 
     knitr
 ByteCompile: TRUE
+Config/roxyglobals/filename: globals.R
+Config/roxyglobals/unique: FALSE
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
@@ -55,5 +58,3 @@ X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: anglia-cru, climate-data, cru-cl2, temperature,
     rainfall, elevation, data-access, wind, relative-humidity,
     solar-radiation, diurnal-temperature, frost
-Config/roxyglobals/filename: globals.R
-Config/roxyglobals/unique: FALSE
