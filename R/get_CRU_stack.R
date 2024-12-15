@@ -85,7 +85,7 @@ get_CRU_stack <-
       cache_dir
     )
 
-    if (isTRUE(pre_cv)) {
+    if (pre_cv) {
       pre <- TRUE
     }
 
