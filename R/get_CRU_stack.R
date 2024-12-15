@@ -22,8 +22,8 @@
 #' [create_CRU_stack()]
 #' [manage_cache()]
 #'
-#' @return A [base::list()] of [terra()]
-#' [terra::rast()] objects of CRU CL v. 2.0 climatology elements
+#' @return A [base::list()] of \CRANpkg{terra} [terra::rast()] objects of CRU CL
+#'  v. 2.0 climatology elements
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
