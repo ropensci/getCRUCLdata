@@ -86,32 +86,32 @@ CRU_data <- get_CRU_df(pre = TRUE,
                        elv = TRUE)
 
 CRU_data
-#>             lat     lon  month   dtr   frs   pre pre_cv   rd0   reh   sun   tmp   wnd   elv   tmx
-#>           <num>   <num> <fctr> <num> <num> <num>  <num> <num> <num> <num> <num> <num> <num> <num>
-#>      1: -55.583 -68.250   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA    62    NA
-#>      2: -55.417 -69.750   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA    86    NA
-#>      3: -55.417 -69.583   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA    83    NA
-#>      4: -55.417 -69.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA   121    NA
-#>      5: -55.417 -69.250   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA    51    NA
-#>     ---                                                                                          
-#> 566374: -55.750 -67.417    dec   7.7   8.7  68.4   47.6  11.1  80.1  34.2   7.3   5.3   103 11.15
-#> 566375: -55.750 -67.250    dec   7.6   8.7  67.1   47.6  11.1  79.9  34.2   7.5   5.3    63 11.30
-#> 566376: -55.583 -68.083    dec   7.9   8.4  69.8   48.6  10.9  80.1  34.7   7.6   5.2   123 11.55
-#> 566377: -55.583 -67.583    dec   7.8   8.3  65.2   48.4  10.9  79.4  34.6   8.0   5.2    19 11.90
-#> 566378: -55.583 -67.417    dec   7.8   8.5  64.0   48.3  11.1  79.1  34.4   7.7   5.3    77 11.60
-#>           tmn
-#>         <num>
-#>      1:    NA
-#>      2:    NA
-#>      3:    NA
-#>      4:    NA
-#>      5:    NA
-#>     ---      
-#> 566374:  3.45
-#> 566375:  3.70
-#> 566376:  3.65
-#> 566377:  4.10
-#> 566378:  3.80
+#>             lat     lon  month   dtr   frs   pre pre_cv   rd0   reh   sun   tmp   wnd   elv    tmx
+#>           <num>   <num> <fctr> <num> <num> <num>  <num> <num> <num> <num> <num> <num> <num>  <num>
+#>       1: 30.917  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -260     NA
+#>       2: 31.083  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -361     NA
+#>       3: 31.250  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -336     NA
+#>       4: 31.417  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -284     NA
+#>       5: 31.750  35.583   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -248     NA
+#>      ---                                                                                          
+#> 6795146: 83.583 -30.083    dec   8.7    31   0.1   72.7   5.1  70.6     0 -31.3   5.6   283 -26.95
+#> 6795147: 83.583 -29.917    dec   8.6    31   0.1   72.8   4.9  70.6     0 -30.7   5.6   186 -26.40
+#> 6795148: 83.583 -29.750    dec   8.6    31   0.1   72.9   4.9  70.6     0 -30.8   5.6   195 -26.50
+#> 6795149: 83.583 -29.583    dec   8.6    31   0.1   73.0   5.0  70.6     0 -31.2   5.6   268 -26.90
+#> 6795150: 83.583 -29.417    dec   8.6    31   0.1   73.1   5.1  70.6     0 -31.5   5.6   328 -27.20
+#>             tmn
+#>           <num>
+#>       1:     NA
+#>       2:     NA
+#>       3:     NA
+#>       4:     NA
+#>       5:     NA
+#>      ---       
+#> 6795146: -35.65
+#> 6795147: -35.00
+#> 6795148: -35.10
+#> 6795149: -35.50
+#> 6795150: -35.80
 ```
 
 Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only.
@@ -121,19 +121,19 @@ Perhaps you only need one or two elements, it is easy to create a tidy data fram
 t <- get_CRU_df(tmp = TRUE)
 
 t
-#>          lat     lon  month   tmp
-#>        <num>   <num> <fctr> <num>
-#>   1: -59.083 -26.583    jan   0.2
-#>   2: -58.417 -26.250    jan   0.6
-#>   3: -58.417 -26.417    jan   0.4
-#>   4: -55.917 -67.250    jan   8.0
-#>   5: -55.750 -67.250    jan   8.2
-#>  ---                             
-#> 116: -55.750 -67.417    dec   7.3
-#> 117: -55.750 -67.583    dec   7.7
-#> 118: -55.583 -67.417    dec   7.7
-#> 119: -55.583 -67.583    dec   8.0
-#> 120: -55.583 -68.083    dec   7.6
+#>              lat     lon  month   tmp
+#>            <num>   <num> <fctr> <num>
+#>       1: -59.083 -26.583    jan   0.2
+#>       2: -58.417 -26.250    jan   0.6
+#>       3: -58.417 -26.417    jan   0.4
+#>       4: -55.917 -67.250    jan   8.0
+#>       5: -55.750 -67.250    jan   8.2
+#>      ---                             
+#> 6795140:  83.583 -36.083    dec -32.6
+#> 6795141:  83.583 -36.250    dec -33.0
+#> 6795142:  83.583 -36.417    dec -33.4
+#> 6795143:  83.583 -36.583    dec -33.3
+#> 6795144:  83.583 -36.750    dec -33.3
 ```
 
 #### Plotting data from the tidy dataframe
@@ -209,6 +209,10 @@ CRU_stack <- get_CRU_stack(
   wnd = TRUE,
   elv = TRUE
 )
+#> 
+|---------|---------|---------|---------|
+=========================================
+                                          
 
 CRU_stack
 #> $dtr
@@ -250,10 +254,10 @@ CRU_stack
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> coord. ref. : lon/lat WGS 84 
-#> source      : spat_4486664f1fd6_17542_SskviV5XwhZb4QV.tif 
-#> names       :   jan,   feb,   mar,   apr,   may,   jun, ... 
-#> min values  :  65.3,  70.3,  73.4,  74.0,  63.3,  62.4, ... 
-#> max values  : 106.6, 121.9, 142.1, 147.5, 160.3, 163.5, ... 
+#> source      : spat_fe274b2a6660_65063_GdaPwXHptgIOPSx.tif 
+#> names       :   jan,   feb,   mar,   apr,  may,    jun, ... 
+#> min values  :   0.0,   0.0,   0.0,   0.0,    0,    0.0, ... 
+#> max values  : 910.1, 824.3, 727.3, 741.3, 1100, 2512.6, ... 
 #> 
 #> $rd0
 #> class       : SpatRaster 
@@ -295,9 +299,9 @@ CRU_stack
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> coord. ref. : lon/lat WGS 84 
 #> source(s)   : memory
-#> names       : jan, feb, mar,  apr,  may,  jun, ... 
-#> min values  : 0.2, 0.3, 0.2, -1.9, -6.0, -9.8, ... 
-#> max values  : 8.6, 8.6, 7.3,  5.6,  3.4,  2.0, ... 
+#> names       :   jan,   feb,   mar,   apr,   may,   jun, ... 
+#> min values  : -51.6, -47.6, -45.2, -36.6, -22.2, -16.3, ... 
+#> max values  :  32.5,  32.1,  32.4,  34.3,  36.0,  38.3, ... 
 #> 
 #> $wnd
 #> class       : SpatRaster 
@@ -317,9 +321,9 @@ CRU_stack
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> coord. ref. : lon/lat WGS 84 
 #> source(s)   : memory
-#> names       :   jan,   feb,  mar,   apr,   may,    jun, ... 
-#> min values  : -0.95, -0.75, -0.9, -3.05, -7.90, -12.05, ... 
-#> max values  :  4.70,  4.75,  3.5,  2.20,  0.45,  -0.75, ... 
+#> names       :    jan,    feb,    mar,    apr, may,    jun, ... 
+#> min values  : -55.05, -52.95, -48.75, -41.35, -28, -21.40, ... 
+#> max values  :  26.30,  26.25,  27.40,  27.50,  30,  30.65, ... 
 #> 
 #> $tmx
 #> class       : SpatRaster 
@@ -328,9 +332,9 @@ CRU_stack
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> coord. ref. : lon/lat WGS 84 
 #> source(s)   : memory
-#> names       :   jan,   feb,  mar,   apr,   may,   jun, ... 
-#> min values  :  1.35,  1.35,  1.3, -0.75, -4.10, -7.55, ... 
-#> max values  : 12.50, 12.45, 11.1,  9.00,  6.35,  4.75, ...
+#> names       :   jan,    feb,    mar,    apr,    may,    jun, ... 
+#> min values  : -48.2, -43.35, -41.65, -32.45, -17.55, -11.50, ... 
+#> max values  :  39.7,  38.40,  40.25,  41.85,  43.60,  45.95, ...
 ```
 
 The `create_CRU_stack()` function works in the same way with only one minor difference.
@@ -410,6 +414,6 @@ are compared to an earlier data set at 0.5 degrees latitude/longitude resolution
 and show added value over most regions. The data will have many applications in
 applied climatology, biogeochemical modelling, hydrology and agricultural
 meteorology and are available through the School of Geography Oxford
-(https://www.geog.ox.ac.uk/), the International Water Management Institute
-"World Water and Climate Atlas" (https://www.iwmi.org/) and the Climatic
+(https://www.geog.ox.ac.uk), the International Water Management Institute
+"World Water and Climate Atlas" (https://www.iwmi.cgiar.org/) and the Climatic
 Research Unit (https://www.uea.ac.uk/groups-and-centres/climatic-research-unit).
