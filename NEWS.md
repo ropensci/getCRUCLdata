@@ -1,3 +1,9 @@
+# getCRUCLdata 1.0.2
+
+## Minor changes
+
+- Reknit vignette with proper values
+
 # getCRUCLdata 1.0.1
 
 ## Minor changes
