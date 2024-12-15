@@ -57,16 +57,17 @@
                               wnd,
                               elv) {
   if (!any(pre, pre_cv, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)) {
-    cli::cli_abort("You must select at least one element for download or import.",
+    cli::cli_abort(
+      "You must select at least one element for download or import.",
       call = rlang::caller_env()
     )
   }
 }
 
-#' Validates User Entered dsn value
+#' Validates User Entered dsn Value
 #'
 #' @param dsn User provided value for checking
-#'
+#' @keywords Internal
 #' @noRd
 .validate_dsn <- function(dsn) {
   if (missing(dsn)) {
@@ -167,7 +168,7 @@
     CRU_df <- Reduce(function(...) {
       merge(..., by = c("lat", "lon", "month"))
     }, CRU_list)
-  } else if (isTRUE(elv) & length(CRU_list) > 1) {
+  } else if (elv && length(CRU_list) > 1) {
     elv_df <- CRU_list[which(names(CRU_list) %in% "elv")]
     CRU_list[which(names(CRU_list) %in% "elv")] <- NULL
     CRU_df <- Reduce(function(...) {
@@ -175,15 +176,22 @@
     }, CRU_list)
 
     CRU_df <- CRU_df[elv_df$elv, on = c("lat", "lon")]
-  } else if (isTRUE(elv)) {
+  } else if (elv) {
     CRU_df <- CRU_list["elv"]
   }
   return(CRU_df)
 }
 
+#' Read Files From Local cache
+#'
+#' @param .files a list of CRU CL2.0 files in local storage
+#' @param .pre_cv `Boolean` return pre_cv in the data?
+#'
+#' @keywords Internal
+#' @autoglobal
 #' @noRd
+
 .read_cache <- function(.files, .pre_cv) {
-  pre_cv <- i.pre_cv <- elv <- NULL
   month_names <-
     c(
       "jan",
@@ -216,7 +224,7 @@
       )
     data.table::setnames(x_df, c("lat", "lon", "month", "wvar"))
   } else if (ncol(x) == 26) {
-    if (isTRUE(.pre_cv)) {
+    if (.pre_cv) {
       x_df <- x[, c(1:14)]
       data.table::setnames(x_df, c("lat", "lon", month_names))
       x_df <- data.table::melt(
@@ -306,7 +314,7 @@
       "dec"
     )
 
-  # Create terra objects using cellFromXY and generate a terra rast
+  # Create terra objects using cellFromXY() and generate a terra rast
   # create.stack takes pre, tmp, tmn and tmx and creates a terra rast
   # object stack of 12 month data
 
@@ -322,13 +330,13 @@
 
   names(CRU_stack_list) <- substr(basename(files), 12, 14)
 
-  # cacluate tmn -------------------------------------------------------------
-  if (isTRUE(tmn)) {
+  # calculate tmn -------------------------------------------------------------
+  if (tmn) {
     CRU_stack_list$tmn <-
       CRU_stack_list$tmp - (0.5 * CRU_stack_list$dtr)
   }
-  # cacluate tmx -------------------------------------------------------------
-  if (isTRUE(tmx)) {
+  # calculate tmx -------------------------------------------------------------
+  if (tmx) {
     CRU_stack_list$tmx <-
       CRU_stack_list$tmp + (0.5 * CRU_stack_list$dtr)
   }
@@ -376,7 +384,7 @@
     }
     names(y) <- month_names
   } else if (ncol(wvar) == 26) {
-    if (isTRUE(pre) & isTRUE(pre_cv)) {
+    if (pre && pre_cv) {
       for (k in 3:26) {
         wrld[cells] <- wvar[, k]
         if (k == 3) {
@@ -386,7 +394,7 @@
         }
       }
       names(y) <- c(month_names, paste0("pre_cv_", month_names))
-    } else if (isTRUE(pre)) {
+    } else if (pre) {
       for (k in 3:14) {
         wrld[cells] <- wvar[, k]
         if (k == 3) {
@@ -396,7 +404,7 @@
         }
       }
       names(y) <- month_names
-    } else if (isTRUE(pre_cv)) {
+    } else if (pre_cv) {
       for (k in 15:26) {
         wrld[cells] <- wvar[, k]
         if (k == 15) {
@@ -488,13 +496,13 @@
                        wnd,
                        elv,
                        cache_dir) {
-  # check if pre_cv or tmx/tmn (derived) are true, make sure proper ----------
+  # check if pre_cv or tmx/tmn (derived) are true, make sure proper ------------
   # parameters set TRUE
-  if (isTRUE(pre_cv)) {
+  if (pre_cv) {
     pre <- TRUE
   }
 
-  if (isTRUE(tmn) | isTRUE(tmx)) {
+  if (any(tmn, tmx)) {
     dtr <- tmp <- TRUE
   }
 
@@ -536,7 +544,7 @@
       "rd0_file"
     )
 
-  # filter files -------------------------------------------------------------
+  # filter files ---------------------------------------------------------------
   # which files are being requested?
   files <- files[which(object_list)]
 
@@ -549,7 +557,8 @@
   files <- cache_dir_contents[cache_dir_contents %in% files]
 
   if (length(files) < 0) {
-    cli::cli_abort("There are no CRU CL v. 2.0 data files available in this directory.",
+    cli::cli_abort(
+      "There are no CRU CL v. 2.0 data files available in this directory.",
       call = rlang::caller_env()
     )
   }
