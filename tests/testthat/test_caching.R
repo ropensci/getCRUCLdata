@@ -63,6 +63,5 @@ test_that("caching utils list files in cache and delete when asked", {
   # test delete all
   manage_cache$delete_all()
   expect_identical(list.files(manage_cache$list()), character(0))
+  withr::deferred_run()
 })
-
-
