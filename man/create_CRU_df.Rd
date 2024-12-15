@@ -48,10 +48,10 @@ and return it in the data frame? Defaults to \code{FALSE}.}
 return it in the data frame? Defaults to \code{FALSE}.}
 
 \item{sunp}{Boolean. Load sunshine, percent of maximum possible (percent of
-day length) and return it in data frame? Defaults to \code{FALSE}.}
+day length) and return it in the data frame? Defaults to \code{FALSE}.}
 
 \item{frs}{Boolean. Load ground-frost records (number of days with ground-
-frost per month) and return it in data frame? Defaults to \code{FALSE}.}
+frost per month) and return it in the data frame? Defaults to \code{FALSE}.}
 
 \item{wnd}{Boolean. Load 10m wind speed (metres/second) and return it in the
 data frame? Defaults to \code{FALSE}.}

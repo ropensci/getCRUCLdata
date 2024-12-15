@@ -44,9 +44,9 @@
 #' @param reh Boolean.  Fetch relative humidity and return it in the data frame?
 #' Defaults to FALSE.
 #' @param sunp Boolean.  Fetch sunshine, percent of maximum possible (percent of
-#' day length) and return it in data frame?  Defaults to `FALSE`.
+#' day length) and return it in the data frame?  Defaults to `FALSE`.
 #' @param frs Boolean.  Fetch ground-frost records (number of days with ground-
-#' frost per month) and return it in data frame?  Defaults to `FALSE`.
+#' frost per month) and return it in the data frame?  Defaults to `FALSE`.
 #' @param wnd Boolean.  Fetch 10m wind speed (metres/second) and return it in the
 #' data frame? Defaults to `FALSE`.
 #' @param elv Boolean.  Fetch elevation (converted to metres) and return it in
