@@ -1,29 +1,29 @@
 #' Check That at Least One var is Requested
-#' @param pre Logical.  Fetch precipitation (millimetres/month) from server and
+#' @param pre Boolean.  Fetch precipitation (millimetres/month) from server and
 #' return in the data frame?  Defaults to `FALSE`.
-#' @param pre_cv Logical.  Fetch cv of precipitation (percent) from server and
+#' @param pre_cv Boolean.  Fetch cv of precipitation (percent) from server and
 #' return in the data frame?  Defaults to `FALSE`.  NOTE.  Setting this to
 #' `TRUE` will always results in **pre** being set to `TRUE` and
 #' returned as well.
-#' @param rd0 Logical.  Fetch wet-days (number days with >0.1 millimetres rain
+#' @param rd0 Boolean.  Fetch wet-days (number days with >0.1 millimetres rain
 #' per month) and return in the data frame?  Defaults to `FALSE`.
-#' @param dtr Logical.  Fetch mean diurnal temperature range (degrees Celsius)
+#' @param dtr Boolean.  Fetch mean diurnal temperature range (degrees Celsius)
 #' and return it in the data frame?  Defaults to `FALSE`.
-#' @param tmp Logical.  Fetch temperature (degrees Celsius) and return it in the
+#' @param tmp Boolean.  Fetch temperature (degrees Celsius) and return it in the
 #' data frame?  Defaults to `FALSE`.
-#' @param tmn Logical.  Calculate minimum temperature values (degrees Celsius)
+#' @param tmn Boolean.  Calculate minimum temperature values (degrees Celsius)
 #' and return it in the data frame?  Defaults to `FALSE`.
-#' @param tmx Logical.  Calculate maximum temperature (degrees Celsius) and
+#' @param tmx Boolean.  Calculate maximum temperature (degrees Celsius) and
 #' return it in the data frame?  Defaults to `FALSE`.
-#' @param reh Logical.  Fetch relative humidity and return it in the data frame?
-#' Defaults to FALSE.
-#' @param sunp Logical.  Fetch sunshine, percent of maximum possible (percent of
+#' @param reh Boolean.  Fetch relative humidity and return it in the data frame?
+#' Defaults to `FALSE`.
+#' @param sunp Boolean.  Fetch sunshine, percent of maximum possible (percent of
 #' day length) and return it in data frame?  Defaults to `FALSE`.
-#' @param frs Logical.  Fetch ground-frost records (number of days with ground-
+#' @param frs Boolean.  Fetch ground-frost records (number of days with ground-
 #' frost per month) and return it in data frame?  Defaults to `FALSE`.
-#' @param wnd Logical.  Fetch 10m wind speed (metres/second) and return it in the
+#' @param wnd Boolean.  Fetch 10m wind speed (metres/second) and return it in the
 #' data frame? Defaults to `FALSE`.
-#' @param elv Logical.  Fetch elevation (converted to metres) and return it in
+#' @param elv Boolean.  Fetch elevation (converted to metres) and return it in
 #' the data frame?  Defaults to `FALSE`.
 #'
 #' @examples
@@ -94,7 +94,7 @@
   }
 }
 
-#' Creates a Data Frame from the CRU Data
+#' Creates a Data Frame From the CRU Data
 #'
 #' @param tmn Is tmn to be calculated? Boolean
 #' @param tmn Is tmx to be calculated? Boolean
@@ -104,59 +104,44 @@
 #' @param elv Is elv to be returned? Boolean
 #' @param files File list to be used for creating data frame
 #'
-#' @return Data frame of all requested values
-#'
+#' @return A \CRANpkg{data.table} of all requested values
+#' @keywords Internal
+#' @autoglobal
 #' @noRd
 .create_df <-
   function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
-    month <- NULL
 
     CRU_df <-
       .tidy_df(pre_cv, elv, tmn, tmx, .files = files)
 
-    if (isTRUE(tmx)) {
+    if (tmx) {
       CRU_df[, tmx := tmp + (0.5 * dtr)]
     }
 
-    if (isTRUE(tmn)) {
+    if (tmn) {
       CRU_df[, tmn := tmp - (0.5 * dtr)]
     }
 
     # Remove tmp/dtr if they aren't specified (necessary for tmn/tmx)
-    if (isTRUE(tmx) | isTRUE(tmn)) {
-      if (isFALSE(tmp)) {
-        CRU_df <- subset(CRU_df, select = -tmp)
-      }
+    if (any(tmx, tmn) && isFALSE(tmp)) {
+      CRU_df[, tmp := NULL]
 
+      # if dtr is not requested, drop from the data.table
       if (isFALSE(dtr)) {
-        CRU_df <- subset(CRU_df, select = -dtr)
+        CRU_df[, dtr := NULL]
       }
     }
-    CRU_df$month <- factor(
-      CRU_df$month,
-      levels = c(
-        "jan",
-        "feb",
-        "mar",
-        "apr",
-        "may",
-        "jun",
-        "jul",
-        "aug",
-        "sep",
-        "oct",
-        "nov",
-        "dec"
-      )
-    )
+
+    CRU_df[, month := factor(CRU_df$month)]
 
     data.table::setorder(CRU_df, month)
 
-    return(CRU_df)
+    return(CRU_df[])
   }
 
 #' Read Files from Disk Directory and Tidy Them
 #' @noRd
+#' @keywords Internal
 .tidy_df <- function(pre_cv, elv, tmn, tmx, .files) {
   # create list of tidied data frames ----------------------------------------
   CRU_list <-
@@ -275,6 +260,22 @@
   return(x_df)
 }
 
+
+#' Create terra rast Objects
+#'
+#' @param pre Boolean  Return precipitation in the `rast`?
+#' @param pre_cv Boolean.  Return cv of precipitation (percent) in the `rast`?
+#' @param dtr Boolean.  Return mean diurnal temperature range (degrees Celsius)
+#'  in the `rast`?
+#' @param tmp Boolean.  Return temperature (degrees Celsius) in the `rast`?
+#' @param tmn Boolean.  Return minimum temperature values (degrees Celsius)
+#'  in the `rast`?
+#' @param tmx Boolean.  Return maximum temperature (degrees Celsius) in the
+#'  `rast`?
+#' @param files List.  Files that are to be used in creating the `rast` object.
+#'
+#' @keywords Internal
+#' @autoglobal
 #' @noRd
 #'
 .create_stacks <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
@@ -342,6 +343,16 @@
   return(CRU_stack_list)
 }
 
+#' Helper Function Used in .create_stacks()
+#'
+#' @param files a list of files to use in creating `rast` objects
+#' @param wrld an empty [terra::rast] object for filling with values
+#' @param month_names A vector of month names from jan -- dec
+#' @param pre `Boolean` include precipitation?
+#' @param pre_cv `Boolean` include preciptation cv?
+#'
+#' @autoglobal
+#' @keywords Internal
 #' @noRd
 .create_stack <- function(files,
                           wrld,
@@ -411,8 +422,21 @@
   return(y)
 }
 
+#' Set Up User Cache
+#'
+#' Creates local directory for caching and/or uses it for local caching or
+#'  uses the \R session `tempdir()`.
+#'
+#' @param cache `Boolean` (create) and use local file cache?
+#'
+#' @keywords Internal
+#' @noRd
 .set_cache <- function(cache) {
-  if (isTRUE(cache)) {
+  manage_cache <- hoardr::hoard()
+  manage_cache$cache_path_set(path = "getCRUCLdata",
+                              prefix = "org.R-project.R/R",
+                              type = "user_cache_dir")
+  if (cache) {
     if (!dir.exists(manage_cache$cache_path_get())) {
       manage_cache$mkdir()
     }
@@ -423,6 +447,33 @@
   return(cache_dir)
 }
 
+#' Create a List of Locally Cached Files for Import
+#'
+#' @param pre Boolean.  Load precipitation (millimetres/month) from server and
+#' return in the data frame?
+#' @param pre_cv Boolean.  Load cv of precipitation (percent) from server and
+#' return in the data frame?
+#' @param rd0 Boolean.  Load wet-days (number days with >0.1 millimetres rain
+#' per month) and return in the data frame?
+#' @param dtr Boolean.  Load mean diurnal temperature range (degrees Celsius)
+#' and return it in the data frame?
+#' @param tmp Boolean.  Load temperature (degrees Celsius) and return it in the
+#' data frame?
+#' @param tmn Boolean.  Calculate minimum temperature values (degrees Celsius)
+#' and return it in the data frame?
+#' @param tmx Boolean.  Calculate maximum temperature (degrees Celsius) and
+#' return it in the data frame?
+#' @param reh Boolean.  Load relative humidity and return it in the data frame?
+#' @param sunp Boolean.  Load sunshine, percent of maximum possible (percent of
+#' day length) and return it in data frame?
+#' @param frs Boolean.  Load ground-frost records (number of days with ground-
+#' frost per month) and return it in data frame?
+#' @param wnd Boolean.  Load 10m wind speed (metres/second) and return it in the
+#' data frame?
+#' @param elv Boolean.  Load elevation (converted to metres) and return it in
+#' the data frame?
+#'
+#' @keywords Internal
 #' @noRd
 .get_local <- function(pre,
                        pre_cv,
