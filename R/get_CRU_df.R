@@ -1,4 +1,4 @@
-#' Download and Dreate a data.table of Climatology Parameters
+#' Download and Create a data.table of Climatology Parameters
 #'
 #' This function automates downloading and importing \acronym{CRU}
 #' \acronym{CL} v. 2.0 climatology data and creates a \CRANpkg{data.table} of

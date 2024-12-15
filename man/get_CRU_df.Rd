@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_CRU_df.R
 \name{get_CRU_df}
 \alias{get_CRU_df}
-\title{Download and Dreate a data.table of Climatology Parameters}
+\title{Download and Create a data.table of Climatology Parameters}
 \usage{
 get_CRU_df(
   pre = FALSE,
