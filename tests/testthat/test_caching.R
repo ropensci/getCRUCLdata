@@ -35,6 +35,12 @@ test_that("caching utils list files in cache and delete when asked", {
   unlink(list.files(manage_cache$cache_path_get()),
     recursive = TRUE
   )
+  withr::local_envvar(R_USER_CACHE_DIR = tempdir())
+  temp_cache <- file.path(tempdir(), "R/getCRUCLdata/")
+  manage_cache <- hoardr::hoard()
+  manage_cache$cache_path_set(path = "getCRUCLdata",
+                              prefix = "org.R-project.R/R",
+                              type = "user_cache_dir")
   cache <- TRUE
   cache_dir <- .set_cache(cache)
   f <-
