@@ -63,8 +63,8 @@ the data frame? Defaults to \code{FALSE}.}
 files are located.}
 }
 \value{
-A tidy data frame of \acronym{CRU} \acronym{CL} v. 2.0 climatology
-elements as a \code{\link[base:data.frame]{base::data.frame()}} object
+A \CRANpkg{data.table} object of \acronym{CRU} \acronym{CL} v. 2.0
+climatology elements
 }
 \description{
 Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology

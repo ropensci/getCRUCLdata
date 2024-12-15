@@ -68,8 +68,8 @@
 #' [create_CRU_stack()]
 #' [manage_cache()]
 #'
-#' @return A tidy data frame of \acronym{CRU} \acronym{CL} v. 2.0 climatology
-#' elements as a [tibble::tibble()] object
+#' @return A \CRANpkg{data.table} object of \acronym{CRU} \acronym{CL} v. 2.0
+#'  climatology elements
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'

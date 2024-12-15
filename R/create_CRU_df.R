@@ -54,8 +54,8 @@
 #' @seealso
 #' [get_CRU_df()]
 #'
-#' @return A tidy data frame of \acronym{CRU} \acronym{CL} v. 2.0 climatology
-#' elements as a [base::data.frame()] object
+#' @return A \CRANpkg{data.table} object of \acronym{CRU} \acronym{CL} v. 2.0
+#'  climatology elements
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #'
