@@ -243,7 +243,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package", "peer-reviewed"],
-  "fileSize": "800.922KB",
+  "fileSize": "800.015KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -255,8 +255,10 @@
           "familyName": "Sparks"
         }
       ],
-      "name": "{getCRUCLdata}: Use and Explore {CRU} {CL} v. 2.0 Climatology Elements in R",
+      "name": "{getCRUCLdata}: Use and Explore {CRU CL} v. 2.0 Climatology Elements in {R}",
       "identifier": "10.21105/joss.00230",
+      "url": "https://doi.org/10.21105/joss.00230",
+      "pagination": "230",
       "@id": "https://doi.org/10.21105/joss.00230",
       "sameAs": "https://doi.org/10.21105/joss.00230",
       "isPartOf": {
@@ -266,7 +268,7 @@
         "isPartOf": {
           "@type": ["PublicationVolume", "Periodical"],
           "volumeNumber": "2",
-          "name": "The Journal of Open Source Software"
+          "name": "Journal of Open Source Software"
         }
       }
     }
@@ -274,7 +276,7 @@
   "relatedLink": "https://docs.ropensci.org/getCRUCLdata/",
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/main/README.md",
-  "contIntegration": ["https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml", "https://codecov.io/gh/ropensci/getCRUCLdata"],
+  "contIntegration": ["https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/ropensci/getCRUCLdata"],
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
     "@type": "Review",
