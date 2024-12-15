@@ -477,7 +477,7 @@ test_that("Test that .create_df() creates a tidy df of pre, pre_cv and tmp", {
   tmx <- FALSE
   elv <- FALSE
   rd0 <- FALSE
-  tmp <- FALSE
+  tmp <- TRUE
   dtr <- FALSE
   reh <- FALSE
   sunp <- FALSE
@@ -492,12 +492,17 @@ test_that("Test that .create_df() creates a tidy df of pre, pre_cv and tmp", {
 
   expect_true(is.data.frame(CRU_df))
   expect_named(CRU_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
-  expect_type(CRU_df$lat, "double")
-  expect_type(CRU_df$lon, "double")
-  expect_type(CRU_df$month, "integer")
-  expect_type(CRU_df$pre, "double")
-  expect_type(CRU_df$pre_cv, "double")
-  expect_type(CRU_df$tmp, "double")
+  expect_identical(
+    lapply(CRU_df, typeof),
+    list(
+      lat = "double",
+      lon = "double",
+      month = "integer",
+      pre = "double",
+      pre_cv = "double",
+      tmp = "double"
+    )
+  )
 })
 
 test_that("Test that .create_df() creates a tidy dataframe of pre, tmp, elv", {
@@ -571,9 +576,18 @@ test_that("Test that .create_df() creates a tidy dataframe of pre, tmp, elv", {
 
   expect_true(is.data.frame(CRU_df))
   expect_named(CRU_df, c("lat", "lon", "month", "pre", "tmp", "elv"))
-  expect_type(CRU_df$lat, "double")
-  expect_type(CRU_df$lon, "double")
-  expect_type(CRU_df$elv, "double")
+
+  expect_identical(
+    lapply(CRU_df, typeof),
+    list(
+      lat = "double",
+      lon = "double",
+      month = "integer",
+      pre = "double",
+      tmp = "double",
+      elv = "double"
+    )
+  )
 })
 
 unlink(list.files(
@@ -949,6 +963,15 @@ test_that("Test that .create_df() creates a tidy dataframe of pre, tmp, elv", {
 
   expect_named(CRU_df, c("lat", "lon", "month", "tmn"))
   expect_equal(CRU_df$tmn[1], 0.1)
+  expect_equal(
+    lapply(CRU_df, typeof),
+    list(
+      lat = "double",
+      lon = "double",
+      month = "integer",
+      tmn = "double"
+    )
+  )
 })
 
 
@@ -1324,6 +1347,17 @@ test_that("Test that .create_df() creates tmx if requested", {
 
   expect_named(CRU_df, c("lat", "lon", "month", "tmx"))
   expect_equal(CRU_df$tmx[1], 0.3)
+
+  expect_identical(
+    lapply(CRU_df, typeof),
+    list(
+      lat = "double",
+      lon = "double",
+      month = "integer",
+      tmx = "double"
+    )
+  )
+
   unlink(list.files(
     path = tempdir(),
     pattern = ".dat.gz$",

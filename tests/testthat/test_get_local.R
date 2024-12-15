@@ -1,7 +1,7 @@
 # Test that .get_local lists local files ---------------------------------------
 
 test_that("Test that .get_local lists local files", {
-  skip_on_cran()
+  skip_if_offline()
 
   # create files for testing, these data are the first 10 lines of pre and tmp
   # from the CRU CL v. 2.0 data

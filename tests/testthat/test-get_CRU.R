@@ -6,8 +6,8 @@ test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
     full.names = TRUE
   ))
 
-  skip_on_cran()
-  skip_on_appveyor()
+  skip_if_offline()
+  skip_on_ci()
   .get_CRU(
     pre = FALSE,
     pre_cv = TRUE,
@@ -35,8 +35,8 @@ test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
 # Test that get_CRU will retrieve diurnal tmp & tmp files when tmn TRUE --------
 
 test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
-  skip_on_cran()
-  skip_on_appveyor()
+  skip_if_offline()
+  skip_on_ci()
   .get_CRU(
     pre = FALSE,
     pre_cv = FALSE,
@@ -63,9 +63,8 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
 
 # Test that get_CRU will retrieve diurnal tmp & tmp files when tmx TRUE --------
 test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
-  skip_on_cran()
-  skip_on_appveyor()
-
+  skip_if_offline()
+  skip_on_ci()
   unlink(list.files(
     path = tempdir(),
     pattern = ".dat.gz$",
@@ -99,14 +98,15 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
 # Test that get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE ----
 
 test_that("get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE", {
-  skip_on_cran()
-  skip_on_appveyor()
+  skip_if_offline()
+  skip_on_ci()
+
   pre <- FALSE
   pre_cv <- TRUE
 
-  expect_false(isTRUE(pre))
+  expect_false(pre)
 
-  if (isTRUE(pre_cv)) {
+  if (pre_cv) {
     pre <- TRUE
   }
   expect_true(pre)
@@ -117,8 +117,9 @@ test_that("get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE", {
 
 test_that("get_CRU will set tmp and dtr to TRUE if tmn or tmx
           is TRUE and either/both are false", {
-  skip_on_cran()
 
+            skip_if_offline()
+            skip_on_ci()
   tmp <- FALSE
   dtr <- FALSE
   tmn <- TRUE
@@ -126,7 +127,7 @@ test_that("get_CRU will set tmp and dtr to TRUE if tmn or tmx
   expect_false(isTRUE(tmp))
   expect_false(isTRUE(dtr))
 
-  if (isTRUE(tmn) | isTRUE(tmx)) {
+  if (any(tmn, tmx)) {
     dtr <- tmp <- TRUE
   }
 

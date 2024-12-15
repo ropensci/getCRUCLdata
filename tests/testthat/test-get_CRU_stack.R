@@ -1,6 +1,6 @@
 # Test that get_CRU_stack will retrieve files from CRU server --------------
 test_that("get_CRU_stack will retrieve files from CRU server", {
-  skip_on_cran()
+  skip_if_offline()
 
   CRU_tmp <- get_CRU_stack(tmp = TRUE, tmn = FALSE, tmx = FALSE, cache = FALSE)
   expect_type(CRU_tmp, "list")
@@ -500,10 +500,10 @@ test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
 # Test that get_CRU_stack sets the cache dir properly when cache is TRUE -------
 
 test_that("get_CRU_stack sets the cache dir properly when cache is TRUE", {
-  skip_on_cran()
+  skip_if_offline()
   cache <- TRUE
 
-  if (isTRUE(cache)) {
+  if (cache) {
     cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
     if (!file.exists(cache_dir)) {
       dir.create(cache_dir)
@@ -518,10 +518,10 @@ test_that("get_CRU_stack sets the cache dir properly when cache is TRUE", {
 # Test that get_CRU_stack sets the cache dir properly when cache is FALSE ------
 
 test_that("get_CRU_stack sets the cache dir properly when cache is FALSE", {
-  skip_on_cran()
+  skip_if_offline()
   cache <- FALSE
 
-  if (isTRUE(cache)) {
+  if (cache) {
     cache_dir <- rappdirs::user_config_dir("getCRUCLdata")
     if (!file.exists(cache_dir)) {
       dir.create(cache_dir)

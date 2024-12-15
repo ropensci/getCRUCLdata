@@ -25,7 +25,7 @@ test_that("create_CRU_stack fails if dsn does not contain CRU files", {
 # Test that create_CRU_stack returns a list of terra objects -------------------
 
 test_that("create_CRU_stack returns a list of terra rast objects", {
-  skip_on_cran()
+  skip_if_offline()
 
   unlink(list.files(
     path = tempdir(),

@@ -1,7 +1,7 @@
 # test that .set_cache creates a cache directory if none exists ----------------
 
 test_that("test that .set_cache creates a cache directory if none exists", {
-  skip_on_cran()
+  skip_if_offline()
   unlink(manage_cache$cache_path_get(), recursive = TRUE)
   cache <- TRUE
   .set_cache(cache)

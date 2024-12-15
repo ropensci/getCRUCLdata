@@ -6,7 +6,7 @@ unlink(list.files(
 
 # Test that create_CRU_stack creates a list of terra rast of pre and tmp ----
 test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
-  skip_on_cran()
+  skip_if_offline()
 
   wrld <-
     terra::rast(
@@ -562,7 +562,7 @@ test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
 # Test that create_CRU_stack creates a list containing only elv ----------------
 
 test_that("create_CRU_stack creates a list containing only elv", {
-  skip_on_cran()
+  skip_if_offline()
 
   unlink(list.files(
     path = tempdir(),
@@ -661,7 +661,7 @@ test_that("create_CRU_stack creates a list containing only elv", {
 # Test that wrld raster object resolution and extent are appropriate -----------
 
 test_that("Test that wrld raster object resolution and extent are appropriate", {
-  skip_on_cran()
+  skip_if_offline()
 
   wrld <- terra::rast(
     nrows = 930,
@@ -720,7 +720,7 @@ test_that("month names are appropriate", {
 # Test that CRU_stack_list returns list of raster stacks with proper names -----
 
 test_that("CRU_stack_list returns list of raster stacks with proper names", {
-  skip_on_cran()
+  skip_if_offline()
 
   unlink(list.files(
     path = tempdir(),
