@@ -32,6 +32,7 @@ geotiff
 getCRUCL
 getCRUdata
 ggplot
+globals
 gridded
 gz
 hoardr
@@ -53,6 +54,7 @@ rast
 readme
 readr
 reh
+roxyglobals
 sp
 sunp
 terra
