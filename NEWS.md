@@ -1,3 +1,17 @@
+# getCRUCLdata 1.0.1
+
+## Minor changes
+
+- Fix CITATION to align with current CRAN standards
+
+- Update URLs to ensure all are valid
+
+- Correct grammar in several parts of documentation and README
+
+## Bug fixes
+
+- Fix cross references in documentation
+
 # getCRUCLdata 1.0.0
 
 ## Major changes
