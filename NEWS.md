@@ -2,15 +2,21 @@
 
 ## Major changes
 
-- The cache is now where ever `tools::R_user_dir(package = "getCRUCLdata", which = "cache")` is defined by R (>= 4.0.0)
+- The cache is now where ever `tools::R_user_dir(package = "getCRUCLdata", which = "cache")` is defined by R (>= 4.0.0) and *should* align with CRAN standards, so it *might* be possible to get this back on CRAN
 
 - Depends on R (>= 4.0.0)
+
+- {data.table} is no longer imported as a whole
 
 ## Minor changes
 
 - {cli} is used for errors that are emitted to the user
 
 - Many internal changes including code linting and styling to improve code smells
+
+- Improved documentation
+
+- Use {roxyglobals} for undefined globals
 
 # getCRUCLdata 0.3.3
 
