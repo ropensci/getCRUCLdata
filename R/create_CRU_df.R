@@ -9,31 +9,31 @@
 #'
 #' @inheritSection get_CRU_df Nomenclature and Units
 #'
-#' @param pre Logical. Load precipitation (millimetres/month) from server and
+#' @param pre Boolean. Load precipitation (millimetres/month) from server and
 #'  return in the data frame? Defaults to `FALSE`.
-#' @param pre_cv Logical. Load cv of precipitation (percent) from server and
+#' @param pre_cv Boolean. Load cv of precipitation (percent) from server and
 #' return in the data frame? Defaults to `FALSE`. NOTE. Setting this to
 #' `TRUE` will always results in **pre** being set to `TRUE` and
 #' returned as well.
-#' @param rd0 Logical. Load wet-days (number days with >0.1millimetres rain per
+#' @param rd0 Boolean. Load wet-days (number days with >0.1millimetres rain per
 #' month) and return in the data frame? Defaults to `FALSE`.
-#' @param dtr Logical. Load mean diurnal temperature range (degrees Celsius)
+#' @param dtr Boolean. Load mean diurnal temperature range (degrees Celsius)
 #' and return it in the data frame? Defaults to `FALSE`.
-#' @param tmp Logical. Load temperature (degrees Celsius) and return it in the
+#' @param tmp Boolean. Load temperature (degrees Celsius) and return it in the
 #' data frame? Defaults to `FALSE`.
-#' @param tmn Logical. Calculate minimum temperature values (degrees Celsius)
+#' @param tmn Boolean. Calculate minimum temperature values (degrees Celsius)
 #' and return it in the data frame? Defaults to `FALSE`.
-#' @param tmx Logical. Calculate maximum temperature (degrees Celsius) and
+#' @param tmx Boolean. Calculate maximum temperature (degrees Celsius) and
 #' return it in the data frame? Defaults to `FALSE`.
-#' @param reh Logical. Load relative humidity and return it in the data frame?
+#' @param reh Boolean. Load relative humidity and return it in the data frame?
 #' Defaults to `FALSE`.
-#' @param sunp Logical. Load sunshine, percent of maximum possible (percent of
+#' @param sunp Boolean. Load sunshine, percent of maximum possible (percent of
 #' day length) and return it in data frame? Defaults to `FALSE`.
-#' @param frs Logical. Load ground-frost records (number of days with ground-
+#' @param frs Boolean. Load ground-frost records (number of days with ground-
 #' frost per month) and return it in data frame? Defaults to `FALSE`.
-#' @param wnd Logical. Load 10m wind speed (metres/second) and return it in the
+#' @param wnd Boolean. Load 10m wind speed (metres/second) and return it in the
 #' data frame? Defaults to `FALSE`.
-#' @param elv Logical. Load elevation (converted to metres) and return it in
+#' @param elv Boolean. Load elevation (converted to metres) and return it in
 #' the data frame? Defaults to `FALSE`.
 #' @param dsn Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
 #' files are located.

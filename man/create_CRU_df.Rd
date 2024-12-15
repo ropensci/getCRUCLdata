@@ -21,42 +21,42 @@ create_CRU_df(
 )
 }
 \arguments{
-\item{pre}{Logical. Load precipitation (millimetres/month) from server and
+\item{pre}{Boolean. Load precipitation (millimetres/month) from server and
 return in the data frame? Defaults to \code{FALSE}.}
 
-\item{pre_cv}{Logical. Load cv of precipitation (percent) from server and
+\item{pre_cv}{Boolean. Load cv of precipitation (percent) from server and
 return in the data frame? Defaults to \code{FALSE}. NOTE. Setting this to
 \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
 returned as well.}
 
-\item{rd0}{Logical. Load wet-days (number days with >0.1millimetres rain per
+\item{rd0}{Boolean. Load wet-days (number days with >0.1millimetres rain per
 month) and return in the data frame? Defaults to \code{FALSE}.}
 
-\item{tmp}{Logical. Load temperature (degrees Celsius) and return it in the
+\item{tmp}{Boolean. Load temperature (degrees Celsius) and return it in the
 data frame? Defaults to \code{FALSE}.}
 
-\item{dtr}{Logical. Load mean diurnal temperature range (degrees Celsius)
+\item{dtr}{Boolean. Load mean diurnal temperature range (degrees Celsius)
 and return it in the data frame? Defaults to \code{FALSE}.}
 
-\item{reh}{Logical. Load relative humidity and return it in the data frame?
+\item{reh}{Boolean. Load relative humidity and return it in the data frame?
 Defaults to \code{FALSE}.}
 
-\item{tmn}{Logical. Calculate minimum temperature values (degrees Celsius)
+\item{tmn}{Boolean. Calculate minimum temperature values (degrees Celsius)
 and return it in the data frame? Defaults to \code{FALSE}.}
 
-\item{tmx}{Logical. Calculate maximum temperature (degrees Celsius) and
+\item{tmx}{Boolean. Calculate maximum temperature (degrees Celsius) and
 return it in the data frame? Defaults to \code{FALSE}.}
 
-\item{sunp}{Logical. Load sunshine, percent of maximum possible (percent of
+\item{sunp}{Boolean. Load sunshine, percent of maximum possible (percent of
 day length) and return it in data frame? Defaults to \code{FALSE}.}
 
-\item{frs}{Logical. Load ground-frost records (number of days with ground-
+\item{frs}{Boolean. Load ground-frost records (number of days with ground-
 frost per month) and return it in data frame? Defaults to \code{FALSE}.}
 
-\item{wnd}{Logical. Load 10m wind speed (metres/second) and return it in the
+\item{wnd}{Boolean. Load 10m wind speed (metres/second) and return it in the
 data frame? Defaults to \code{FALSE}.}
 
-\item{elv}{Logical. Load elevation (converted to metres) and return it in
+\item{elv}{Boolean. Load elevation (converted to metres) and return it in
 the data frame? Defaults to \code{FALSE}.}
 
 \item{dsn}{Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz

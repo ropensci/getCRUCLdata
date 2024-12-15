@@ -21,45 +21,45 @@ get_CRU_df(
 )
 }
 \arguments{
-\item{pre}{Logical.  Fetch precipitation (millimetres/month) from server and
+\item{pre}{Boolean.  Fetch precipitation (millimetres/month) from server and
 return in the data frame?  Defaults to \code{FALSE}.}
 
-\item{pre_cv}{Logical.  Fetch cv of precipitation (percent) from server and
+\item{pre_cv}{Boolean.  Fetch cv of precipitation (percent) from server and
 return in the data frame?  Defaults to \code{FALSE}.  NOTE.  Setting this to
 \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
 returned as well.}
 
-\item{rd0}{Logical.  Fetch wet-days (number days with >0.1 millimetres rain
+\item{rd0}{Boolean.  Fetch wet-days (number days with >0.1 millimetres rain
 per month) and return in the data frame?  Defaults to \code{FALSE}.}
 
-\item{tmp}{Logical.  Fetch temperature (degrees Celsius) and return it in the
+\item{tmp}{Boolean.  Fetch temperature (degrees Celsius) and return it in the
 data frame?  Defaults to \code{FALSE}.}
 
-\item{dtr}{Logical.  Fetch mean diurnal temperature range (degrees Celsius)
+\item{dtr}{Boolean.  Fetch mean diurnal temperature range (degrees Celsius)
 and return it in the data frame?  Defaults to \code{FALSE}.}
 
-\item{reh}{Logical.  Fetch relative humidity and return it in the data frame?
+\item{reh}{Boolean.  Fetch relative humidity and return it in the data frame?
 Defaults to FALSE.}
 
-\item{tmn}{Logical.  Calculate minimum temperature values (degrees Celsius)
+\item{tmn}{Boolean.  Calculate minimum temperature values (degrees Celsius)
 and return it in the data frame?  Defaults to \code{FALSE}.}
 
-\item{tmx}{Logical.  Calculate maximum temperature (degrees Celsius) and
+\item{tmx}{Boolean.  Calculate maximum temperature (degrees Celsius) and
 return it in the data frame?  Defaults to \code{FALSE}.}
 
-\item{sunp}{Logical.  Fetch sunshine, percent of maximum possible (percent of
+\item{sunp}{Boolean.  Fetch sunshine, percent of maximum possible (percent of
 day length) and return it in data frame?  Defaults to \code{FALSE}.}
 
-\item{frs}{Logical.  Fetch ground-frost records (number of days with ground-
+\item{frs}{Boolean.  Fetch ground-frost records (number of days with ground-
 frost per month) and return it in data frame?  Defaults to \code{FALSE}.}
 
-\item{wnd}{Logical.  Fetch 10m wind speed (metres/second) and return it in the
+\item{wnd}{Boolean.  Fetch 10m wind speed (metres/second) and return it in the
 data frame? Defaults to \code{FALSE}.}
 
-\item{elv}{Logical.  Fetch elevation (converted to metres) and return it in
+\item{elv}{Boolean.  Fetch elevation (converted to metres) and return it in
 the data frame?  Defaults to \code{FALSE}.}
 
-\item{cache}{Logical.  Store CRU CL v. 2.0 data files locally for later use?
+\item{cache}{Boolean.  Store CRU CL v. 2.0 data files locally for later use?
 If \code{FALSE}, the downloaded files are removed when R session is closed.
 To take advantage of cached files in future sessions, use \code{cache = TRUE}
 after the initial download and caching.  Defaults to \code{FALSE}.}

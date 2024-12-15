@@ -25,33 +25,33 @@
 #' For more information see the description of the data provided by
 #' \acronym{CRU}, <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>
 #'
-#' @param pre Logical.  Fetch precipitation (millimetres/month) from server and
+#' @param pre Boolean.  Fetch precipitation (millimetres/month) from server and
 #' return in the data frame?  Defaults to `FALSE`.
-#' @param pre_cv Logical.  Fetch cv of precipitation (percent) from server and
+#' @param pre_cv Boolean.  Fetch cv of precipitation (percent) from server and
 #' return in the data frame?  Defaults to `FALSE`.  NOTE.  Setting this to
 #' `TRUE` will always results in **pre** being set to `TRUE` and
 #' returned as well.
-#' @param rd0 Logical.  Fetch wet-days (number days with >0.1 millimetres rain
+#' @param rd0 Boolean.  Fetch wet-days (number days with >0.1 millimetres rain
 #' per month) and return in the data frame?  Defaults to `FALSE`.
-#' @param dtr Logical.  Fetch mean diurnal temperature range (degrees Celsius)
+#' @param dtr Boolean.  Fetch mean diurnal temperature range (degrees Celsius)
 #' and return it in the data frame?  Defaults to `FALSE`.
-#' @param tmp Logical.  Fetch temperature (degrees Celsius) and return it in the
+#' @param tmp Boolean.  Fetch temperature (degrees Celsius) and return it in the
 #' data frame?  Defaults to `FALSE`.
-#' @param tmn Logical.  Calculate minimum temperature values (degrees Celsius)
+#' @param tmn Boolean.  Calculate minimum temperature values (degrees Celsius)
 #' and return it in the data frame?  Defaults to `FALSE`.
-#' @param tmx Logical.  Calculate maximum temperature (degrees Celsius) and
+#' @param tmx Boolean.  Calculate maximum temperature (degrees Celsius) and
 #' return it in the data frame?  Defaults to `FALSE`.
-#' @param reh Logical.  Fetch relative humidity and return it in the data frame?
+#' @param reh Boolean.  Fetch relative humidity and return it in the data frame?
 #' Defaults to FALSE.
-#' @param sunp Logical.  Fetch sunshine, percent of maximum possible (percent of
+#' @param sunp Boolean.  Fetch sunshine, percent of maximum possible (percent of
 #' day length) and return it in data frame?  Defaults to `FALSE`.
-#' @param frs Logical.  Fetch ground-frost records (number of days with ground-
+#' @param frs Boolean.  Fetch ground-frost records (number of days with ground-
 #' frost per month) and return it in data frame?  Defaults to `FALSE`.
-#' @param wnd Logical.  Fetch 10m wind speed (metres/second) and return it in the
+#' @param wnd Boolean.  Fetch 10m wind speed (metres/second) and return it in the
 #' data frame? Defaults to `FALSE`.
-#' @param elv Logical.  Fetch elevation (converted to metres) and return it in
+#' @param elv Boolean.  Fetch elevation (converted to metres) and return it in
 #' the data frame?  Defaults to `FALSE`.
-#' @param cache Logical.  Store CRU CL v. 2.0 data files locally for later use?
+#' @param cache Boolean.  Store CRU CL v. 2.0 data files locally for later use?
 #' If `FALSE`, the downloaded files are removed when R session is closed.
 #' To take advantage of cached files in future sessions, use `cache = TRUE`
 #' after the initial download and caching.  Defaults to `FALSE`.
