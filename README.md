@@ -7,7 +7,7 @@ getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812)
 [![JOSS status](http://joss.theoj.org/papers/10.21105/joss.00230/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00230)
 [![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/software-review/issues/96)
-[![codecov](https://codecov.io/gh/ropensci/getCRUCLdata/graph/badge.svg?token=OZjFYcNGbS)](https://codecov.io/gh/ropensci/getCRUCLdata)
+[![codecov](https://app.codecov.io/gh/ropensci/getCRUCLdata/graph/badge.svg?token=OZjFYcNGbS)](https://app.codecov.io/gh/ropensci/getCRUCLdata)
 <!-- badges: end -->
 
 ## Introduction to {getCRUCLdata}
@@ -87,8 +87,8 @@ For complete documentation see the package website: <https://docs.ropensci.org/g
 > most regions. The data will have many applications in applied
 > climatology, biogeochemical modelling, hydrology and agricultural
 > meteorology and are available through the School of Geography Oxford
-> (<http://www.geog.ox.ac.uk>), the International Water Management
-> Institute “World Water and Climate Atlas” (<https://www.iwmi.cgiar.org/>) and
+> (<https://www.geog.ox.ac.uk/>), the International Water Management
+> Institute “World Water and Climate Atlas” (<https://www.iwmi.org/>) and
 > the Climatic Research Unit (<https://www.uea.ac.uk/groups-and-centres/climatic-research-unit>).
 
 ## Contributors
