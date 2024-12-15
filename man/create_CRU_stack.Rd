@@ -63,13 +63,12 @@ the data frame? Defaults to \code{FALSE}.}
 files are located.}
 }
 \value{
-A \code{\link[base:list]{base::list()}} of \code{\link[=terra]{terra()}}
-\code{\link[terra:rast]{terra::rast()}} objects of \acronym{CRU} \acronym{CL} v. 2.0
-climatology elements
+A \link[base:list]{base::list} of \link[terra:rast]{terra::rast} objects of \acronym{CRU} \acronym{CL}
+v. 2.0 climatology elements
 }
 \description{
 Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
-data and creates a \code{\link[=terra]{terra()}} \code{\link[terra:rast]{terra::rast()}} of the
+data and creates a \CRANpkg{terra} \link[terra:rast]{terra::rast} object of the
 data.  If requested, minimum and maximum temperature may also be
 automatically calculated as described in the data readme.txt file.  This
 function can be useful if you have network connection issues that mean

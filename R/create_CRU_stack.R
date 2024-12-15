@@ -1,7 +1,7 @@
 #' Create a List of terra rast Objects From Local Disk Files
 #'
 #' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
-#' data and creates a [terra()] [terra::rast()] of the
+#' data and creates a \CRANpkg{terra} [terra::rast] object of the
 #' data.  If requested, minimum and maximum temperature may also be
 #' automatically calculated as described in the data readme.txt file.  This
 #' function can be useful if you have network connection issues that mean
@@ -24,9 +24,8 @@
 #' @seealso
 #' [get_CRU_stack()]
 #'
-#' @return A [base::list()] of [terra()]
-#' [terra::rast()] objects of \acronym{CRU} \acronym{CL} v. 2.0
-#' climatology elements
+#' @return A [base::list] of [terra::rast] objects of \acronym{CRU} \acronym{CL}
+#'  v. 2.0 climatology elements
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
