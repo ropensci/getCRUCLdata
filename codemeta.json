@@ -243,7 +243,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package", "peer-reviewed"],
-  "fileSize": "800.224KB",
+  "fileSize": "909.623KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
