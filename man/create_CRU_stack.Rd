@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_CRU_stack.R
 \name{create_CRU_stack}
 \alias{create_CRU_stack}
-\title{Create a list of terra rast objects from local disk files}
+\title{Create a List of terra rast Objects From Local Disk Files}
 \usage{
 create_CRU_stack(
   pre = FALSE,

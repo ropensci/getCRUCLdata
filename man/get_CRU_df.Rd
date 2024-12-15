@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_CRU_df.R
 \name{get_CRU_df}
 \alias{get_CRU_df}
-\title{Download and create a data frame of climatology parameters}
+\title{Download and Dreate a data.table of Climatology Parameters}
 \usage{
 get_CRU_df(
   pre = FALSE,
@@ -70,11 +70,11 @@ climatology elements
 }
 \description{
 This function automates downloading and importing \acronym{CRU}
-\acronym{CL} v. 2.0 climatology data and creates a data frame of the data.
-If requested, minimum and maximum temperature may also be automatically
-calculated as described in the data readme.txt file.  Data may be cached for
-later use by this function, saving time downloading files in future use of
-the function.
+\acronym{CL} v. 2.0 climatology data and creates a \CRANpkg{data.table} of
+the data.  If requested, minimum and maximum temperature may also be
+automatically calculated as described in the data readme.txt file.  Data may
+be cached for later use by this function, saving time downloading files in
+future use of this function.
 }
 \note{
 This package automatically converts elevation values from kilometres to

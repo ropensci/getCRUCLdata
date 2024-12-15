@@ -1,4 +1,4 @@
-#' Create a list of terra rast objects from local disk files
+#' Create a List of terra rast Objects From Local Disk Files
 #'
 #' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
 #' data and creates a [terra()] [terra::rast()] of the

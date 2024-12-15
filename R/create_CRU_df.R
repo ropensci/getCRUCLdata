@@ -1,4 +1,4 @@
-#' Create a data of climatology variables from local disk files
+#' Create a data.table of Climatology Variables From Local Disk Files
 #'
 #' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
 #' data and creates a tidy data frame of the data.  If requested, minimum and

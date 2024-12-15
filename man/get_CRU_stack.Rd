@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_CRU_stack.R
 \name{get_CRU_stack}
 \alias{get_CRU_stack}
-\title{Download and create a list of terra rast objects of climatology parameters}
+\title{Download and Create a List of terra rast Objects of Climatology Parameters}
 \usage{
 get_CRU_stack(
   pre = FALSE,
@@ -65,16 +65,16 @@ To take advantage of cached files in future sessions, use \code{cache = TRUE}
 after the initial download and caching.  Defaults to \code{FALSE}.}
 }
 \value{
-A \code{\link[base:list]{base::list()}} of \CRANpkg{terra} \code{\link[terra:rast]{terra::rast()}} objects of CRU CL
+A \code{\link[base:list]{base::list()}} of \CRANpkg{terra} \link[terra:rast]{terra::rast} objects of CRU CL
 v. 2.0 climatology elements
 }
 \description{
 This function automates downloading and importing CRU CL v. 2.0
-climatology data into \R and creates a list of \code{\link[=terra]{terra()}}
-\code{\link[terra:rast]{terra::rast()}} of the data.  If requested, minimum and maximum
+climatology data into \R and creates a list of \CRANpkg{terra}
+\code{\link[terra:rast]{terra::rast()}} objects of the data.  If requested, minimum and maximum
 temperature may also be automatically calculated as described in the data
 readme.txt file.  Data may be cached for later use by this function, saving
-time downloading files in future use of the function.
+time downloading files in future using this function.
 }
 \note{
 This package automatically converts elevation values from kilometres to
@@ -108,7 +108,7 @@ For more information see the description of the data provided by
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
-# Download data and create a [terra()] [terra::rast()]
+# Download data and create a {terra} `rast`
 # object of precipitation and temperature without caching the data files
 CRU_pre_tmp <- get_CRU_stack(pre = TRUE, tmp = TRUE)
 

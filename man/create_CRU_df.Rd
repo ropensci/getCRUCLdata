@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_CRU_df.R
 \name{create_CRU_df}
 \alias{create_CRU_df}
-\title{Create a data of climatology variables from local disk files}
+\title{Create a data.table of Climatology Variables From Local Disk Files}
 \usage{
 create_CRU_df(
   pre = FALSE,

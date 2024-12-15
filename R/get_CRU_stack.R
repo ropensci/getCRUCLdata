@@ -1,17 +1,17 @@
-#' Download and create a list of terra rast objects of climatology parameters
+#' Download and Create a List of terra rast Objects of Climatology Parameters
 #'
 #' This function automates downloading and importing CRU CL v. 2.0
-#' climatology data into \R and creates a list of [terra()]
-#' [terra::rast()] of the data.  If requested, minimum and maximum
-#' temperature may also be automatically calculated as described in the data
-#' readme.txt file.  Data may be cached for later use by this function, saving
-#' time downloading files in future use of the function.
+#' climatology data into \R and creates a list of \CRANpkg{terra}
+#'  [terra::rast()] objects of the data.  If requested, minimum and maximum
+#'  temperature may also be automatically calculated as described in the data
+#'  readme.txt file.  Data may be cached for later use by this function, saving
+#'  time downloading files in future using this function.
 #'
 #' @inheritSection get_CRU_df Nomenclature and Units
 #' @inheritParams get_CRU_df
 #' @examplesIf interactive()
 #'
-#' # Download data and create a [terra()] [terra::rast()]
+#' # Download data and create a {terra} `rast`
 #' # object of precipitation and temperature without caching the data files
 #' CRU_pre_tmp <- get_CRU_stack(pre = TRUE, tmp = TRUE)
 #'
@@ -22,7 +22,7 @@
 #' [create_CRU_stack()]
 #' [manage_cache()]
 #'
-#' @return A [base::list()] of \CRANpkg{terra} [terra::rast()] objects of CRU CL
+#' @return A [base::list()] of \CRANpkg{terra} [terra::rast] objects of CRU CL
 #'  v. 2.0 climatology elements
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
