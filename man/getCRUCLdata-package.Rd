@@ -11,6 +11,7 @@ Provides functions that automate downloading and importing University of East An
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://github.com/ropensci/getCRUCLdata}
   \item \url{https://docs.ropensci.org/getCRUCLdata/}
   \item Report bugs at \url{https://github.com/ropensci/getCRUCLdata/issues}
 }
