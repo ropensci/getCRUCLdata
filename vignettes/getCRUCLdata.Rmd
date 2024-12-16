@@ -1,7 +1,7 @@
 ---
 title: "getCRUCLdata"
 author: "Adam H. Sparks"
-date: "2024-12-15"
+date: "2024-12-16"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -12,6 +12,7 @@ vignette: >
   %\VignetteDepends{terra}
   %\VignetteDepends{ggplot2}
   %\VignetteDepends{viridis}
+  %\VignetteDepends{data.table}
 ---
 
 
@@ -64,7 +65,7 @@ The arguments for selecting the climatology elements for importing are:
 - **dsn** *For `create_CRU_stack()`* and *`create_CRU_df()`* only.
 Local file path where CRU CL v. 2.0 .dat.gz files are located.
 
-### Creating tidy data frames for use in R
+### Creating data frames for use in R
 
 The `get_CRU_df()` function automates the download process and creates data frames of the climatology elements.
 
@@ -114,7 +115,7 @@ CRU_data
 #> 6795150: -35.80
 ```
 
-Perhaps you only need one or two elements, it is easy to create a tidy data frame of mean temperature only.
+Perhaps you only need one or two elements, it is easy to create a data frame of mean temperature only.
 
 
 ``` r
@@ -136,7 +137,7 @@ t
 #> 6795144:  83.583 -36.750    dec -33.3
 ```
 
-#### Plotting data from the tidy dataframe
+#### Plotting data from the data frame
 
 Now that we have the data, we can plot it easily using _ggplot2_ and the _viridis_ package for the colour scale.
 
@@ -154,8 +155,8 @@ ggplot(data = t, aes(x = lon, y = lat, fill = tmp)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="plot_t-1.png" alt="plot of chunk plot_t"  />
-<p class="caption">plot of chunk plot_t</p>
+<img src="plot_t-1.png" alt="Maps of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."  />
+<p class="caption">Maps of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991.</p>
 </div>
 
 We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.
@@ -170,17 +171,18 @@ ggplot(data = t, aes(x = month, y = tmp)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="violin_plot-1.png" alt="plot of chunk violin_plot"  />
-<p class="caption">plot of chunk violin_plot</p>
+<img src="violin_plot-1.png" alt="Monthly values of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."  />
+<p class="caption">Monthly values of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991.</p>
 </div>
 
-#### Saving the tidy `data.frame` as a CSV (comma separated values file) locally
+#### Saving the `data.frame` as a CSV (comma separated values file) locally
 
-Save the resulting tidy `data.frame` to local disk as a comma separated (CSV)
+Save the resulting `data.frame` to local disk as a comma separated (CSV)
 file to local disk, using _data.table_'s `fwrite()`.
 
 
 ``` r
+library(data.table)
 fwrite(x = t, file = "~/CRU_tmp.csv")
 ```
 
@@ -188,7 +190,7 @@ fwrite(x = t, file = "~/CRU_tmp.csv")
 
 For working with spatial data, _getCRUCLdata_ provides a function that create lists of _terra_ stacks of the data.
 
-The `get_CRU_stack()` functions provide similar functionality to `get_CRU_df()`, but rather than returning a tidy data frame, it returns a list of `terra::rast()` objects for use in an R session.
+The `get_CRU_stack()` functions provide similar functionality to `get_CRU_df()`, but rather than returning a data frame, it returns a list of `terra::rast()` objects for use in an R session.
 
 The `get_CRU_stack()` function automates the download process and creates a `terra::rast()` object of the CRU CL v. 2.0 climatology elements.
 Illustrated here is creating a `terra::rast()` of all CRU CL v. 2.0 climatology elements available.
@@ -209,10 +211,6 @@ CRU_stack <- get_CRU_stack(
   wnd = TRUE,
   elv = TRUE
 )
-#> 
-|---------|---------|---------|---------|
-=========================================
-                                          
 
 CRU_stack
 #> $dtr
@@ -254,7 +252,7 @@ CRU_stack
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> coord. ref. : lon/lat WGS 84 
-#> source      : spat_fe274b2a6660_65063_GdaPwXHptgIOPSx.tif 
+#> source      : spat_613232ecfe11_24882_GdaPwXHptgIOPSx.tif 
 #> names       :   jan,   feb,   mar,   apr,  may,    jun, ... 
 #> min values  :   0.0,   0.0,   0.0,   0.0,    0,    0.0, ... 
 #> max values  : 910.1, 824.3, 727.3, 741.3, 1100, 2512.6, ... 

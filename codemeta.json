@@ -244,7 +244,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package", "peer-reviewed"],
-  "fileSize": "909.747KB",
+  "fileSize": "910.679KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -276,7 +276,7 @@
   ],
   "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/getCRUCLdata/blob/main/README.md",
-  "contIntegration": ["https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/ropensci/getCRUCLdata"],
+  "contIntegration": ["https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml", "https://codecov.io/gh/ropensci/getCRUCLdata"],
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
     "@type": "Review",
