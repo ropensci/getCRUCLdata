@@ -1,9 +1,9 @@
 #' Create a data.table of Climatology Variables From Local Disk Files
 #'
 #' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
-#' data and creates a tidy data frame of the data.  If requested, minimum and
-#' maximum temperature may also be automatically calculated as described in the
-#' data readme.txt file.  This function can be useful if you have network
+#' data and creates a \CRANpkg{data.table} of the data.  If requested, minimum
+#' and maximum temperature may also be automatically calculated as described in
+#' the data readme.txt file.  This function can be useful if you have network
 #' connection issues that mean automated downloading of the files using \R
 #' does not work properly.
 #'
