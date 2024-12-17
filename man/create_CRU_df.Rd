@@ -54,7 +54,7 @@ day length) and returns it in the data frame, \code{TRUE}. Defaults to \code{FAL
 frost per month) and returns it in the data frame, \code{TRUE}. Defaults to
 \code{FALSE}.}
 
-\item{wnd}{Load 10m wind speed (metres/second) and returns it in the
+\item{wnd}{Load 10 m wind speed (metres/second) and returns it in the
 data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{elv}{Loads elevation (converted to metres) and returns it in

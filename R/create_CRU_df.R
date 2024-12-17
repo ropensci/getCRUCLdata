@@ -32,7 +32,7 @@
 #' @param frs Loads ground-frost records (number of days with ground-
 #' frost per month) and returns it in the data frame, `TRUE`. Defaults to
 #' `FALSE`.
-#' @param wnd Load 10m wind speed (metres/second) and returns it in the
+#' @param wnd Load 10 m wind speed (metres/second) and returns it in the
 #' data frame, `TRUE`. Defaults to `FALSE`.
 #' @param elv Loads elevation (converted to metres) and returns it in
 #' the data frame, `TRUE`. Defaults to `FALSE`.
