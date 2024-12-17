@@ -153,5 +153,5 @@ over global land areas." Climate research 21.1 (2002): 1-25.
 \link{get_CRU_df}.
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com}
+Adam H. Sparks, \email{adamhsparks@gmail.com}
 }

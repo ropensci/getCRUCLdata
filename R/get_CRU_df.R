@@ -68,7 +68,7 @@
 #' @seealso
 #' [create_CRU_stack], [manage_cache].
 #'
-#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
+#' @inherit create_CRU_df author
 #' @inherit create_CRU_df source
 #' @inherit create_CRU_df references
 #' @inherit create_CRU_df return

@@ -10,6 +10,11 @@
 #'
 #' @inheritSection get_CRU_df Nomenclature and Units
 #' @inheritParams get_CRU_df
+#' @inherit create_CRU_df author
+#' @inherit create_CRU_df source
+#' @inherit create_CRU_df references
+#' @inherit create_CRU_stack return
+#'
 #' @examplesIf interactive()
 #'
 #' # Download data and create a list of {terra} `rast` objects of precipitation
@@ -20,11 +25,6 @@
 #'
 #' @seealso
 #' [create_CRU_stack], [manage_cache].
-#'
-#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
-#' @inherit create_CRU_df source
-#' @inherit create_CRU_df references
-#' @inherit create_CRU_stack return
 #'
 #' @export
 

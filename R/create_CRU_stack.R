@@ -12,6 +12,10 @@
 #'
 #' @inheritSection get_CRU_df Nomenclature and Units
 #' @inheritParams create_CRU_df
+#' @inherit create_CRU_df author
+#' @inherit create_CRU_df source
+#' @inherit create_CRU_df references
+#' @inherit create_CRU_stack return
 #'
 #' @examplesIf interactive()
 #'
@@ -29,11 +33,6 @@
 #'
 #' @return A [base::list] of [terra::rast] objects of \acronym{CRU} \acronym{CL}
 #'  v. 2.0 climatology elements.
-#'
-#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
-#'
-#' @inherit create_CRU_df source
-#' @inherit create_CRU_df references
 #'
 #' @export
 
