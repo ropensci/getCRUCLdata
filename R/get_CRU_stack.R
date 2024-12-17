@@ -20,8 +20,8 @@
 #' @seealso
 #' [create_CRU_stack], [manage_cache].
 #'
-#' @return A [base::list] of [terra::rast] objects of CRU CL v. 2.0
-#'  climatology elements.
+#' @return A [base::list] of [terra::rast] objects of CRU CL v. 2.0 climatology
+#'  elements.
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
@@ -44,7 +44,7 @@
 #'  over global land areas." Climate research 21.1 (2002): 1-25.
 #'  <https://crudata.uea.ac.uk/cru/data/hrg/tmc/new_et_al_10minute_climate_CR.pdf>
 #'
-#' @export get_CRU_stack
+#' @export
 
 get_CRU_stack <-
   function(pre = FALSE,

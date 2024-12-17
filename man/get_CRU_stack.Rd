@@ -97,8 +97,8 @@ To take advantage of cached files in future sessions, use \code{cache = TRUE}
 even after the initial download and caching.  Defaults to \code{FALSE}.}
 }
 \value{
-A \link[base:list]{base::list} of \link[terra:rast]{terra::rast} objects of CRU CL v. 2.0
-climatology elements.
+A \link[base:list]{base::list} of \link[terra:rast]{terra::rast} objects of CRU CL v. 2.0 climatology
+elements.
 }
 \description{
 This function automates downloading and importing CRU CL v. 2.0
