@@ -14,8 +14,7 @@ using \code{manage_cache$cache_path_set()}.
 \code{manage_cache$cache_delete} only accepts one file name, while
 \code{manage_cache$cache_delete_all}
 does not accept any names, but deletes all files. For deleting many specific
-files, use \code{manage_cache$cache_delete} in an
-\link[base:lapply]{base::lapply} type call.
+files, use \code{manage_cache$cache_delete} in an \link[base:lapply]{base::lapply} type call.
 }
 \section{Useful user functions}{
 
