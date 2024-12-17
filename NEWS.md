@@ -1,3 +1,13 @@
+# getCRUCLdata 1.0.2.9000
+
+## Minor changes
+
+- Add source and references to documentation for data
+
+- Create function aliases that use all lower case, *e.g.*, `get_cru_stack()` vs `get_CRU_stack()`
+
+- Improved documentation with linting, ensuring consistency in units of measurement, etc.
+
 # getCRUCLdata 1.0.2
 
 ## Minor changes
