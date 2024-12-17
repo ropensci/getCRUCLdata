@@ -92,7 +92,7 @@ for parts of Antarctica, these data are excluded in the \CRANpkg{terra}
 \describe{
 \item{cv}{cv of precipitation (percent)}
 }
-\item{rd0}{wet-days (number days with >0.1mm rain per month)}
+\item{rd0}{wet-days (number days with >0.1 millimetres rain per month)}
 \item{tmp}{mean temperature (degrees Celsius)}
 \item{dtr}{mean diurnal temperature range (degrees Celsius)}
 \item{reh}{relative humidity (percent)}
