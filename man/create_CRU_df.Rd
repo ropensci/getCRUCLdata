@@ -29,7 +29,7 @@ returns in the data frame, \code{TRUE}. Defaults to \code{FALSE}. NOTE. Setting 
 to \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
 returned as well.}
 
-\item{rd0}{Loads wet-days (number days with >0.1millimetres rain per
+\item{rd0}{Loads wet-days (number days with >0.1 millimetres rain per
 month) and returns in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{tmp}{Loads temperature (degrees Celsius) and returns it in the

@@ -15,7 +15,7 @@
 #' returns in the data frame, `TRUE`. Defaults to `FALSE`. NOTE. Setting this
 #' to `TRUE` will always results in **pre** being set to `TRUE` and
 #' returned as well.
-#' @param rd0 Loads wet-days (number days with >0.1millimetres rain per
+#' @param rd0 Loads wet-days (number days with >0.1 millimetres rain per
 #' month) and returns in the data frame, `TRUE`. Defaults to `FALSE`.
 #' @param dtr Loads mean diurnal temperature range (degrees Celsius)
 #' and returns it in the data frame, `TRUE`. Defaults to `FALSE`.
