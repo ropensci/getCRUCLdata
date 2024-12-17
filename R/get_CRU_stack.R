@@ -12,8 +12,8 @@
 #' @inheritParams get_CRU_df
 #' @examplesIf interactive()
 #'
-#' # Download data and create a {terra} `rast`
-#' # object of precipitation and temperature without caching the data files
+#' # Download data and create a {terra} `rast` object of precipitation and
+#' # temperature without caching the data files
 #' CRU_pre_tmp <- get_CRU_stack(pre = TRUE, tmp = TRUE)
 #'
 #' CRU_pre_tmp
