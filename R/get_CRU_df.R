@@ -1,4 +1,4 @@
-#' Download and Create a data.table of Climatology Parameters
+#' Download and create a data.table of CRU CL 2.0 climatology elements
 #'
 #' This function automates downloading and importing \acronym{CRU}
 #' \acronym{CL} v. 2.0 climatology data and creates a \CRANpkg{data.table} of
@@ -25,36 +25,36 @@
 #' For more information see the description of the data provided by
 #' \acronym{CRU}, <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>
 #'
-#' @param pre Boolean.  Fetch precipitation (millimetres/month) from server and
-#' return in the data frame?  Defaults to `FALSE`.
-#' @param pre_cv Boolean.  Fetch cv of precipitation (percent) from server and
-#' return in the data frame?  Defaults to `FALSE`.  NOTE.  Setting this to
-#' `TRUE` will always results in **pre** being set to `TRUE` and
+#' @param pre Fetches precipitation (millimetres/month) from server and
+#' returns it in the data frame, `TRUE`.  Defaults to `FALSE`.
+#' @param pre_cv  Fetch cv of precipitation (percent) from server and
+#' returns it in the data frame, `TRUE`.  Defaults to `FALSE`.  NOTE Setting
+#' this to `TRUE` will always results in **pre** being set to `TRUE` and
 #' returned as well.
-#' @param rd0 Boolean.  Fetch wet-days (number days with >0.1 millimetres rain
-#' per month) and return in the data frame?  Defaults to `FALSE`.
-#' @param dtr Boolean.  Fetch mean diurnal temperature range (degrees Celsius)
-#' and return it in the data frame?  Defaults to `FALSE`.
-#' @param tmp Boolean.  Fetch temperature (degrees Celsius) and return it in the
-#' data frame?  Defaults to `FALSE`.
-#' @param tmn Boolean.  Calculate minimum temperature values (degrees Celsius)
-#' and return it in the data frame?  Defaults to `FALSE`.
-#' @param tmx Boolean.  Calculate maximum temperature (degrees Celsius) and
-#' return it in the data frame?  Defaults to `FALSE`.
-#' @param reh Boolean.  Fetch relative humidity and return it in the data frame?
-#' Defaults to FALSE.
-#' @param sunp Boolean.  Fetch sunshine, percent of maximum possible (percent of
+#' @param rd0 Fetches wet-days (number days with >0.1 millimetres rain
+#' per month) and returns it in the data frame?  Defaults to `FALSE`.
+#' @param dtr Fetches mean diurnal temperature range (degrees Celsius)
+#' and returns it in the data frame?  Defaults to `FALSE`.
+#' @param tmp Fetches temperature (degrees Celsius) and returns it in the
+#' data frame, `TRUE`. Defaults to `FALSE`.
+#' @param tmn Calculates minimum temperature values (degrees Celsius)
+#' and returns it in the data frame, `TRUE`. Defaults to `FALSE`.
+#' @param tmx Calculates maximum temperature (degrees Celsius) and
+#' returns it in the data frame, `TRUE`. Defaults to `FALSE`.
+#' @param reh Fetches relative humidity and returns it in the data frame,
+#' `TRUE`. Defaults to FALSE.
+#' @param sunp Fetch sunshine, percent of maximum possible (percent of
 #' day length) and return it in the data frame?  Defaults to `FALSE`.
-#' @param frs Boolean.  Fetch ground-frost records (number of days with ground-
+#' @param frs Fetches ground-frost records (number of days with ground-
 #' frost per month) and return it in the data frame?  Defaults to `FALSE`.
-#' @param wnd Boolean.  Fetch 10m wind speed (metres/second) and return it in the
-#' data frame? Defaults to `FALSE`.
-#' @param elv Boolean.  Fetch elevation (converted to metres) and return it in
-#' the data frame?  Defaults to `FALSE`.
-#' @param cache Boolean.  Store CRU CL v. 2.0 data files locally for later use?
-#' If `FALSE`, the downloaded files are removed when R session is closed.
+#' @param wnd Fetches 10m wind speed (metres/second) and returns it in the
+#' data frame, `TRUE`. Defaults to `FALSE`.
+#' @param elv Fetches elevation (converted to metres) and returns it in
+#' the data frame, `TRUE`.  Defaults to `FALSE`.
+#' @param cache Stores CRU CL v. 2.0 data files locally for later use.
+#' If `FALSE`, the downloaded files are removed when the \R session is closed.
 #' To take advantage of cached files in future sessions, use `cache = TRUE`
-#' after the initial download and caching.  Defaults to `FALSE`.
+#' even after the initial download and caching.  Defaults to `FALSE`.
 #'
 #' @examplesIf interactive()
 #' # Download data and create a data frame of precipitation and temperature
@@ -65,11 +65,10 @@
 #' CRU_pre_tmp
 #'
 #' @seealso
-#' [create_CRU_stack()]
-#' [manage_cache()]
+#' [create_CRU_stack], [manage_cache].
 #'
 #' @return A \CRANpkg{data.table} object of \acronym{CRU} \acronym{CL} v. 2.0
-#'  climatology elements
+#'  climatology elements.
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'

@@ -1,30 +1,31 @@
-#' Check That at Least One var is Requested
-#' @param pre Boolean.  Fetch precipitation (millimetres/month) from server and
-#' return in the data frame?  Defaults to `FALSE`.
-#' @param pre_cv Boolean.  Fetch cv of precipitation (percent) from server and
-#' return in the data frame?  Defaults to `FALSE`.  NOTE.  Setting this to
-#' `TRUE` will always results in **pre** being set to `TRUE` and
+#' Check that at least one element is requested
+#' @param pre Fetches precipitation (millimetres/month) from server and
+#' returns it in the data frame, `TRUE`. Defaults to `FALSE`.
+#' @param pre_cv Fetches cv of precipitation (percent) from server and
+#' returns it in the data frame, `TRUE`. Defaults to `FALSE`.  Note, setting
+#' this to `TRUE` will always results in **pre** being set to `TRUE` and
 #' returned as well.
-#' @param rd0 Boolean.  Fetch wet-days (number days with >0.1 millimetres rain
-#' per month) and return in the data frame?  Defaults to `FALSE`.
-#' @param dtr Boolean.  Fetch mean diurnal temperature range (degrees Celsius)
-#' and return it in the data frame?  Defaults to `FALSE`.
-#' @param tmp Boolean.  Fetch temperature (degrees Celsius) and return it in the
-#' data frame?  Defaults to `FALSE`.
-#' @param tmn Boolean.  Calculate minimum temperature values (degrees Celsius)
-#' and return it in the data frame?  Defaults to `FALSE`.
-#' @param tmx Boolean.  Calculate maximum temperature (degrees Celsius) and
-#' return it in the data frame?  Defaults to `FALSE`.
-#' @param reh Boolean.  Fetch relative humidity and return it in the data frame?
-#' Defaults to `FALSE`.
-#' @param sunp Boolean.  Fetch sunshine, percent of maximum possible (percent of
-#' day length) and return it in data frame?  Defaults to `FALSE`.
-#' @param frs Boolean.  Fetch ground-frost records (number of days with ground-
-#' frost per month) and return it in data frame?  Defaults to `FALSE`.
-#' @param wnd Boolean.  Fetch 10m wind speed (metres/second) and return it in the
-#' data frame? Defaults to `FALSE`.
-#' @param elv Boolean.  Fetch elevation (converted to metres) and return it in
-#' the data frame?  Defaults to `FALSE`.
+#' @param rd0 Fetches wet-days (number days with >0.1 millimetres rain per
+#' month) and returns it in the data frame, `TRUE`. Defaults to `FALSE`.
+#' @param dtr Fetches mean diurnal temperature range (degrees Celsius)
+#' and returns it in the data frame, `TRUE`.  Defaults to `FALSE`.
+#' @param tmp Fetches temperature (degrees Celsius) and returns it in the
+#' data frame, `TRUE`.  Defaults to `FALSE`.
+#' @param tmn Calculates minimum temperature values (degrees Celsius)
+#' and returns it in the data frame. Defaults to `FALSE`.
+#' @param tmx Boolean. Calculates maximum temperature (degrees Celsius) and
+#' returns it in the data frame, `TRUE`.  Defaults to `FALSE`.
+#' @param reh Fetches relative humidity and returns it in the data frame,
+#' `TRUE`. Defaults to `FALSE`.
+#' @param sunp Fetches sunshine, percent of maximum possible (percent of
+#' day length), and returns it in the data frame, `TRUE`.  Defaults to `FALSE`.
+#' @param frs Boolean. Fetches ground-frost records (number of days with
+#' ground-frost per month) and returns it in data frame, `TRUE`.  Defaults to
+#' `FALSE`.
+#' @param wnd Fetches 10m wind speed (metres/second) and returns it in the data
+#' frame, `TRUE`. Defaults to `FALSE`.
+#' @param elv Fetches elevation (converted to metres) and returns it in the
+#' data frame, `TRUE`. Defaults to `FALSE`.
 #'
 #' @examples
 #' .check_vars_FALSE(
@@ -64,9 +65,9 @@
   }
 }
 
-#' Validates User Entered dsn Value
+#' Validates user entered dsn value
 #'
-#' @param dsn User provided value for checking
+#' @param dsn User provided value for checking.
 #' @keywords Internal
 #' @noRd
 .validate_dsn <- function(dsn) {
@@ -95,23 +96,22 @@
   }
 }
 
-#' Creates a Data Frame From the CRU Data
+#' Creates a data.table from the CRU data
 #'
-#' @param tmn Is tmn to be calculated? Boolean
-#' @param tmn Is tmx to be calculated? Boolean
-#' @param dtr Is dtr to be returned? Boolean
-#' @param pre Is pre to be returned? Boolean
-#' @param pre_cv Is pre_cv to be returned? Boolean
-#' @param elv Is elv to be returned? Boolean
-#' @param files File list to be used for creating data frame
+#' @param tmn Is tmn to be calculated? Boolean.
+#' @param tmn Is tmx to be calculated? Boolean.
+#' @param dtr Is dtr to be returned? Boolean.
+#' @param pre Is pre to be returned? Boolean.
+#' @param pre_cv Is pre_cv to be returned? Boolean.
+#' @param elv Is elv to be returned? Boolean.
+#' @param files File list to be used for creating data frame.
 #'
-#' @return A \CRANpkg{data.table} of all requested values
+#' @return A \CRANpkg{data.table} of all requested values.
 #' @keywords Internal
 #' @autoglobal
 #' @noRd
 .create_df <-
   function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
-
     CRU_df <-
       .tidy_df(pre_cv, elv, tmn, tmx, .files = files)
 
@@ -184,8 +184,8 @@
 
 #' Read Files From Local cache
 #'
-#' @param .files a list of CRU CL2.0 files in local storage
-#' @param .pre_cv `Boolean` return pre_cv in the data?
+#' @param .files a list of CRU CL2.0 files in local storage.
+#' @param .pre_cv `Boolean` return pre_cv in the data.
 #'
 #' @keywords Internal
 #' @autoglobal
@@ -269,18 +269,18 @@
 }
 
 
-#' Create terra rast Objects
+#' Create terra rast objects
 #'
-#' @param pre Boolean  Return precipitation in the `rast`?
-#' @param pre_cv Boolean.  Return cv of precipitation (percent) in the `rast`?
-#' @param dtr Boolean.  Return mean diurnal temperature range (degrees Celsius)
-#'  in the `rast`?
-#' @param tmp Boolean.  Return temperature (degrees Celsius) in the `rast`?
-#' @param tmn Boolean.  Return minimum temperature values (degrees Celsius)
-#'  in the `rast`?
-#' @param tmx Boolean.  Return maximum temperature (degrees Celsius) in the
-#'  `rast`?
-#' @param files List.  Files that are to be used in creating the `rast` object.
+#' @param pre Return precipitation in the `rast`, Boolean.
+#' @param pre_cv Return cv of precipitation (percent) in the `rast`, Boolean.
+#' @param dtr Return mean diurnal temperature range (degrees Celsius)
+#'  in the `rast`, Boolean.
+#' @param tmp Return temperature (degrees Celsius) in the `rast`, Boolean.
+#' @param tmn Return minimum temperature values (degrees Celsius)
+#'  in the `rast`, Boolean.
+#' @param tmx Return maximum temperature (degrees Celsius) in the
+#'  `rast`, Boolean.
+#' @param files List. Files that are to be used in creating the `rast` object.
 #'
 #' @keywords Internal
 #' @autoglobal
@@ -353,11 +353,11 @@
 
 #' Helper Function Used in .create_stacks()
 #'
-#' @param files a list of files to use in creating `rast` objects
-#' @param wrld an empty [terra::rast] object for filling with values
-#' @param month_names A vector of month names from jan -- dec
-#' @param pre `Boolean` include precipitation?
-#' @param pre_cv `Boolean` include preciptation cv?
+#' @param files A list of files to use in creating `rast` objects.
+#' @param wrld An empty [terra::rast] object for filling with values.
+#' @param month_names A vector of month names from jan -- dec.
+#' @param pre `Boolean` include precipitation.
+#' @param pre_cv `Boolean` include preciptation cv.
 #'
 #' @autoglobal
 #' @keywords Internal
@@ -435,15 +435,17 @@
 #' Creates local directory for caching and/or uses it for local caching or
 #'  uses the \R session `tempdir()`.
 #'
-#' @param cache `Boolean` (create) and use local file cache?
+#' @param cache `Boolean` (create) and use local file cache.
 #'
 #' @keywords Internal
 #' @noRd
 .set_cache <- function(cache) {
   manage_cache <- hoardr::hoard()
-  manage_cache$cache_path_set(path = "getCRUCLdata",
-                              prefix = "org.R-project.R/R",
-                              type = "user_cache_dir")
+  manage_cache$cache_path_set(
+    path = "getCRUCLdata",
+    prefix = "org.R-project.R/R",
+    type = "user_cache_dir"
+  )
   if (cache) {
     if (!dir.exists(manage_cache$cache_path_get())) {
       manage_cache$mkdir()
@@ -457,29 +459,29 @@
 
 #' Create a List of Locally Cached Files for Import
 #'
-#' @param pre Boolean.  Load precipitation (millimetres/month) from server and
-#' return in the data frame?
-#' @param pre_cv Boolean.  Load cv of precipitation (percent) from server and
-#' return in the data frame?
-#' @param rd0 Boolean.  Load wet-days (number days with >0.1 millimetres rain
-#' per month) and return in the data frame?
-#' @param dtr Boolean.  Load mean diurnal temperature range (degrees Celsius)
-#' and return it in the data frame?
-#' @param tmp Boolean.  Load temperature (degrees Celsius) and return it in the
-#' data frame?
-#' @param tmn Boolean.  Calculate minimum temperature values (degrees Celsius)
-#' and return it in the data frame?
-#' @param tmx Boolean.  Calculate maximum temperature (degrees Celsius) and
-#' return it in the data frame?
-#' @param reh Boolean.  Load relative humidity and return it in the data frame?
-#' @param sunp Boolean.  Load sunshine, percent of maximum possible (percent of
-#' day length) and return it in data frame?
-#' @param frs Boolean.  Load ground-frost records (number of days with ground-
-#' frost per month) and return it in data frame?
-#' @param wnd Boolean.  Load 10m wind speed (metres/second) and return it in the
-#' data frame?
-#' @param elv Boolean.  Load elevation (converted to metres) and return it in
-#' the data frame?
+#' @param pre Boolean, loads precipitation (millimetres/month) from server and
+#' returns in the data frame.
+#' @param pre_cv Boolean, loads cv of precipitation (percent) from server and
+#' returns in the data frame.
+#' @param rd0 Boolean, loads wet-days (number days with >0.1 millimetres rain
+#' per month) and returns in the data frame.
+#' @param dtr Boolean, loads mean diurnal temperature range (degrees Celsius)
+#' and returns it in the data frame.
+#' @param tmp Boolean, loads temperature (degrees Celsius) and returns it in
+#' the data frame.
+#' @param tmn Boolean, calculates minimum temperature values (degrees Celsius)
+#' and returns it in the data frame.
+#' @param tmx Boolean, calculatex maximum temperature (degrees Celsius) and
+#' returns it in the data frame.
+#' @param reh Boolean, loads relative humidity and return it in the data frame.
+#' @param sunp Boolean, loads sunshine, percent of maximum possible (percent of
+#' day length) and returns it in data frame.
+#' @param frs Boolean, loads ground-frost records (number of days with ground-
+#' frost per month) and return it in data frame.
+#' @param wnd Boolean, loads 10m wind speed (metres/second) and returns it in
+#' the data frame.
+#' @param elv Boolean, loads elevation (converted to metres) and returns it in
+#' the data frame.
 #'
 #' @keywords Internal
 #' @noRd

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_CRU_stack.R
 \name{get_CRU_stack}
 \alias{get_CRU_stack}
-\title{Download and Create a List of terra rast Objects of Climatology Parameters}
+\title{Download and create a list of terra rast objects of CRU CL  2.0 climatology elements}
 \usage{
 get_CRU_stack(
   pre = FALSE,
@@ -21,57 +21,57 @@ get_CRU_stack(
 )
 }
 \arguments{
-\item{pre}{Boolean.  Fetch precipitation (millimetres/month) from server and
-return in the data frame?  Defaults to \code{FALSE}.}
+\item{pre}{Fetches precipitation (millimetres/month) from server and
+returns it in the data frame, \code{TRUE}.  Defaults to \code{FALSE}.}
 
-\item{pre_cv}{Boolean.  Fetch cv of precipitation (percent) from server and
-return in the data frame?  Defaults to \code{FALSE}.  NOTE.  Setting this to
-\code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
+\item{pre_cv}{Fetch cv of precipitation (percent) from server and
+returns it in the data frame, \code{TRUE}.  Defaults to \code{FALSE}.  NOTE Setting
+this to \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
 returned as well.}
 
-\item{rd0}{Boolean.  Fetch wet-days (number days with >0.1 millimetres rain
-per month) and return in the data frame?  Defaults to \code{FALSE}.}
+\item{rd0}{Fetches wet-days (number days with >0.1 millimetres rain
+per month) and returns it in the data frame?  Defaults to \code{FALSE}.}
 
-\item{tmp}{Boolean.  Fetch temperature (degrees Celsius) and return it in the
-data frame?  Defaults to \code{FALSE}.}
+\item{tmp}{Fetches temperature (degrees Celsius) and returns it in the
+data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{dtr}{Boolean.  Fetch mean diurnal temperature range (degrees Celsius)
-and return it in the data frame?  Defaults to \code{FALSE}.}
+\item{dtr}{Fetches mean diurnal temperature range (degrees Celsius)
+and returns it in the data frame?  Defaults to \code{FALSE}.}
 
-\item{reh}{Boolean.  Fetch relative humidity and return it in the data frame?
-Defaults to FALSE.}
+\item{reh}{Fetches relative humidity and returns it in the data frame,
+\code{TRUE}. Defaults to FALSE.}
 
-\item{tmn}{Boolean.  Calculate minimum temperature values (degrees Celsius)
-and return it in the data frame?  Defaults to \code{FALSE}.}
+\item{tmn}{Calculates minimum temperature values (degrees Celsius)
+and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{tmx}{Boolean.  Calculate maximum temperature (degrees Celsius) and
-return it in the data frame?  Defaults to \code{FALSE}.}
+\item{tmx}{Calculates maximum temperature (degrees Celsius) and
+returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{sunp}{Boolean.  Fetch sunshine, percent of maximum possible (percent of
+\item{sunp}{Fetch sunshine, percent of maximum possible (percent of
 day length) and return it in the data frame?  Defaults to \code{FALSE}.}
 
-\item{frs}{Boolean.  Fetch ground-frost records (number of days with ground-
+\item{frs}{Fetches ground-frost records (number of days with ground-
 frost per month) and return it in the data frame?  Defaults to \code{FALSE}.}
 
-\item{wnd}{Boolean.  Fetch 10m wind speed (metres/second) and return it in the
-data frame? Defaults to \code{FALSE}.}
+\item{wnd}{Fetches 10m wind speed (metres/second) and returns it in the
+data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{elv}{Boolean.  Fetch elevation (converted to metres) and return it in
-the data frame?  Defaults to \code{FALSE}.}
+\item{elv}{Fetches elevation (converted to metres) and returns it in
+the data frame, \code{TRUE}.  Defaults to \code{FALSE}.}
 
-\item{cache}{Boolean.  Store CRU CL v. 2.0 data files locally for later use?
-If \code{FALSE}, the downloaded files are removed when R session is closed.
+\item{cache}{Stores CRU CL v. 2.0 data files locally for later use.
+If \code{FALSE}, the downloaded files are removed when the \R session is closed.
 To take advantage of cached files in future sessions, use \code{cache = TRUE}
-after the initial download and caching.  Defaults to \code{FALSE}.}
+even after the initial download and caching.  Defaults to \code{FALSE}.}
 }
 \value{
-A \code{\link[base:list]{base::list()}} of \link[terra:rast]{terra::rast} objects of CRU CL v. 2.0
-climatology elements
+A \link[base:list]{base::list} of \link[terra:rast]{terra::rast} objects of CRU CL v. 2.0
+climatology elements.
 }
 \description{
 This function automates downloading and importing CRU CL v. 2.0
 climatology data into \R and creates a list of \CRANpkg{terra}
-\code{\link[terra:rast]{terra::rast()}} objects of the data.  If requested, minimum and maximum
+\link[terra:rast]{terra::rast} objects of the data.  If requested, minimum and maximum
 temperature may also be automatically calculated as described in the data
 readme.txt file.  Data may be cached for later use by this function, saving
 time downloading files in future using this function.
@@ -113,12 +113,10 @@ For more information see the description of the data provided by
 CRU_pre_tmp <- get_CRU_stack(pre = TRUE, tmp = TRUE)
 
 CRU_pre_tmp
-
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=create_CRU_stack]{create_CRU_stack()}}
-\code{\link[=manage_cache]{manage_cache()}}
+\link{create_CRU_stack}, \link{manage_cache}.
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com}

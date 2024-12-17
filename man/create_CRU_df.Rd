@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_CRU_df.R
 \name{create_CRU_df}
 \alias{create_CRU_df}
-\title{Create a data.table of Climatology Variables From Local Disk Files}
+\title{Create a data.table of CRU CL 2.0 climatology elements from local disk files}
 \usage{
 create_CRU_df(
   pre = FALSE,
@@ -21,56 +21,57 @@ create_CRU_df(
 )
 }
 \arguments{
-\item{pre}{Boolean. Load precipitation (millimetres/month) from server and
-return in the data frame? Defaults to \code{FALSE}.}
+\item{pre}{Loads precipitation (millimetres/month) from server and
+returns in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{pre_cv}{Boolean. Load cv of precipitation (percent) from server and
-return in the data frame? Defaults to \code{FALSE}. NOTE. Setting this to
-\code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
+\item{pre_cv}{Loads cv of precipitation (percent) from server and
+returns in the data frame, \code{TRUE}. Defaults to \code{FALSE}. NOTE. Setting this
+to \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
 returned as well.}
 
-\item{rd0}{Boolean. Load wet-days (number days with >0.1millimetres rain per
-month) and return in the data frame? Defaults to \code{FALSE}.}
+\item{rd0}{Loads wet-days (number days with >0.1millimetres rain per
+month) and returns in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{tmp}{Boolean. Load temperature (degrees Celsius) and return it in the
-data frame? Defaults to \code{FALSE}.}
+\item{tmp}{Loads temperature (degrees Celsius) and returns it in the
+data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{dtr}{Boolean. Load mean diurnal temperature range (degrees Celsius)
-and return it in the data frame? Defaults to \code{FALSE}.}
+\item{dtr}{Loads mean diurnal temperature range (degrees Celsius)
+and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{reh}{Boolean. Load relative humidity and return it in the data frame?
+\item{reh}{Loads relative humidity and returns it in the data frame, \code{TRUE}.
 Defaults to \code{FALSE}.}
 
-\item{tmn}{Boolean. Calculate minimum temperature values (degrees Celsius)
-and return it in the data frame? Defaults to \code{FALSE}.}
+\item{tmn}{Calculate minimum temperature values (degrees Celsius)
+and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{tmx}{Boolean. Calculate maximum temperature (degrees Celsius) and
-return it in the data frame? Defaults to \code{FALSE}.}
+\item{tmx}{Calculate maximum temperature (degrees Celsius) and
+return it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{sunp}{Boolean. Load sunshine, percent of maximum possible (percent of
-day length) and return it in the data frame? Defaults to \code{FALSE}.}
+\item{sunp}{Loads sunshine, percent of maximum possible (percent of
+day length) and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{frs}{Boolean. Load ground-frost records (number of days with ground-
-frost per month) and return it in the data frame? Defaults to \code{FALSE}.}
+\item{frs}{Loads ground-frost records (number of days with ground-
+frost per month) and returns it in the data frame, \code{TRUE}. Defaults to
+\code{FALSE}.}
 
-\item{wnd}{Boolean. Load 10m wind speed (metres/second) and return it in the
-data frame? Defaults to \code{FALSE}.}
+\item{wnd}{Load 10m wind speed (metres/second) and returns it in the
+data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{elv}{Boolean. Load elevation (converted to metres) and return it in
-the data frame? Defaults to \code{FALSE}.}
+\item{elv}{Loads elevation (converted to metres) and returns it in
+the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{dsn}{Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
 files are located.}
 }
 \value{
 A \CRANpkg{data.table} object of \acronym{CRU} \acronym{CL} v. 2.0
-climatology elements
+climatology elements.
 }
 \description{
 Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
-data and creates a tidy data frame of the data.  If requested, minimum and
-maximum temperature may also be automatically calculated as described in the
-data readme.txt file.  This function can be useful if you have network
+data and creates a \CRANpkg{data.table} of the data.  If requested, minimum
+and maximum temperature may also be automatically calculated as described in
+the data readme.txt file.  This function can be useful if you have network
 connection issues that mean automated downloading of the files using \R
 does not work properly.
 }
@@ -114,7 +115,7 @@ CRU_tmp
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=get_CRU_df]{get_CRU_df()}}
+\link{get_CRU_df}.
 }
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com}

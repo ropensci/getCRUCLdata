@@ -51,7 +51,8 @@ Config/testthat/parallel: true
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
-    "roxyglobals::global_roclet"))
+    "roxyglobals::global_roclet", "roxylint::roxylint"))
+Config/roxylint: list(linters = roxylint::tidy)
 RoxygenNote: 7.3.2
 X-schema.org-applicationCategory: Tools
 X-schema.org-isPartOf: https://ropensci.org

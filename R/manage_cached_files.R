@@ -1,6 +1,6 @@
 #' Manage locally cached CRU CL v. 2.0 files
 #'
-#' Manage cached \pkg{getCRUCLdata} files with \CRANpkg{hoardr}
+#' Manage cached \pkg{getCRUCLdata} files with \CRANpkg{hoardr}.
 #'
 #' @export
 #' @name manage_cache
@@ -13,7 +13,7 @@
 #' `manage_cache$cache_delete_all`
 #' does not accept any names, but deletes all files. For deleting many specific
 #' files, use `manage_cache$cache_delete` in an
-#' [base::lapply()] type call.
+#' [base::lapply] type call.
 #'
 #' @section Useful user functions:
 #' \itemize{

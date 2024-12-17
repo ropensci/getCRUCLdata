@@ -4,7 +4,7 @@
 \alias{manage_cache}
 \title{Manage locally cached CRU CL v. 2.0 files}
 \description{
-Manage cached \pkg{getCRUCLdata} files with \CRANpkg{hoardr}
+Manage cached \pkg{getCRUCLdata} files with \CRANpkg{hoardr}.
 }
 \details{
 The default cache directory is
@@ -15,7 +15,7 @@ set your own path using \code{manage_cache$cache_path_set()}
 \code{manage_cache$cache_delete_all}
 does not accept any names, but deletes all files. For deleting many specific
 files, use \code{manage_cache$cache_delete} in an
-\code{\link[base:lapply]{base::lapply()}} type call.
+\link[base:lapply]{base::lapply} type call.
 }
 \section{Useful user functions}{
 

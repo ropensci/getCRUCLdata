@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_CRU_stack.R
 \name{create_CRU_stack}
 \alias{create_CRU_stack}
-\title{Create a List of terra rast Objects From Local Disk Files}
+\title{Create a list of terra rast objects of CRU CL 2.0 climatology elements from local disk files}
 \usage{
 create_CRU_stack(
   pre = FALSE,
@@ -21,50 +21,51 @@ create_CRU_stack(
 )
 }
 \arguments{
-\item{pre}{Boolean. Load precipitation (millimetres/month) from server and
-return in the data frame? Defaults to \code{FALSE}.}
+\item{pre}{Loads precipitation (millimetres/month) from server and
+returns in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{pre_cv}{Boolean. Load cv of precipitation (percent) from server and
-return in the data frame? Defaults to \code{FALSE}. NOTE. Setting this to
-\code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
+\item{pre_cv}{Loads cv of precipitation (percent) from server and
+returns in the data frame, \code{TRUE}. Defaults to \code{FALSE}. NOTE. Setting this
+to \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
 returned as well.}
 
-\item{rd0}{Boolean. Load wet-days (number days with >0.1millimetres rain per
-month) and return in the data frame? Defaults to \code{FALSE}.}
+\item{rd0}{Loads wet-days (number days with >0.1millimetres rain per
+month) and returns in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{tmp}{Boolean. Load temperature (degrees Celsius) and return it in the
-data frame? Defaults to \code{FALSE}.}
+\item{tmp}{Loads temperature (degrees Celsius) and returns it in the
+data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{dtr}{Boolean. Load mean diurnal temperature range (degrees Celsius)
-and return it in the data frame? Defaults to \code{FALSE}.}
+\item{dtr}{Loads mean diurnal temperature range (degrees Celsius)
+and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{reh}{Boolean. Load relative humidity and return it in the data frame?
+\item{reh}{Loads relative humidity and returns it in the data frame, \code{TRUE}.
 Defaults to \code{FALSE}.}
 
-\item{tmn}{Boolean. Calculate minimum temperature values (degrees Celsius)
-and return it in the data frame? Defaults to \code{FALSE}.}
+\item{tmn}{Calculate minimum temperature values (degrees Celsius)
+and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{tmx}{Boolean. Calculate maximum temperature (degrees Celsius) and
-return it in the data frame? Defaults to \code{FALSE}.}
+\item{tmx}{Calculate maximum temperature (degrees Celsius) and
+return it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{sunp}{Boolean. Load sunshine, percent of maximum possible (percent of
-day length) and return it in the data frame? Defaults to \code{FALSE}.}
+\item{sunp}{Loads sunshine, percent of maximum possible (percent of
+day length) and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{frs}{Boolean. Load ground-frost records (number of days with ground-
-frost per month) and return it in the data frame? Defaults to \code{FALSE}.}
+\item{frs}{Loads ground-frost records (number of days with ground-
+frost per month) and returns it in the data frame, \code{TRUE}. Defaults to
+\code{FALSE}.}
 
-\item{wnd}{Boolean. Load 10m wind speed (metres/second) and return it in the
-data frame? Defaults to \code{FALSE}.}
+\item{wnd}{Load 10m wind speed (metres/second) and returns it in the
+data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{elv}{Boolean. Load elevation (converted to metres) and return it in
-the data frame? Defaults to \code{FALSE}.}
+\item{elv}{Loads elevation (converted to metres) and returns it in
+the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{dsn}{Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
 files are located.}
 }
 \value{
 A \link[base:list]{base::list} of \link[terra:rast]{terra::rast} objects of \acronym{CRU} \acronym{CL}
-v. 2.0 climatology elements
+v. 2.0 climatology elements.
 }
 \description{
 Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
@@ -117,7 +118,7 @@ CRU_tmp
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=get_CRU_stack]{get_CRU_stack()}}
+\link{get_CRU_stack}.
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com}
