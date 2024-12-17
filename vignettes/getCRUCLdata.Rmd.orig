@@ -196,7 +196,7 @@ plot(t[[8]]$jul)
 
 #### Saving terra objects to local disk
 
-The terra rast stack objects can be saved to disk as geotiff files (others are available, see help for `terra::writeRaster()` and `terra::writeFormats()` for more options) on the `Data` directory with a tmn or tmx prefix to the month for a file name.
+The [terra::rast()] objects can be saved to disk as geotiff files (others are available, see help for `terra::writeRaster()` for more options) on the `Data` directory with a tmn or tmx prefix to the month for a file name.
 
 ```{r save_stack, eval=FALSE}
 library(terra)

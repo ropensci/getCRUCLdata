@@ -1,7 +1,7 @@
 ---
 title: "getCRUCLdata"
 author: "Adam H. Sparks"
-date: "2024-12-16"
+date: "2024-12-17"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -87,32 +87,32 @@ CRU_data <- get_CRU_df(pre = TRUE,
                        elv = TRUE)
 
 CRU_data
-#>             lat     lon  month   dtr   frs   pre pre_cv   rd0   reh   sun   tmp   wnd   elv    tmx
-#>           <num>   <num> <fctr> <num> <num> <num>  <num> <num> <num> <num> <num> <num> <num>  <num>
-#>       1: 30.917  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -260     NA
-#>       2: 31.083  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -361     NA
-#>       3: 31.250  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -336     NA
-#>       4: 31.417  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -284     NA
-#>       5: 31.750  35.583   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -248     NA
-#>      ---                                                                                          
-#> 6795146: 83.583 -30.083    dec   8.7    31   0.1   72.7   5.1  70.6     0 -31.3   5.6   283 -26.95
-#> 6795147: 83.583 -29.917    dec   8.6    31   0.1   72.8   4.9  70.6     0 -30.7   5.6   186 -26.40
-#> 6795148: 83.583 -29.750    dec   8.6    31   0.1   72.9   4.9  70.6     0 -30.8   5.6   195 -26.50
-#> 6795149: 83.583 -29.583    dec   8.6    31   0.1   73.0   5.0  70.6     0 -31.2   5.6   268 -26.90
-#> 6795150: 83.583 -29.417    dec   8.6    31   0.1   73.1   5.1  70.6     0 -31.5   5.6   328 -27.20
-#>             tmn
-#>           <num>
-#>       1:     NA
-#>       2:     NA
-#>       3:     NA
-#>       4:     NA
-#>       5:     NA
-#>      ---       
-#> 6795146: -35.65
-#> 6795147: -35.00
-#> 6795148: -35.10
-#> 6795149: -35.50
-#> 6795150: -35.80
+#>             lat     lon  month   dtr   frs   pre pre_cv   rd0   reh   sun   tmp   wnd   elv
+#>           <num>   <num> <fctr> <num> <num> <num>  <num> <num> <num> <num> <num> <num> <num>
+#>       1: 30.917  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -260
+#>       2: 31.083  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -361
+#>       3: 31.250  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -336
+#>       4: 31.417  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -284
+#>       5: 31.750  35.583   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -248
+#>      ---                                                                                   
+#> 6795146: 83.583 -30.083    dec   8.7    31   0.1   72.7   5.1  70.6     0 -31.3   5.6   283
+#> 6795147: 83.583 -29.917    dec   8.6    31   0.1   72.8   4.9  70.6     0 -30.7   5.6   186
+#> 6795148: 83.583 -29.750    dec   8.6    31   0.1   72.9   4.9  70.6     0 -30.8   5.6   195
+#> 6795149: 83.583 -29.583    dec   8.6    31   0.1   73.0   5.0  70.6     0 -31.2   5.6   268
+#> 6795150: 83.583 -29.417    dec   8.6    31   0.1   73.1   5.1  70.6     0 -31.5   5.6   328
+#>             tmx    tmn
+#>           <num>  <num>
+#>       1:     NA     NA
+#>       2:     NA     NA
+#>       3:     NA     NA
+#>       4:     NA     NA
+#>       5:     NA     NA
+#>      ---              
+#> 6795146: -26.95 -35.65
+#> 6795147: -26.40 -35.00
+#> 6795148: -26.50 -35.10
+#> 6795149: -26.90 -35.50
+#> 6795150: -27.20 -35.80
 ```
 
 Perhaps you only need one or two elements, it is easy to create a data frame of mean temperature only.
@@ -252,7 +252,7 @@ CRU_stack
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> coord. ref. : lon/lat WGS 84 
-#> source      : spat_613232ecfe11_24882_GdaPwXHptgIOPSx.tif 
+#> source(s)   : memory
 #> names       :   jan,   feb,   mar,   apr,  may,    jun, ... 
 #> min values  :   0.0,   0.0,   0.0,   0.0,    0,    0.0, ... 
 #> max values  : 910.1, 824.3, 727.3, 741.3, 1100, 2512.6, ... 
@@ -367,7 +367,7 @@ plot(t[[8]]$jul)
 
 #### Saving terra objects to local disk
 
-The terra rast stack objects can be saved to disk as geotiff files (others are available, see help for `terra::writeRaster()` and `terra::writeFormats()` for more options) on the `Data` directory with a tmn or tmx prefix to the month for a file name.
+The [terra::rast()] objects can be saved to disk as geotiff files (others are available, see help for `terra::writeRaster()` for more options) on the `Data` directory with a tmn or tmx prefix to the month for a file name.
 
 
 ``` r
