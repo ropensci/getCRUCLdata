@@ -24,6 +24,16 @@
       "@id": "https://orcid.org/0000-0002-0061-8359"
     }
   ],
+  "copyrightHolder": [
+    {
+      "@type": "Organization",
+      "name": "Curtin University of Technology"
+    },
+    {
+      "@type": "Organization",
+      "name": "Grains Research and Development Corporation"
+    }
+  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -244,7 +254,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package", "peer-reviewed"],
-  "fileSize": "920.18KB",
+  "fileSize": "920.69KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

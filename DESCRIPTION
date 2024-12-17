@@ -2,16 +2,21 @@ Type: Package
 Package: getCRUCLdata
 Title: 'CRU' 'CL' v. 2.0 Climatology Client
 Version: 1.0.2
-Authors@R: 
+Authors@R: c(
     person("Adam H.", "Sparks", , "adamhsparks@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-0061-8359"))
+           comment = c(ORCID = "0000-0002-0061-8359")),
+    person("Curtin University of Technology", role = "cph",
+           comment = "Provided support through Adam Sparks's time."),
+    person("Grains Research and Development Corporation", role = c("cph"),
+           comment = "GRDC Project CUR2210-005OPX (AAGI-CU)")
+  )
 Description: Provides functions that automate downloading and importing
     University of East Anglia Climate Research Unit ('CRU') 'CL' v. 2.0
     climatology data, facilitates the calculation of minimum temperature
-    and maximum temperature and formats the data into a data.table object or a
-    list of 'terra' 'rast' objects for use.  'CRU' 'CL' v. 2.0 data are a
-    gridded climatology of 1961-1990 monthly means released in 2002 and
-    cover all land areas (excluding Antarctica) at 10 arc minutes
+    and maximum temperature and formats the data into a data.table object
+    or a list of 'terra' 'rast' objects for use.  'CRU' 'CL' v. 2.0 data
+    are a gridded climatology of 1961-1990 monthly means released in 2002
+    and cover all land areas (excluding Antarctica) at 10 arc minutes
     (0.1666667 degree) resolution.  For more information see the
     description of the data provided by the University of East Anglia
     Climate Research Unit,
@@ -46,13 +51,13 @@ VignetteBuilder:
 ByteCompile: TRUE
 Config/roxyglobals/filename: globals.R
 Config/roxyglobals/unique: FALSE
+Config/roxylint: list(linters = roxylint::tidy)
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet", "roxylint::roxylint"))
-Config/roxylint: list(linters = roxylint::tidy)
 RoxygenNote: 7.3.2
 X-schema.org-applicationCategory: Tools
 X-schema.org-isPartOf: https://ropensci.org
