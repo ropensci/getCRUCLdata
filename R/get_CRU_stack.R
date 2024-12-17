@@ -4,8 +4,9 @@
 #' climatology data into \R and creates a list of \CRANpkg{terra}
 #'  [terra::rast] objects of the data.  If requested, minimum and maximum
 #'  temperature may also be automatically calculated as described in the data
-#'  readme.txt file.  Data may be cached for later use by this function, saving
-#'  time downloading files in future using this function.
+#'  [readme.txt](https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt) file.
+#'  Data may be cached for later use by this function, saving time downloading
+#'  files in future using this function.
 #'
 #' @inheritSection get_CRU_df Nomenclature and Units
 #' @inheritParams get_CRU_df

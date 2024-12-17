@@ -101,11 +101,13 @@ climatology elements.
 }
 \description{
 Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
-data and creates a \CRANpkg{data.table} of the data.  If requested, minimum
+data and creates a \CRANpkg{data.table} of the data. If requested, minimum
 and maximum temperature may also be automatically calculated as described in
-the data readme.txt file.  This function can be useful if you have network
-connection issues that mean automated downloading of the files using \R
-does not work properly.
+the data \href{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}{readme.txt}
+file. Data may be cached for later use by this function, saving time
+downloading files in future using this function.  This function can be useful
+if you have network connection issues that mean automated downloading of the
+files using \R does not work properly.
 }
 \section{Nomenclature and Units}{
 

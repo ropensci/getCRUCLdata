@@ -105,8 +105,9 @@ This function automates downloading and importing CRU CL v. 2.0
 climatology data into \R and creates a list of \CRANpkg{terra}
 \link[terra:rast]{terra::rast} objects of the data.  If requested, minimum and maximum
 temperature may also be automatically calculated as described in the data
-readme.txt file.  Data may be cached for later use by this function, saving
-time downloading files in future using this function.
+\href{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}{readme.txt} file.
+Data may be cached for later use by this function, saving time downloading
+files in future using this function.
 }
 \section{Nomenclature and Units}{
 
