@@ -68,12 +68,10 @@
 #' @seealso
 #' [create_CRU_stack], [manage_cache].
 #'
-#' @return A \CRANpkg{data.table} object of \acronym{CRU} \acronym{CL} v. 2.0
-#'  climatology elements.
-#'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @inherit create_CRU_df source
 #' @inherit create_CRU_df references
+#' @inherit create_CRU_df return
 #'
 #' @export
 

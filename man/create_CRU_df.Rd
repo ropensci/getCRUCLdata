@@ -96,8 +96,8 @@ the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 files are located.}
 }
 \value{
-A \CRANpkg{data.table} object of \acronym{CRU} \acronym{CL} v. 2.0
-climatology elements.
+A \link[data.table:data.table]{data.table::data.table} object of \acronym{CRU} \acronym{CL} v.
+2.0 climatology elements.
 }
 \description{
 Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology

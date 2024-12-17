@@ -97,8 +97,8 @@ To take advantage of cached files in future sessions, use \code{cache = TRUE}
 even after the initial download and caching.  Defaults to \code{FALSE}.}
 }
 \value{
-A \CRANpkg{data.table} object of \acronym{CRU} \acronym{CL} v. 2.0
-climatology elements.
+A \link[data.table:data.table]{data.table::data.table} object of \acronym{CRU} \acronym{CL} v.
+2.0 climatology elements.
 }
 \description{
 This function automates downloading and importing \acronym{CRU}
