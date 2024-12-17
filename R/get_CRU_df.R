@@ -142,5 +142,5 @@ get_CRU_df <- function(pre = FALSE,
 }
 
 #' @export
-#' @rdname get_CRU_stack
+#' @rdname get_CRU_df
 get_cru_df <- get_CRU_df

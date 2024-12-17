@@ -2,6 +2,7 @@
 % Please edit documentation in R/get_CRU_df.R
 \name{get_CRU_df}
 \alias{get_CRU_df}
+\alias{get_cru_df}
 \title{Download and create a data.table of CRU CL v. 2.0 climatology elements}
 \source{
 \describe{
@@ -20,6 +21,22 @@ xmin = -180, xmax = 180.
 }
 \usage{
 get_CRU_df(
+  pre = FALSE,
+  pre_cv = FALSE,
+  rd0 = FALSE,
+  tmp = FALSE,
+  dtr = FALSE,
+  reh = FALSE,
+  tmn = FALSE,
+  tmx = FALSE,
+  sunp = FALSE,
+  frs = FALSE,
+  wnd = FALSE,
+  elv = FALSE,
+  cache = FALSE
+)
+
+get_cru_df(
   pre = FALSE,
   pre_cv = FALSE,
   rd0 = FALSE,
