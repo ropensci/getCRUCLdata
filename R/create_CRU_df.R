@@ -61,18 +61,16 @@
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #'
 #' @source
-#' \itemize{
-#'  \item pre <https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_pre.dat.gz>
-#'  \item rd0 <https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_rd0.dat.gz>
-#'  \item tmp <https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz>
-#'  \item dtr <https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_dtr.dat.gz>
-#'  \item reh <https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_reh.dat.gz>
-#'  \item sunp <https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_sunp.dat.gz>
-#'  \item frs <https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_frs.dat.gz>
-#'  \item wnd <https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_wnd.dat.gz>,
-#'  areas originally including Antarctica are removed.
-#'  \item elv <https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_elv.dat.gz>,
-#'  values are converted from kilometres to metres.
+#' \describe{
+#'  \item{pre}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_pre.dat.gz>}
+#'  \item{rd0}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_rd0.dat.gz>}
+#'  \item{tmp}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz>}
+#'  \item{dtr}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_dtr.dat.gz>}
+#'  \item{reh}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_reh.dat.gz>}
+#'  \item{sunp}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_sunp.dat.gz>}
+#'  \item{frs}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_frs.dat.gz>}
+#'  \item{wnd}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_wnd.dat.gz>, areas originally including Antarctica are removed.}
+#'  \item{elv}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_elv.dat.gz>, values are converted from kilometres to metres.}
 #' }
 #' This package crops all spatial outputs to an extent of ymin = -60, ymax = 85,
 #' xmin = -180, xmax = 180.

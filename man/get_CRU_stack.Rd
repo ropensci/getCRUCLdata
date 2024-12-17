@@ -4,18 +4,16 @@
 \alias{get_CRU_stack}
 \title{Download and create a list of terra rast objects of CRU CL v. 2.0 climatology elements}
 \source{
-\itemize{
-\item pre \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_pre.dat.gz}
-\item rd0 \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_rd0.dat.gz}
-\item tmp \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz}
-\item dtr \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_dtr.dat.gz}
-\item reh \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_reh.dat.gz}
-\item sunp \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_sunp.dat.gz}
-\item frs \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_frs.dat.gz}
-\item wnd \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_wnd.dat.gz},
-areas originally including Antarctica are removed.
-\item elv \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_elv.dat.gz},
-values are converted from kilometres to metres.
+\describe{
+\item{pre}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_pre.dat.gz}}
+\item{rd0}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_rd0.dat.gz}}
+\item{tmp}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz}}
+\item{dtr}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_dtr.dat.gz}}
+\item{reh}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_reh.dat.gz}}
+\item{sunp}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_sunp.dat.gz}}
+\item{frs}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_frs.dat.gz}}
+\item{wnd}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_wnd.dat.gz}, areas originally including Antarctica are removed.}
+\item{elv}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_elv.dat.gz}, values are converted from kilometres to metres.}
 }
 This package crops all spatial outputs to an extent of ymin = -60, ymax = 85,
 xmin = -180, xmax = 180.
