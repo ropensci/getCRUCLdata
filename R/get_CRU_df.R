@@ -1,4 +1,4 @@
-#' Download and create a data.table of CRU CL 2.0 climatology elements
+#' Download and create a data.table of CRU CL v. 2.0 climatology elements
 #'
 #' This function automates downloading and importing \acronym{CRU}
 #' \acronym{CL} v. 2.0 climatology data and creates a \CRANpkg{data.table} of

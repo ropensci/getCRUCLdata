@@ -1,4 +1,4 @@
-#' Create a data.table of CRU CL 2.0 climatology elements from local disk files
+#' Create a data.table of CRU CL v. 2.0 climatology elements from local disk files
 #'
 #' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
 #' data and creates a \CRANpkg{data.table} of the data.  If requested, minimum

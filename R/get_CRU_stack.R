@@ -1,4 +1,4 @@
-#' Download and create a list of terra rast objects of CRU CL  2.0 climatology elements
+#' Download and create a list of terra rast objects of CRU CL v. 2.0 climatology elements
 #'
 #' This function automates downloading and importing CRU CL v. 2.0
 #' climatology data into \R and creates a list of \CRANpkg{terra}

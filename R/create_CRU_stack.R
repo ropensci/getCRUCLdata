@@ -1,4 +1,4 @@
-#' Create a list of terra rast objects of CRU CL 2.0 climatology elements from local disk files
+#' Create a list of terra rast objects of CRU CL v. 2.0 climatology elements from local disk files
 #'
 #' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
 #' data and creates a \CRANpkg{terra} [terra::rast] object of the
