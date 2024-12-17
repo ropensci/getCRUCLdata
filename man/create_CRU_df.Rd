@@ -107,10 +107,6 @@ the data readme.txt file.  This function can be useful if you have network
 connection issues that mean automated downloading of the files using \R
 does not work properly.
 }
-\note{
-This package automatically converts elevation values from kilometres to
-metres.
-}
 \section{Nomenclature and Units}{
 
 \describe{

@@ -79,10 +79,7 @@
 #'  over global land areas." Climate research 21.1 (2002): 1-25.
 #'  <https://crudata.uea.ac.uk/cru/data/hrg/tmc/new_et_al_10minute_climate_CR.pdf>
 #'
-#' @note
-#' This package automatically converts elevation values from kilometres to
-#' metres.
-#' @export create_CRU_df
+#' @export
 
 create_CRU_df <- function(pre = FALSE,
                           pre_cv = FALSE,

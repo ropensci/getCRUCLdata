@@ -48,7 +48,7 @@
 #'  over global land areas." Climate research 21.1 (2002): 1-25.
 #'  <https://crudata.uea.ac.uk/cru/data/hrg/tmc/new_et_al_10minute_climate_CR.pdf>
 #'
-#' @export create_CRU_stack
+#' @export
 
 create_CRU_stack <- function(pre = FALSE,
                              pre_cv = FALSE,
