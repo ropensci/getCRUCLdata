@@ -15,16 +15,16 @@
 #' files, use `manage_cache$cache_delete` in an [base::lapply] type call.
 #'
 #' @section Useful user functions:
-#' \itemize{
-#'  \item `manage_cache$cache_path_get()` - get cache path
-#'  \item `manage_cache$cache_path_set()` - set cache path
-#'  \item `manage_cache$list()` - returns a character vector of full
-#'  path file names
-#'  \item `manage_cache$files()` - returns file objects with metadata
-#'  \item `manage_cache$details()` - returns files with details
-#'  \item `manage_cache$delete()` - delete specific files
-#'  \item `manage_cache$delete_all()` - delete all files, returns
-#'  nothing
+#' \describe{
+#'  \item{`manage_cache$cache_path_get()`}{get cache path}
+#'  \item{`manage_cache$cache_path_set()`}{set cache path}
+#'  \item{`manage_cache$list()`}{returns a character vector of full
+#'  path file names}
+#'  \item{`manage_cache$files()`}{returns file objects with metadata}
+#'  \item{`manage_cache$details()`}{returns files with details}
+#'  \item{`manage_cache$delete()`}{delete specific files}
+#'  \item{`manage_cache$delete_all()`}{delete all files, returns
+#'  nothing}
 #' }
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
