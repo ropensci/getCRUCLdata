@@ -75,7 +75,9 @@
 #' This package crops all spatial outputs to an extent of ymin = -60, ymax = 85,
 #' xmin = -180, xmax = 180.
 #'
-#' @references <https://crudata.uea.ac.uk/cru/data/hrg/tmc/new_et_al_10minute_climate_CR.pdf>
+#' @references New, Mark, et al. "A high-resolution data set of surface climate
+#'  over global land areas." Climate research 21.1 (2002): 1-25.
+#'  <https://crudata.uea.ac.uk/cru/data/hrg/tmc/new_et_al_10minute_climate_CR.pdf>
 #'
 #' @note
 #' This package automatically converts elevation values from kilometres to

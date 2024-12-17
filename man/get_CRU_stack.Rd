@@ -156,6 +156,8 @@ CRU_pre_tmp
 \dontshow{\}) # examplesIf}
 }
 \references{
+New, Mark, et al. "A high-resolution data set of surface climate
+over global land areas." Climate research 21.1 (2002): 1-25.
 \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/new_et_al_10minute_climate_CR.pdf}
 
 This package crops all spatial outputs to an extent of ymin = -60, ymax = 85,
