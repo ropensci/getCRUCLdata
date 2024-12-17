@@ -8,8 +8,8 @@ Manage cached \pkg{getCRUCLdata} files with \CRANpkg{hoardr}.
 }
 \details{
 The default cache directory is
-\code{tools::R_user_dir(package = "getCRUCLdata")}, but you can
-set your own path using \code{manage_cache$cache_path_set()}.
+\code{tools::R_user_dir(package = "getCRUCLdata")}, but you can set your own path
+using \code{manage_cache$cache_path_set()}.
 
 \code{manage_cache$cache_delete} only accepts one file name, while
 \code{manage_cache$cache_delete_all}

@@ -6,8 +6,8 @@
 #' @name manage_cache
 #'
 #' @details The default cache directory is
-#' `tools::R_user_dir(package = "getCRUCLdata")`, but you can
-#' set your own path using `manage_cache$cache_path_set()`.
+#' `tools::R_user_dir(package = "getCRUCLdata")`, but you can set your own path
+#' using `manage_cache$cache_path_set()`.
 #'
 #' `manage_cache$cache_delete` only accepts one file name, while
 #' `manage_cache$cache_delete_all`
