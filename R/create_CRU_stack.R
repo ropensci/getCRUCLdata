@@ -102,3 +102,7 @@ create_CRU_stack <- function(pre = FALSE,
 
   return(.create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files))
 }
+
+#' @export
+#' @rdname create_CRU_stack
+create_cru_stack <- create_CRU_stack

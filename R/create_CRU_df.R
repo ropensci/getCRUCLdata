@@ -136,3 +136,7 @@ create_CRU_df <- function(pre = FALSE,
 
   return(.create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
 }
+
+#' @export
+#' @rdname create_CRU_df
+create_cru_df <- create_CRU_df

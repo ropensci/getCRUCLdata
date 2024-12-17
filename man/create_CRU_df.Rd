@@ -2,6 +2,7 @@
 % Please edit documentation in R/create_CRU_df.R
 \name{create_CRU_df}
 \alias{create_CRU_df}
+\alias{create_cru_df}
 \title{Create a data.table of CRU CL v. 2.0 climatology elements from local disk files}
 \source{
 \describe{
@@ -20,6 +21,22 @@ xmin = -180, xmax = 180.
 }
 \usage{
 create_CRU_df(
+  pre = FALSE,
+  pre_cv = FALSE,
+  rd0 = FALSE,
+  tmp = FALSE,
+  dtr = FALSE,
+  reh = FALSE,
+  tmn = FALSE,
+  tmx = FALSE,
+  sunp = FALSE,
+  frs = FALSE,
+  wnd = FALSE,
+  elv = FALSE,
+  dsn
+)
+
+create_cru_df(
   pre = FALSE,
   pre_cv = FALSE,
   rd0 = FALSE,
