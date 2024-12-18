@@ -21,3 +21,4 @@ file.copy(from = resources,
           to = "doc",
           overwrite =  TRUE)
 
+

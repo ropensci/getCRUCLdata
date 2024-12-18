@@ -1,7 +1,7 @@
 ---
 title: "getCRUCLdata"
 author: "Adam H. Sparks"
-date: "2024-12-17"
+date: "2024-12-18"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -72,6 +72,7 @@ The `get_CRU_df()` function automates the download process and creates data fram
 
 ``` r
 library(getCRUCLdata)
+#> Error in library(getCRUCLdata): there is no package called 'getCRUCLdata'
 
 CRU_data <- get_CRU_df(pre = TRUE,
                        pre_cv = TRUE,
@@ -85,34 +86,10 @@ CRU_data <- get_CRU_df(pre = TRUE,
                        frs = TRUE,
                        wnd = TRUE,
                        elv = TRUE)
+#> Error in get_CRU_df(pre = TRUE, pre_cv = TRUE, rd0 = TRUE, tmp = TRUE, : could not find function "get_CRU_df"
 
 CRU_data
-#>             lat     lon  month   dtr   frs   pre pre_cv   rd0   reh   sun   tmp   wnd   elv
-#>           <num>   <num> <fctr> <num> <num> <num>  <num> <num> <num> <num> <num> <num> <num>
-#>       1: 30.917  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -260
-#>       2: 31.083  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -361
-#>       3: 31.250  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -336
-#>       4: 31.417  35.417   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -284
-#>       5: 31.750  35.583   <NA>    NA    NA    NA     NA    NA    NA    NA    NA    NA  -248
-#>      ---                                                                                   
-#> 6795146: 83.583 -30.083    dec   8.7    31   0.1   72.7   5.1  70.6     0 -31.3   5.6   283
-#> 6795147: 83.583 -29.917    dec   8.6    31   0.1   72.8   4.9  70.6     0 -30.7   5.6   186
-#> 6795148: 83.583 -29.750    dec   8.6    31   0.1   72.9   4.9  70.6     0 -30.8   5.6   195
-#> 6795149: 83.583 -29.583    dec   8.6    31   0.1   73.0   5.0  70.6     0 -31.2   5.6   268
-#> 6795150: 83.583 -29.417    dec   8.6    31   0.1   73.1   5.1  70.6     0 -31.5   5.6   328
-#>             tmx    tmn
-#>           <num>  <num>
-#>       1:     NA     NA
-#>       2:     NA     NA
-#>       3:     NA     NA
-#>       4:     NA     NA
-#>       5:     NA     NA
-#>      ---              
-#> 6795146: -26.95 -35.65
-#> 6795147: -26.40 -35.00
-#> 6795148: -26.50 -35.10
-#> 6795149: -26.90 -35.50
-#> 6795150: -27.20 -35.80
+#> Error: object 'CRU_data' not found
 ```
 
 Perhaps you only need one or two elements, it is easy to create a data frame of mean temperature only.
@@ -120,21 +97,13 @@ Perhaps you only need one or two elements, it is easy to create a data frame of 
 
 ``` r
 t <- get_CRU_df(tmp = TRUE)
+#> Error in get_CRU_df(tmp = TRUE): could not find function "get_CRU_df"
 
 t
-#>              lat     lon  month   tmp
-#>            <num>   <num> <fctr> <num>
-#>       1: -59.083 -26.583    jan   0.2
-#>       2: -58.417 -26.250    jan   0.6
-#>       3: -58.417 -26.417    jan   0.4
-#>       4: -55.917 -67.250    jan   8.0
-#>       5: -55.750 -67.250    jan   8.2
-#>      ---                             
-#> 6795140:  83.583 -36.083    dec -32.6
-#> 6795141:  83.583 -36.250    dec -33.0
-#> 6795142:  83.583 -36.417    dec -33.4
-#> 6795143:  83.583 -36.583    dec -33.3
-#> 6795144:  83.583 -36.750    dec -33.3
+#> function (x) 
+#> UseMethod("t")
+#> <bytecode: 0x10d54ee30>
+#> <environment: namespace:base>
 ```
 
 #### Plotting data from the data frame
@@ -152,12 +121,10 @@ ggplot(data = t, aes(x = lon, y = lat, fill = tmp)) +
   coord_quickmap() +
   ggtitle("Global Mean Monthly Temperatures 1961-1990") +
   facet_wrap( ~ month, nrow = 4)
+#> Error in `ggplot()`:
+#> ! `data` cannot be a function.
+#> ℹ Have you misspelled the `data` argument in `ggplot()`
 ```
-
-<div class="figure" style="text-align: center">
-<img src="plot_t-1.png" alt="Maps of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."  />
-<p class="caption">Maps of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991.</p>
-</div>
 
 We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.
 
@@ -168,12 +135,10 @@ ggplot(data = t, aes(x = month, y = tmp)) +
   ylab("Temperature (˚C)") +
   labs(title = "Global Monthly Mean Land Surface Temperatures From 1960-1991",
        subtitle = "Excludes Antarctica")
+#> Error in `ggplot()`:
+#> ! `data` cannot be a function.
+#> ℹ Have you misspelled the `data` argument in `ggplot()`
 ```
-
-<div class="figure" style="text-align: center">
-<img src="violin_plot-1.png" alt="Monthly values of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."  />
-<p class="caption">Monthly values of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991.</p>
-</div>
 
 #### Saving the `data.frame` as a CSV (comma separated values file) locally
 
@@ -211,128 +176,10 @@ CRU_stack <- get_CRU_stack(
   wnd = TRUE,
   elv = TRUE
 )
+#> Error in get_CRU_stack(pre = TRUE, pre_cv = TRUE, rd0 = TRUE, tmp = TRUE, : could not find function "get_CRU_stack"
 
 CRU_stack
-#> $dtr
-#> class       : SpatRaster 
-#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
-#> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
-#> names       :  jan,  feb,  mar,  apr,  may,  jun, ... 
-#> min values  :  2.3,  2.1,  2.2,  2.3,  1.8,  2.5, ... 
-#> max values  : 22.7, 23.1, 23.5, 24.0, 24.0, 25.2, ... 
-#> 
-#> $elv
-#> class       : SpatRaster 
-#> dimensions  : 870, 2160, 1  (nrow, ncol, nlyr)
-#> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
-#> name        :  elv 
-#> min value   : -361 
-#> max value   : 6486 
-#> 
-#> $frs
-#> class       : SpatRaster 
-#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
-#> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
-#> names       : jan,  feb, mar, apr, may, jun, ... 
-#> min values  :   0,  0.0,   0,   0,   0,   0, ... 
-#> max values  :  31, 28.3,  31,  30,  31,  30, ... 
-#> 
-#> $pre
-#> class       : SpatRaster 
-#> dimensions  : 870, 2160, 24  (nrow, ncol, nlyr)
-#> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
-#> names       :   jan,   feb,   mar,   apr,  may,    jun, ... 
-#> min values  :   0.0,   0.0,   0.0,   0.0,    0,    0.0, ... 
-#> max values  : 910.1, 824.3, 727.3, 741.3, 1100, 2512.6, ... 
-#> 
-#> $rd0
-#> class       : SpatRaster 
-#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
-#> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
-#> names       : jan,  feb, mar, apr,  may, jun, ... 
-#> min values  :   0,  0.0,   0,   0,  0.0,   0, ... 
-#> max values  :  31, 28.2,  31,  30, 30.7,  30, ... 
-#> 
-#> $reh
-#> class       : SpatRaster 
-#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
-#> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
-#> names       :   jan,   feb,   mar,   apr,  may,  jun, ... 
-#> min values  :  18.4,  14.6,  13.5,  13.4, 15.5, 10.2, ... 
-#> max values  : 100.0, 100.0, 100.0, 100.0, 96.9, 95.1, ... 
-#> 
-#> $sun
-#> class       : SpatRaster 
-#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
-#> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
-#> names       :  jan, feb,  mar,  apr,  may,  jun, ... 
-#> min values  :  0.0,   0,  3.3,  4.3,  8.1,  6.6, ... 
-#> max values  : 92.8,  93, 90.2, 93.1, 94.0, 98.9, ... 
-#> 
-#> $tmp
-#> class       : SpatRaster 
-#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
-#> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
-#> names       :   jan,   feb,   mar,   apr,   may,   jun, ... 
-#> min values  : -51.6, -47.6, -45.2, -36.6, -22.2, -16.3, ... 
-#> max values  :  32.5,  32.1,  32.4,  34.3,  36.0,  38.3, ... 
-#> 
-#> $wnd
-#> class       : SpatRaster 
-#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
-#> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
-#> names       : jan, feb, mar, apr, may, jun, ... 
-#> min values  : 0.1, 0.1, 0.3, 0.4, 0.3, 0.2, ... 
-#> max values  : 9.8, 9.6, 9.4, 9.0, 8.7, 8.6, ... 
-#> 
-#> $tmn
-#> class       : SpatRaster 
-#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
-#> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
-#> names       :    jan,    feb,    mar,    apr, may,    jun, ... 
-#> min values  : -55.05, -52.95, -48.75, -41.35, -28, -21.40, ... 
-#> max values  :  26.30,  26.25,  27.40,  27.50,  30,  30.65, ... 
-#> 
-#> $tmx
-#> class       : SpatRaster 
-#> dimensions  : 870, 2160, 12  (nrow, ncol, nlyr)
-#> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 
-#> source(s)   : memory
-#> names       :   jan,    feb,    mar,    apr,    may,    jun, ... 
-#> min values  : -48.2, -43.35, -41.65, -32.45, -17.55, -11.50, ... 
-#> max values  :  39.7,  38.40,  40.25,  41.85,  43.60,  45.95, ...
+#> Error: object 'CRU_stack' not found
 ```
 
 The `create_CRU_stack()` function works in the same way with only one minor difference.
@@ -413,5 +260,5 @@ and show added value over most regions. The data will have many applications in
 applied climatology, biogeochemical modelling, hydrology and agricultural
 meteorology and are available through the School of Geography Oxford
 (https://www.geog.ox.ac.uk), the International Water Management Institute
-"World Water and Climate Atlas" (https://www.iwmi.cgiar.org/) and the Climatic
+"World Water and Climate Atlas" (https://www.iwmi.org/) and the Climatic
 Research Unit (https://www.uea.ac.uk/groups-and-centres/climatic-research-unit).
