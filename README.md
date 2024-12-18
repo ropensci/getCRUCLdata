@@ -1,13 +1,14 @@
-getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
-================
+# getCRUCLdata: Use and Explore CRU CL v. 2.0 Climatology Elements in R
 
 <!-- badges: start -->
+
 [![R-CMD-check](https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812)
 [![JOSS status](http://joss.theoj.org/papers/10.21105/joss.00230/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00230)
 [![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/software-review/issues/96)
 [![codecov](https://codecov.io/gh/ropensci/getCRUCLdata/graph/badge.svg?token=OZjFYcNGbS)](https://codecov.io/gh/ropensci/getCRUCLdata)
+
 <!-- badges: end -->
 
 ## Introduction to {getCRUCLdata}
@@ -31,7 +32,7 @@ Note that the original wind data include land area for parts of Antarctica.
 {getCRUCLdata} is not available from CRAN.
 You can install it from GitHub as follows.
 
-``` r
+```r
 if (!require("remotes")) {
   install.packages("remotes")
 }
@@ -39,18 +40,18 @@ if (!require("remotes")) {
 install_github("ropensci/getCRUCLdata", build_vignettes = TRUE)
 ```
 
-Or you can install it from the rOpenSci Universe.
+Or you can install it from the rOpenSci [R-universe](https://r-universe.dev/search?q=getCRUCLdata).
 
-``` r
-# Enable the rOpenSci universe
+```r
+# Enable the rOpenSci R-universe
 options(repos = c(
     rOpenSci = "https://ropensci.r-universe.dev",
-    CRAN = "https://cloud.r-project.org""))
+    CRAN = "https://cloud.r-project.org"))
 # Install the package
 install.packages("getCRUCLdata")
 ```
 
------
+---
 
 # Documentation
 
@@ -62,15 +63,15 @@ For complete documentation see the package website: <https://docs.ropensci.org/g
 
 > Mark New (1,\*), David Lister (2), Mike Hulme (3), Ian Makin (4)
 
-> A high-resolution data set of surface climate over global land areas 
+> A high-resolution data set of surface climate over global land areas
 > Climate Research, 2000, Vol 21, pg 1-25
 
-> 1)  School of Geography and the Environment, University of Oxford,
->     Mansfield Road, Oxford OX1 3TB, United Kingdom  
-> 2)  Climatic Research Unit, and (3) Tyndall Centre for Climate Change
+> 1. School of Geography and the Environment, University of Oxford,
+>     Mansfield Road, Oxford OX1 3TB, United Kingdom
+> 2. Climatic Research Unit, and (3) Tyndall Centre for Climate Change
 >     Research, both at School of Environmental Sciences, University of
->     East Anglia, Norwich NR4 7TJ, United Kingdom  
-> 3)  International Water Management Institute, PO Box 2075, Colombo,
+>     East Anglia, Norwich NR4 7TJ, United Kingdom
+> 3. International Water Management Institute, PO Box 2075, Colombo,
 >     Sri Lanka
 
 > **ABSTRACT:** We describe the construction of a 10-minute
@@ -92,7 +93,6 @@ For complete documentation see the package website: <https://docs.ropensci.org/g
 > the Climatic Research Unit (<https://www.uea.ac.uk/groups-and-centres/climatic-research-unit>).
 
 ## Contributors
-
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -167,12 +167,12 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 
 ## Other
 
-  - Please [report any issues or
-    bugs](https://github.com/ropensci/getCRUCLdata/issues).
+- Please [report any issues or
+  bugs](https://github.com/ropensci/getCRUCLdata/issues).
 
-  - License: MIT
+- License: MIT
 
-  - Get citation information for _getCRUCLdata_ in R typing `citation(package = "getCRUCLdata")`
+- Get citation information for _getCRUCLdata_ in R typing `citation(package = "getCRUCLdata")`
 
-  - Please note that this package is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). 
-By contributing to this project, you agree to abide by its terms.
+- Please note that this package is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/).
+  By contributing to this project, you agree to abide by its terms.
