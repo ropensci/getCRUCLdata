@@ -96,8 +96,8 @@ the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 files are located.}
 }
 \value{
-A \link[base:list]{base::list} of \link[terra:rast]{terra::rast} objects of \acronym{CRU} \acronym{CL}
-v. 2.0 climatology elements.
+A \link[base:list]{base::list} of \link[terra:rast]{terra::rast} objects of \acronym{CRU}
+\acronym{CL} v. 2.0 climatology elements.
 }
 \description{
 Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
@@ -106,9 +106,10 @@ data.  If requested, minimum and maximum temperature may also be
 automatically calculated as described in the data
 \href{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}{readme.txt} file.
 Data may be cached for later use by this function, saving time downloading
-files in future using this function.  This function can be useful if you have
-network connection issues that mean automated downloading of the files using
-\R does not work properly.
+files in future using this function.  This function can be useful if you
+have network connection issues that mean automated downloading of the files
+using \R does not work properly or you have cached the files locally for
+your own future use.
 }
 \section{Nomenclature and Units}{
 

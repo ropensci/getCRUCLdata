@@ -6,9 +6,10 @@
 #' automatically calculated as described in the data
 #' [readme.txt](https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt) file.
 #' Data may be cached for later use by this function, saving time downloading
-#' files in future using this function.  This function can be useful if you have
-#' network connection issues that mean automated downloading of the files using
-#' \R does not work properly.
+#' files in future using this function.  This function can be useful if you
+#' have network connection issues that mean automated downloading of the files
+#' using \R does not work properly or you have cached the files locally for
+#' your own future use.
 #'
 #' @inheritSection get_CRU_df Nomenclature and Units
 #' @inheritParams create_CRU_df
@@ -31,8 +32,8 @@
 #' @seealso
 #' [get_CRU_stack].
 #'
-#' @return A [base::list] of [terra::rast] objects of \acronym{CRU} \acronym{CL}
-#'  v. 2.0 climatology elements.
+#' @returns A [base::list] of [terra::rast] objects of \acronym{CRU}
+#' \acronym{CL} v. 2.0 climatology elements.
 #'
 #' @export
 

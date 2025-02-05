@@ -57,7 +57,7 @@
 #' @seealso
 #' [get_CRU_df].
 #'
-#' @return A [data.table::data.table] object of \acronym{CRU} \acronym{CL} v.
+#' @returns A [data.table::data.table] object of \acronym{CRU} \acronym{CL} v.
 #'  2.0 climatology elements.
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}

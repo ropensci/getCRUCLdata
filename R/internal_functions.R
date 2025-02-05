@@ -42,8 +42,8 @@
 #'   wnd,
 #'   elv
 #' )
-#' @noRd
-#' @keywords Internal
+#' @dev
+
 
 .check_vars_FALSE <- function(pre,
                               pre_cv,
@@ -68,8 +68,8 @@
 #' Validates user entered dsn value
 #'
 #' @param dsn User provided value for checking.
-#' @keywords Internal
-#' @noRd
+
+#' @dev
 .validate_dsn <- function(dsn) {
   if (missing(dsn)) {
     cli::cli_abort(
@@ -106,10 +106,9 @@
 #' @param elv Is elv to be returned? Boolean.
 #' @param files File list to be used for creating data frame.
 #'
-#' @return A \CRANpkg{data.table} of all requested values.
-#' @keywords Internal
+#' @returns A \CRANpkg{data.table} of all requested values.
 #' @autoglobal
-#' @noRd
+#' @dev
 .create_df <-
   function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
     CRU_df <-
@@ -141,8 +140,8 @@
   }
 
 #' Read Files from Disk Directory and Tidy Them
-#' @noRd
-#' @keywords Internal
+#' @dev
+
 .tidy_df <- function(pre_cv, elv, tmn, tmx, .files) {
   # create list of tidied data frames ----------------------------------------
   CRU_list <-
@@ -187,9 +186,8 @@
 #' @param .files a list of CRU CL2.0 files in local storage.
 #' @param .pre_cv `Boolean` return pre_cv in the data.
 #'
-#' @keywords Internal
 #' @autoglobal
-#' @noRd
+#' @dev
 
 .read_cache <- function(.files, .pre_cv) {
   month_names <-
@@ -282,9 +280,8 @@
 #'  `rast`, Boolean.
 #' @param files List. Files that are to be used in creating the `rast` object.
 #'
-#' @keywords Internal
 #' @autoglobal
-#' @noRd
+#' @dev
 #'
 .create_stacks <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
   wrld <-
@@ -360,8 +357,7 @@
 #' @param pre_cv `Boolean` include preciptation cv.
 #'
 #' @autoglobal
-#' @keywords Internal
-#' @noRd
+#' @dev
 .create_stack <- function(files,
                           wrld,
                           month_names,
@@ -437,8 +433,8 @@
 #'
 #' @param cache `Boolean` (create) and use local file cache.
 #'
-#' @keywords Internal
-#' @noRd
+
+#' @dev
 .set_cache <- function(cache) {
   manage_cache <- hoardr::hoard()
   manage_cache$cache_path_set(
@@ -483,8 +479,7 @@
 #' @param elv Boolean, loads elevation (converted to metres) and returns it in
 #' the data frame.
 #'
-#' @keywords Internal
-#' @noRd
+#' @dev
 .get_local <- function(pre,
                        pre_cv,
                        rd0,

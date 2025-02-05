@@ -21,3 +21,12 @@
 
 # flint files
 ^flint$
+^man/dot-check_vars_FALSE\.Rd$
+^man/dot-validate_dsn\.Rd$
+^man/dot-create_df\.Rd$
+^man/dot-tidy_df\.Rd$
+^man/dot-read_cache\.Rd$
+^man/dot-create_stacks\.Rd$
+^man/dot-create_stack\.Rd$
+^man/dot-set_cache\.Rd$
+^man/dot-get_local\.Rd$
