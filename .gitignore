@@ -2,10 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
-*.Rproj
+.Rproj
 inst/doc
-*.DS_Store
-
 .DS_Store
 *.code-workspace
 docs/
