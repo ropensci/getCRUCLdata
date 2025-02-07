@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_CRU.R
 \name{.get_CRU}
 \alias{.get_CRU}
-\title{Fetches and Formats CRUL CL 2.0 Data}
+\title{Downloads and formats CRU CL 2.0 data}
 \usage{
 .get_CRU(
   pre,
@@ -54,6 +54,6 @@ Handles the downloading of CRU CL 2.0 data. This function is called by
 A data.table with the requested data.
 }
 \description{
-Fetches and Formats CRUL CL 2.0 Data
+Downloads and formats CRU CL 2.0 data
 }
 \keyword{internal}

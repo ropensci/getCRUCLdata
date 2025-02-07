@@ -41,7 +41,7 @@ and returns it in the data frame.}
 \item{tmn}{Boolean, calculates minimum temperature values (degrees Celsius)
 and returns it in the data frame.}
 
-\item{tmx}{Boolean, calculatex maximum temperature (degrees Celsius) and
+\item{tmx}{Boolean, calculate maximum temperature (degrees Celsius) and
 returns it in the data frame.}
 
 \item{sunp}{Boolean, loads sunshine, percent of maximum possible (percent of

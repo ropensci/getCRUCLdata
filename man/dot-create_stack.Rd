@@ -15,7 +15,7 @@
 
 \item{pre}{\code{Boolean} include precipitation.}
 
-\item{pre_cv}{\code{Boolean} include preciptation cv.}
+\item{pre_cv}{\code{Boolean} include precipitation cv.}
 }
 \description{
 Helper Function Used in .create_stacks()

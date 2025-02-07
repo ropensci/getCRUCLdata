@@ -354,7 +354,7 @@
 #' @param wrld An empty [terra::rast] object for filling with values.
 #' @param month_names A vector of month names from jan -- dec.
 #' @param pre `Boolean` include precipitation.
-#' @param pre_cv `Boolean` include preciptation cv.
+#' @param pre_cv `Boolean` include precipitation cv.
 #'
 #' @autoglobal
 #' @dev
@@ -467,7 +467,7 @@
 #' the data frame.
 #' @param tmn Boolean, calculates minimum temperature values (degrees Celsius)
 #' and returns it in the data frame.
-#' @param tmx Boolean, calculatex maximum temperature (degrees Celsius) and
+#' @param tmx Boolean, calculate maximum temperature (degrees Celsius) and
 #' returns it in the data frame.
 #' @param reh Boolean, loads relative humidity and return it in the data frame.
 #' @param sunp Boolean, loads sunshine, percent of maximum possible (percent of
