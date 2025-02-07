@@ -10,8 +10,8 @@ notes indicate it was forcibly removed for "leaving things behind".
 Therefore, in this release, the caching capabilities now follow the new R
 standard `tools::R_user_dir(package = "getCRUCLdata")` in spite of the default
 behaviour of the underlying CRAN packages, {hoadr} and {rappdirs}, which have
-been used since this package was first submitted to CRAN to proovide file
+been used since this package was first submitted to CRAN to provide file
 caching functionality in this package. I trust that this is sufficient to have
-the {getCRUCLdata} package reinstated on CRAN.
+this package reinstated on CRAN.
 
-* This is a new release.
+- This is a new release.
