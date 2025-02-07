@@ -21,6 +21,7 @@
 
 # flint files
 ^flint$
+^man/dot-get_CRU\.Rd$
 ^man/dot-check_vars_FALSE\.Rd$
 ^man/dot-validate_dsn\.Rd$
 ^man/dot-create_df\.Rd$
