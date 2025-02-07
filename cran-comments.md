@@ -14,4 +14,4 @@ been used since this package was first submitted to CRAN to provide file
 caching functionality in this package. I trust that this is sufficient to have
 this package reinstated on CRAN.
 
-- This is a new release.
+- This is a new major release.
