@@ -32,7 +32,6 @@ test_that("cache directory is created if necessary", {
 
 test_that("caching utils list files in cache and delete when asked", {
   skip_if_offline()
-  unlink(list.files(manage_cache$cache_path_get()), recursive = TRUE)
   withr::local_envvar(R_USER_CACHE_DIR = tempdir())
   temp_cache <- file.path(tempdir(), "R/getCRUCLdata/")
   manage_cache <- hoardr::hoard()
@@ -46,8 +45,10 @@ test_that("caching utils list files in cache and delete when asked", {
   f <-
     terra::rast(system.file("ex/test.grd", package = "terra"))
   cache_dir <- manage_cache$cache_path_get()
-  terra::writeRaster(f, file.path(cache_dir, "file1.asc"))
-  terra::writeRaster(f, file.path(cache_dir, "file2.asc"))
+  manage_cache$delete_all()
+
+  terra::writeRaster(f, file.path(cache_dir, "file1.grd"))
+  terra::writeRaster(f, file.path(cache_dir, "file2.grd"))
 
   # test getCRUCLdata cache list
   k <- list.files(manage_cache$cache_path_get())
@@ -56,7 +57,7 @@ test_that("caching utils list files in cache and delete when asked", {
   # test delete one file
   expect_error(manage_cache$delete("file1.tif"))
 
-  manage_cache$delete("file1.asc")
+  manage_cache$delete("file1.grd")
   l <- list.files(manage_cache$cache_path_get())
   expect_identical(basename(manage_cache$list()), l)
 
