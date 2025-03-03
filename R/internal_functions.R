@@ -44,19 +44,20 @@
 #' )
 #' @dev
 
-
-.check_vars_FALSE <- function(pre,
-                              pre_cv,
-                              rd0,
-                              tmp,
-                              dtr,
-                              reh,
-                              tmn,
-                              tmx,
-                              sunp,
-                              frs,
-                              wnd,
-                              elv) {
+.check_vars_FALSE <- function(
+  pre,
+  pre_cv,
+  rd0,
+  tmp,
+  dtr,
+  reh,
+  tmn,
+  tmx,
+  sunp,
+  frs,
+  wnd,
+  elv
+) {
   if (!any(pre, pre_cv, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)) {
     cli::cli_abort(
       "You must select at least one element for download or import.",
@@ -82,14 +83,17 @@
     dsn <- trimws(dsn)
     if (substr(dsn, nchar(dsn) - 1, nchar(dsn)) == "//") {
       p <- substr(dsn, 1, nchar(dsn) - 2)
-    } else if (substr(dsn, nchar(dsn), nchar(dsn)) == "/" |
-      substr(dsn, nchar(dsn), nchar(dsn)) == "\\") {
+    } else if (
+      substr(dsn, nchar(dsn), nchar(dsn)) == "/" |
+        substr(dsn, nchar(dsn), nchar(dsn)) == "\\"
+    ) {
       p <- substr(dsn, 1, nchar(dsn) - 1)
     } else {
       p <- dsn
     }
     if (!file.exists(p) || !file.exists(dsn)) {
-      cli::cli_abort("File directory does not exist: {.var dsn}.",
+      cli::cli_abort(
+        "File directory does not exist: {.var dsn}.",
         call = rlang::caller_env()
       )
     }
@@ -164,15 +168,21 @@
   # lastly merge the data frames into one tidy (large) data frame --------------
 
   if (isFALSE(elv)) {
-    CRU_df <- Reduce(function(...) {
-      merge(..., by = c("lat", "lon", "month"))
-    }, CRU_list)
+    CRU_df <- Reduce(
+      function(...) {
+        merge(..., by = c("lat", "lon", "month"))
+      },
+      CRU_list
+    )
   } else if (elv && length(CRU_list) > 1) {
     elv_df <- CRU_list[which(names(CRU_list) %in% "elv")]
     CRU_list[which(names(CRU_list) %in% "elv")] <- NULL
-    CRU_df <- Reduce(function(...) {
-      merge(..., by = c("lat", "lon", "month"))
-    }, CRU_list)
+    CRU_df <- Reduce(
+      function(...) {
+        merge(..., by = c("lat", "lon", "month"))
+      },
+      CRU_list
+    )
 
     CRU_df <- CRU_df[elv_df$elv, on = c("lat", "lon")]
   } else if (elv) {
@@ -289,7 +299,8 @@
       nrows = 930,
       ncols = 2160,
       ymin = -65,
-      ymax = 90, xmin = -180,
+      ymax = 90,
+      xmin = -180,
       xmax = 180
     )
 
@@ -358,11 +369,7 @@
 #'
 #' @autoglobal
 #' @dev
-.create_stack <- function(files,
-                          wrld,
-                          month_names,
-                          pre,
-                          pre_cv) {
+.create_stack <- function(files, wrld, month_names, pre, pre_cv) {
   wvar <-
     data.frame(data.table::fread(
       cmd = paste0("gzip -dc ", files[[1]]),
@@ -417,12 +424,15 @@
     names(y) <- "elv"
   }
 
-  y <- terra::crop(y, terra::ext(
-    -180,
-    180,
-    -60,
-    85
-  ))
+  y <- terra::crop(
+    y,
+    terra::ext(
+      -180,
+      180,
+      -60,
+      85
+    )
+  )
   return(y)
 }
 
@@ -480,19 +490,21 @@
 #' the data frame.
 #'
 #' @dev
-.get_local <- function(pre,
-                       pre_cv,
-                       rd0,
-                       tmp,
-                       dtr,
-                       reh,
-                       tmn,
-                       tmx,
-                       sunp,
-                       frs,
-                       wnd,
-                       elv,
-                       cache_dir) {
+.get_local <- function(
+  pre,
+  pre_cv,
+  rd0,
+  tmp,
+  dtr,
+  reh,
+  tmn,
+  tmx,
+  sunp,
+  frs,
+  wnd,
+  elv,
+  cache_dir
+) {
   # check if pre_cv or tmx/tmn (derived) are true, make sure proper ------------
   # parameters set TRUE
   if (pre_cv) {
@@ -529,17 +541,17 @@
     )
   names(files) <-
     names(object_list) <-
-    c(
-      "dtr_file",
-      "tmp_file",
-      "reh_file",
-      "elv_file",
-      "pre_file",
-      "sun_file",
-      "wnd_file",
-      "frs_file",
-      "rd0_file"
-    )
+      c(
+        "dtr_file",
+        "tmp_file",
+        "reh_file",
+        "elv_file",
+        "pre_file",
+        "sun_file",
+        "wnd_file",
+        "frs_file",
+        "rd0_file"
+      )
 
   # filter files ---------------------------------------------------------------
   # which files are being requested?
@@ -547,9 +559,7 @@
 
   # filter files from cache directory in case there are local files for which
   # we do not want data
-  cache_dir_contents <- as.list(list.files(cache_dir,
-    pattern = ".dat.gz$"
-  ))
+  cache_dir_contents <- as.list(list.files(cache_dir, pattern = ".dat.gz$"))
 
   files <- cache_dir_contents[cache_dir_contents %in% files]
 

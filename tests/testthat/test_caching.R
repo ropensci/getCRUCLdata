@@ -24,9 +24,7 @@ test_that("test that set_cache does not create a dir if cache == FALSE", {
 
 test_that("cache directory is created if necessary", {
   # if cache directory exists during testing, remove it
-  unlink(manage_cache$cache_path_get(),
-    recursive = TRUE
-  )
+  unlink(manage_cache$cache_path_get(), recursive = TRUE)
   cache <- TRUE
   cache_dir <- .set_cache(cache)
   expect_true(dir.exists(manage_cache$cache_path_get()))
@@ -34,9 +32,7 @@ test_that("cache directory is created if necessary", {
 
 test_that("caching utils list files in cache and delete when asked", {
   skip_if_offline()
-  unlink(list.files(manage_cache$cache_path_get()),
-    recursive = TRUE
-  )
+  unlink(list.files(manage_cache$cache_path_get()), recursive = TRUE)
   withr::local_envvar(R_USER_CACHE_DIR = tempdir())
   temp_cache <- file.path(tempdir(), "R/getCRUCLdata/")
   manage_cache <- hoardr::hoard()

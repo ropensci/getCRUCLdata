@@ -100,7 +100,6 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
 test_that("get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE", {
   skip_if_offline()
 
-
   pre <- FALSE
   pre_cv <- TRUE
 

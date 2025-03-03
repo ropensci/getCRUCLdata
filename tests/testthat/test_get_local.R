@@ -458,19 +458,11 @@ test_that("Test that .get_local lists local files", {
     )
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.dat.gz"), "w")
-  utils::write.table(pre_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(pre_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
-  utils::write.table(tmp_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(tmp_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   pre <- TRUE

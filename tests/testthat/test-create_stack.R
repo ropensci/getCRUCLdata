@@ -484,19 +484,11 @@ test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
     )
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.dat.gz"), "w")
-  utils::write.table(pre_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(pre_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
-  utils::write.table(tmp_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(tmp_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   pre_cv <- TRUE
@@ -623,13 +615,8 @@ test_that("create_CRU_stack creates a list containing only elv", {
   )
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_elv.dat.gz"), "w")
-  utils::write.table(elv_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(elv_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
-
 
   files <- list.files(
     path = tempdir(),
@@ -701,20 +688,23 @@ test_that("month names are appropriate", {
       "dec"
     )
 
-  expect_identical(month_names, c(
-    "jan",
-    "feb",
-    "mar",
-    "apr",
-    "may",
-    "jun",
-    "jul",
-    "aug",
-    "sep",
-    "oct",
-    "nov",
-    "dec"
-  ))
+  expect_identical(
+    month_names,
+    c(
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec"
+    )
+  )
 })
 
 # Test that CRU_stack_list returns list of raster stacks with proper names -----
@@ -1174,19 +1164,11 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
     )
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.dat.gz"), "w")
-  utils::write.table(pre_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(pre_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
-  utils::write.table(tmp_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(tmp_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   files <-

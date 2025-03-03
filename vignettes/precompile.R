@@ -15,8 +15,4 @@ devtools::build_vignettes()
 # move resource files to /doc
 resources <-
   list.files("vignettes/", pattern = ".png$", full.names = TRUE)
-file.copy(from = resources,
-          to = "doc",
-          overwrite =  TRUE)
-
-
+file.copy(from = resources, to = "doc", overwrite = TRUE)

@@ -1,8 +1,7 @@
 manage_cache <- NULL # nocov start
 
 .onLoad <-
-  function(libname = find.package("getCRUCLdata"),
-           pkgname = "getCRUCLdata") {
+  function(libname = find.package("getCRUCLdata"), pkgname = "getCRUCLdata") {
     # CRAN Note avoidance
     if (getRversion() >= "2.15.1") {
       utils::globalVariables(c("."))

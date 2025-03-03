@@ -7,7 +7,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-0061-8359")),
     person("Curtin University of Technology", role = "cph",
            comment = "Provided support through Adam Sparks's time."),
-    person("Grains Research and Development Corporation", role = c("cph"),
+    person("Grains Research and Development Corporation", role = "cph",
            comment = "GRDC Project CUR2210-005OPX (AAGI-CU)")
   )
 Description: Provides functions that automate downloading and importing
@@ -49,6 +49,7 @@ Suggests:
 VignetteBuilder: 
     knitr
 ByteCompile: TRUE
+Config/Needs/build: moodymudskipper/devtag
 Config/roxyglobals/filename: globals.R
 Config/roxyglobals/unique: FALSE
 Config/roxylint: list(linters = roxylint::tidy)
@@ -56,11 +57,12 @@ Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 Language: en-US
-Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd", "roxyglobals::global_roclet", "roxylint::roxylint", "devtag::dev_roclet"))
+Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
+    "roxyglobals::global_roclet", "roxylint::roxylint",
+    "devtag::dev_roclet"))
 RoxygenNote: 7.3.2
 X-schema.org-applicationCategory: Tools
 X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: anglia-cru, climate-data, cru-cl2, temperature,
     rainfall, elevation, data-access, wind, relative-humidity,
     solar-radiation, diurnal-temperature, frost
-Config/Needs/build: moodymudskipper/devtag

@@ -37,19 +37,21 @@
 #'
 #' @export
 
-create_CRU_stack <- function(pre = FALSE,
-                             pre_cv = FALSE,
-                             rd0 = FALSE,
-                             tmp = FALSE,
-                             dtr = FALSE,
-                             reh = FALSE,
-                             tmn = FALSE,
-                             tmx = FALSE,
-                             sunp = FALSE,
-                             frs = FALSE,
-                             wnd = FALSE,
-                             elv = FALSE,
-                             dsn) {
+create_CRU_stack <- function(
+  pre = FALSE,
+  pre_cv = FALSE,
+  rd0 = FALSE,
+  tmp = FALSE,
+  dtr = FALSE,
+  reh = FALSE,
+  tmn = FALSE,
+  tmx = FALSE,
+  sunp = FALSE,
+  frs = FALSE,
+  wnd = FALSE,
+  elv = FALSE,
+  dsn
+) {
   .check_vars_FALSE(
     pre,
     pre_cv,
@@ -67,7 +69,8 @@ create_CRU_stack <- function(pre = FALSE,
 
   .validate_dsn(dsn)
 
-  files <- .get_local(pre,
+  files <- .get_local(
+    pre,
     pre_cv,
     rd0,
     tmp,

@@ -479,19 +479,11 @@ test_that("create_CRU_stack returns a list of terra rast objects", {
     )
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_pre.dat.gz"), "w")
-  utils::write.table(pre_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(pre_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
-  utils::write.table(tmp_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(tmp_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   dsn <- tempdir()
@@ -837,19 +829,11 @@ test_that("Test that create_stack creates tmx if requested", {
     )
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_dtr.dat.gz"), "w")
-  utils::write.table(dtr_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(dtr_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
-  utils::write.table(tmp_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(tmp_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   pre_cv <- FALSE
@@ -868,7 +852,9 @@ test_that("Test that create_stack creates tmx if requested", {
     .create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
 
   expect_named(CRU_stack_list, c("tmx"))
-  expect_equal(terra::minmax(CRU_stack_list[[1]])[[2]][[1]], 12.9,
+  expect_equal(
+    terra::minmax(CRU_stack_list[[1]])[[2]][[1]],
+    12.9,
     tolerance = 0.1
   )
   unlink(list.files(
@@ -1206,19 +1192,11 @@ test_that("Test that create_stack creates tmn if requested", {
     )
   )
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_dtr.dat.gz"), "w")
-  utils::write.table(dtr_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(dtr_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
-  utils::write.table(tmp_data,
-    file = gz1,
-    col.names = FALSE,
-    row.names = FALSE
-  )
+  utils::write.table(tmp_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
   pre_cv <- FALSE
@@ -1237,7 +1215,9 @@ test_that("Test that create_stack creates tmn if requested", {
     .create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
 
   expect_named(CRU_stack_list, c("tmn"))
-  expect_equal(terra::minmax(CRU_stack_list[[1]])[[2]][[1]], 4.3,
+  expect_equal(
+    terra::minmax(CRU_stack_list[[1]])[[2]][[1]],
+    4.3,
     tolerance = 0.1
   )
   unlink(list.files(

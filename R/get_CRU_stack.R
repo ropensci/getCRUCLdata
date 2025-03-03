@@ -29,19 +29,21 @@
 #' @export
 
 get_CRU_stack <-
-  function(pre = FALSE,
-           pre_cv = FALSE,
-           rd0 = FALSE,
-           tmp = FALSE,
-           dtr = FALSE,
-           reh = FALSE,
-           tmn = FALSE,
-           tmx = FALSE,
-           sunp = FALSE,
-           frs = FALSE,
-           wnd = FALSE,
-           elv = FALSE,
-           cache = FALSE) {
+  function(
+    pre = FALSE,
+    pre_cv = FALSE,
+    rd0 = FALSE,
+    tmp = FALSE,
+    dtr = FALSE,
+    reh = FALSE,
+    tmn = FALSE,
+    tmx = FALSE,
+    sunp = FALSE,
+    frs = FALSE,
+    wnd = FALSE,
+    elv = FALSE,
+    cache = FALSE
+  ) {
     .check_vars_FALSE(
       pre,
       pre_cv,
