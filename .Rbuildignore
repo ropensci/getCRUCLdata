@@ -31,3 +31,7 @@
 ^man/dot-create_stack\.Rd$
 ^man/dot-set_cache\.Rd$
 ^man/dot-get_local\.Rd$
+
+
+# flir files
+^flir$
