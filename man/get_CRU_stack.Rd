@@ -130,7 +130,7 @@ For more information see the description of the data provided by
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
 # Download data and create a list of {terra} `rast` objects of precipitation
 # and temperature without caching the data files

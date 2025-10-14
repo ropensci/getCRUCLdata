@@ -130,7 +130,7 @@ For more information see the description of the data provided by
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Create a data frame of temperature from locally available files in the
 # tempdir() directory.
 
