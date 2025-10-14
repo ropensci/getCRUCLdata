@@ -963,7 +963,7 @@ test_that("Test that .create_df() creates a tidy dataframe of pre, tmp, elv", {
 
   expect_named(CRU_df, c("lat", "lon", "month", "tmn"))
   expect_equal(CRU_df$tmn[1], 0.1)
-  expect_equal(
+  expect_identical(
     lapply(CRU_df, typeof),
     list(
       lat = "double",
