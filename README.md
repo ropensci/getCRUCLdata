@@ -22,7 +22,8 @@ This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xm
 
 ## Install
 
-{getCRUCLdata} is not available from CRAN. You can install it from the rOpenSci Universe as follows.
+{getCRUCLdata} is not available from CRAN.
+You can install it from the rOpenSci Universe as follows.
 
 ``` r
 # Enable the rOpenSci R-universe
