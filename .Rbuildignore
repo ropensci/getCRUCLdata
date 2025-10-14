@@ -21,6 +21,10 @@
 
 # flint files
 ^flint$
+
+
+# flir files
+^flir$
 ^man/dot-get_CRU\.Rd$
 ^man/dot-check_vars_FALSE\.Rd$
 ^man/dot-validate_dsn\.Rd$
@@ -31,7 +35,3 @@
 ^man/dot-create_stack\.Rd$
 ^man/dot-set_cache\.Rd$
 ^man/dot-get_local\.Rd$
-
-
-# flir files
-^flir$
