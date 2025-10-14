@@ -5,8 +5,8 @@
   "description": "Provides functions that automate downloading and importing University of East Anglia Climate Research Unit ('CRU') 'CL' v. 2.0 climatology data, facilitates the calculation of minimum temperature and maximum temperature and formats the data into a data.table object or a list of 'terra' 'rast' objects for use. 'CRU' 'CL' v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc minutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit, <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.",
   "name": "getCRUCLdata: 'CRU' 'CL' v. 2.0 Climatology Client",
   "relatedLink": "https://docs.ropensci.org/getCRUCLdata/",
-  "codeRepository": "https://github.com/ropensci/getCRUCLdata",
-  "issueTracker": "https://github.com/ropensci/getCRUCLdata/issues",
+  "codeRepository": "https://codeberg.org/ropensci/getCRUCLdata",
+  "issueTracker": "https://codeberg.org/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "1.0.3",
   "programmingLanguage": {
@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
+  "runtimePlatform": "R version 4.5.1 (2025-06-13)",
   "author": [
     {
       "@type": "Person",
@@ -253,8 +253,8 @@
   },
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost", "cru", "r", "rstats", "r-package", "peer-reviewed"],
-  "fileSize": "911.891KB",
+  "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost"],
+  "fileSize": "907.761KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -284,8 +284,6 @@
       }
     }
   ],
-  "releaseNotes": "https://github.com/ropensci/getCRUCLdata/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/getCRUCLdata/blob/main/README.md",
   "contIntegration": ["https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/ropensci/getCRUCLdata"],
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
