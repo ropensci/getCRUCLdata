@@ -22,17 +22,7 @@ This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xm
 
 ## Install
 
-{getCRUCLdata} is not available from CRAN. You can install it from GitHub as follows.
-
-``` r
-if (!require("remotes")) {
-  install.packages("remotes")
-}
-
-install_github("ropensci/getCRUCLdata", build_vignettes = TRUE)
-```
-
-Or you can install it from the rOpenSci [R-universe](https://r-universe.dev/search?q=getCRUCLdata).
+{getCRUCLdata} is not available from CRAN. You can install it from the rOpenSci Universe as follows.
 
 ``` r
 # Enable the rOpenSci R-universe
@@ -42,8 +32,6 @@ options(repos = c(
 # Install the package
 install.packages("getCRUCLdata")
 ```
-
-------------------------------------------------------------------------
 
 # Documentation
 
@@ -57,48 +45,19 @@ For complete documentation see the package website: <https://docs.ropensci.org/g
 
 > A high-resolution data set of surface climate over global land areas Climate Research, 2000, Vol 21, pg 1-25
 
-> 1.  School of Geography and the Environment, University of Oxford, Mansfield Road, Oxford OX1 3TB, United Kingdom
-> 2.  Climatic Research Unit, and (3) Tyndall Centre for Climate Change Research, both at School of Environmental Sciences, University of East Anglia, Norwich NR4 7TJ, United Kingdom
-> 3.  International Water Management Institute, PO Box 2075, Colombo, Sri Lanka
+> 1. School of Geography and the Environment, University of Oxford, Mansfield Road, Oxford OX1 3TB, United Kingdom
+> 2. Climatic Research Unit, and (3) Tyndall Centre for Climate Change Research, both at School of Environmental Sciences, University of East Anglia, Norwich NR4 7TJ, United Kingdom
+> 3. International Water Management Institute, PO Box 2075, Colombo, Sri Lanka
 
-> **ABSTRACT:** We describe the construction of a 10-minute latitude/longitude data set of mean monthly surface climate over global land areas, excluding Antarctica. The climatology includes 8 climate elements - precipitation, wet-day frequency, temperature, diurnal temperature range, relative humidity,sunshine duration, ground frost frequency and windspeed - and was interpolated from a data set of station means for the period centred on 1961 to 1990. Precipitation was first defined in terms of the parameters of the Gamma distribution, enabling the calculation of monthly precipitation at any given return period. The data are compared to an earlier data set at 0.5 degrees latitude/longitude resolution and show added value over most regions. The data will have many applications in applied climatology, biogeochemical modelling, hydrology and agricultural meteorology and are available through the School of Geography Oxford (<https://www.geog.ox.ac.uk/>), the International Water Management Institute “World Water and Climate Atlas” (<https://www.iwmi.org/>) and the Climatic Research Unit (<https://www.uea.ac.uk/groups-and-centres/climatic-research-unit>).
-
-## Contributors
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-
-<!-- prettier-ignore-start -->
-
-<!-- markdownlint-disable -->
-
-All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropensci/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
-
-### Code
-
-+------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------+
-| [![](https://avatars.githubusercontent.com/u/3195906?v=4){alt=""} ](https://github.com/adamhsparks)\ | [![](https://avatars.githubusercontent.com/u/577668?v=4){alt=""} ](https://github.com/sckott)\ | [![](https://avatars.githubusercontent.com/u/216319?v=4){alt=""} ](https://github.com/jeroen)\ | [![](https://avatars.githubusercontent.com/u/138494?v=4){alt=""} ](https://github.com/karthik)\ |
-| [adamhsparks](https://github.com/ropensci/getCRUCLdata/commits?author=adamhsparks)                   | [sckott](https://github.com/ropensci/getCRUCLdata/commits?author=sckott)                       | [jeroen](https://github.com/ropensci/getCRUCLdata/commits?author=jeroen)                       | [karthik](https://github.com/ropensci/getCRUCLdata/commits?author=karthik)                      |
-+------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------+
-
-### Issues
-
-+-------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-| [![](https://avatars.githubusercontent.com/u/1305767?u=151f7c98a1bb78ccceac6297d28750acb42ec877&v=4){alt=""} ](https://github.com/ivanhanigan)\ | [![](https://avatars.githubusercontent.com/u/77564290?v=4){alt=""} ](https://github.com/sunjj878)\ | [![](https://avatars.githubusercontent.com/u/29225293?u=326393156ff083af6e10548ff16a1c8e439ebdf9&v=4){alt=""} ](https://github.com/mhesselbarth)\ |
-| [ivanhanigan](https://github.com/ropensci/getCRUCLdata/issues?q=is%3Aissue+author%3Aivanhanigan)                                                | [sunjj878](https://github.com/ropensci/getCRUCLdata/issues?q=is%3Aissue+author%3Asunjj878)         | [mhesselbarth](https://github.com/ropensci/getCRUCLdata/issues?q=is%3Aissue+author%3Amhesselbarth)                                                |
-+-------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-
-<!-- markdownlint-enable -->
-
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+> **ABSTRACT:** We describe the construction of a 10-minute latitude/longitude data set of mean monthly surface climate over global land areas, excluding Antarctica. The climatology includes 8 climate elements - precipitation, wet-day frequency, temperature, diurnal temperature range, relative humidity, sunshine duration, ground frost frequency and windspeed - and was interpolated from a data set of station means for the period centred on 1961 to 1990. Precipitation was first defined in terms of the parameters of the Gamma distribution, enabling the calculation of monthly precipitation at any given return period. The data are compared to an earlier data set at 0.5 degrees latitude/longitude resolution and show added value over most regions. The data will have many applications in applied climatology, biogeochemical modelling, hydrology and agricultural meteorology and are available through the School of Geography Oxford (<https://www.geog.ox.ac.uk/>), the International Water Management Institute “World Water and Climate Atlas” (<https://www.iwmi.org/>) and the Climatic Research Unit (<https://www.uea.ac.uk/groups-and-centres/climatic-research-unit>).
 
 ## Other
 
--   Please [report any issues or bugs](https://github.com/ropensci/getCRUCLdata/issues).
+- Please [report any issues or bugs](https://codeberg.org/ropensci/getCRUCLdata/issues).
 
--   License: MIT
+- License: MIT
 
--   Get citation information for *getCRUCLdata* in R typing `citation(package = "getCRUCLdata")`
+- Get citation information for *getCRUCLdata* in R typing `citation(package = "getCRUCLdata")`
 
--   Please note that this package is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
+- Please note that this package is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/).
+By contributing to this project, you agree to abide by its terms.
