@@ -13,9 +13,9 @@
 
 \item{month_names}{A vector of month names from jan -- dec.}
 
-\item{pre}{\code{Boolean} include precipitation.}
+\item{pre}{Boolean include precipitation.}
 
-\item{pre_cv}{\code{Boolean} include precipitation cv.}
+\item{pre_cv}{Boolean include precipitation cv.}
 }
 \description{
 Helper Function Used in .create_stacks()

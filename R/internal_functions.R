@@ -85,6 +85,7 @@
       the {.fn get_CRU} functions provided.",
       call = rlang::caller_env()
     )
+    return(invisible(NULL))
   }
 
   # Trim whitespace
@@ -161,11 +162,11 @@
     )
 
   # name the items in the list for the data that they contain ----------------
-  names(CRU_list) <- substr(basename(.files), 12L, 14L)
+  names(CRU_list) <- substr(fs::path_file(.files), 12L, 14L)
 
   # rename the columns in the data frames within the list --------------------
   for (i in seq_along(CRU_list)) {
-    wvars <- as.list(substr(basename(.files), 12L, 14L))
+    wvars <- as.list(substr(fs::path_file(.files), 12L, 14L))
     names(CRU_list[[i]])[names(CRU_list[[i]]) == "wvar"] <- wvars[[i]]
   }
 
@@ -340,7 +341,7 @@
       pre_cv = pre_cv
     )
 
-  names(CRU_stack_list) <- substr(basename(files), 12L, 14L)
+  names(CRU_stack_list) <- substr(fs::path_file(files), 12L, 14L)
 
   # calculate tmn -------------------------------------------------------------
   if (tmn) {
@@ -368,8 +369,8 @@
 #' @param files A list of files to use in creating `rast` objects.
 #' @param wrld An empty [terra::rast] object for filling with values.
 #' @param month_names A vector of month names from jan -- dec.
-#' @param pre `Boolean` include precipitation.
-#' @param pre_cv `Boolean` include precipitation cv.
+#' @param pre Boolean include precipitation.
+#' @param pre_cv Boolean include precipitation cv.
 #'
 #' @autoglobal
 #' @dev
