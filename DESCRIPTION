@@ -31,9 +31,9 @@ Imports:
     cli,
     curl,
     data.table,
+    fs,
     rlang,
-    terra,
-    utils
+    terra
 Suggests:
     ggplot2,
     knitr,
