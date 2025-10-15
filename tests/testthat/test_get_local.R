@@ -1,6 +1,6 @@
-# Test that .get_local lists local files ---------------------------------------
+# Test that .read_local_files lists local files ---------------------------------------
 
-test_that("Test that .get_local lists local files", {
+test_that("Test that .read_local_files lists local files", {
   skip_if_offline()
 
   # create files for testing, these data are the first 10 lines of pre and tmp
@@ -479,7 +479,7 @@ test_that("Test that .get_local lists local files", {
   elv <- FALSE
   cache_dir <- tempdir()
 
-  files <- .get_local(
+  files <- .read_local_files(
     pre,
     pre_cv,
     rd0,
