@@ -17,7 +17,7 @@
 
 \item{elv}{Is elv to be returned? Boolean.}
 
-\item{files}{File list to be used for creating data frame.}
+\item{files}{File list to be used for creating data frame. List.}
 }
 \value{
 A \CRANpkg{data.table} of all requested values.

@@ -25,8 +25,8 @@ returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{pre_cv}{Fetches cv of precipitation (percent) from server and
 returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.  Note, setting
-this to \code{TRUE} will always results in \strong{pre} being set to \code{TRUE} and
-returned as well.}
+this to \code{TRUE} will always result in \strong{pre} being set to \code{TRUE} and returned
+as well.}
 
 \item{rd0}{Fetches wet-days (number days with >0.1 millimetres rain per
 month) and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
@@ -59,23 +59,29 @@ frame, \code{TRUE}. Defaults to \code{FALSE}.}
 \item{elv}{Fetches elevation (converted to metres) and returns it in the
 data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 }
+\value{
+Called for its side effect of throwing an error if no vars are
+selected. Returns an invisible \code{NULL}.
+}
 \description{
 Check that at least one element is requested
 }
 \examples{
+# passes, all are TRUE
 .check_vars_FALSE(
-  pre,
-  pre_cv,
-  rd0,
-  tmp,
-  dtr,
-  reh,
-  tmn,
-  tmx,
-  sunp,
-  frs,
-  wnd,
-  elv
+  pre = TRUE,
+  pre_cv = TRUE,
+  rd0 = TRUE,
+  tmp = TRUE,
+  dtr = TRUE,
+  reh = TRUE,
+  tmn = TRUE,
+  tmx = TRUE,
+  sunp = TRUE,
+  frs = TRUE,
+  wnd = TRUE,
+  elv = TRUE
 )
+
 }
 \keyword{internal}

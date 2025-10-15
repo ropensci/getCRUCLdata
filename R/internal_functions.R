@@ -1,10 +1,11 @@
 #' Check that at least one element is requested
+#'
 #' @param pre Fetches precipitation (millimetres/month) from server and
 #' returns it in the data frame, `TRUE`. Defaults to `FALSE`.
 #' @param pre_cv Fetches cv of precipitation (percent) from server and
 #' returns it in the data frame, `TRUE`. Defaults to `FALSE`.  Note, setting
-#' this to `TRUE` will always results in **pre** being set to `TRUE` and
-#' returned as well.
+#' this to `TRUE` will always result in **pre** being set to `TRUE` and returned
+#' as well.
 #' @param rd0 Fetches wet-days (number days with >0.1 millimetres rain per
 #' month) and returns it in the data frame, `TRUE`. Defaults to `FALSE`.
 #' @param dtr Fetches mean diurnal temperature range (degrees Celsius)
@@ -28,20 +29,24 @@
 #' data frame, `TRUE`. Defaults to `FALSE`.
 #'
 #' @examples
+#' # passes, all are TRUE
 #' .check_vars_FALSE(
-#'   pre,
-#'   pre_cv,
-#'   rd0,
-#'   tmp,
-#'   dtr,
-#'   reh,
-#'   tmn,
-#'   tmx,
-#'   sunp,
-#'   frs,
-#'   wnd,
-#'   elv
+#'   pre = TRUE,
+#'   pre_cv = TRUE,
+#'   rd0 = TRUE,
+#'   tmp = TRUE,
+#'   dtr = TRUE,
+#'   reh = TRUE,
+#'   tmn = TRUE,
+#'   tmx = TRUE,
+#'   sunp = TRUE,
+#'   frs = TRUE,
+#'   wnd = TRUE,
+#'   elv = TRUE
 #' )
+#'
+#' @returns Called for its side effect of throwing an error if no vars are
+#'  selected. Returns an invisible `NULL`.
 #' @dev
 
 .check_vars_FALSE <- function(
@@ -64,12 +69,14 @@
       call = rlang::caller_env()
     )
   }
+  return(invisible(NULL))
 }
 
 #' Validates user entered dsn value
 #'
 #' @param dsn User provided value for checking.
-
+#' @returns Called for its side effect of throwing an error if `dsn` is invalid.
+#'  Returns an invisible `NULL`.
 #' @dev
 .validate_dsn <- function(dsn) {
   if (missing(dsn)) {
@@ -79,6 +86,7 @@
       the {.fn get_CRU} functions provided.",
       call = rlang::caller_env()
     )
+    return(invisible(NULL))
   }
 
   # Trim whitespace

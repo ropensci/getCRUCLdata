@@ -9,6 +9,10 @@
 \arguments{
 \item{dsn}{User provided value for checking.}
 }
+\value{
+Called for its side effect of throwing an error if \code{dsn} is invalid.
+Returns an invisible \code{NULL}.
+}
 \description{
 Validates user entered dsn value
 }
