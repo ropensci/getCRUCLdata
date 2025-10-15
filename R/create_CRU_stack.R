@@ -69,7 +69,7 @@ create_CRU_stack <- function(
 
   .validate_dsn(dsn)
 
-  files <- .get_local(
+  files <- .read_local_files(
     pre,
     pre_cv,
     rd0,

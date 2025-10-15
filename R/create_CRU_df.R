@@ -115,22 +115,9 @@ create_CRU_df <- function(
 
   .validate_dsn(dsn)
 
-  files <- .get_local(
-    pre,
-    pre_cv,
-    rd0,
-    tmp,
-    dtr,
-    reh,
-    tmn,
-    tmx,
-    sunp,
-    frs,
-    wnd,
-    elv
-  )
+  files <- fs::dir_ls(dsn)
 
-  if (length(files) == 0) {
+  if (length(files) == 0L) {
     cli::cli_abort(
       "No CRU CL 2.0 data files were found in {.var dsn}.
       Please check that you have the proper file location."
