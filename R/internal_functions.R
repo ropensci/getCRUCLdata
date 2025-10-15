@@ -74,31 +74,30 @@
 .validate_dsn <- function(dsn) {
   if (missing(dsn)) {
     cli::cli_abort(
-      "You must define the dsn where you have stored the local files
-      for import. If you want to download files using R, use one of the
-      {.fn get_CRU} functions provided.",
+      "You must define the directory ({.var dsn}) where you have stored the
+      local files for import. If you want to download files using R, use one of
+      the {.fn get_CRU} functions provided.",
       call = rlang::caller_env()
     )
-  } else {
-    dsn <- trimws(dsn)
-    if (substr(dsn, nchar(dsn) - 1, nchar(dsn)) == "//") {
-      p <- substr(dsn, 1L, nchar(dsn) - 2L)
-    } else if (
-      substr(dsn, nchar(dsn), nchar(dsn)) == "/" |
-        substr(dsn, nchar(dsn), nchar(dsn)) == "\\"
-    ) {
-      p <- substr(dsn, 1L, nchar(dsn) - 1L)
-    } else {
-      p <- dsn
-    }
-    if (!file.exists(p) || !file.exists(dsn)) {
-      cli::cli_abort(
-        "File directory does not exist: {.var dsn}.",
-        call = rlang::caller_env()
-      )
-    }
   }
+
+  # Trim whitespace
+  dsn <- trimws(dsn)
+
+  # Normalize path and remove trailing slashes
+  dsn <- fs::path_norm(dsn)
+
+  # Check if path exists and is a directory
+  if (!fs::dir_exists(dsn)) {
+    cli::cli_abort(
+      "File directory does not exist: {.var dsn}.",
+      call = rlang::caller_env()
+    )
+  }
+
+  return(fs::path_abs(dsn))
 }
+
 
 #' Creates a data.table from the CRU data
 #'
@@ -108,7 +107,7 @@
 #' @param pre Is pre to be returned? Boolean.
 #' @param pre_cv Is pre_cv to be returned? Boolean.
 #' @param elv Is elv to be returned? Boolean.
-#' @param files File list to be used for creating data frame.
+#' @param files File list to be used for creating data frame. List.
 #'
 #' @returns A \CRANpkg{data.table} of all requested values.
 #' @autoglobal
@@ -161,8 +160,7 @@
   # rename the columns in the data frames within the list --------------------
   for (i in seq_along(CRU_list)) {
     wvars <- as.list(substr(basename(.files), 12L, 14L))
-    names(CRU_list[[i]])[names(CRU_list[[i]]) == "wvar"] <-
-      wvars[[i]]
+    names(CRU_list[[i]])[names(CRU_list[[i]]) == "wvar"] <- wvars[[i]]
   }
 
   # lastly merge the data frames into one tidy (large) data frame --------------
@@ -193,8 +191,9 @@
 
 #' Read Files From Local Disk
 #'
-#' @param .files a list of CRU CL2.0 files in local storage.
-#' @param .pre_cv `Boolean` return pre_cv in the data.
+#' @param .files a list of CRU CL2.0 files in local storage. This could be in
+#'  `tempdir()` or somewhere user defined.
+#' @param .pre_cv Boolean flag to return pre_cv in the data.
 #'
 #' @autoglobal
 #' @dev
@@ -217,7 +216,7 @@
 
   x <-
     data.table::fread(
-      cmd = paste0("gzip -dc ", .files),
+      .files,
       header = FALSE
     )
 
