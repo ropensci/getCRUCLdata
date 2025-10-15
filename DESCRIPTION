@@ -31,7 +31,6 @@ Imports:
     cli,
     curl,
     data.table,
-    hoardr,
     rlang,
     terra,
     utils
