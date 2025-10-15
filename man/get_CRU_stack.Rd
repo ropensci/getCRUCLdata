@@ -32,8 +32,7 @@ get_CRU_stack(
   sunp = FALSE,
   frs = FALSE,
   wnd = FALSE,
-  elv = FALSE,
-  cache = FALSE
+  elv = FALSE
 )
 
 get_cru_stack(
@@ -48,8 +47,7 @@ get_cru_stack(
   sunp = FALSE,
   frs = FALSE,
   wnd = FALSE,
-  elv = FALSE,
-  cache = FALSE
+  elv = FALSE
 )
 }
 \arguments{
@@ -90,11 +88,6 @@ data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{elv}{Fetches elevation (converted to metres) and returns it in
 the data frame, \code{TRUE}.  Defaults to \code{FALSE}.}
-
-\item{cache}{Stores CRU CL v. 2.0 data files locally for later use.
-If \code{FALSE}, the downloaded files are removed when the \R session is closed.
-To take advantage of cached files in future sessions, use \code{cache = TRUE}
-even after the initial download and caching.  Defaults to \code{FALSE}.}
 }
 \value{
 A \link[base:list]{base::list} of \link[terra:rast]{terra::rast} objects of \acronym{CRU}
@@ -106,8 +99,6 @@ climatology data into \R and creates a list of \CRANpkg{terra}
 \link[terra:rast]{terra::rast} objects of the data.  If requested, minimum and maximum
 temperature may also be automatically calculated as described in the data
 \href{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}{readme.txt} file.
-Data may be cached for later use by this function, saving time downloading
-files in future using this function.
 }
 \section{Nomenclature and Units}{
 
@@ -145,7 +136,7 @@ over global land areas." Climate research 21.1 (2002): 1-25.
 \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/new_et_al_10minute_climate_CR.pdf}
 }
 \seealso{
-\link{create_CRU_stack}, \link{manage_cache}.
+\link{create_CRU_stack}.
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com}

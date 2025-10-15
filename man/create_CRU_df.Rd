@@ -21,6 +21,7 @@ xmin = -180, xmax = 180.
 }
 \usage{
 create_CRU_df(
+  dsn,
   pre = FALSE,
   pre_cv = FALSE,
   rd0 = FALSE,
@@ -32,11 +33,11 @@ create_CRU_df(
   sunp = FALSE,
   frs = FALSE,
   wnd = FALSE,
-  elv = FALSE,
-  dsn
+  elv = FALSE
 )
 
 create_cru_df(
+  dsn,
   pre = FALSE,
   pre_cv = FALSE,
   rd0 = FALSE,
@@ -48,11 +49,13 @@ create_cru_df(
   sunp = FALSE,
   frs = FALSE,
   wnd = FALSE,
-  elv = FALSE,
-  dsn
+  elv = FALSE
 )
 }
 \arguments{
+\item{dsn}{Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
+files are located.}
+
 \item{pre}{Loads precipitation (millimetres/month) from server and
 returns in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
@@ -91,9 +94,6 @@ data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{elv}{Loads elevation (converted to metres) and returns it in
 the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{dsn}{Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
-files are located.}
 }
 \value{
 A \link[data.table:data.table]{data.table::data.table} object of \acronym{CRU} \acronym{CL} v.

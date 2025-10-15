@@ -11,6 +11,8 @@
 #'
 #' @inheritSection get_CRU_df Nomenclature and Units
 #'
+#' @param dsn Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
+#' files are located.
 #' @param pre Loads precipitation (millimetres/month) from server and
 #'  returns in the data frame, `TRUE`. Defaults to `FALSE`.
 #' @param pre_cv Loads cv of precipitation (percent) from server and
@@ -38,8 +40,6 @@
 #' data frame, `TRUE`. Defaults to `FALSE`.
 #' @param elv Loads elevation (converted to metres) and returns it in
 #' the data frame, `TRUE`. Defaults to `FALSE`.
-#' @param dsn Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
-#' files are located.
 #'
 #' @examplesIf interactive()
 #' # Create a data frame of temperature from locally available files in the
@@ -84,6 +84,7 @@
 #' @export
 
 create_CRU_df <- function(
+  dsn,
   pre = FALSE,
   pre_cv = FALSE,
   rd0 = FALSE,
@@ -95,8 +96,7 @@ create_CRU_df <- function(
   sunp = FALSE,
   frs = FALSE,
   wnd = FALSE,
-  elv = FALSE,
-  dsn
+  elv = FALSE
 ) {
   .check_vars_FALSE(
     pre,
@@ -127,8 +127,7 @@ create_CRU_df <- function(
     sunp,
     frs,
     wnd,
-    elv,
-    cache_dir = dsn
+    elv
   )
 
   if (length(files) == 0) {

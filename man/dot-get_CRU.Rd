@@ -4,21 +4,7 @@
 \alias{.get_CRU}
 \title{Downloads and formats CRU CL 2.0 data}
 \usage{
-.get_CRU(
-  pre,
-  pre_cv,
-  rd0,
-  tmp,
-  dtr,
-  reh,
-  tmn,
-  tmx,
-  sunp,
-  frs,
-  wnd,
-  elv,
-  cache_dir
-)
+.get_CRU(pre, pre_cv, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv)
 }
 \arguments{
 \item{pre}{Logical. If TRUE, downloads precipitation data.}
@@ -43,9 +29,7 @@
 
 \item{wnd}{Logical. If TRUE, downloads wind speed data.}
 
-\item{elv}{Logical. If TRUE, downloads elevation data.}
-
-\item{cache_dir}{Character. Path to the cache directory.
+\item{elv}{Logical. If TRUE, downloads elevation data.
 
 Handles the downloading of CRU CL 2.0 data. This function is called by
 \link{get_cru_df} and \link{get_cru_stack}. It is not intended to be called directly.}

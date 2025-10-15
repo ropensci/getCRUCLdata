@@ -25,7 +25,7 @@
 #'   destfile = file.path(tempdir(), "grid_10min_tmp.dat.gz")
 #' )
 #'
-#' CRU_tmp <- create_CRU_stack(tmp = TRUE, dsn = tempdir())
+#' CRU_tmp <- create_CRU_stack(dsn = tempdir(), tmp = TRUE)
 #'
 #' CRU_tmp
 #'
@@ -38,6 +38,7 @@
 #' @export
 
 create_CRU_stack <- function(
+  dsn,
   pre = FALSE,
   pre_cv = FALSE,
   rd0 = FALSE,
@@ -49,8 +50,7 @@ create_CRU_stack <- function(
   sunp = FALSE,
   frs = FALSE,
   wnd = FALSE,
-  elv = FALSE,
-  dsn
+  elv = FALSE
 ) {
   .check_vars_FALSE(
     pre,
@@ -81,8 +81,7 @@ create_CRU_stack <- function(
     sunp,
     frs,
     wnd,
-    elv,
-    cache_dir = dsn
+    elv
   )
 
   if (length(files) == 0) {

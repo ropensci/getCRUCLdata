@@ -5,8 +5,6 @@
 #'  the data.  If requested, minimum and maximum temperature may also be
 #'  automatically calculated as described in the data
 #'  [readme.txt](https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt) file.
-#'  Data may be cached for later use by this function, saving time downloading
-#'  files in future use of this function.
 #'
 #' @section Nomenclature and Units:
 #' \describe{
@@ -52,21 +50,16 @@
 #' data frame, `TRUE`. Defaults to `FALSE`.
 #' @param elv Fetches elevation (converted to metres) and returns it in
 #' the data frame, `TRUE`.  Defaults to `FALSE`.
-#' @param cache Stores CRU CL v. 2.0 data files locally for later use.
-#' If `FALSE`, the downloaded files are removed when the \R session is closed.
-#' To take advantage of cached files in future sessions, use `cache = TRUE`
-#' even after the initial download and caching.  Defaults to `FALSE`.
 #'
 #' @examplesIf interactive()
 #' # Download data and create a data frame of precipitation and temperature
-#' # without caching the data files
 #' CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
 #'
 #' head(CRU_pre_tmp)
 #' CRU_pre_tmp
 #'
 #' @seealso
-#' [create_CRU_stack], [manage_cache].
+#' [create_CRU_stack].
 #'
 #' @inherit create_CRU_df author
 #' @inherit create_CRU_df source
@@ -87,8 +80,7 @@ get_CRU_df <- function(
   sunp = FALSE,
   frs = FALSE,
   wnd = FALSE,
-  elv = FALSE,
-  cache = FALSE
+  elv = FALSE
 ) {
   .check_vars_FALSE(
     pre,
@@ -105,8 +97,6 @@ get_CRU_df <- function(
     elv
   )
 
-  cache_dir <- .set_cache(cache)
-
   files <- .get_CRU(
     pre,
     pre_cv,
@@ -119,8 +109,7 @@ get_CRU_df <- function(
     sunp,
     frs,
     wnd,
-    elv,
-    cache_dir
+    elv
   )
 
   return(.create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))

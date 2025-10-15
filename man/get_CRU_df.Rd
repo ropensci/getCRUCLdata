@@ -32,8 +32,7 @@ get_CRU_df(
   sunp = FALSE,
   frs = FALSE,
   wnd = FALSE,
-  elv = FALSE,
-  cache = FALSE
+  elv = FALSE
 )
 
 get_cru_df(
@@ -48,8 +47,7 @@ get_cru_df(
   sunp = FALSE,
   frs = FALSE,
   wnd = FALSE,
-  elv = FALSE,
-  cache = FALSE
+  elv = FALSE
 )
 }
 \arguments{
@@ -90,11 +88,6 @@ data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{elv}{Fetches elevation (converted to metres) and returns it in
 the data frame, \code{TRUE}.  Defaults to \code{FALSE}.}
-
-\item{cache}{Stores CRU CL v. 2.0 data files locally for later use.
-If \code{FALSE}, the downloaded files are removed when the \R session is closed.
-To take advantage of cached files in future sessions, use \code{cache = TRUE}
-even after the initial download and caching.  Defaults to \code{FALSE}.}
 }
 \value{
 A \link[data.table:data.table]{data.table::data.table} object of \acronym{CRU} \acronym{CL} v.
@@ -106,8 +99,6 @@ This function automates downloading and importing \acronym{CRU}
 the data.  If requested, minimum and maximum temperature may also be
 automatically calculated as described in the data
 \href{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}{readme.txt} file.
-Data may be cached for later use by this function, saving time downloading
-files in future use of this function.
 }
 \section{Nomenclature and Units}{
 
@@ -132,7 +123,6 @@ For more information see the description of the data provided by
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Download data and create a data frame of precipitation and temperature
-# without caching the data files
 CRU_pre_tmp <- get_CRU_df(pre = TRUE, tmp = TRUE)
 
 head(CRU_pre_tmp)
@@ -145,7 +135,7 @@ over global land areas." Climate research 21.1 (2002): 1-25.
 \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/new_et_al_10minute_climate_CR.pdf}
 }
 \seealso{
-\link{create_CRU_stack}, \link{manage_cache}.
+\link{create_CRU_stack}.
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com}

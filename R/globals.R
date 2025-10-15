@@ -2,8 +2,8 @@
 
 utils::globalVariables(c(
   "month", # <.create_df>
-  "pre_cv", # <.read_cache>
-  "i.pre_cv", # <.read_cache>
-  "elv", # <.read_cache>
+  "pre_cv", # <.read_local_files>
+  "i.pre_cv", # <.read_local_files>
+  "elv", # <.read_local_files>
   NULL
 ))

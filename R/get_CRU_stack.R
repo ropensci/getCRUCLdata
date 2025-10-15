@@ -5,8 +5,6 @@
 #'  [terra::rast] objects of the data.  If requested, minimum and maximum
 #'  temperature may also be automatically calculated as described in the data
 #'  [readme.txt](https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt) file.
-#'  Data may be cached for later use by this function, saving time downloading
-#'  files in future using this function.
 #'
 #' @inheritSection get_CRU_df Nomenclature and Units
 #' @inheritParams get_CRU_df
@@ -24,7 +22,7 @@
 #' CRU_pre_tmp
 #'
 #' @seealso
-#' [create_CRU_stack], [manage_cache].
+#' [create_CRU_stack].
 #'
 #' @export
 
@@ -41,8 +39,7 @@ get_CRU_stack <-
     sunp = FALSE,
     frs = FALSE,
     wnd = FALSE,
-    elv = FALSE,
-    cache = FALSE
+    elv = FALSE
   ) {
     .check_vars_FALSE(
       pre,
@@ -59,8 +56,6 @@ get_CRU_stack <-
       elv
     )
 
-    cache_dir <- .set_cache(cache)
-
     files <- .get_CRU(
       pre,
       pre_cv,
@@ -73,8 +68,7 @@ get_CRU_stack <-
       sunp,
       frs,
       wnd,
-      elv,
-      cache_dir
+      elv
     )
 
     if (pre_cv) {

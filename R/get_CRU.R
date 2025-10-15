@@ -12,7 +12,6 @@
 #' @param frs Logical. If TRUE, downloads frost day frequency data.
 #' @param wnd Logical. If TRUE, downloads wind speed data.
 #' @param elv Logical. If TRUE, downloads elevation data.
-#' @param cache_dir Character. Path to the cache directory.
 #'
 #' Handles the downloading of CRU CL 2.0 data. This function is called by
 #' [get_cru_df] and [get_cru_stack]. It is not intended to be called directly.
@@ -33,8 +32,7 @@
     sunp,
     frs,
     wnd,
-    elv,
-    cache_dir
+    elv
   ) {
     dtr_file <- "grid_10min_dtr.dat.gz"
     tmp_file <- "grid_10min_tmp.dat.gz"
@@ -89,14 +87,9 @@
     files <- files[which(object_list)]
 
     # which files are locally available?
-    cache_dir_contents <-
-      list.files(cache_dir, pattern = ".dat.gz$")
-
-    # which files requested need to be downloaded
-    dl_files <- files[!(files %in% cache_dir_contents)]
 
     # download files ----------------------------------------------------------
-    if (length(dl_files) > 0) {
+    if (length(dl_files) > 0L) {
       CRU_url <- "https://crudata.uea.ac.uk/cru/data/hrg/tmc/"
       dl_files <- as.list(paste0(CRU_url, dl_files))
 
@@ -104,7 +97,7 @@
         for (f in seq_along(dl_files)) {
           curl::curl_download(
             url = dl_files[[f]],
-            destfile = (file.path(cache_dir, basename(dl_files[[f]]))),
+            destfile = fs::path(tempdir(), basename(dl_files[[f]])),
             mode = "wb"
           )
         },
