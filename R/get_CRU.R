@@ -86,8 +86,6 @@
     # which files are being requested?
     files <- files[which(object_list)]
 
-    # which files are locally available?
-
     # download files ----------------------------------------------------------
     if (length(dl_files) > 0L) {
       CRU_url <- "https://crudata.uea.ac.uk/cru/data/hrg/tmc/"
@@ -97,12 +95,11 @@
         for (f in seq_along(dl_files)) {
           curl::curl_download(
             url = dl_files[[f]],
-            destfile = fs::path(tempdir(), basename(dl_files[[f]])),
+            destfile = fs::path(tempdir(), fs::path_file(dl_files[[f]])),
             mode = "wb"
           )
         },
         error = function(x) {
-          manage_cache$delete_all()
           cli::cli_abort(
             "The file downloads have failed.
           Please start the download again."
@@ -111,14 +108,14 @@
       )
     }
 
-    # filter files from cache directory in case there are local files for which
+    # filter files from tempdir() in case there are local files for which
     # we do not want data
-    cache_dir_contents <- as.list(list.files(cache_dir, pattern = ".dat.gz$"))
+    temp_dir_contents <- as.list(list.files(tempdir(), pattern = ".dat.gz$"))
 
-    files <- cache_dir_contents[cache_dir_contents %in% files]
+    files <- temp_dir_contents[temp_dir_contents %in% files]
 
     # add full file path to the files
-    files <- file.path(cache_dir, files)
+    files <- fs::path(tempdir(), files)
 
     # fill the space with a "\" for R, if one exists
     files <- gsub(" ", "\\ ", files, fixed = TRUE)
