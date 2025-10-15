@@ -75,8 +75,7 @@
 #' Validates user entered dsn value
 #'
 #' @param dsn User provided value for checking.
-#' @returns Called for its side effect of throwing an error if `dsn` is invalid.
-#'  Returns an invisible `NULL`.
+#' @returns An fs::path_abs object of a validated dsn.
 #' @dev
 .validate_dsn <- function(dsn) {
   if (missing(dsn)) {
@@ -86,7 +85,6 @@
       the {.fn get_CRU} functions provided.",
       call = rlang::caller_env()
     )
-    return(invisible(NULL))
   }
 
   # Trim whitespace

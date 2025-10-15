@@ -10,8 +10,7 @@
 \item{dsn}{User provided value for checking.}
 }
 \value{
-Called for its side effect of throwing an error if \code{dsn} is invalid.
-Returns an invisible \code{NULL}.
+An fs::path_abs object of a validated dsn.
 }
 \description{
 Validates user entered dsn value
