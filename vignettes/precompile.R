@@ -1,5 +1,7 @@
 # vignettes that depend on internet access need to be precompiled and take a
 # while to run
+devtools::install() # ensure we're using latest version
+
 knitr::knit("vignettes/getCRUCLdata.Rmd.orig", "vignettes/getCRUCLdata.Rmd")
 
 # remove file path such that vignettes will build with figures
