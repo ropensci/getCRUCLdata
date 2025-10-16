@@ -115,7 +115,7 @@ create_CRU_df <- function(
 
   .validate_dsn(dsn)
 
-  files <- fs::dir_ls(dsn)
+  files <- fs::dir_ls(dsn, regexp = "\\.dat\\.gz$", recurse = FALSE)
 
   if (length(files) == 0L) {
     cli::cli_abort(
