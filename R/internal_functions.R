@@ -221,11 +221,7 @@
       "dec"
     )
 
-  x <-
-    data.table::fread(
-      .files,
-      header = FALSE
-    )
+  x <- lapply(X = .files, FUN = data.table::fread, header = FALSE)
 
   if (ncol(x) == 14L) {
     data.table::setnames(x, c("lat", "lon", month_names))

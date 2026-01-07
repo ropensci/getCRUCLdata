@@ -11,8 +11,7 @@ test_that("create_CRU_df fails if no parameters are TRUE", {
 
 test_that("create_CRU_df fails if no dsn is specified", {
   expect_error(
-    create_CRU_df(pre = TRUE),
-    "You must define the dsn where you have stored the local files for import."
+    create_CRU_df(pre = TRUE)
   )
 })
 

@@ -70,18 +70,8 @@ create_CRU_stack <- function(
   .validate_dsn(dsn)
 
   files <- .read_local_files(
-    pre,
-    pre_cv,
-    rd0,
-    tmp,
-    dtr,
-    reh,
-    tmn,
-    tmx,
-    sunp,
-    frs,
-    wnd,
-    elv
+    .files = c(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv),
+    .pre_cv = pre_cv
   )
 
   if (length(files) == 0) {

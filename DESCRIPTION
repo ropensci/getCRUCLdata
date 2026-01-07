@@ -29,9 +29,9 @@ Depends:
     R (>= 4.0.0)
 Imports:
     cli,
-    curl,
     data.table,
     fs,
+    httr2,
     rlang,
     terra
 Suggests:

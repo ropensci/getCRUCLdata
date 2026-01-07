@@ -461,40 +461,11 @@ test_that("Test that .read_local_files lists local files", {
   utils::write.table(pre_data, file = gz1, col.names = FALSE, row.names = FALSE)
   close(gz1)
 
-  gz1 <- gzfile(file.path(tempdir(), "grid_10min_tmp.dat.gz"), "w")
-  utils::write.table(tmp_data, file = gz1, col.names = FALSE, row.names = FALSE)
-  close(gz1)
-
-  pre <- TRUE
-  pre_cv <- FALSE
-  rd0 <- FALSE
-  tmp <- FALSE
-  dtr <- FALSE
-  reh <- FALSE
-  tmn <- FALSE
-  tmx <- FALSE
-  sunp <- FALSE
-  frs <- FALSE
-  wnd <- FALSE
-  elv <- FALSE
-  cache_dir <- tempdir()
-
   files <- .read_local_files(
-    pre,
-    pre_cv,
-    rd0,
-    tmp,
-    dtr,
-    reh,
-    tmn,
-    tmx,
-    sunp,
-    frs,
-    wnd,
-    elv,
-    cache_dir
+    .files = fs::dir_ls(fs::path_temp(), glob = "*.dat.gz"),
+    .pre_cv = FALSE
   )
 
-  expect_length(files, 1)
-  expect_identical(basename(files[1]), "grid_10min_pre.dat.gz")
+  expect_length(files, 4)
+  expect_named(files, c("lat", "lon", "month", "pre"))
 })
