@@ -132,18 +132,38 @@ read_cru_dt <- function(
     elv
   )
 
-  if (is.null(x)) {} else {
+  if (is.null(x)) {
+    files <- .get_cru(
+      pre,
+      pre_cv,
+      rd0,
+      tmp,
+      dtr,
+      reh,
+      tmn,
+      tmx,
+      sunp,
+      frs,
+      wnd,
+      elv
+    )
+  } else {
+    # TODO: handle user requested files gracefully if there are more than one CRU files available and a subset is requested
     .validate_x(x)
 
     files <- fs::dir_ls(x, regexp = "\\.dat\\.gz$", recurse = FALSE)
+
+    files <- temp_dir_contents[temp_dir_contents %in% files]
 
     if (length(files) == 0L) {
       cli::cli_abort(
         "No CRU CL 2.0 data files were found in {.var dsn}.
       Please check that you have the proper file location."
       )
-
-      return(.create_dt(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
     }
   }
+  if (pre_cv) {
+    pre <- TRUE
+  }
+  return(.create_dt(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
 }
