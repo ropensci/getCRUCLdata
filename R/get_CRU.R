@@ -104,7 +104,7 @@
       )
     }
 
-    # filter files from tempdir() in case there are local files for which
+    # filter files from tempdir() in case there are files for which
     # we do not want data
     temp_dir_contents <- fs::dir_ls(
       fs::path_temp(),
