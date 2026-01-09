@@ -505,7 +505,7 @@ test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
 
   stacks <-
     lapply(
-      FUN = .create_stack,
+      FUN = .create_rast,
       X = files,
       wrld,
       month_names,
@@ -628,7 +628,7 @@ test_that("create_CRU_stack creates a list containing only elv", {
 
   stacks <-
     lapply(
-      FUN = .create_stack,
+      FUN = .create_rast,
       X = files,
       wrld,
       month_names,
@@ -1206,7 +1206,7 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
 
   CRU_stack_list <-
     lapply(
-      FUN = .create_stack,
+      FUN = .create_rast,
       X = files,
       wrld,
       month_names,

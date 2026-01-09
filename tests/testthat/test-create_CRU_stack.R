@@ -501,8 +501,8 @@ test_that("create_CRU_stack returns a list of terra rast objects", {
 })
 
 
-# Test that create_stack creates tmx if requested ------------------------------
-test_that("Test that create_stack creates tmx if requested", {
+# Test that create_rast creates tmx if requested ------------------------------
+test_that("Test that create_rast creates tmx if requested", {
   dtr_data <- rbind(
     c(
       -59.083,
@@ -849,7 +849,7 @@ test_that("Test that create_stack creates tmx if requested", {
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
   CRU_stack_list <-
-    .create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
+    .create_rasts(tmn, tmx, tmp, dtr, pre, pre_cv, files)
 
   expect_named(CRU_stack_list, c("tmx"))
   expect_equal(
@@ -864,8 +864,8 @@ test_that("Test that create_stack creates tmx if requested", {
   ))
 })
 
-# Test that create_stack creates tmn if requested ------------------------------
-test_that("Test that create_stack creates tmn if requested", {
+# Test that create_rast creates tmn if requested ------------------------------
+test_that("Test that create_rast creates tmn if requested", {
   dtr_data <- rbind(
     c(
       -59.083,
@@ -1212,7 +1212,7 @@ test_that("Test that create_stack creates tmn if requested", {
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
   CRU_stack_list <-
-    .create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files)
+    .create_rasts(tmn, tmx, tmp, dtr, pre, pre_cv, files)
 
   expect_named(CRU_stack_list, c("tmn"))
   expect_equal(

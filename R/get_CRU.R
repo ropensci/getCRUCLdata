@@ -19,7 +19,7 @@
 #' @returns A data.table with the requested data.
 #'
 #' @dev
-.get_CRU <-
+.get_cru <-
   function(
     pre,
     pre_cv,
@@ -87,30 +87,35 @@
     dl_files <- files[which(object_list)]
 
     # download files ----------------------------------------------------------
-    tryCatch(
-      lapply(X = dl_files, FUN = .retry_download, .max_tries = 3L),
-      warning = function(x) {
-        cli::cli_warn(
-          "There was a warning during the file downloads.
-          Please check your internet connection and start the download again."
-        )
-      },
-      error = function(x) {
-        cli::cli_abort(
-          "The file downloads have failed.
+    if (length(dl_files) > 0L) {
+      cru_url <- "https://crudata.uea.ac.uk/cru/data/hrg/tmc/"
+      dl_files <- as.list(paste0(cru_url, dl_files))
+
+      tryCatch(
+        for (f in seq_along(dl_files)) {
+          curl::curl_download(
+            url = dl_files[[f]],
+            destfile = fs::path(tempdir(), fs::path_file(dl_files[[f]])),
+            mode = "wb"
+          )
+        },
+        error = function(x) {
+          cli::cli_abort(
+            "The file downloads have failed.
           Please start the download again."
-        )
-      }
-    )
+          )
+        }
+      )
+    }
 
     # filter files from tempdir() in case there are local files for which
     # we do not want data
     temp_dir_contents <- fs::dir_ls(
       fs::path_temp(),
-      regexp = "\\.dat\\.gz$"
+      regexp = ".dat.gz$"
     )
 
-    files <- temp_dir_contents[temp_dir_contents %in% dl_files]
+    files <- temp_dir_contents[temp_dir_contents %in% files]
 
     # add full file path to the files
     files <- fs::path(fs::path_temp(), files)

@@ -72,13 +72,13 @@
   return(invisible(NULL))
 }
 
-#' Validates user entered dsn value
+#' Validates user entered file path value
 #'
-#' @param dsn User provided value for checking.
+#' @param x User provided value for checking.
 #' @returns An fs::path_abs object of a validated dsn.
 #' @dev
-.validate_dsn <- function(dsn) {
-  if (missing(dsn)) {
+.validate_x <- function(x) {
+  if (missing(x)) {
     cli::cli_abort(
       "You must define the directory ({.var dsn}) where you have stored the
       local files for import. If you want to download files using R, use one of
@@ -89,20 +89,20 @@
   }
 
   # Trim whitespace
-  dsn <- trimws(dsn)
+  x<- trimws(x)
 
   # Normalize path and remove trailing slashes
-  dsn <- fs::path_norm(dsn)
+  x <- fs::path_norm(x)
 
   # Check if path exists and is a directory
-  if (!fs::dir_exists(dsn)) {
+  if (!fs::dir_exists(x)) {
     cli::cli_abort(
-      "File directory does not exist: {.var dsn}.",
+      "File directory does not exist: {.var x}.",
       call = rlang::caller_env()
     )
   }
 
-  return(fs::path_abs(dsn))
+  return(fs::path_abs(x))
 }
 
 
@@ -119,42 +119,42 @@
 #' @returns A \CRANpkg{data.table} of all requested values.
 #' @autoglobal
 #' @dev
-.create_df <-
+.create_dt <-
   function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
-    CRU_df <-
-      .tidy_df(pre_cv, elv, tmn, tmx, .files = files)
+    cru_dt <-
+      .tidy_dt(pre_cv, elv, tmn, tmx, .files = files)
 
     if (tmx) {
-      CRU_df[, tmx := tmp + (0.5 * dtr)]
+      cru_dt[, tmx := tmp + (0.5 * dtr)]
     }
 
     if (tmn) {
-      CRU_df[, tmn := tmp - (0.5 * dtr)]
+      cru_dt[, tmn := tmp - (0.5 * dtr)]
     }
 
     # Remove tmp/dtr if they aren't specified (necessary for tmn/tmx)
     if (any(tmx, tmn) && isFALSE(tmp)) {
-      CRU_df[, tmp := NULL]
+      cru_dt[, tmp := NULL]
 
       # if dtr is not requested, drop from the data.table
       if (isFALSE(dtr)) {
-        CRU_df[, dtr := NULL]
+        cru_dt[, dtr := NULL]
       }
     }
 
-    CRU_df[, month := factor(CRU_df$month)]
+    cru_dt[, month := factor(cru_dt$month)]
 
-    data.table::setorder(CRU_df, month)
+    data.table::setorder(cru_dt, month)
 
-    return(CRU_df[])
+    return(cru_dt[])
   }
 
 #' Read Files from Disk Directory and Tidy Them
 #' @dev
 
-.tidy_df <- function(pre_cv, elv, tmn, tmx, .files) {
+.tidy_dt <- function(pre_cv, elv, tmn, tmx, .files) {
   # create list of tidied data frames ----------------------------------------
-  CRU_list <-
+  cru_list <-
     lapply(
       X = .files,
       FUN = .read_local_files,
@@ -162,44 +162,43 @@
     )
 
   # name the items in the list for the data that they contain ----------------
-  names(CRU_list) <- substr(fs::path_file(.files), 12L, 14L)
+  names(cru_list) <- substr(fs::path_file(.files), 12L, 14L)
 
   # rename the columns in the data frames within the list --------------------
-  for (i in seq_along(CRU_list)) {
+  for (i in seq_along(cru_list)) {
     wvars <- as.list(substr(fs::path_file(.files), 12L, 14L))
-    names(CRU_list[[i]])[names(CRU_list[[i]]) == "wvar"] <- wvars[[i]]
+    names(cru_list[[i]])[names(cru_list[[i]]) == "wvar"] <- wvars[[i]]
   }
 
   # lastly merge the data frames into one tidy (large) data frame --------------
 
   if (isFALSE(elv)) {
-    CRU_df <- Reduce(
+    cru_df <- Reduce(
       function(...) {
         merge(..., by = c("lat", "lon", "month"))
       },
-      CRU_list
+      cru_list
     )
-  } else if (elv && length(CRU_list) > 1L) {
-    elv_df <- CRU_list[which(names(CRU_list) == "elv")]
-    CRU_list[which(names(CRU_list) == "elv")] <- NULL
-    CRU_df <- Reduce(
+  } else if (elv && length(cru_list) > 1L) {
+    elv_df <- cru_list[which(names(cru_list) == "elv")]
+    cru_list[which(names(cru_list) == "elv")] <- NULL
+    cru_df <- Reduce(
       function(...) {
         merge(..., by = c("lat", "lon", "month"))
       },
-      CRU_list
+      cru_list
     )
 
-    CRU_df <- CRU_df[elv_df$elv, on = c("lat", "lon")]
+    cru_df <- cru_df[elv_df$elv, on = c("lat", "lon")]
   } else if (elv) {
-    CRU_df <- CRU_list["elv"]
+    cru_df <- cru_list["elv"]
   }
-  return(CRU_df[])
+  return(cru_df[])
 }
 
 #' Read Files From Local Disk
 #'
-#' @param .files a list of CRU CL2.0 files in local storage. This could be in
-#'  `tempdir()` or somewhere user defined.
+#' @param .files a list of CRU CL2.0 files in local storage.
 #' @param .pre_cv Boolean flag to return pre_cv in the data.
 #'
 #' @autoglobal
@@ -221,7 +220,11 @@
       "dec"
     )
 
-  x <- lapply(X = .files, FUN = data.table::fread, header = FALSE)
+  x <-
+    data.table::fread(
+      .files,
+      header = FALSE
+    )
 
   if (ncol(x) == 14L) {
     data.table::setnames(x, c("lat", "lon", month_names))
@@ -327,7 +330,7 @@
   # create.stack takes pre, tmp, tmn and tmx and creates a terra rast
   # object stack of 12 month data
 
-  CRU_stack_list <-
+  cru_rast_list <-
     lapply(
       X = files,
       FUN = .create_stack,
@@ -337,40 +340,40 @@
       pre_cv = pre_cv
     )
 
-  names(CRU_stack_list) <- substr(fs::path_file(files), 12L, 14L)
+  names(cru_rast_list) <- substr(fs::path_file(files), 12L, 14L)
 
   # calculate tmn -------------------------------------------------------------
   if (tmn) {
-    CRU_stack_list$tmn <-
-      CRU_stack_list$tmp - (0.5 * CRU_stack_list$dtr)
+    cru_rast_list$tmn <-
+      cru_rast_list$tmp - (0.5 * cru_rast_list$dtr)
   }
   # calculate tmx -------------------------------------------------------------
   if (tmx) {
-    CRU_stack_list$tmx <-
-      CRU_stack_list$tmp + (0.5 * CRU_stack_list$dtr)
+    cru_rast_list$tmx <-
+      cru_rast_list$tmp + (0.5 * cru_rast_list$dtr)
   }
 
   # cleanup if tmn/tmx specified but tmp/dtr not -----------------------------
   if (any(tmx, tmn) && isFALSE(dtr)) {
-    CRU_stack_list[which(names(CRU_stack_list) == "dtr")] <- NULL
+    cru_rast_list[which(names(cru_rast_list) == "dtr")] <- NULL
   }
   if (any(tmx, tmn) && isFALSE(tmp)) {
-    CRU_stack_list[which(names(CRU_stack_list) == "tmp")] <- NULL
+    cru_rast_list[which(names(cru_rast_list) == "tmp")] <- NULL
   }
-  return(CRU_stack_list)
+  return(cru_rast_list)
 }
 
-#' Helper Function Used in .create_stacks()
+#' Helper Function Used in .create_rast()
 #'
 #' @param files A list of files to use in creating `rast` objects.
 #' @param wrld An empty [terra::rast] object for filling with values.
 #' @param month_names A vector of month names from jan -- dec.
 #' @param pre Boolean include precipitation.
-#' @param pre_cv Boolean include precipitation cv.
+#' @param pre_cv Boolean` include precipitation cv.
 #'
 #' @autoglobal
 #' @dev
-.create_stack <- function(files, wrld, month_names, pre, pre_cv) {
+.create_rast <- function(files, wrld, month_names, pre, pre_cv) {
   wvar <-
     data.frame(data.table::fread(
       cmd = paste0("gzip -dc ", files[[1L]]),

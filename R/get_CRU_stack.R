@@ -56,7 +56,7 @@ get_CRU_stack <-
       elv
     )
 
-    files <- .get_CRU(
+    files <- .get_cru(
       pre,
       pre_cv,
       rd0,
@@ -75,7 +75,7 @@ get_CRU_stack <-
       pre <- TRUE
     }
 
-    return(.create_stacks(tmn, tmx, tmp, dtr, pre, pre_cv, files))
+    return(.create_rasts(tmn, tmx, tmp, dtr, pre, pre_cv, files))
   }
 
 #' @export

@@ -8,7 +8,7 @@ test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
     full.names = TRUE
   ))
 
-  .get_CRU(
+  .get_cru(
     pre = FALSE,
     pre_cv = TRUE,
     rd0 = FALSE,
@@ -36,7 +36,7 @@ test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
 test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
   skip_if_offline()
 
-  .get_CRU(
+  .get_cru(
     pre = FALSE,
     pre_cv = FALSE,
     rd0 = FALSE,
@@ -69,7 +69,7 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
     full.names = TRUE
   ))
 
-  .get_CRU(
+  .get_cru(
     pre = FALSE,
     pre_cv = FALSE,
     rd0 = FALSE,

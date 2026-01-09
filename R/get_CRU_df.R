@@ -97,7 +97,7 @@ get_CRU_df <- function(
     elv
   )
 
-  files <- .get_CRU(
+  files <- .get_cru(
     pre,
     pre_cv,
     rd0,
