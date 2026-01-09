@@ -1,5 +1,5 @@
-# Test that get_CRU will retrieve only precipitation file when pre_cv TRUE -----
-test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
+# Test that get_cru will retrieve only precipitation file when pre_cv TRUE -----
+test_that("get_cru will retrieve only precipitation file when pre_cv TRUE", {
   skip_if_offline()
 
   unlink(list.files(
@@ -31,9 +31,9 @@ test_that("get_CRU will retrieve only precipitation file when pre_cv TRUE", {
   ))
 })
 
-# Test that get_CRU will retrieve diurnal tmp & tmp files when tmn TRUE --------
+# Test that get_cru will retrieve diurnal tmp & tmp files when tmn TRUE --------
 
-test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
+test_that("get_cru will retrieve diurnal tmp range & tmp files when tmn TRUE", {
   skip_if_offline()
 
   .get_cru(
@@ -59,8 +59,8 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmn TRUE", {
   ))
 })
 
-# Test that get_CRU will retrieve diurnal tmp & tmp files when tmx TRUE --------
-test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
+# Test that get_cru will retrieve diurnal tmp & tmp files when tmx TRUE --------
+test_that("get_cru will retrieve diurnal tmp range & tmp files when tmx TRUE", {
   skip_if_offline()
 
   unlink(list.files(
@@ -92,9 +92,9 @@ test_that("get_CRU will retrieve diurnal tmp range & tmp files when tmx TRUE", {
   ))
 })
 
-# Test that get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE ----
+# Test that get_cru will set pre to TRUE if pre_cv is TRUE and pre is FALSE ----
 
-test_that("get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE", {
+test_that("get_cru will set pre to TRUE if pre_cv is TRUE and pre is FALSE", {
   skip_if_offline()
 
   pre <- FALSE
@@ -108,10 +108,10 @@ test_that("get_CRU will set pre to TRUE if pre_cv is TRUE and pre is FALSE", {
   expect_true(pre)
 })
 
-# Test that get_CRU will set tmp and dtr to TRUE if tmn or tmx is TRUE and -----
+# Test that get_cru will set tmp and dtr to TRUE if tmn or tmx is TRUE and -----
 # either/both are false
 
-test_that("get_CRU will set tmp and dtr to TRUE if tmn or tmx
+test_that("get_cru will set tmp and dtr to TRUE if tmn or tmx
           is TRUE and either/both are false", {
   skip_if_offline()
 

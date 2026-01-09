@@ -503,7 +503,7 @@ test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
   pre <- TRUE
   pre_cv <- FALSE
 
-  stacks <-
+  rasts <-
     lapply(
       FUN = .create_rast,
       X = files,
@@ -513,9 +513,9 @@ test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
       pre_cv
     )
 
-  expect_true(is.list(stacks))
+  expect_true(is.list(rasts))
   expect_named(
-    stacks[[1]],
+    rasts[[1]],
     c(
       "jan",
       "feb",
@@ -533,7 +533,7 @@ test_that("create_CRU_stack creates a list of terra rast of pre and tmp", {
   )
 
   expect_named(
-    stacks[[2]],
+    rasts[[2]],
     c(
       "jan",
       "feb",
@@ -626,7 +626,7 @@ test_that("create_CRU_stack creates a list containing only elv", {
 
   pre_cv <- FALSE
 
-  stacks <-
+  rasts <-
     lapply(
       FUN = .create_rast,
       X = files,
@@ -636,13 +636,13 @@ test_that("create_CRU_stack creates a list containing only elv", {
       pre_cv
     )
 
-  expect_named(stacks[[1]], "elv")
-  expect_equal(terra::minmax(stacks[[1]])[[2]], 239, tolerance = 0.1)
-  expect_equal(terra::minmax(stacks[[1]])[[1]], 19, tolerance = 0.1)
-  expect_identical(as.integer(terra::ext(stacks[[1]])[1]), -180L)
-  expect_identical(as.integer(terra::ext(stacks[[1]])[2]), 180L)
-  expect_identical(as.integer(terra::ext(stacks[[1]])[3]), -60L)
-  expect_identical(as.integer(terra::ext(stacks[[1]])[4]), 85L)
+  expect_named(rasts[[1]], "elv")
+  expect_equal(terra::minmax(rasts[[1]])[[2]], 239, tolerance = 0.1)
+  expect_equal(terra::minmax(rasts[[1]])[[1]], 19, tolerance = 0.1)
+  expect_identical(as.integer(terra::ext(rasts[[1]])[1]), -180L)
+  expect_identical(as.integer(terra::ext(rasts[[1]])[2]), 180L)
+  expect_identical(as.integer(terra::ext(rasts[[1]])[3]), -60L)
+  expect_identical(as.integer(terra::ext(rasts[[1]])[4]), 85L)
 })
 
 # Test that wrld raster object resolution and extent are appropriate -----------
@@ -707,9 +707,9 @@ test_that("month names are appropriate", {
   )
 })
 
-# Test that CRU_stack_list returns list of raster stacks with proper names -----
+# Test that cru_rast_list returns list of raster rasts with proper names -----
 
-test_that("CRU_stack_list returns list of raster stacks with proper names", {
+test_that("cru_rast_list returns list of raster rasts with proper names", {
   skip_if_offline()
 
   unlink(list.files(
@@ -1204,7 +1204,7 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
   pre <- TRUE
   pre_cv <- TRUE
 
-  CRU_stack_list <-
+  cru_rast_list <-
     lapply(
       FUN = .create_rast,
       X = files,
@@ -1214,12 +1214,12 @@ test_that("CRU_stack_list returns list of raster stacks with proper names", {
       pre_cv
     )
 
-  names(CRU_stack_list) <- substr(basename(files), 12, 14)
+  names(cru_rast_list) <- substr(basename(files), 12, 14)
 
-  expect_named(CRU_stack_list, c("pre", "tmp"))
-  expect_type(CRU_stack_list, "list")
-  expect_identical(as.integer(terra::ext(CRU_stack_list[[1]])[1]), -180L)
-  expect_identical(as.integer(terra::ext(CRU_stack_list[[1]])[2]), 180L)
-  expect_identical(as.integer(terra::ext(CRU_stack_list[[1]])[3]), -60L)
-  expect_identical(as.integer(terra::ext(CRU_stack_list[[1]])[4]), 85L)
+  expect_named(cru_rast_list, c("pre", "tmp"))
+  expect_type(cru_rast_list, "list")
+  expect_identical(as.integer(terra::ext(cru_rast_list[[1]])[1]), -180L)
+  expect_identical(as.integer(terra::ext(cru_rast_list[[1]])[2]), 180L)
+  expect_identical(as.integer(terra::ext(cru_rast_list[[1]])[3]), -60L)
+  expect_identical(as.integer(terra::ext(cru_rast_list[[1]])[4]), 85L)
 })

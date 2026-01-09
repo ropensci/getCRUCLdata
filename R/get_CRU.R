@@ -14,7 +14,7 @@
 #' @param elv Logical. If TRUE, downloads elevation data.
 #'
 #' Handles the downloading of CRU CL 2.0 data. This function is called by
-#' [get_cru_df] and [get_cru_stack]. It is not intended to be called directly.
+#' [get_cru_df] and [get_cru_rast]. It is not intended to be called directly.
 #'
 #' @returns A data.table with the requested data.
 #'
@@ -93,11 +93,7 @@
 
       tryCatch(
         for (f in seq_along(dl_files)) {
-          curl::curl_download(
-            url = dl_files[[f]],
-            destfile = fs::path(tempdir(), fs::path_file(dl_files[[f]])),
-            mode = "wb"
-          )
+          .retry_download(url = f, .max_tries = 3L)
         },
         error = function(x) {
           cli::cli_abort(
@@ -112,7 +108,7 @@
     # we do not want data
     temp_dir_contents <- fs::dir_ls(
       fs::path_temp(),
-      regexp = ".dat.gz$"
+      regexp = "\\.dat\\.gz$"
     )
 
     files <- temp_dir_contents[temp_dir_contents %in% files]

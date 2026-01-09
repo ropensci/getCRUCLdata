@@ -25,11 +25,14 @@
 
 # flir files
 ^flir$
-^man/dot-get_CRU\.Rd$
-^man/dot-check_vars_FALSE\.Rd$
-^man/dot-validate_dsn\.Rd$
-^man/dot-create_df\.Rd$
-^man/dot-tidy_df\.Rd$
+^man/dot-get_cru\.Rd$
+^man/dot-check_vars\.Rd$
+^man/dot-validate_x\.Rd$
+^man/dot-create_dt\.Rd$
+^man/dot-tidy_dt\.Rd$
 ^man/dot-read_local_files\.Rd$
-^man/dot-create_stacks\.Rd$
-^man/dot-create_stack\.Rd$
+^man/dot-create_rasts\.Rd$
+^man/dot-create_rast\.Rd$
+^man/dot-retry_download\.Rd$
+^man/dot-apply_conditional_options\.Rd$
+^man/dot-should_show_progress\.Rd$

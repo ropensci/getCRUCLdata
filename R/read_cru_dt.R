@@ -1,19 +1,30 @@
 #' Create a data.table of CRU CL v. 2.0 climatology elements
 #'
-#' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
-#' data and creates a \CRANpkg{data.table} of the data. If requested, minimum
-#' and maximum temperature may also be automatically calculated as described in
-#' the data [readme.txt](https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt)
-#' file. Data may be cached for later use by this function, saving time
-#' downloading files in future using this function.  This function can be useful
-#' if you have network connection issues that mean automated downloading of the
-#' files using \R does not work properly.
+#' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology data and
+#' from either the CRU server or local files and creates a \CRANpkg{data.table}
+#' of the data. If requested, minimum and maximum temperature may also be
+#' calculated as described in the data
+#' [readme.txt](https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt) file and
+#' returned.
 #'
-#' @inheritSection get_CRU_df Nomenclature and Units
+#' @section Nomenclature and Units:
+#' \describe{
+#' \item{pre}{precipitation (millimetres/month)}
+#'   \describe{
+#'    \item{cv}{cv of precipitation (percent)}
+#'   }
+#' \item{rd0}{wet-days (number days with >0.1 millimetres rain per month)}
+#' \item{tmp}{mean temperature (degrees Celsius)}
+#' \item{dtr}{mean diurnal temperature range (degrees Celsius)}
+#' \item{reh}{relative humidity (percent)}
+#' \item{sunp}{sunshine (percent of maximum possible (percent of day length))}
+#' \item{frs}{ground-frost (number of days with ground-frost per month)}
+#' \item{wnd}{10 metre windspeed (metres/second)}
+#' \item{elv}{elevation (automatically converted to metres from kilometres)}
+#' }
+#' For more information see the description of the data provided by
+#' \acronym{CRU}, <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>
 #'
-#' @param x An optional local file path where \acronym{CRU} \acronym{CL} v.2.0
-#'  .dat.gz files are located.  If this is empty, the requested data will
-#'  automatically be downloaded from the server.
 #' @param pre Loads precipitation (millimetres/month) from server and
 #'  returns in the data frame, `TRUE`. Defaults to `FALSE`.
 #' @param pre_cv Loads cv of precipitation (percent) from server and
@@ -41,6 +52,9 @@
 #'  data.table, `TRUE`. Defaults to `FALSE`.
 #' @param elv Loads elevation (converted to metres) and returns it in
 #'  the data.table, `TRUE`. Defaults to `FALSE`.
+#' @param x An optional local file path where \acronym{CRU} \acronym{CL} v.2.0
+#'  .dat.gz files are located.  If this is empty, the requested data will
+#'  automatically be downloaded from the server.
 #'
 #' @examplesIf interactive()
 #' # Create a data frame of temperature from locally available files in the
@@ -53,12 +67,11 @@
 #'
 #' f <- path(path_temp(), "grid_10min_tmp.dat.gz")
 #'
-#' CRU_tmp <- read_cru_dt(tmp = TRUE, x = f)
+#' cru_tmp <- read_cru_dt(tmp = TRUE, x = f)
 #'
-#' CRU_tmp
+#' cru_tmp
 #'
-#' @seealso
-#' [read_cru_rast].
+#' @seealso [read_cru_rast].
 #'
 #' @seealso
 #' [read_cru_rast].
@@ -90,7 +103,6 @@
 #' @export
 
 read_cru_dt <- function(
-  x,
   pre = FALSE,
   pre_cv = FALSE,
   rd0 = FALSE,
@@ -102,9 +114,10 @@ read_cru_dt <- function(
   sunp = FALSE,
   frs = FALSE,
   wnd = FALSE,
-  elv = FALSE
+  elv = FALSE,
+  x
 ) {
-  .check_vars_FALSE(
+  .check_vars(
     pre,
     pre_cv,
     rd0,
@@ -119,16 +132,18 @@ read_cru_dt <- function(
     elv
   )
 
-  .validate_dsn(x)
+  if (is.null(x)) {} else {
+    .validate_x(x)
 
-  files <- fs::dir_ls(x, regexp = "\\.dat\\.gz$", recurse = FALSE)
+    files <- fs::dir_ls(x, regexp = "\\.dat\\.gz$", recurse = FALSE)
 
-  if (length(files) == 0L) {
-    cli::cli_abort(
-      "No CRU CL 2.0 data files were found in {.var dsn}.
+    if (length(files) == 0L) {
+      cli::cli_abort(
+        "No CRU CL 2.0 data files were found in {.var dsn}.
       Please check that you have the proper file location."
-    )
-  }
+      )
 
-  return(.create_dt(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
+      return(.create_dt(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
+    }
+  }
 }

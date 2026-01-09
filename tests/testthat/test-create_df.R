@@ -487,13 +487,13 @@ test_that("Test that .create_df() creates a tidy df of pre, pre_cv and tmp", {
   files <-
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
-  CRU_df <-
+  cru_df <-
     .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
 
-  expect_true(is.data.frame(CRU_df))
-  expect_named(CRU_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
+  expect_true(is.data.frame(cru_df))
+  expect_named(cru_df, c("lat", "lon", "month", "pre", "pre_cv", "tmp"))
   expect_identical(
-    lapply(CRU_df, typeof),
+    lapply(cru_df, typeof),
     list(
       lat = "double",
       lon = "double",
@@ -571,14 +571,14 @@ test_that("Test that .create_df() creates a tidy dataframe of pre, tmp, elv", {
   files <-
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
-  CRU_df <-
+  cru_df <-
     .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
 
-  expect_true(is.data.frame(CRU_df))
-  expect_named(CRU_df, c("lat", "lon", "month", "pre", "tmp", "elv"))
+  expect_true(is.data.frame(cru_df))
+  expect_named(cru_df, c("lat", "lon", "month", "pre", "tmp", "elv"))
 
   expect_identical(
-    lapply(CRU_df, typeof),
+    lapply(cru_df, typeof),
     list(
       lat = "double",
       lon = "double",
@@ -958,13 +958,13 @@ test_that("Test that .create_df() creates a tidy dataframe of pre, tmp, elv", {
   files <-
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
-  CRU_df <-
+  cru_df <-
     .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
 
-  expect_named(CRU_df, c("lat", "lon", "month", "tmn"))
-  expect_equal(CRU_df$tmn[1], 0.1)
+  expect_named(cru_df, c("lat", "lon", "month", "tmn"))
+  expect_equal(cru_df$tmn[1], 0.1)
   expect_identical(
-    lapply(CRU_df, typeof),
+    lapply(cru_df, typeof),
     list(
       lat = "double",
       lon = "double",
@@ -1342,14 +1342,14 @@ test_that("Test that .create_df() creates tmx if requested", {
   files <-
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
-  CRU_df <-
+  cru_df <-
     .create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files)
 
-  expect_named(CRU_df, c("lat", "lon", "month", "tmx"))
-  expect_equal(CRU_df$tmx[1], 0.3)
+  expect_named(cru_df, c("lat", "lon", "month", "tmx"))
+  expect_equal(cru_df$tmx[1], 0.3)
 
   expect_identical(
-    lapply(CRU_df, typeof),
+    lapply(cru_df, typeof),
     list(
       lat = "double",
       lon = "double",

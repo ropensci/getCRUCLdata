@@ -487,11 +487,11 @@ test_that("create_CRU_stack returns a list of terra rast objects", {
   close(gz1)
 
   dsn <- tempdir()
-  CRU_stack <- create_CRU_stack(pre = TRUE, dsn = dsn)
+  cru_rast <- create_CRU_stack(pre = TRUE, dsn = dsn)
 
-  expect_named(CRU_stack, "pre")
-  expect_identical(terra::nlyr(CRU_stack$pre), 12)
-  expect_length(CRU_stack, 1)
+  expect_named(cru_rast, "pre")
+  expect_identical(terra::nlyr(cru_rast$pre), 12)
+  expect_length(cru_rast, 1)
 
   unlink(list.files(
     path = tempdir(),
@@ -848,12 +848,12 @@ test_that("Test that create_rast creates tmx if requested", {
   files <-
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
-  CRU_stack_list <-
+  cru_rast_list <-
     .create_rasts(tmn, tmx, tmp, dtr, pre, pre_cv, files)
 
-  expect_named(CRU_stack_list, c("tmx"))
+  expect_named(cru_rast_list, c("tmx"))
   expect_equal(
-    terra::minmax(CRU_stack_list[[1]])[[2]][[1]],
+    terra::minmax(cru_rast_list[[1]])[[2]][[1]],
     12.9,
     tolerance = 0.1
   )
@@ -1211,12 +1211,12 @@ test_that("Test that create_rast creates tmn if requested", {
   files <-
     list.files(tempdir(), pattern = ".dat.gz$", full.names = TRUE)
 
-  CRU_stack_list <-
+  cru_rast_list <-
     .create_rasts(tmn, tmx, tmp, dtr, pre, pre_cv, files)
 
-  expect_named(CRU_stack_list, c("tmn"))
+  expect_named(cru_rast_list, c("tmn"))
   expect_equal(
-    terra::minmax(CRU_stack_list[[1]])[[2]][[1]],
+    terra::minmax(cru_rast_list[[1]])[[2]][[1]],
     4.3,
     tolerance = 0.1
   )

@@ -1,45 +1,10 @@
 #' Create a data.table of CRU CL v. 2.0 climatology elements from local disk files
 #'
-#' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
-#' data and creates a \CRANpkg{data.table} of the data. If requested, minimum
-#' and maximum temperature may also be automatically calculated as described in
-#' the data [readme.txt](https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt)
-#' file. Data may be cached for later use by this function, saving time
-#' downloading files in future using this function.  This function can be useful
-#' if you have network connection issues that mean automated downloading of the
-#' files using \R does not work properly.
+#' @description
+#' `r lifecycle::badge('deprecated')`
 #'
-#' @inheritSection get_CRU_df Nomenclature and Units
-#'
-#' @param dsn Local file path where \acronym{CRU} \acronym{CL} v.2.0 .dat.gz
-#' files are located.
-#' @param pre Loads precipitation (millimetres/month) from server and
-#'  returns in the data frame, `TRUE`. Defaults to `FALSE`.
-#' @param pre_cv Loads cv of precipitation (percent) from server and
-#' returns in the data frame, `TRUE`. Defaults to `FALSE`. NOTE. Setting this
-#' to `TRUE` will always results in **pre** being set to `TRUE` and
-#' returned as well.
-#' @param rd0 Loads wet-days (number days with >0.1 millimetres rain per
-#' month) and returns in the data frame, `TRUE`. Defaults to `FALSE`.
-#' @param dtr Loads mean diurnal temperature range (degrees Celsius)
-#' and returns it in the data frame, `TRUE`. Defaults to `FALSE`.
-#' @param tmp Loads temperature (degrees Celsius) and returns it in the
-#' data frame, `TRUE`. Defaults to `FALSE`.
-#' @param tmn Calculate minimum temperature values (degrees Celsius)
-#' and returns it in the data frame, `TRUE`. Defaults to `FALSE`.
-#' @param tmx Calculate maximum temperature (degrees Celsius) and
-#' return it in the data frame, `TRUE`. Defaults to `FALSE`.
-#' @param reh Loads relative humidity and returns it in the data frame, `TRUE`.
-#' Defaults to `FALSE`.
-#' @param sunp Loads sunshine, percent of maximum possible (percent of
-#' day length) and returns it in the data frame, `TRUE`. Defaults to `FALSE`.
-#' @param frs Loads ground-frost records (number of days with ground-
-#' frost per month) and returns it in the data frame, `TRUE`. Defaults to
-#' `FALSE`.
-#' @param wnd Load 10 m wind speed (metres/second) and returns it in the
-#' data frame, `TRUE`. Defaults to `FALSE`.
-#' @param elv Loads elevation (converted to metres) and returns it in
-#' the data frame, `TRUE`. Defaults to `FALSE`.
+#' This function has been deprecated in version 2.0.0 to simplify the
+#'  functionality. Please use `read_cru_dt()`.
 #'
 #' @examplesIf interactive()
 #' # Create a data frame of temperature from locally available files in the
@@ -52,36 +17,13 @@
 #'
 #' CRU_tmp <- create_CRU_df(tmp = TRUE, dsn = tempdir())
 #'
-#' CRU_tmp
+#' # ->
+#' library(fs)
+#' f <- path(temp_path(), "grid_10min_tmp.dat.gz")
 #'
-#' @seealso
-#' [get_CRU_df].
+#' cru_tmp <- read_cru_dt(tmp = TRUE, x = f)
 #'
-#' @returns A [data.table::data.table] object of \acronym{CRU} \acronym{CL} v.
-#'  2.0 climatology elements.
-#'
-#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
-#'
-#' @source
-#' \describe{
-#'  \item{pre}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_pre.dat.gz>}
-#'  \item{rd0}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_rd0.dat.gz>}
-#'  \item{tmp}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz>}
-#'  \item{dtr}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_dtr.dat.gz>}
-#'  \item{reh}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_reh.dat.gz>}
-#'  \item{sunp}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_sunp.dat.gz>}
-#'  \item{frs}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_frs.dat.gz>}
-#'  \item{wnd}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_wnd.dat.gz>, areas originally including Antarctica are removed.}
-#'  \item{elv}{<https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_elv.dat.gz>, values are converted from kilometres to metres.}
-#' }
-#' This package crops all spatial outputs to an extent of ymin = -60, ymax = 85,
-#' xmin = -180, xmax = 180.
-#'
-#' @references New, Mark, et al. "A high-resolution data set of surface climate
-#'  over global land areas." Climate research 21.1 (2002): 1-25.
-#'  <https://crudata.uea.ac.uk/cru/data/hrg/tmc/new_et_al_10minute_climate_CR.pdf>
-#'
-#' @export
+#' @keywords internal
 
 create_CRU_df <- function(
   dsn,
@@ -98,7 +40,8 @@ create_CRU_df <- function(
   wnd = FALSE,
   elv = FALSE
 ) {
-  .check_vars_FALSE(
+  lifecycle::deprecate_warn("2.0.0", "create_CRU_df()", "read_cru_dt()")
+  .check_vars(
     pre,
     pre_cv,
     rd0,
@@ -113,7 +56,7 @@ create_CRU_df <- function(
     elv
   )
 
-  .validate_dsn(dsn)
+  .validate_x(dsn)
 
   files <- fs::dir_ls(dsn, regexp = "\\.dat\\.gz$", recurse = FALSE)
 
@@ -124,9 +67,5 @@ create_CRU_df <- function(
     )
   }
 
-  return(.create_df(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
+  return(.create_dt(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
 }
-
-#' @export
-#' @rdname create_CRU_df
-create_cru_df <- create_CRU_df

@@ -1,22 +1,22 @@
-# Test that get_CRU_df fails if no parameters are TRUE -------------------------
+# Test that get_cru_df fails if no parameters are TRUE -------------------------
 
-test_that("get_CRU_df fails if no parameters are TRUE", {
+test_that("get_cru_df fails if no parameters are TRUE", {
   expect_error(
-    get_CRU_df(),
+    get_cru_df(),
     "You must select at least one element for download."
   )
 })
 
-# Test that get_CRU_df will retrieve files from CRU server
-test_that("get_CRU_df will retrieve files from CRU server", {
+# Test that get_cru_df will retrieve files from CRU server
+test_that("get_cru_df will retrieve files from CRU server", {
   skip_if_offline()
-  CRU_tmp <- get_CRU_df(tmp = TRUE, cache = FALSE)
-  expect_type(CRU_tmp, "list")
+  cru_tmp <- get_cru_df(tmp = TRUE, cache = FALSE)
+  expect_type(cru_tmp, "list")
 })
 
-# Test that get_CRU_df lists only .dat.gz files in the given dsn ---------------
+# Test that get_cru_df lists only .dat.gz files in the given dsn ---------------
 
-test_that("get_CRU_df lists only .dat.gz files in the given dsn", {
+test_that("get_cru_df lists only .dat.gz files in the given dsn", {
   # create files for testing, these data are the first 10 lines of pre and tmp
   # from the CRU CL v. 2.0 data
 
@@ -498,9 +498,9 @@ test_that("get_CRU_df lists only .dat.gz files in the given dsn", {
   expect_identical(files, file.path(tempdir(), "grid_10min_tmp.dat.gz"))
 })
 
-# Test that get_CRU_df sets the cache directory properly when cache is TRUE ----
+# Test that get_cru_df sets the cache directory properly when cache is TRUE ----
 
-test_that("get_CRU_df sets the cache directory properly when cache is TRUE", {
+test_that("get_cru_df sets the cache directory properly when cache is TRUE", {
   skip_if_offline()
 
   cache <- TRUE
@@ -517,9 +517,9 @@ test_that("get_CRU_df sets the cache directory properly when cache is TRUE", {
   expect_identical(cache_dir, rappdirs::user_config_dir("getCRUCLdata"))
 })
 
-# Test that get_CRU_df sets the cache dir properly when cache is FALSE ---------
+# Test that get_cru_df sets the cache dir properly when cache is FALSE ---------
 
-test_that("get_CRU_df sets the cache directory properly when cache is FALSE", {
+test_that("get_cru_df sets the cache directory properly when cache is FALSE", {
   skip_if_offline()
   cache <- FALSE
 

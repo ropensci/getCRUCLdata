@@ -30,7 +30,7 @@
 #'
 #' @examples
 #' # passes, all are TRUE
-#' .check_vars_FALSE(
+#' .check_vars(
 #'   pre = TRUE,
 #'   pre_cv = TRUE,
 #'   rd0 = TRUE,
@@ -49,7 +49,7 @@
 #'  selected. Returns an invisible `NULL`.
 #' @dev
 
-.check_vars_FALSE <- function(
+.check_vars <- function(
   pre,
   pre_cv,
   rd0,
@@ -82,14 +82,14 @@
     cli::cli_abort(
       "You must define the directory ({.var dsn}) where you have stored the
       local files for import. If you want to download files using R, use one of
-      the {.fn get_CRU} functions provided.",
+      the {.fn get_cru} functions provided.",
       call = rlang::caller_env()
     )
     return(invisible(NULL))
   }
 
   # Trim whitespace
-  x<- trimws(x)
+  x <- trimws(x)
 
   # Normalize path and remove trailing slashes
   x <- fs::path_norm(x)
@@ -297,7 +297,7 @@
 #' @autoglobal
 #' @dev
 #'
-.create_stacks <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
+.create_rasts <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
   wrld <-
     terra::rast(
       nrows = 930L,
@@ -327,13 +327,13 @@
     )
 
   # Create terra objects using cellFromXY() and generate a terra rast
-  # create.stack takes pre, tmp, tmn and tmx and creates a terra rast
-  # object stack of 12 month data
+  # create.rast takes pre, tmp, tmn and tmx and creates a terra rast
+  # object rast of 12 month data
 
   cru_rast_list <-
     lapply(
       X = files,
-      FUN = .create_stack,
+      FUN = .create_rast,
       wrld = wrld,
       month_names = month_names,
       pre = pre,

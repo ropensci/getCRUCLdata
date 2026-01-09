@@ -7,8 +7,7 @@
 .read_local_files(.files, .pre_cv)
 }
 \arguments{
-\item{.files}{a list of CRU CL2.0 files in local storage. This could be in
-\code{tempdir()} or somewhere user defined.}
+\item{.files}{a list of CRU CL2.0 files in local storage.}
 
 \item{.pre_cv}{Boolean flag to return pre_cv in the data.}
 }

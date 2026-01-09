@@ -1,22 +1,6 @@
 #' Create a list of terra rast objects of CRU CL v. 2.0 climatology elements from local disk files
 #'
-#' Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
-#' data and creates a \CRANpkg{terra} [terra::rast] object of the
-#' data.  If requested, minimum and maximum temperature may also be
-#' automatically calculated as described in the data
-#' [readme.txt](https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt) file.
-#' Data may be cached for later use by this function, saving time downloading
-#' files in future using this function.  This function can be useful if you
-#' have network connection issues that mean automated downloading of the files
-#' using \R does not work properly or you have cached the files locally for
-#' your own future use.
-#'
-#' @inheritSection get_CRU_df Nomenclature and Units
-#' @inheritParams create_CRU_df
-#' @inherit create_CRU_df author
-#' @inherit create_CRU_df source
-#' @inherit create_CRU_df references
-#' @inherit create_CRU_stack return
+#' `r lifecycle::badge('deprecated')`
 #'
 #' @examplesIf interactive()
 #'
@@ -25,19 +9,16 @@
 #'   destfile = file.path(tempdir(), "grid_10min_tmp.dat.gz")
 #' )
 #'
-#' CRU_tmp <- create_CRU_stack(dsn = tempdir(), tmp = TRUE)
+#' cru_tmp <- create_CRU_stack(dsn = tempdir(), tmp = TRUE)
 #'
-#' CRU_tmp
+#' # ->
 #'
-#' @seealso
-#' [get_CRU_stack].
+#' f <- fs::path(fs::temp_path(), "grid_10min_tmp.dat.gz")
 #'
-#' @returns A [base::list] of [terra::rast] objects of \acronym{CRU}
-#' \acronym{CL} v. 2.0 climatology elements.
-#'
-#' @export
+#' cru_tmp <- read_cru_rast(tmp = TRUE, x = f)
+#' @keywords internal
 
-create_CRU_stack <- function(
+create_CRU_rast <- function(
   dsn,
   pre = FALSE,
   pre_cv = FALSE,
@@ -52,7 +33,8 @@ create_CRU_stack <- function(
   wnd = FALSE,
   elv = FALSE
 ) {
-  .check_vars_FALSE(
+  lifecycle::deprecate_warn("2.0.0", "create_CRU_rast()", "read_cru_rast()")
+  .check_vars(
     pre,
     pre_cv,
     rd0,
@@ -67,7 +49,7 @@ create_CRU_stack <- function(
     elv
   )
 
-  .validate_dsn(dsn)
+  .validate_x(dsn)
 
   files <- .read_local_files(
     .files = c(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv),
@@ -83,7 +65,3 @@ create_CRU_stack <- function(
 
   return(.create_rasts(tmn, tmx, tmp, dtr, pre, pre_cv, files))
 }
-
-#' @export
-#' @rdname create_CRU_stack
-create_cru_stack <- create_CRU_stack

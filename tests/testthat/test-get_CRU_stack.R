@@ -1,21 +1,21 @@
-# Test that get_CRU_stack will retrieve files from CRU server --------------
-test_that("get_CRU_stack will retrieve files from CRU server", {
+# Test that get_cru_rast will retrieve files from CRU server --------------
+test_that("get_cru_rast will retrieve files from CRU server", {
   skip_if_offline()
 
-  CRU_tmp <- get_CRU_stack(tmp = TRUE, tmn = FALSE, tmx = FALSE, cache = FALSE)
-  expect_type(CRU_tmp, "list")
+  cru_tmp <- get_cru_rast(tmp = TRUE, tmn = FALSE, tmx = FALSE, cache = FALSE)
+  expect_type(cru_tmp, "list")
 })
 
-# Test that get_CRU_stack fails if no parameters are TRUE ----------------------
+# Test that get_cru_rast fails if no parameters are TRUE ----------------------
 
-test_that("get_CRU_stack fails if no parameters are TRUE", {
+test_that("get_cru_rast fails if no parameters are TRUE", {
   expect_error(
-    get_CRU_stack(),
+    get_cru_rast(),
     "You must select at least one element for download."
   )
 })
 
-test_that("create_CRU_df lists only .dat.gz files in the given dsn", {
+test_that("create_cru_df lists only .dat.gz files in the given dsn", {
   # create files for testing, these data are the first 10 lines of pre and tmp
   # from the CRU CL v. 2.0 data
 

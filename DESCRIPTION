@@ -28,10 +28,12 @@ BugReports: https://codeberg.org/ropensci/getCRUCLdata/issues
 Depends:
     R (>= 4.0.0)
 Imports:
+    brio,
     cli,
     data.table,
     fs,
     httr2,
+    lifecycle,
     rlang,
     terra
 Suggests:
