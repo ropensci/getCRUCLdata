@@ -24,8 +24,9 @@ Retries to download the requested resource before stopping. Uses
 
 f <- fs::path(fs::path_temp(), "grid_10min_tmp.dat.gz")
 .retry_download(
-  url = sprintf("https://crudata.uea.ac.uk/cru/data/hrg/tmc/\%s", f)
-  dest = fs::path_file(f)
+  url =
+   sprintf("https://crudata.uea.ac.uk/cru/data/hrg/tmc/\%s", fs::path_file(f))
+  dest = f
 )
 
 }
