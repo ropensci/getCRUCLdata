@@ -34,58 +34,20 @@
     wnd,
     elv
   ) {
-    dtr_file <- "grid_10min_dtr.dat.gz"
-    tmp_file <- "grid_10min_tmp.dat.gz"
-    reh_file <- "grid_10min_reh.dat.gz"
-    elv_file <- "grid_10min_elv.dat.gz"
-    pre_file <- "grid_10min_pre.dat.gz"
-    sun_file <- "grid_10min_sunp.dat.gz"
-    wnd_file <- "grid_10min_wnd.dat.gz"
-    frs_file <- "grid_10min_frs.dat.gz"
-    rd0_file <- "grid_10min_rd0.dat.gz"
-
-    # check if pre_cv or tmx/tmn (derived) are true, make sure proper ---------
-    # parameters set TRUE
-    if (pre_cv) {
-      pre <- TRUE
-    }
-
-    if (any(tmn, tmx)) {
-      dtr <- tmp <- TRUE
-    }
-    # create object list to filter downloads ----------------------------------
-    object_list <- c(dtr, tmp, reh, elv, pre, sunp, wnd, frs, rd0)
-
-    files <-
-      c(
-        dtr_file,
-        tmp_file,
-        reh_file,
-        elv_file,
-        pre_file,
-        sun_file,
-        wnd_file,
-        frs_file,
-        rd0_file
-      )
-    names(files) <-
-      names(object_list) <-
-        c(
-          "dtr_file",
-          "tmp_file",
-          "reh_file",
-          "elv_file",
-          "pre_file",
-          "sun_file",
-          "wnd_file",
-          "frs_file",
-          "rd0_file"
-        )
-
-    # filter downloaded -------------------------------------------------------
-    # which files are being requested?
-    dl_files <- files[which(object_list)]
-
+    dl_files <- .filter_files(
+      pre,
+      pre_cv,
+      rd0,
+      tmp,
+      dtr,
+      reh,
+      tmn,
+      tmx,
+      sunp,
+      frs,
+      wnd,
+      elv
+    )
     # download files ----------------------------------------------------------
     if (length(dl_files) > 0L) {
       cru_url <- "https://crudata.uea.ac.uk/cru/data/hrg/tmc/"
@@ -111,13 +73,56 @@
       regexp = "\\.dat\\.gz$"
     )
 
-    files <- temp_dir_contents[temp_dir_contents %in% files]
+    dl_files <- temp_dir_contents[temp_dir_contents %in% dl_files]
 
     # add full file path to the files
-    files <- fs::path(fs::path_temp(), files)
+    dl_files <- fs::path(fs::path_temp(), dl_files)
 
     # fill the space with a "\" for R, if one exists
-    files <- gsub(" ", "\\ ", files, fixed = TRUE)
+    dl_files <- gsub(" ", "\\ ", dl_files, fixed = TRUE)
 
-    return(files)
+    return(dl_files)
   }
+
+.filter_files <- function(
+  pre,
+  pre_cv,
+  rd0,
+  tmp,
+  dtr,
+  reh,
+  tmn,
+  tmx,
+  sunp,
+  frs,
+  wnd,
+  elv
+) {
+  file_name_vec <- c(
+    pre = "grid_10min_pre.dat.gz",
+    rd0 = "grid_10min_rd0.dat.gz",
+    tmp = "grid_10min_tmp.dat.gz",
+    dtr = "grid_10min_dtr.dat.gz",
+    reh = "grid_10min_reh.dat.gz",
+    sunp = "grid_10min_sunp.dat.gz",
+    frs = "grid_10min_frs.dat.gz",
+    wnd = "grid_10min_wnd.dat.gz",
+    elv = "grid_10min_elv.dat.gz"
+  )
+
+  # check if pre_cv or tmx/tmn (derived) are true, make sure proper ---------
+  # parameters set TRUE
+  if (pre_cv) {
+    pre <- TRUE
+  }
+
+  if (any(tmn, tmx)) {
+    dtr <- tmp <- TRUE
+  }
+  # create object list to filter downloads ----------------------------------
+  request_files_vec <- c(pre, rd0, tmp, dtr, reh, sunp, frs, wnd, elv)
+
+  names(request_files_vec) <- names(file_name_vec)
+
+  return(names(file_name_vec)[which(names(request_files_vec))])
+}

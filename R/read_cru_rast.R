@@ -74,8 +74,36 @@ read_cru_rast <- function(
     elv
   )
 
+  files <- .filter_files(
+    pre,
+    pre_cv,
+    rd0,
+    tmp,
+    dtr,
+    reh,
+    tmn,
+    tmx,
+    sunp,
+    frs,
+    wnd,
+    elv
+  )
+
   if (is.null(x)) {
-    files <- .get_cru(
+    files <- .get_cru(files)
+  } else {
+    .validate_x(x)
+
+    files <- fs::dir_ls(x, regexp = "\\.dat\\.gz$", recurse = FALSE)
+
+    if (length(files) == 0) {
+      cli::cli_abort(
+        "No CRU CL 2.0 data files were found in {.var dsn}.
+      Please check that you have the proper file location."
+      )
+    }
+    files <- .filter_files(
+      files,
       pre,
       pre_cv,
       rd0,
@@ -89,19 +117,8 @@ read_cru_rast <- function(
       wnd,
       elv
     )
-  } else {
-    .validate_x(x)
-
-    files <- fs::dir_ls(x, regexp = "\\.dat\\.gz$", recurse = FALSE)
-
-    if (length(files) == 0) {
-      cli::cli_abort(
-        "No CRU CL 2.0 data files were found in {.var dsn}.
-      Please check that you have the proper file location."
-      )
-    }
     files <-  .read_local_files(
-      .files = c(pre, rd0, tmp, dtr, reh, tmn, tmx, sunp, frs, wnd, elv),
+      .files = files,
       .pre_cv = pre_cv,
       .all_files = files
     )
