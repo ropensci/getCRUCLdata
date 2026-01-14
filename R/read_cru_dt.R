@@ -25,10 +25,10 @@
 #' For more information see the description of the data provided by
 #' \acronym{CRU}, <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>
 #'
-#' @param pre Loads precipitation (millimetres/month) from server and
-#'  returns in the data frame, `TRUE`. Defaults to `FALSE`.
-#' @param pre_cv Loads cv of precipitation (percent) from server and
-#'  returns in the data.table, `TRUE`. Defaults to `FALSE`. NOTE. Setting this
+#' @param pre Loads precipitation (millimetres/month) and returns in the
+#'  data.table, `TRUE`. Defaults to `FALSE`.
+#' @param pre_cv Loads cv of precipitation (percent) and returns in the
+#'  data.table, `TRUE`. Defaults to `FALSE`. NOTE. Setting this
 #'  to `TRUE` will always results in `pre` being set to `TRUE` and
 #'  returned as well.
 #' @param rd0 Loads wet-days (number days with >0.1 millimetres rain per
@@ -39,19 +39,19 @@
 #'  data.table, `TRUE`. Defaults to `FALSE`.
 #' @param tmn Calculate minimum temperature values (degrees Celsius)
 #'  and returns it in the data.table, `TRUE`. Defaults to `FALSE`.
-#' @param tmx Calculate maximum temperature (degrees Celsius) and
-#'  return it in the data frame, `TRUE`. Defaults to `FALSE`.
+#' @param tmx Calculate maximum temperature (degrees Celsius) and returns it in
+#'  the data.table, `TRUE`. Defaults to `FALSE`.
 #' @param reh Loads relative humidity and returns it in the data.table, `TRUE`.
 #'  Defaults to `FALSE`.
 #' @param sunp Loads sunshine, percent of maximum possible (percent of
-#'  day length) and returns it in the data frame, `TRUE`. Defaults to `FALSE`.
+#'  day length) and returns it in the data.table, `TRUE`. Defaults to `FALSE`.
 #' @param frs Loads ground-frost records (number of days with ground-
-#'  frost per month) and returns it in the data frame, `TRUE`. Defaults to
+#'  frost per month) and returns it in the data.table, `TRUE`. Defaults to
 #'  `FALSE`.
 #' @param wnd Load 10 m wind speed (metres/second) and returns it in the
 #'  data.table, `TRUE`. Defaults to `FALSE`.
-#' @param elv Loads elevation (converted to metres) and returns it in
-#'  the data.table, `TRUE`. Defaults to `FALSE`.
+#' @param elv Loads elevation (converted to metres) and returns it in the
+#'  data.table, `TRUE`. Defaults to `FALSE`.
 #' @param x An optional local file path where \acronym{CRU} \acronym{CL} v.2.0
 #'  .dat.gz files are located.  If this is empty, the requested data will
 #'  automatically be downloaded from the server.
@@ -71,10 +71,13 @@
 #'
 #' cru_tmp
 #'
-#' @seealso [read_cru_rast].
+#' # or downloading directly from the CRU server
 #'
-#' @seealso
-#' [read_cru_rast].
+#' cru_tmp <- read_cru_dt(tmp = TRUE)
+#'
+#' cru_tmp
+#'
+#' @seealso [read_cru_rast].
 #'
 #' @returns A [data.table::data.table] object of \acronym{CRU} \acronym{CL} v.
 #'  2.0 climatology elements.
@@ -115,9 +118,9 @@ read_cru_dt <- function(
   frs = FALSE,
   wnd = FALSE,
   elv = FALSE,
-  x
+  x = NULL
 ) {
-  .check_vars(
+  files <- .validate_filter_files(
     pre,
     pre_cv,
     rd0,
@@ -133,27 +136,13 @@ read_cru_dt <- function(
   )
 
   if (is.null(x)) {
-    files <- .get_cru(
-      pre,
-      pre_cv,
-      rd0,
-      tmp,
-      dtr,
-      reh,
-      tmn,
-      tmx,
-      sunp,
-      frs,
-      wnd,
-      elv
-    )
+    files <- .get_cru(files)
   } else {
-    # TODO: handle user requested files gracefully if there are more than one CRU files available and a subset is requested
     .validate_x(x)
 
-    files <- fs::dir_ls(x, regexp = "\\.dat\\.gz$", recurse = FALSE)
+    local_files <- fs::dir_ls(x, regexp = "\\.dat\\.gz$", recurse = FALSE)
 
-    files <- temp_dir_contents[temp_dir_contents %in% files]
+    files <- local_files[local_files %in% files]
 
     if (length(files) == 0L) {
       cli::cli_abort(
@@ -162,8 +151,184 @@ read_cru_dt <- function(
       )
     }
   }
-  if (pre_cv) {
-    pre <- TRUE
-  }
+
+  files <- fs::path(fs::path_temp(), files)
   return(.create_dt(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
+}
+
+
+#' Creates a data.table from the CRU data
+#'
+#' @param tmn Is tmn to be calculated? Boolean.
+#' @param tmn Is tmx to be calculated? Boolean.
+#' @param dtr Is dtr to be returned? Boolean.
+#' @param pre Is pre to be returned? Boolean.
+#' @param pre_cv Is pre_cv to be returned? Boolean.
+#' @param elv Is elv to be returned? Boolean.
+#' @param files File list to be used for creating data frame. List.
+#'
+#' @returns A \CRANpkg{data.table} of all requested values.
+#' @autoglobal
+#' @dev
+.create_dt <-
+  function(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files) {
+    cru_dt <-
+      .tidy_dt(pre_cv, elv, tmn, tmx, .files = files)
+
+    if (tmx) {
+      cru_dt[, tmx := tmp + (0.5 * dtr)]
+    }
+
+    if (tmn) {
+      cru_dt[, tmn := tmp - (0.5 * dtr)]
+    }
+
+    # Remove tmp/dtr if they aren't specified (necessary for tmn/tmx)
+    if (any(tmx, tmn) && isFALSE(tmp)) {
+      cru_dt[, tmp := NULL]
+
+      # if dtr is not requested, drop from the data.table
+      if (isFALSE(dtr)) {
+        cru_dt[, dtr := NULL]
+      }
+    }
+
+    cru_dt[, month := factor(cru_dt$month)]
+
+    data.table::setorder(cru_dt, month)
+
+    return(cru_dt[])
+  }
+
+
+#' Read Files from Disk Directory as a data.table
+#' @dev
+
+.tidy_dt <- function(pre_cv, elv, tmn, tmx, .files) {
+  # create list of tidied data frames ----------------------------------------
+  cru_list <-
+    lapply(
+      X = .files,
+      FUN = .read_local_files,
+      .pre_cv = pre_cv
+    )
+
+  # name the items in the list for the data that they contain ----------------
+  names(cru_list) <- substr(fs::path_file(.files), 12L, 14L)
+
+  # rename the columns in the data frames within the list --------------------
+  for (i in seq_along(cru_list)) {
+    wvars <- as.list(substr(fs::path_file(.files), 12L, 14L))
+    names(cru_list[[i]])[names(cru_list[[i]]) == "wvar"] <- wvars[[i]]
+  }
+
+  # lastly merge the data frames into one tidy (large) data frame --------------
+
+  if (isFALSE(elv)) {
+    cru_dt <- Reduce(
+      function(...) {
+        merge(..., by = c("lat", "lon", "month"))
+      },
+      cru_list
+    )
+  } else if (elv && length(cru_list) > 1L) {
+    elv_dt <- cru_list[which(names(cru_list) == "elv")]
+    cru_list[which(names(cru_list) == "elv")] <- NULL
+    cru_dt <- Reduce(
+      function(...) {
+        merge(..., by = c("lat", "lon", "month"))
+      },
+      cru_list
+    )
+
+    cru_dt <- cru_dt[elv_dt$elv, on = c("lat", "lon")]
+  } else if (elv) {
+    cru_dt <- cru_list["elv"]
+  }
+  return(cru_dt[])
+}
+
+
+#' Read Files From Local Disk Using data.table
+#'
+#' @param .files a list of CRU CL2.0 files in `tempdir()`.
+#' @param .pre_cv Boolean flag to return pre_cv in the data.
+#'
+#' @autoglobal
+#' @dev
+.read_local_files <- function(.files, .pre_cv) {
+  month_names <-
+    c(
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec"
+    )
+
+  x <-
+    data.table::fread(
+      .files,
+      header = FALSE
+    )
+
+  if (ncol(x) == 14L) {
+    data.table::setnames(x, c("lat", "lon", month_names))
+    x_df <-
+      data.table::melt(
+        data = x,
+        measure.vars = month_names,
+        variable.name = "month"
+      )
+    data.table::setnames(x_df, c("lat", "lon", "month", "wvar"))
+  } else if (ncol(x) == 26L) {
+    if (.pre_cv) {
+      x_df <- x[, 1L:14L]
+      data.table::setnames(x_df, c("lat", "lon", month_names))
+      x_df <- data.table::melt(
+        data = x_df,
+        id.vars = c("lat", "lon"),
+        measure.vars = month_names,
+        variable.name = "month"
+      )
+      data.table::setnames(x_df, c("lat", "lon", "month", "pre"))
+
+      x_df2 <- x[, c(1L:2L, 15L:26L)]
+      data.table::setnames(x_df2, c("lat", "lon", month_names))
+
+      x_df2 <- data.table::melt(
+        data = x_df2,
+        measure.vars = month_names,
+        variable.name = "month"
+      )
+      data.table::setnames(x_df2, c("lat", "lon", "month", "pre_cv"))
+
+      keycols <- c("lat", "lon", "month")
+      data.table::setkeyv(x_df, cols = keycols)
+      data.table::setkeyv(x_df2, cols = keycols)
+      x_df[x_df2, on = c("lat", "lon", "month"), pre_cv := i.pre_cv]
+    } else {
+      x_df <- x[, 1L:14L]
+      names(x_df) <- c("lat", "lon", month_names)
+      x_df <- data.table::melt(
+        data = x_df,
+        id.vars = c("lat", "lon"),
+        measure.vars = month_names,
+        variable.name = "month"
+      )
+      data.table::setnames(x_df, c("lat", "lon", "month", "pre"))
+    }
+  } else if (ncol(x) == 3L) {
+    x_df <- x
+    data.table::setnames(x_df, c("lat", "lon", "elv"))
+    x_df[, elv := (elv * 1000L)]
+  }
+  return(x_df[])
 }

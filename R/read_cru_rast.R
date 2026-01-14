@@ -37,6 +37,12 @@
 #'
 #' cru_tmp
 #'
+#' # or download from the CRU server automatically
+#'
+#' cru_tmp <- read_cru_rast(tmp = TRUE)
+#'
+#' cru_tmp
+#'
 #' @seealso [read_cru_dt].
 #'
 #' @returns A [terra::rast] object of \acronym{CRU} \acronym{CL} v. 2.0
@@ -57,9 +63,9 @@ read_cru_rast <- function(
   frs = FALSE,
   wnd = FALSE,
   elv = FALSE,
-  x
+  x = NULL
 ) {
-  .check_vars(
+  files <- .validate_filter_files(
     pre,
     pre_cv,
     rd0,
@@ -73,80 +79,45 @@ read_cru_rast <- function(
     wnd,
     elv
   )
-
-  files <- .filter_files(
-    pre,
-    pre_cv,
-    rd0,
-    tmp,
-    dtr,
-    reh,
-    tmn,
-    tmx,
-    sunp,
-    frs,
-    wnd,
-    elv
-  )
+  #TODO: be sure that pre_cv is handled correctly in the rast creation
 
   if (is.null(x)) {
     files <- .get_cru(files)
   } else {
     .validate_x(x)
 
-    files <- fs::dir_ls(x, regexp = "\\.dat\\.gz$", recurse = FALSE)
+    local_files <- fs::dir_ls(x, regexp = "\\.dat\\.gz$", recurse = FALSE)
 
-    if (length(files) == 0) {
+    files <- local_files[basename(local_files) %in% files]
+    if (length(files) == 0L) {
       cli::cli_abort(
         "No CRU CL 2.0 data files were found in {.var dsn}.
       Please check that you have the proper file location."
       )
     }
-    files <- .filter_files(
-      files,
-      pre,
-      pre_cv,
-      rd0,
-      tmp,
-      dtr,
-      reh,
-      tmn,
-      tmx,
-      sunp,
-      frs,
-      wnd,
-      elv
-    )
-    files <-  .read_local_files(
-      .files = files,
-      .pre_cv = pre_cv,
-      .all_files = files
-    )
-
-  if (pre_cv) {
-    pre <- TRUE
   }
-  return(.create_rasts(tmn, tmx, tmp, dtr, pre, pre_cv, files))
+
+  files <- fs::path(fs::path_temp(), files)
+  return(.create_rast(tmn, tmx, tmp, dtr, pre, pre_cv, files))
 }
 
 
 #' Create terra rast objects
 #'
-#' @param pre Return precipitation in the `rast`, Boolean.
-#' @param pre_cv Return cv of precipitation (percent) in the `rast`, Boolean.
+#' @param pre Return precipitation in the `rast`? Boolean.
+#' @param pre_cv Return cv of precipitation (percent) in the `rast`? Boolean.
 #' @param dtr Return mean diurnal temperature range (degrees Celsius)
-#'  in the `rast`, Boolean.
+#'  in the `rast`? Boolean.
 #' @param tmp Return temperature (degrees Celsius) in the `rast`, Boolean.
 #' @param tmn Return minimum temperature values (degrees Celsius)
-#'  in the `rast`, Boolean.
+#'  in the `rast`? Boolean.
 #' @param tmx Return maximum temperature (degrees Celsius) in the
-#'  `rast`, Boolean.
-#' @param files List. Files that are to be used in creating the `rast` object.
-#'
+#'  `rast`? Boolean.
+#' @param files Vector. Files that are to be used in creating the `rast` object.
 #' @autoglobal
 #' @dev
 #'
-.create_rasts <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
+.create_rast <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
   wrld <-
     terra::rast(
       nrows = 930L,
@@ -182,7 +153,7 @@ read_cru_rast <- function(
   cru_rast_list <-
     lapply(
       X = files,
-      FUN = .create_rast,
+      FUN = .make_rast,
       wrld = wrld,
       month_names = month_names,
       pre = pre,
@@ -209,7 +180,7 @@ read_cru_rast <- function(
   if (any(tmx, tmn) && isFALSE(tmp)) {
     cru_rast_list[which(names(cru_rast_list) == "tmp")] <- NULL
   }
-  return(cru_rast_list)
+  return(terra::rast(cru_rast_list))
 }
 
 #' Helper Function Used in .create_rast()
@@ -218,20 +189,19 @@ read_cru_rast <- function(
 #' @param wrld An empty [terra::rast] object for filling with values.
 #' @param month_names A vector of month names from jan -- dec.
 #' @param pre Boolean include precipitation.
-#' @param pre_cv Boolean` include precipitation cv.
+#' @param pre_cv Boolean include precipitation cv.
 #'
 #' @autoglobal
 #' @dev
-.create_rast <- function(files, wrld, month_names, pre, pre_cv) {
-  wvar <-
-    data.frame(data.table::fread(
-      cmd = paste0("gzip -dc ", files[[1L]]),
-      header = FALSE
-    ))
+.make_rast <- function(files, wrld, month_names, pre, pre_cv) {
+  wvar <- data.table::fread(
+    files,
+    header = FALSE
+  )
   cells <- terra::cellFromXY(wrld, wvar[, c(2L, 1L)])
   if (ncol(wvar) == 14L) {
     for (j in 3L:14L) {
-      wrld[cells] <- wvar[, j]
+      wrld[cells] <- wvar[, j, with = FALSE]
       if (j == 3L) {
         y <- wrld
       } else {
@@ -242,7 +212,7 @@ read_cru_rast <- function(
   } else if (ncol(wvar) == 26L) {
     if (pre && pre_cv) {
       for (k in 3L:26L) {
-        wrld[cells] <- wvar[, k]
+        wrld[cells] <- wvar[, k, with = FALSE]
         if (k == 3L) {
           y <- wrld
         } else {
@@ -252,7 +222,7 @@ read_cru_rast <- function(
       names(y) <- c(month_names, paste0("pre_cv_", month_names))
     } else if (pre) {
       for (k in 3L:14L) {
-        wrld[cells] <- wvar[, k]
+        wrld[cells] <- wvar[, k, with = FALSE]
         if (k == 3L) {
           y <- wrld
         } else {
@@ -262,7 +232,7 @@ read_cru_rast <- function(
       names(y) <- month_names
     } else if (pre_cv) {
       for (k in 15L:26L) {
-        wrld[cells] <- wvar[, k]
+        wrld[cells] <- wvar[, k, with = FALSE]
         if (k == 15L) {
           y <- wrld
         } else {
@@ -271,7 +241,7 @@ read_cru_rast <- function(
       }
       names(y) <- paste0("pre_cv_", month_names)
     }
-  } else if (ncol(wvar) == 3L) {
+  } else {
     wrld[cells] <- wvar[, 3L] * 1000L
     y <- wrld
     names(y) <- "elv"

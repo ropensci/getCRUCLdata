@@ -32,15 +32,15 @@ read_cru_rast(
   frs = FALSE,
   wnd = FALSE,
   elv = FALSE,
-  x
+  x = NULL
 )
 }
 \arguments{
-\item{pre}{Loads precipitation (millimetres/month) from server and
-returns in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
+\item{pre}{Loads precipitation (millimetres/month) and returns in the
+data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{pre_cv}{Loads cv of precipitation (percent) from server and
-returns in the data.table, \code{TRUE}. Defaults to \code{FALSE}. NOTE. Setting this
+\item{pre_cv}{Loads cv of precipitation (percent) and returns in the
+data.table, \code{TRUE}. Defaults to \code{FALSE}. NOTE. Setting this
 to \code{TRUE} will always results in \code{pre} being set to \code{TRUE} and
 returned as well.}
 
@@ -59,21 +59,21 @@ Defaults to \code{FALSE}.}
 \item{tmn}{Calculate minimum temperature values (degrees Celsius)
 and returns it in the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{tmx}{Calculate maximum temperature (degrees Celsius) and
-return it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
+\item{tmx}{Calculate maximum temperature (degrees Celsius) and returns it in
+the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{sunp}{Loads sunshine, percent of maximum possible (percent of
-day length) and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
+day length) and returns it in the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{frs}{Loads ground-frost records (number of days with ground-
-frost per month) and returns it in the data frame, \code{TRUE}. Defaults to
+frost per month) and returns it in the data.table, \code{TRUE}. Defaults to
 \code{FALSE}.}
 
 \item{wnd}{Load 10 m wind speed (metres/second) and returns it in the
 data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{elv}{Loads elevation (converted to metres) and returns it in
-the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
+\item{elv}{Loads elevation (converted to metres) and returns it in the
+data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{x}{An optional local file path where \acronym{CRU} \acronym{CL} v.2.0
 .dat.gz files are located.  If this is empty, the requested data will
@@ -133,6 +133,12 @@ download.file(
 f <- path(path_temp(), "grid_10min_tmp.dat.gz")
 
 cru_tmp <- read_cru_rast(tmp = TRUE, x = f)
+
+cru_tmp
+
+# or download from the CRU server automatically
+
+cru_pre_tmp <- read_cru_rast(tmp = TRUE)
 
 cru_tmp
 \dontshow{\}) # examplesIf}

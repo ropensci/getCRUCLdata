@@ -56,7 +56,7 @@
 }
 
 #' Check if progress should be shown
-#' @returns Logical
+#' @returns Boolean
 #' @dev
 .should_show_progress <- function() {
   identical(getOption("getCRUCLdata.verbosity"), "verbose")

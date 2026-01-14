@@ -7,7 +7,7 @@
 .should_show_progress()
 }
 \value{
-Logical
+Boolean
 }
 \description{
 Check if progress should be shown
