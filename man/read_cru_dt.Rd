@@ -36,24 +36,24 @@ read_cru_dt(
 )
 }
 \arguments{
-\item{pre}{Loads precipitation (millimetres/month) and returns in the
+\item{pre}{Reads precipitation (millimetres/month) and returns in the
 data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{pre_cv}{Loads cv of precipitation (percent) and returns in the
+\item{pre_cv}{Reads cv of precipitation (percent) and returns in the
 data.table, \code{TRUE}. Defaults to \code{FALSE}. NOTE. Setting this
 to \code{TRUE} will always results in \code{pre} being set to \code{TRUE} and
 returned as well.}
 
-\item{rd0}{Loads wet-days (number days with >0.1 millimetres rain per
+\item{rd0}{Reads wet-days (number days with >0.1 millimetres rain per
 month) and returns in the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{tmp}{Loads temperature (degrees Celsius) and returns it in the
+\item{tmp}{Reads temperature (degrees Celsius) and returns it in the
 data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{dtr}{Loads mean diurnal temperature range (degrees Celsius)
+\item{dtr}{Reads mean diurnal temperature range (degrees Celsius)
 and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{reh}{Loads relative humidity and returns it in the data.table, \code{TRUE}.
+\item{reh}{Reads relative humidity and returns it in the data.table, \code{TRUE}.
 Defaults to \code{FALSE}.}
 
 \item{tmn}{Calculate minimum temperature values (degrees Celsius)
@@ -62,17 +62,17 @@ and returns it in the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 \item{tmx}{Calculate maximum temperature (degrees Celsius) and returns it in
 the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{sunp}{Loads sunshine, percent of maximum possible (percent of
+\item{sunp}{Reads sunshine, percent of maximum possible (percent of
 day length) and returns it in the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{frs}{Loads ground-frost records (number of days with ground-
+\item{frs}{Reads ground-frost records (number of days with ground-
 frost per month) and returns it in the data.table, \code{TRUE}. Defaults to
 \code{FALSE}.}
 
 \item{wnd}{Load 10 m wind speed (metres/second) and returns it in the
 data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{elv}{Loads elevation (converted to metres) and returns it in the
+\item{elv}{Reads elevation (converted to metres) and returns it in the
 data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 
 \item{x}{An optional local file path where \acronym{CRU} \acronym{CL} v.2.0
