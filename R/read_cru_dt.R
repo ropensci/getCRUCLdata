@@ -287,54 +287,54 @@ read_cru_dt <- function(
 
   if (ncol(x) == 14L) {
     data.table::setnames(x, c("lat", "lon", month_names))
-    x_df <-
+    x_dt <-
       data.table::melt(
         data = x,
         measure.vars = month_names,
         variable.name = "month"
       )
-    data.table::setnames(x_df, c("lat", "lon", "month", "wvar"))
+    data.table::setnames(x_dt, c("lat", "lon", "month", "wvar"))
   } else if (ncol(x) == 26L) {
     if (.pre_cv) {
-      x_df <- x[, 1L:14L]
-      data.table::setnames(x_df, c("lat", "lon", month_names))
-      x_df <- data.table::melt(
-        data = x_df,
+      x_dt <- x[, 1L:14L]
+      data.table::setnames(x_dt, c("lat", "lon", month_names))
+      x_dt <- data.table::melt(
+        data = x_dt,
         id.vars = c("lat", "lon"),
         measure.vars = month_names,
         variable.name = "month"
       )
-      data.table::setnames(x_df, c("lat", "lon", "month", "pre"))
+      data.table::setnames(x_dt, c("lat", "lon", "month", "pre"))
 
-      x_df2 <- x[, c(1L:2L, 15L:26L)]
-      data.table::setnames(x_df2, c("lat", "lon", month_names))
+      x_dt2 <- x[, c(1L:2L, 15L:26L)]
+      data.table::setnames(x_dt2, c("lat", "lon", month_names))
 
-      x_df2 <- data.table::melt(
-        data = x_df2,
+      x_dt2 <- data.table::melt(
+        data = x_dt2,
         measure.vars = month_names,
         variable.name = "month"
       )
-      data.table::setnames(x_df2, c("lat", "lon", "month", "pre_cv"))
+      data.table::setnames(x_dt2, c("lat", "lon", "month", "pre_cv"))
 
       keycols <- c("lat", "lon", "month")
-      data.table::setkeyv(x_df, cols = keycols)
-      data.table::setkeyv(x_df2, cols = keycols)
-      x_df[x_df2, on = c("lat", "lon", "month"), pre_cv := i.pre_cv]
+      data.table::setkeyv(x_dt, cols = keycols)
+      data.table::setkeyv(x_dt2, cols = keycols)
+      x_dt[x_dt2, on = c("lat", "lon", "month"), pre_cv := i.pre_cv]
     } else {
-      x_df <- x[, 1L:14L]
-      names(x_df) <- c("lat", "lon", month_names)
-      x_df <- data.table::melt(
-        data = x_df,
+      x_dt <- x[, 1L:14L]
+      names(x_dt) <- c("lat", "lon", month_names)
+      x_dt <- data.table::melt(
+        data = x_dt,
         id.vars = c("lat", "lon"),
         measure.vars = month_names,
         variable.name = "month"
       )
-      data.table::setnames(x_df, c("lat", "lon", "month", "pre"))
+      data.table::setnames(x_dt, c("lat", "lon", "month", "pre"))
     }
   } else if (ncol(x) == 3L) {
-    x_df <- x
-    data.table::setnames(x_df, c("lat", "lon", "elv"))
-    x_df[, elv := (elv * 1000L)]
+    x_dt <- x
+    data.table::setnames(x_dt, c("lat", "lon", "elv"))
+    x_dt[, elv := (elv * 1000L)]
   }
-  return(x_df[])
+  return(x_dt[])
 }
