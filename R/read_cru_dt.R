@@ -140,8 +140,12 @@ read_cru_dt <- function(
   if (is.null(x)) {
     files <- .get_cru(files)
   } else {
-    .validate_x(x)
+    files <- .validate_x(x)
 
+    # when we have a single file requested/provided, return it
+    if (grepl("\\.gz$", x)) {
+      return(files)
+    }
     local_files <- fs::dir_ls(x, regexp = "\\.dat\\.gz$", recurse = FALSE)
 
     files <- local_files[local_files %in% files]
@@ -152,9 +156,9 @@ read_cru_dt <- function(
       Please check that you have the proper file location."
       )
     }
+    return(files)
   }
 
-  files <- fs::path(fs::path_temp(), files)
   return(.create_dt(tmn, tmx, tmp, dtr, pre, pre_cv, elv, files))
 }
 
