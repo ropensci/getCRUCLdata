@@ -29,7 +29,7 @@
 
 \item{wnd}{Boolean. If \code{TRUE}, provides wind speed data.}
 
-\item{elv}{Boolean. If \code{TRUE}, provides elevation data}
+\item{elv}{Boolean. If \code{TRUE}, provides elevation data.}
 }
 \description{
 Filter Vectors to Provide Only Requested Files to End User

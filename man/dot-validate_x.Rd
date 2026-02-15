@@ -4,13 +4,16 @@
 \alias{.validate_x}
 \title{Validates user entered file path value}
 \usage{
-.validate_x(x)
+.validate_x(x, files)
 }
 \arguments{
 \item{x}{User provided value for checking.}
+
+\item{files}{Validated filanemes to check for agreement with \code{x} as a dir or
+file path.}
 }
 \value{
-An fs::path_abs object of a validated dsn.
+An \link[fs:path_math]{fs::path_abs} object of a validated dsn.
 }
 \description{
 Validates user entered file path value

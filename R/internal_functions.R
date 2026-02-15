@@ -203,7 +203,7 @@
 #' @param x User provided value for checking.
 #' @param files Validated filanemes to check for agreement with `x` as a dir or
 #'  file path.
-#' @returns An fs::path_abs object of a validated dsn.
+#' @returns An [fs::path_abs] object of a validated dsn.
 #' @dev
 .validate_x <- function(x, files) {
   x <- trimws(x)
