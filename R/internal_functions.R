@@ -155,7 +155,7 @@
 #' @param sunp Boolean. If `TRUE`, provides downloads sunshine data.
 #' @param frs Boolean. If `TRUE`, provides frost day frequency data.
 #' @param wnd Boolean. If `TRUE`, provides wind speed data.
-#' @param elv Boolean. If `TRUE`, provides elevation data
+#' @param elv Boolean. If `TRUE`, provides elevation data.
 #' @dev
 .filter_files <- function(
   pre,
@@ -201,9 +201,11 @@
 #' Validates user entered file path value
 #'
 #' @param x User provided value for checking.
+#' @param files Validated filanemes to check for agreement with `x` as a dir or
+#'  file path.
 #' @returns An fs::path_abs object of a validated dsn.
 #' @dev
-.validate_x <- function(x) {
+.validate_x <- function(x, files) {
   if (missing(x)) {
     cli::cli_abort(
       "You must define the directory ({.var dsn}) where you have stored the
@@ -221,9 +223,21 @@
   x <- fs::path_norm(x)
 
   # Check if path exists and is a directory
-  if (!fs::dir_exists(x)) {
+  if (!fs::dir_exists(fs::path_dir(x))) {
     cli::cli_abort(
-      "File directory does not exist: {.var x}.",
+      "File directory does not exist: {x}.",
+      call = rlang::caller_env()
+    )
+  }
+
+  # Check if user supplied a single .gz file but requested >1 var
+  if ((fs::path_ext(x) == ".gz") && (length(files) > 1)) {
+    x <- fs::path_dir(x)
+    cli::cli_warn(
+      "You have supplied a single file {.var x} but have requested multiple
+      variables. The file path has been modified to point to the directory level
+      and will return all requested parameters, not only the file for which the 
+      path was provided, {x}.",
       call = rlang::caller_env()
     )
   }
