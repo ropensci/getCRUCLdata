@@ -3,7 +3,7 @@
 #' This is a new and simplified implementation of `get_CRU()`, note the all caps
 #'  for "CRU" in the prior function.
 #'
-#' @param  files A vector of file names to download from the server.
+#' @param files A vector of file names to download from the server.
 #'
 #' Handles the downloading of CRU CL 2.0 data. This function is called by
 #' [read_cru_dt] and [read_cru_rast]. It is not intended to be called directly.
