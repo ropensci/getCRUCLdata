@@ -2,6 +2,7 @@
 
 export(read_cru_dt)
 export(read_cru_rast)
+importFrom(data.table,"%notin%")
 importFrom(data.table,":=")
 importFrom(data.table,.BY)
 importFrom(data.table,.EACHI)
