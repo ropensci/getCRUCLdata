@@ -206,17 +206,6 @@
 #' @returns An fs::path_abs object of a validated dsn.
 #' @dev
 .validate_x <- function(x, files) {
-  if (missing(x)) {
-    cli::cli_abort(
-      "You must define the directory ({.var dsn}) where you have stored the
-      local files for import. If you want to download files using R, use one of
-      the {.fn get_cru} functions provided.",
-      call = rlang::caller_env()
-    )
-    return(invisible(NULL))
-  }
-
-  # Trim whitespace
   x <- trimws(x)
 
   # Normalize path and remove trailing slashes
