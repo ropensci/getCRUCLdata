@@ -60,12 +60,14 @@
 #' # Create a data frame of temperature from locally available files in the
 #' # tempdir() directory.
 #' library(fs)
-#' download.file(
-#'   url = "https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz",
-#'   destfile = file.path(tempdir(), "grid_10min_tmp.dat.gz")
-#' )
 #'
 #' f <- path(path_temp(), "grid_10min_tmp.dat.gz")
+#'
+#' download.file(
+#'   url = "https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz",
+#'   destfile = f
+#' )
+#'
 #'
 #' cru_tmp <- read_cru_dt(tmp = TRUE, x = f)
 #'
