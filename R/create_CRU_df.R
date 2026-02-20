@@ -23,8 +23,7 @@
 #'
 #' cru_tmp <- read_cru_dt(tmp = TRUE, x = f)
 #'
-#' @keywords internal
-
+#' @export
 create_CRU_df <- function(
   dsn,
   pre = FALSE,

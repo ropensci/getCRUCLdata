@@ -45,4 +45,3 @@ f <- path(temp_path(), "grid_10min_tmp.dat.gz")
 cru_tmp <- read_cru_dt(tmp = TRUE, x = f)
 \dontshow{\}) # examplesIf}
 }
-\keyword{internal}

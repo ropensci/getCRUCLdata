@@ -1,10 +1,10 @@
 # Test that create_cru_df fails if no parameters are TRUE ----------------------
 
 test_that("create_cru_df fails if no parameters are TRUE", {
-  expect_error(
-    create_cru_df(dsn = "~/"),
+  expect_deprecated(expect_error(
+    create_CRU_df(dsn = "~/"),
     "You must select at least one element for download or import."
-  )
+  ))
 })
 
 # Test that create_cru_df fails if no dsn is specified -------------------------
