@@ -10,15 +10,15 @@ test_that("create_cru_df fails if no parameters are TRUE", {
 # Test that create_cru_df fails if no dsn is specified -------------------------
 
 test_that("create_cru_df fails if no dsn is specified", {
-  expect_error(
-    create_cru_df(pre = TRUE)
-  )
+  expect_deprecated(expect_error(
+    create_CRU_df(pre = TRUE)
+  ))
 })
 
 # Test that create_cru_df fails if dsn does not contain CRU files --------------
 
 test_that("create_cru_df fails if dsn does not contain CRU files", {
-  expect_error(create_cru_df(pre = TRUE, dsn = ""))
+  expect_deprecated(expect_error(create_CRU_df(pre = TRUE, dsn = "")))
 })
 
 # Test that create_cru_df loads files and creates a proper df --------------
@@ -500,7 +500,7 @@ test_that("create_cru_df loads files and creates a proper df", {
 
   dsn <- tempdir()
 
-  cru_df <- create_cru_df(pre = TRUE, pre_cv = TRUE, tmp = TRUE, dsn = dsn)
+  cru_df <- create_CRU_df(pre = TRUE, pre_cv = TRUE, tmp = TRUE, dsn = dsn)
 
   expect_equal(max(cru_df$pre), 163.5, tolerance = 0.1)
   expect_equal(max(cru_df$tmp), 8.6, tolerance = 0.1)
