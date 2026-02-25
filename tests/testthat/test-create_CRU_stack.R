@@ -1,25 +1,28 @@
 # Test that create_CRU_stack fails if no dsn is specified ----------------------
 
 test_that("create_CRU_stack fails if no dsn is specified", {
-  expect_error(
+  expect_deprecate(dexpect_error(
     create_CRU_stack(pre = TRUE),
     "You must define the dsn where you have stored the local files for import."
-  )
+  ))
 })
 
 # Test that create_CRU_stack fails if no parameters are TRUE -------------------
 
 test_that("create_CRU_stack fails if no parameters are TRUE", {
-  expect_error(
+  expect_deprecated(expect_error(
     create_CRU_stack(),
     "You must select at least one element for download or import."
-  )
+  ))
 })
 
 # Test that create_CRU_stack fails if dsn does not contain CRU files -----------
 
 test_that("create_CRU_stack fails if dsn does not contain CRU files", {
-  expect_error(create_CRU_stack(pre = TRUE, dsn = "/dev/null"))
+  expect_deprecated(expect_error(create_CRU_stack(
+    pre = TRUE,
+    dsn = "/dev/null"
+  )))
 })
 
 # Test that create_CRU_stack returns a list of terra objects -------------------
