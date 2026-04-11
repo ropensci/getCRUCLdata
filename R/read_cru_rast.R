@@ -104,19 +104,19 @@ read_cru_rast <- function(
 
 #' Create terra rast objects
 #'
-#' @param pre Return precipitation in the `rast`? Boolean.
-#' @param pre_cv Return cv of precipitation (percent) in the `rast`? Boolean.
-#' @param dtr Return mean diurnal temperature range (degrees Celsius)
-#'  in the `rast`? Boolean.
-#' @param tmp Return temperature (degrees Celsius) in the `rast`, Boolean.
 #' @param tmn Return minimum temperature values (degrees Celsius)
-#'  in the `rast`? Boolean.
 #' @param tmx Return maximum temperature (degrees Celsius) in the
 #'  `rast`? Boolean.
-#' @param files Vector. Files that are to be used in creating the `rast` object.
+#' @param tmp Return temperature (degrees Celsius) in the `rast`, Boolean.
+#'  in the `rast`? Boolean.
+#' @param dtr Return mean diurnal temperature range (degrees Celsius)
+#'  in the `rast`? Boolean.
+#' @param pre Return precipitation in the `rast`? Boolean.
+#' @param pre_cv Return cv of precipitation (percent) in the `rast`? Boolean.
+#' @param files Files that are to be used in creating the `rast` object. Vector.
 #' @autoglobal
 #' @dev
-#'
+
 .create_rast <- function(tmn, tmx, tmp, dtr, pre, pre_cv, files) {
   wrld <-
     terra::rast(

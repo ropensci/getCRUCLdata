@@ -104,7 +104,7 @@ returned.
 \item{reh}{relative humidity (percent)}
 \item{sunp}{sunshine (percent of maximum possible (percent of day length))}
 \item{frs}{ground-frost (number of days with ground-frost per month)}
-\item{wnd}{10 metre windspeed (metres/second)}
+\item{wnd}{10 metre wind speed (metres/second)}
 \item{elv}{elevation (automatically converted to metres from kilometres)}
 }
 For more information see the description of the data provided by

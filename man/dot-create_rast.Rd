@@ -7,13 +7,13 @@
 .create_rast(tmn, tmx, tmp, dtr, pre, pre_cv, files)
 }
 \arguments{
-\item{tmn}{Return minimum temperature values (degrees Celsius)
-in the \code{rast}? Boolean.}
+\item{tmn}{Return minimum temperature values (degrees Celsius)}
 
 \item{tmx}{Return maximum temperature (degrees Celsius) in the
 \code{rast}? Boolean.}
 
-\item{tmp}{Return temperature (degrees Celsius) in the \code{rast}, Boolean.}
+\item{tmp}{Return temperature (degrees Celsius) in the \code{rast}, Boolean.
+in the \code{rast}? Boolean.}
 
 \item{dtr}{Return mean diurnal temperature range (degrees Celsius)
 in the \code{rast}? Boolean.}
@@ -22,7 +22,7 @@ in the \code{rast}? Boolean.}
 
 \item{pre_cv}{Return cv of precipitation (percent) in the \code{rast}? Boolean.}
 
-\item{files}{Vector. Files that are to be used in creating the \code{rast} object.}
+\item{files}{Files that are to be used in creating the \code{rast} object. Vector.}
 }
 \description{
 Create terra rast objects
