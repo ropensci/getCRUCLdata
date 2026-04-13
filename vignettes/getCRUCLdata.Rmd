@@ -1,7 +1,7 @@
 ---
 title: "getCRUCLdata"
 author: "Adam H. Sparks"
-date: "2024-12-18"
+date: "2026-04-13"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -17,9 +17,9 @@ vignette: >
 
 
 
-## Introduction to _getCRUCLdata_
+## Introduction to {getCRUCLdata}
 
-The _getCRUCLdata_ package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a [base::data.frame()] object or a [base::list()]
+The {getCRUCLdata} package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a [base::data.frame()] object or a [base::list()]
 of [terra::rast()] objects.
 
 CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 arc degree) resolution.
@@ -31,11 +31,10 @@ This package automatically converts elevation values from kilometres to metres.
 
 This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xmin = -180, xmax = 180. Note that the original wind data include land area for parts of Antarctica.
 
-# Using _getCRUCLdata_
+# Using {getCRUCLdata}
 
 Logical arguments are used to specify the climatology elements to retrieve and parse.
 All arguments default to `FALSE`.
-The `create_CRU_*()` functions require an additional parameter, `dsn` to be provided that states where the files are locally stored.
 The arguments for selecting the climatology elements for importing are:
 
 - **pre** Logical. Fetch precipitation (millimetres/month) from server and return in the data?
@@ -62,107 +61,17 @@ The arguments for selecting the climatology elements for importing are:
 
 - **elv** Logical. Fetch elevation (and convert to metres from kilometres) and return it in the data?
 
-- **dsn** *For `create_CRU_stack()`* and *`create_CRU_df()`* only.
-Local file path where CRU CL v. 2.0 .dat.gz files are located.
+- **x** Local file path where CRU CL v. 2.0 .dat.gz files are located.
 
 ### Creating data frames for use in R
 
-The `get_CRU_df()` function automates the download process and creates data frames of the climatology elements.
+The `read_cru_dt()` function automates the download process and creates data.tables of the climatology elements.
 
 
 ``` r
 library(getCRUCLdata)
-#> Error in library(getCRUCLdata): there is no package called 'getCRUCLdata'
 
-CRU_data <- get_CRU_df(pre = TRUE,
-                       pre_cv = TRUE,
-                       rd0 = TRUE,
-                       tmp = TRUE,
-                       dtr = TRUE,
-                       reh = TRUE,
-                       tmn = TRUE,
-                       tmx = TRUE,
-                       sunp = TRUE,
-                       frs = TRUE,
-                       wnd = TRUE,
-                       elv = TRUE)
-#> Error in get_CRU_df(pre = TRUE, pre_cv = TRUE, rd0 = TRUE, tmp = TRUE, : could not find function "get_CRU_df"
-
-CRU_data
-#> Error: object 'CRU_data' not found
-```
-
-Perhaps you only need one or two elements, it is easy to create a data frame of mean temperature only.
-
-
-``` r
-t <- get_CRU_df(tmp = TRUE)
-#> Error in get_CRU_df(tmp = TRUE): could not find function "get_CRU_df"
-
-t
-#> function (x) 
-#> UseMethod("t")
-#> <bytecode: 0x10d54ee30>
-#> <environment: namespace:base>
-```
-
-#### Plotting data from the data frame
-
-Now that we have the data, we can plot it easily using _ggplot2_ and the _viridis_ package for the colour scale.
-
-
-``` r
-library(ggplot2)
-library(viridis)
-
-ggplot(data = t, aes(x = lon, y = lat, fill = tmp)) +
-  geom_tile() +
-  scale_fill_viridis(option = "inferno") +
-  coord_quickmap() +
-  ggtitle("Global Mean Monthly Temperatures 1961-1990") +
-  facet_wrap( ~ month, nrow = 4)
-#> Error in `ggplot()`:
-#> ! `data` cannot be a function.
-#> ℹ Have you misspelled the `data` argument in `ggplot()`
-```
-
-We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.
-
-
-``` r
-ggplot(data = t, aes(x = month, y = tmp)) +
-  geom_violin() +
-  ylab("Temperature (˚C)") +
-  labs(title = "Global Monthly Mean Land Surface Temperatures From 1960-1991",
-       subtitle = "Excludes Antarctica")
-#> Error in `ggplot()`:
-#> ! `data` cannot be a function.
-#> ℹ Have you misspelled the `data` argument in `ggplot()`
-```
-
-#### Saving the `data.frame` as a CSV (comma separated values file) locally
-
-Save the resulting `data.frame` to local disk as a comma separated (CSV)
-file to local disk, using _data.table_'s `fwrite()`.
-
-
-``` r
-library(data.table)
-fwrite(x = t, file = "~/CRU_tmp.csv")
-```
-
-### Creating terra raster stacks for use in R and saving for use in another GIS
-
-For working with spatial data, _getCRUCLdata_ provides a function that create lists of _terra_ stacks of the data.
-
-The `get_CRU_stack()` functions provide similar functionality to `get_CRU_df()`, but rather than returning a data frame, it returns a list of `terra::rast()` objects for use in an R session.
-
-The `get_CRU_stack()` function automates the download process and creates a `terra::rast()` object of the CRU CL v. 2.0 climatology elements.
-Illustrated here is creating a `terra::rast()` of all CRU CL v. 2.0 climatology elements available.
-
-
-``` r
-CRU_stack <- get_CRU_stack(
+CRU_data <- read_cru_dt(
   pre = TRUE,
   pre_cv = TRUE,
   rd0 = TRUE,
@@ -176,10 +85,145 @@ CRU_stack <- get_CRU_stack(
   wnd = TRUE,
   elv = TRUE
 )
-#> Error in get_CRU_stack(pre = TRUE, pre_cv = TRUE, rd0 = TRUE, tmp = TRUE, : could not find function "get_CRU_stack"
 
-CRU_stack
-#> Error: object 'CRU_stack' not found
+CRU_data
+#>             lat     lon  month   pre pre_cv grid_10min_rd0.dat.gz   tmp   dtr   reh  sunp
+#>           <num>   <num> <fctr> <num>  <num>                 <num> <num> <num> <num> <num>
+#>       1: 30.917  35.417   <NA>    NA     NA                    NA    NA    NA    NA    NA
+#>       2: 31.083  35.417   <NA>    NA     NA                    NA    NA    NA    NA    NA
+#>       3: 31.250  35.417   <NA>    NA     NA                    NA    NA    NA    NA    NA
+#>       4: 31.417  35.417   <NA>    NA     NA                    NA    NA    NA    NA    NA
+#>       5: 31.750  35.583   <NA>    NA     NA                    NA    NA    NA    NA    NA
+#>      ---                                                                                 
+#> 6795146: 83.583 -30.083    dec   0.1   72.7                   5.1 -31.3   8.7  70.6     0
+#> 6795147: 83.583 -29.917    dec   0.1   72.8                   4.9 -30.7   8.6  70.6     0
+#> 6795148: 83.583 -29.750    dec   0.1   72.9                   4.9 -30.8   8.6  70.6     0
+#> 6795149: 83.583 -29.583    dec   0.1   73.0                   5.0 -31.2   8.6  70.6     0
+#> 6795150: 83.583 -29.417    dec   0.1   73.1                   5.1 -31.5   8.6  70.6     0
+#>            frs   wnd   elv    tmx    tmn
+#>          <num> <num> <num>  <num>  <num>
+#>       1:    NA    NA  -260     NA     NA
+#>       2:    NA    NA  -361     NA     NA
+#>       3:    NA    NA  -336     NA     NA
+#>       4:    NA    NA  -284     NA     NA
+#>       5:    NA    NA  -248     NA     NA
+#>      ---                                
+#> 6795146:    31   5.6   283 -26.95 -35.65
+#> 6795147:    31   5.6   186 -26.40 -35.00
+#> 6795148:    31   5.6   195 -26.50 -35.10
+#> 6795149:    31   5.6   268 -26.90 -35.50
+#> 6795150:    31   5.6   328 -27.20 -35.80
+```
+
+Perhaps you only need one or two elements, it is easy to create a data frame of mean temperature only.
+
+
+``` r
+t <- read_cru_dt(tmp = TRUE)
+
+t
+#>              lat     lon  month   tmp
+#>            <num>   <num> <fctr> <num>
+#>       1: -59.083 -26.583    jan   0.2
+#>       2: -58.417 -26.250    jan   0.6
+#>       3: -58.417 -26.417    jan   0.4
+#>       4: -55.917 -67.250    jan   8.0
+#>       5: -55.750 -67.250    jan   8.2
+#>      ---                             
+#> 6795140:  83.583 -36.083    dec -32.6
+#> 6795141:  83.583 -36.250    dec -33.0
+#> 6795142:  83.583 -36.417    dec -33.4
+#> 6795143:  83.583 -36.583    dec -33.3
+#> 6795144:  83.583 -36.750    dec -33.3
+```
+
+#### Plotting data from the data frame
+
+Now that we have the data, we can plot it easily using {ggplot2} and the {viridis} package for the colour scale.
+
+
+``` r
+library(ggplot2)
+library(viridis)
+
+ggplot(data = t, aes(x = lon, y = lat, fill = tmp)) +
+  geom_tile() +
+  scale_fill_viridis(option = "inferno") +
+  coord_quickmap() +
+  ggtitle("Global Mean Monthly Temperatures 1961-1990") +
+  facet_wrap(~month, nrow = 4)
+```
+
+<div class="figure" style="text-align: center">
+<img src="plot_t-1.png" alt="Maps of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."  />
+<p class="caption">Maps of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991.</p>
+</div>
+
+We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.
+
+
+``` r
+ggplot(data = t, aes(x = month, y = tmp)) +
+  geom_violin() +
+  ylab("Temperature (˚C)") +
+  labs(
+    title = "Global Monthly Mean Land Surface Temperatures From 1960-1991",
+    subtitle = "Excludes Antarctica"
+  )
+```
+
+<div class="figure" style="text-align: center">
+<img src="violin_plot-1.png" alt="Monthly values of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."  />
+<p class="caption">Monthly values of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991.</p>
+</div>
+
+#### Saving the `data.frame` as a CSV (comma separated values file) locally
+
+Save the resulting `data.frame` to local disk as a comma separated (CSV)
+file to local disk, using `fwrite()` from {data.table}.
+
+
+``` r
+library(data.table)
+fwrite(x = t, file = "~/CRU_tmp.csv")
+```
+
+### Creating terra raster stacks for use in R and saving for use in another GIS
+
+For working with spatial data, {getCRUCLdata} provides a function that create lists of {terra} stacks of the data.
+
+The `read_cru_rast()` functions provide similar functionality to `get_CRU_df()`, but rather than returning a data frame, it returns a list of `terra::rast()` objects for use in an R session.
+
+The `get_CRU_stack()` function automates the download process and creates a `terra::rast()` object of the CRU CL v. 2.0 climatology elements.
+Illustrated here is creating a `terra::rast()` of all CRU CL v. 2.0 climatology elements available.
+
+
+``` r
+CRU_rast <- read_cru_rast(
+  pre = TRUE,
+  pre_cv = TRUE,
+  rd0 = TRUE,
+  tmp = TRUE,
+  dtr = TRUE,
+  reh = TRUE,
+  tmn = TRUE,
+  tmx = TRUE,
+  sunp = TRUE,
+  frs = TRUE,
+  wnd = TRUE,
+  elv = TRUE
+)
+
+CRU_rast
+#> class       : SpatRaster 
+#> size        : 930, 2160, 133  (nrow, ncol, nlyr)
+#> resolution  : 0.1666667, 0.1666667  (x, y)
+#> extent      : -180, 180, -65, 90  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
+#> source(s)   : memory
+#> names       : pre_1, pre_2, pre_3, pre_4, pre_5,  pre_6, ... 
+#> min values  :   0.0,   0.0,   0.0,   0.0,     0,    0.0, ... 
+#> max values  : 910.1, 824.3, 727.3, 741.3,  1100, 2512.6, ...
 ```
 
 The `create_CRU_stack()` function works in the same way with only one minor difference.
@@ -187,10 +231,10 @@ You must supply the location of the files on the local disk (`dsn`) that you wis
 
 
 ``` r
-t <- create_CRU_stack(tmp = TRUE, dsn = "~/Downloads")
+t <- read_cru_rast(tmp = TRUE, x = "~/Downloads")
 ```
 
-#### Plotting terra rast objects of tmin and tmax
+#### Plotting terra::rast objects of tmin and tmax
 
 Because the stacks are in a `list()`, we need to access each element of the list individually to plot them, that's what the `[[1]]` or `[[2]]` is, the first or second element of the list.
 Here using `[[7]]` we will plot the monthly average minimum temperature for all twelve months.
@@ -199,20 +243,20 @@ Here using `[[7]]` we will plot the monthly average minimum temperature for all 
 ``` r
 library(terra)
 
-plot(CRU_stack[[7]])
+plot(CRU_rast[[7]])
 ```
 
 To plot only one month from the stack is also possible. Here we plot maximum temperature for July.
 Note that we use indexing `[[2]]` as before but append a `$jul` to the object.
 This is the name of the layer in the `terra::rast()`.
-So, we are telling R to plot the second object in the `CRU_stack` list, which is `tmx` and from that terra rast, plot only the layer for July.
+So, we are telling R to plot the second object in the `CRU_stack` list, which is `tmx` and from that `rast`, plot only the layer for July.
 
 
 ``` r
 plot(t[[8]]$jul)
 ```
 
-#### Saving terra objects to local disk
+#### Saving {terra} objects to local disk
 
 The [terra::rast()] objects can be saved to disk as geotiff files (others are available, see help for `terra::writeRaster()` for more options) on the `Data` directory with a tmn or tmx prefix to the month for a file name.
 
@@ -236,6 +280,18 @@ writeRaster(
 )
 ```
 
+## Handling files downloaded outside R
+
+Both `read_cru_dt()` and `read_cru_rast` provide capability for users that may have connectivity issues or simply wish to use something other than R to download the data files.
+You may supply the location of the files on the local disk, `x`, that you wish to import.
+That is, the CRU CL v. 2.0 data files *must* be downloaded prior to the use of these functions using a program external to R when supplying `x`.
+
+
+``` r
+t <- create_CRU_df(tmp = TRUE, x = "~/Downloads")
+```
+
+
 # CRU CL v. 2.0 reference and abstract
 
 Mark New (1,*), David Lister (2), Mike Hulme (3), Ian Makin (4)
@@ -250,7 +306,7 @@ A high-resolution data set of surface climate over global land areas Climate Res
 **ABSTRACT:** We describe the construction of a 10-minute latitude/longitude
 data set of mean monthly surface climate over global land areas, excluding
 Antarctica. The climatology includes 8 climate elements - precipitation, wet-day
-frequency, temperature, diurnal temperature range, relative humidity,sunshine
+frequency, temperature, diurnal temperature range, relative humidity, sunshine
 duration, ground frost frequency and windspeed - and was interpolated from a
 data set of station means for the period centred on 1961 to 1990. Precipitation
 was first defined in terms of the parameters of the Gamma distribution, enabling
@@ -260,5 +316,5 @@ and show added value over most regions. The data will have many applications in
 applied climatology, biogeochemical modelling, hydrology and agricultural
 meteorology and are available through the School of Geography Oxford
 (https://www.geog.ox.ac.uk), the International Water Management Institute
-"World Water and Climate Atlas" (https://www.iwmi.org/) and the Climatic
-Research Unit (https://www.uea.ac.uk/groups-and-centres/climatic-research-unit).
+"World Water and Climate Atlas" (<https://www.iwmi.org/>) and the Climatic
+Research Unit (<ttps://www.uea.ac.uk/groups-and-centres/climatic-research-unit>).

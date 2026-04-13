@@ -26,20 +26,18 @@ URL: https://codeberg.org/ropensci/getCRUCLdata,
     https://docs.ropensci.org/getCRUCLdata/
 BugReports: https://codeberg.org/ropensci/getCRUCLdata/issues
 Depends:
-    R (>= 4.0.0)
+    R (>= 4.1.0)
 Imports:
     brio,
     cli,
     data.table,
     fs,
     httr2,
-    lifecycle,
     rlang,
     terra
 Suggests:
     ggplot2,
     knitr,
-    rappdirs,
     rmarkdown,
     roxygen2,
     roxyglobals,

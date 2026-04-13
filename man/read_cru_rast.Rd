@@ -3,21 +3,6 @@
 \name{read_cru_rast}
 \alias{read_cru_rast}
 \title{Create a terra rast object of CRU CL v. 2.0 climatology elements}
-\source{
-\describe{
-\item{pre}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_pre.dat.gz}}
-\item{rd0}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_rd0.dat.gz}}
-\item{tmp}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz}}
-\item{dtr}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_dtr.dat.gz}}
-\item{reh}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_reh.dat.gz}}
-\item{sunp}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_sunp.dat.gz}}
-\item{frs}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_frs.dat.gz}}
-\item{wnd}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_wnd.dat.gz}, areas originally including Antarctica are removed.}
-\item{elv}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_elv.dat.gz}, values are converted from kilometres to metres.}
-}
-This package crops all spatial outputs to an extent of ymin = -60, ymax = 85,
-xmin = -180, xmax = 180.
-}
 \usage{
 read_cru_rast(
   pre = FALSE,
@@ -35,65 +20,11 @@ read_cru_rast(
   x = NULL
 )
 }
-\arguments{
-\item{pre}{Reads precipitation (millimetres/month) and returns in the
-data.table, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{pre_cv}{Reads cv of precipitation (percent) and returns in the
-data.table, \code{TRUE}. Defaults to \code{FALSE}. NOTE. Setting this
-to \code{TRUE} will always results in \code{pre} being set to \code{TRUE} and
-returned as well.}
-
-\item{rd0}{Reads wet-days (number days with >0.1 millimetres rain per
-month) and returns in the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{tmp}{Reads temperature (degrees Celsius) and returns it in the
-data.table, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{dtr}{Reads mean diurnal temperature range (degrees Celsius)
-and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{reh}{Reads relative humidity and returns it in the data.table, \code{TRUE}.
-Defaults to \code{FALSE}.}
-
-\item{tmn}{Calculate minimum temperature values (degrees Celsius)
-and returns it in the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{tmx}{Calculate maximum temperature (degrees Celsius) and returns it in
-the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{sunp}{Reads sunshine, percent of maximum possible (percent of
-day length) and returns it in the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{frs}{Reads ground-frost records (number of days with ground-
-frost per month) and returns it in the data.table, \code{TRUE}. Defaults to
-\code{FALSE}.}
-
-\item{wnd}{Load 10 m wind speed (metres/second) and returns it in the
-data.table, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{elv}{Reads elevation (converted to metres) and returns it in the
-data.table, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{x}{An optional local file path where \acronym{CRU} \acronym{CL} v.2.0
-.dat.gz files are located.  If this is empty, the requested data will
-automatically be downloaded from the server.}
-}
 \value{
-A \link[terra:rast]{terra::rast} object of \acronym{CRU} \acronym{CL} v. 2.0
-climatology elements.
+A terra::rast object.
 }
 \description{
-Automates importing \acronym{CRU} \acronym{CL} v.2.0 climatology
-data and creates a \CRANpkg{terra} \link[terra:rast]{terra::rast} object of the
-data.  If requested, minimum and maximum temperature may also be
-automatically calculated as described in the data
-\href{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}{readme.txt} file.
-Data may be cached for later use by this function, saving time downloading
-files in future using this function.  This function can be useful if you
-have network connection issues that mean automated downloading of the files
-using \R does not work properly or you have cached the files locally for
-your own future use.
+Create a terra rast object of CRU CL v. 2.0 climatology elements
 }
 \section{Nomenclature and Units}{
 
@@ -115,42 +46,3 @@ For more information see the description of the data provided by
 \acronym{CRU}, \url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt}
 }
 
-\examples{
-\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-
-# Downloading directly from the CRU server
-
-cru_tmp <- read_cru_rast(tmp = TRUE)
-
-# Using a local file, downloaded to tempdir() for this example
-library(fs)
-
-download.file(
-  url = "https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz",
-  destfile = file.path(tempdir(), "grid_10min_tmp.dat.gz")
-)
-
-f <- path(path_temp(), "grid_10min_tmp.dat.gz")
-
-cru_tmp <- read_cru_rast(tmp = TRUE, x = f)
-
-cru_tmp
-
-# or download from the CRU server automatically
-
-cru_tmp <- read_cru_rast(tmp = TRUE)
-
-cru_tmp
-\dontshow{\}) # examplesIf}
-}
-\references{
-New, Mark, et al. "A high-resolution data set of surface climate
-over global land areas." Climate research 21.1 (2002): 1-25.
-\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/new_et_al_10minute_climate_CR.pdf}
-}
-\seealso{
-\link{read_cru_dt}.
-}
-\author{
-Adam H. Sparks, \email{adamhsparks@gmail.com}
-}
