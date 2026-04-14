@@ -4,6 +4,7 @@
 #' @param vars Named logical vector.
 #'
 #' @returns A tidy data.table.
+#' @autoglobal
 #' @dev
 
 .read_local_files <- function(file, vars) {

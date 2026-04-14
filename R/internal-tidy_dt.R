@@ -8,8 +8,9 @@
 #'
 
 .tidy_dt <- function(vars, files) {
+  .check_gzip_support(files)
   varnames <- sub(
-    "^grid_10min_([a-z]+)\\.dat\\.gz$",
+    "^grid_10min_([a-z_]+)\\.dat(\\.gz)?$",
     "\\1",
     fs::path_file(files)
   )

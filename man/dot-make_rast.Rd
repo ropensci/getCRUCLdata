@@ -16,7 +16,7 @@
 \item{vars}{Named logical vector of CRU variable selections.}
 }
 \value{
-A terra::rast object for one variable.
+A \link[terra:rast]{terra::rast} object for one variable.
 }
 \description{
 Internal helper for creating terra layers

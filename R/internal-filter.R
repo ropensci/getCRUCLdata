@@ -20,19 +20,7 @@
 
   vars <- .normalize_vars(vars)
 
-  # If tmn or tmx is requested, ensure tmp and dtr are also requested
-  if (vars["tmn"] || vars["tmx"]) {
-    vars["tmp"] <- TRUE
-    vars["dtr"] <- TRUE
-  }
-
-  if (vars["pre_cv"]) {
-    vars["pre"] <- TRUE
-  }
-
-  # Keep only variables that have files
   file_vars <- intersect(names(vars)[vars], names(CRU_FILES))
-
   CRU_FILES[file_vars]
 }
 

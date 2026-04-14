@@ -1,8 +1,33 @@
 #' Create a terra rast object of CRU CL v. 2.0 climatology elements
 #'
-#' @inheritSection read_cru_dt Nomenclature and Units
+#' Create a [terra::rast] object or list of objects from \acronym{CRU} CL 2.0
+#'  data.
 #'
-#' @returns A terra::rast object.
+#' @inherit read_cru_dt
+#' @examplesIf interactive()
+#' # Create a data frame of temperature from locally available files in the
+#' # tempdir() directory.
+#' library(fs)
+#'
+#' f <- path(path_temp(), "grid_10min_tmp.dat.gz")
+#'
+#' download.file(
+#'   url = "https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_tmp.dat.gz",
+#'   destfile = f
+#' )
+#'
+#'
+#' cru_tmp <- read_cru_rast(tmp = TRUE, x = f)
+#'
+#' cru_tmp
+#'
+#' # or downloading directly from the CRU server
+#'
+#' cru_tmp <- read_cru_rast(tmp = TRUE)
+#'
+#' cru_tmp
+#'
+#' @returns A list object of [terra::rast] objects.
 #' @export
 read_cru_rast <- function(
   pre = FALSE,

@@ -4,6 +4,7 @@
 #' @param files Character vector of CRU file paths.
 #'
 #' @returns A terra::rast object.
+#' @autoglobal
 #' @dev
 
 .create_rast <- function(vars, files) {
@@ -12,36 +13,26 @@
     files <- fs::dir_ls(files, regexp = "grid_10min_.*\\.dat\\.gz$")
   }
 
-  # 2. If files are already SpatRaster objects → stack them
+  # 2. If files are character paths → check gzip support
+  if (is.character(files)) {
+    .check_gzip_support(files)
+  }
+
+  # 3. Handle different input types
   if (all(vapply(files, inherits, logical(1), what = "SpatRaster"))) {
     return(terra::rast(files))
-  }
-
-  # 3. If files is a named list of tidy data.tables → convert to rasters
-  if (is.list(files) && !is.character(files)) {
+  } else if (is.list(files) && !is.character(files)) {
+    # List of tidy data.tables
     rast_list <- lapply(names(files), function(v) {
-      dtv <- files[[v]]
-      .dt_to_rast(dtv, varname = v)
+      .dt_to_rast(files[[v]], varname = v)
     })
-    names(rast_list) <- names(files)
     return(terra::rast(rast_list))
-  }
-
-  # 4. Otherwise: treat as file paths
-  if (!length(files)) {
+  } else if (!is.character(files) || !length(files)) {
     cli::cli_abort("No CRU raster files found.")
   }
 
-  # Base raster template
-  wrld <- terra::rast(
-    nrows = 930L,
-    ncols = 2160L,
-    ymin = -65L,
-    ymax = 90L,
-    xmin = -180L,
-    xmax = 180L
-  )
-  wrld[] <- NA
+  # 4. Build rasters from raw CRU files
+  wrld <- .cru_template_rast()
 
   month_names <- c(
     "jan",
@@ -60,7 +51,6 @@
 
   varnames <- .cru_varname(files)
 
-  # 5. Build rasters from raw CRU files
   rast_list <- lapply(seq_along(files), function(i) {
     .make_rast(
       file = files[[i]],
@@ -73,12 +63,12 @@
 
   names(rast_list) <- varnames
 
-  # Validate: all must be SpatRaster
+  # Validate
   if (!all(vapply(rast_list, inherits, logical(1), what = "SpatRaster"))) {
     cli::cli_abort("One or more CRU rasters failed to build.")
   }
 
-  # 6. Derived raster variables
+  # 5. Derived variables
   if (vars["tmn"] && all(c("tmp", "dtr") %in% names(rast_list))) {
     rast_list$tmn <- rast_list$tmp - 0.5 * rast_list$dtr
   }
@@ -86,7 +76,7 @@
     rast_list$tmx <- rast_list$tmp + 0.5 * rast_list$dtr
   }
 
-  # Drop tmp/dtr if requested
+  # Drop tmp/dtr if not requested
   if ((vars["tmn"] || vars["tmx"]) && !vars["tmp"]) {
     rast_list$tmp <- NULL
   }
@@ -94,7 +84,21 @@
     rast_list$dtr <- NULL
   }
 
-  return(terra::rast(rast_list))
+  terra::rast(rast_list)
+}
+
+
+.cru_template_rast <- function() {
+  r <- terra::rast(
+    nrows = 930L,
+    ncols = 2160L,
+    ymin = -65L,
+    ymax = 90L,
+    xmin = -180L,
+    xmax = 180L
+  )
+  r[] <- NA_real_
+  r
 }
 
 
@@ -104,14 +108,10 @@
 #' `grid_10min_pre.dat.gz` or `grid_10min_pre_cv.dat.gz` into their
 #' corresponding variable identifiers (`"pre"`, `"pre_cv"`, `"tmp"`, etc.).
 #'
-#' This function strips both the directory and the `.dat.gz` suffix, and
-#' removes the standard `grid_10min_` prefix used in CRU CL v2.0 filenames.
-#'
 #' @param files Character vector of CRU `.dat.gz` file paths.
 #'
 #' @return A character vector of variable names with the `grid_10min_`
 #'   prefix and file extension removed.
-#'
 #' @dev
 .cru_varname <- function(files) {
   base <- fs::path_file(files)

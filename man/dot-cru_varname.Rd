@@ -18,8 +18,4 @@ Internal helper that converts full CRU file paths such as
 \code{grid_10min_pre.dat.gz} or \code{grid_10min_pre_cv.dat.gz} into their
 corresponding variable identifiers (\code{"pre"}, \code{"pre_cv"}, \code{"tmp"}, etc.).
 }
-\details{
-This function strips both the directory and the \code{.dat.gz} suffix, and
-removes the standard \code{grid_10min_} prefix used in CRU CL v2.0 filenames.
-}
 \keyword{internal}

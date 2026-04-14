@@ -6,7 +6,7 @@
 #' @dev
 
 .check_vars <- function(vars) {
-  if (!is.logical(vars) || is.null(vars)) {
+  if (is.null(vars) || !is.logical(vars)) {
     cli::cli_abort("Internal error: vars must be a logical vector.")
   }
 
@@ -25,12 +25,15 @@
 #'
 #' @returns Normalized logical vector.
 #' @dev
+
 .normalize_vars <- function(vars) {
-  if (vars["pre_cv"]) {
-    vars["pre"] <- TRUE
-  }
-  if (vars["tmn"] || vars["tmx"]) {
-    vars[c("tmp", "dtr")] <- TRUE
-  }
+  # pre_cv implies pre
+  vars["pre"] <- vars["pre"] || vars["pre_cv"]
+
+  # tmn/tmx imply tmp + dtr
+  need_temp <- vars["tmn"] || vars["tmx"]
+  vars["tmp"] <- vars["tmp"] || need_temp
+  vars["dtr"] <- vars["dtr"] || need_temp
+
   vars
 }

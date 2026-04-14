@@ -5,7 +5,7 @@
 #' @param month_names Character vector of month names.
 #' @param vars Named logical vector of CRU variable selections.
 #'
-#' @returns A terra::rast object for one variable.
+#' @returns A [terra::rast] object for one variable.
 #' @dev
 
 .make_rast <- function(file, wrld, month_names, vars, varname) {
@@ -13,48 +13,51 @@
   cells <- terra::cellFromXY(wrld, wvar[, c(2L, 1L)])
   n <- ncol(wvar)
 
-  if (n == 14L) {
-    layers <- vector("list", 12L)
-    for (j in 3L:14L) {
+  # Helper: build a list of 12 monthly layers from column indices
+  build_monthly <- function(cols, prefix = NULL) {
+    layers <- lapply(seq_along(cols), function(i) {
       r <- terra::rast(wrld)
-      r[cells] <- wvar[[j]]
-      layers[[j - 2L]] <- r
+      r[cells] <- wvar[[cols[i]]]
+      r
+    })
+    names(layers) <- if (is.null(prefix)) {
+      month_names
+    } else {
+      paste0(prefix, month_names)
     }
-    names(layers) <- month_names
-    out <- terra::rast(layers)
-    names(out) <- paste0(varname, "_", month_names) # ← add this
-    return(out)
+    layers
   }
 
-  if (n == 26L) {
-    pre_layers <- vector("list", 12L)
-    for (j in 3L:14L) {
-      r <- terra::rast(wrld)
-      r[cells] <- wvar[[j]]
-      pre_layers[[j - 2L]] <- r
-    }
-    names(pre_layers) <- paste0("pre_", month_names)
+  # Helper: build a single-layer raster
+  build_single <- function(col, name) {
+    r <- terra::rast(wrld)
+    r[cells] <- wvar[[col]]
+    names(r) <- name
+    r
+  }
 
-    if (isFALSE(vars["pre_cv"])) {
+  # --- Case 1: Standard 12‑month variables (14 columns) ---
+  if (n == 14L) {
+    layers <- build_monthly(3:14)
+    names(layers) <- paste0(varname, "_", month_names)
+    return(terra::rast(layers))
+  }
+
+  # --- Case 2: pre + pre_cv (26 columns) ---
+  if (n == 26L) {
+    pre_layers <- build_monthly(3:14, "pre_")
+
+    if (!isTRUE(vars["pre_cv"])) {
       return(terra::rast(pre_layers))
     }
 
-    cv_layers <- vector("list", 12L)
-    for (j in 15L:26L) {
-      r <- terra::rast(wrld)
-      r[cells] <- wvar[[j]]
-      cv_layers[[j - 14L]] <- r
-    }
-    names(cv_layers) <- paste0("pre_cv_", month_names)
-
+    cv_layers <- build_monthly(15:26, "pre_cv_")
     return(terra::rast(c(pre_layers, cv_layers)))
   }
 
+  # --- Case 3: elevation (3 columns) ---
   if (n == 3L) {
-    r <- terra::rast(wrld)
-    r[cells] <- wvar[[3L]] * 1000L
-    names(r) <- "elv"
-    return(r)
+    return(build_single(3L, "elv"))
   }
 
   cli::cli_abort("Unexpected file format in {.var file}.")

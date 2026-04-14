@@ -11,7 +11,7 @@
 .file_handling <- function(vars, files, x) {
   vars <- .normalize_vars(vars)
 
-  # remote case: x is NULL → build URLs and download
+  # --- Case 1: remote (x is NULL) ---
   if (is.null(x)) {
     base <- "https://crudata.uea.ac.uk/cru/data/hrg/tmc"
     urls <- fs::path(base, files)
@@ -28,11 +28,11 @@
     return(list(vars = vars, files = dest))
   }
 
-  # local case: x is a directory or a single file
+  # --- Local cases ---
   x <- fs::path_abs(fs::path_norm(trimws(x)))
 
+  # Case 2: directory
   if (fs::is_dir(x)) {
-    # expect files inside directory x
     expected <- fs::path(x, files)
     existing <- expected[fs::file_exists(expected)]
 
@@ -46,7 +46,7 @@
     return(list(vars = vars, files = existing))
   }
 
-  # x is a single .gz file
+  # Case 3: single .gz file
   if (fs::path_ext(x) == "gz") {
     if (!fs::file_exists(x)) {
       cli::cli_abort(
@@ -58,6 +58,7 @@
     return(list(vars = vars, files = x))
   }
 
+  # --- Invalid input ---
   cli::cli_abort(
     "{.var x} must be either a directory or a .gz file.",
     call = rlang::caller_env()
