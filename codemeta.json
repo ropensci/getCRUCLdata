@@ -24,16 +24,6 @@
       "@id": "https://orcid.org/0000-0002-0061-8359"
     }
   ],
-  "copyrightHolder": [
-    {
-      "@type": "Organization",
-      "name": "Curtin University of Technology"
-    },
-    {
-      "@type": "Organization",
-      "name": "Grains Research and Development Corporation"
-    }
-  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -67,6 +57,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R.utils",
+      "name": "R.utils",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=R.utils"
     },
     {
       "@type": "SoftwareApplication",
@@ -249,7 +251,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost"],
-  "fileSize": "804.593KB",
+  "fileSize": "811.278KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -279,7 +281,7 @@
       }
     }
   ],
-  "contIntegration": ["https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/ropensci/getCRUCLdata"],
+  "contIntegration": "https://app.codecov.io/gh/ropensci/getCRUCLdata",
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
     "@type": "Review",
