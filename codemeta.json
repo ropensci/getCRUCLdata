@@ -8,13 +8,13 @@
   "codeRepository": "https://codeberg.org/ropensci/getCRUCLdata",
   "issueTracker": "https://codeberg.org/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.5.1 (2025-06-13)",
+  "runtimePlatform": "R version 4.5.3 (2026-03-11)",
   "author": [
     {
       "@type": "Person",
@@ -22,16 +22,6 @@
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
-    }
-  ],
-  "copyrightHolder": [
-    {
-      "@type": "Organization",
-      "name": "Curtin University of Technology"
-    },
-    {
-      "@type": "Organization",
-      "name": "Grains Research and Development Corporation"
     }
   ],
   "maintainer": [
@@ -70,15 +60,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "rappdirs",
-      "name": "rappdirs",
+      "identifier": "R.utils",
+      "name": "R.utils",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=rappdirs"
+      "sameAs": "https://CRAN.R-project.org/package=R.utils"
     },
     {
       "@type": "SoftwareApplication",
@@ -170,9 +160,21 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 4.0.0"
+      "version": ">= 4.1.0"
     },
     "2": {
+      "@type": "SoftwareApplication",
+      "identifier": "brio",
+      "name": "brio",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=brio"
+    },
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "cli",
       "name": "cli",
@@ -183,18 +185,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=cli"
-    },
-    "3": {
-      "@type": "SoftwareApplication",
-      "identifier": "curl",
-      "name": "curl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=curl"
     },
     "4": {
       "@type": "SoftwareApplication",
@@ -210,17 +200,29 @@
     },
     "5": {
       "@type": "SoftwareApplication",
-      "identifier": "hoardr",
-      "name": "hoardr",
+      "identifier": "fs",
+      "name": "fs",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=hoardr"
+      "sameAs": "https://CRAN.R-project.org/package=fs"
     },
     "6": {
+      "@type": "SoftwareApplication",
+      "identifier": "httr2",
+      "name": "httr2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=httr2"
+    },
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -232,7 +234,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "7": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "terra",
       "name": "terra",
@@ -244,17 +246,12 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=terra"
     },
-    "8": {
-      "@type": "SoftwareApplication",
-      "identifier": "utils",
-      "name": "utils"
-    },
     "SystemRequirements": null
   },
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost"],
-  "fileSize": "907.761KB",
+  "fileSize": "811.455KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -284,7 +281,7 @@
       }
     }
   ],
-  "contIntegration": ["https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/ropensci/getCRUCLdata"],
+  "contIntegration": "https://app.codecov.io/gh/ropensci/getCRUCLdata",
   "developmentStatus": "https://www.repostatus.org/",
   "review": {
     "@type": "Review",

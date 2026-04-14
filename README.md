@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/getCRUCLdata/actions/workflows/R-CMD-check.yaml) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812) [![JOSS status](http://joss.theoj.org/papers/10.21105/joss.00230/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00230) [![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/software-review/issues/96) [![codecov](https://codecov.io/gh/ropensci/getCRUCLdata/graph/badge.svg?token=OZjFYcNGbS)](https://app.codecov.io/gh/ropensci/getCRUCLdata)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812) [![JOSS status](http://joss.theoj.org/papers/10.21105/joss.00230/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00230) [![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/software-review/issues/96) [![codecov](https://codecov.io/gh/ropensci/getCRUCLdata/graph/badge.svg?token=OZjFYcNGbS)](https://app.codecov.io/gh/ropensci/getCRUCLdata)
 
 <!-- badges: end -->
 
@@ -18,29 +18,32 @@ This package automatically converts elevation values from kilometres to metres.
 
 This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xmin = -180, xmax = 180. Note that the original wind data include land area for parts of Antarctica.
 
-# Quick Start
+## Quick Start
 
-## Install
+### Install
 
 {getCRUCLdata} is not available from CRAN.
 You can install it from the rOpenSci Universe as follows.
 
 ``` r
 # Enable the rOpenSci R-universe
-options(repos = c(
+options(
+  repos = c(
     rOpenSci = "https://ropensci.r-universe.dev",
-    CRAN = "https://cloud.r-project.org"))
+    CRAN = "https://cloud.r-project.org"
+  )
+)
 # Install the package
 install.packages("getCRUCLdata")
 ```
 
-# Documentation
+## Documentation
 
 For complete documentation see the package website: <https://docs.ropensci.org/getCRUCLdata/>.
 
-# Meta
+## Meta
 
-## CRU CL v. 2.0 reference and abstract
+### CRU CL v. 2.0 Reference and Abstract
 
 > Mark New (1,\*), David Lister (2), Mike Hulme (3), Ian Makin (4)
 
@@ -52,7 +55,7 @@ For complete documentation see the package website: <https://docs.ropensci.org/g
 
 > **ABSTRACT:** We describe the construction of a 10-minute latitude/longitude data set of mean monthly surface climate over global land areas, excluding Antarctica. The climatology includes 8 climate elements - precipitation, wet-day frequency, temperature, diurnal temperature range, relative humidity, sunshine duration, ground frost frequency and windspeed - and was interpolated from a data set of station means for the period centred on 1961 to 1990. Precipitation was first defined in terms of the parameters of the Gamma distribution, enabling the calculation of monthly precipitation at any given return period. The data are compared to an earlier data set at 0.5 degrees latitude/longitude resolution and show added value over most regions. The data will have many applications in applied climatology, biogeochemical modelling, hydrology and agricultural meteorology and are available through the School of Geography Oxford (<https://www.geog.ox.ac.uk/>), the International Water Management Institute “World Water and Climate Atlas” (<https://www.iwmi.org/>) and the Climatic Research Unit (<https://www.uea.ac.uk/groups-and-centres/climatic-research-unit>).
 
-## Other
+### Other
 
 - Please [report any issues or bugs](https://codeberg.org/ropensci/getCRUCLdata/issues).
 
