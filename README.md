@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812) [![JOSS status](http://joss.theoj.org/papers/10.21105/joss.00230/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00230) [![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/software-review/issues/96) [![codecov](https://codecov.io/gh/ropensci/getCRUCLdata/graph/badge.svg?token=OZjFYcNGbS)](https://app.codecov.io/gh/ropensci/getCRUCLdata)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.466812.svg)](https://doi.org/10.5281/zenodo.466812) [![JOSS status](http://joss.theoj.org/papers/10.21105/joss.00230/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00230) [![](https://badges.ropensci.org/96_status.svg)](https://github.com/ropensci/software-review/issues/96)
 
 <!-- badges: end -->
 
