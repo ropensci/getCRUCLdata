@@ -8,7 +8,7 @@
   "codeRepository": "https://codeberg.org/ropensci/getCRUCLdata",
   "issueTracker": "https://codeberg.org/ropensci/getCRUCLdata/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
