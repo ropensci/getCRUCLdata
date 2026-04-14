@@ -2,14 +2,24 @@
 
 ## Major changes
 
-* `create_CRU_stack()` and `create_CRU_df()` functions have been deprecated.
+* Almost a complete rewrite of the package.
 
-* `get_CRU_stack()` and `get_CRU_df()` functions have been deprecated.
+* R >= 4.1.0 is now required.
+
+* `create_CRU_stack()` and `create_CRU_df()` functions have been removed.
+
+* `get_CRU_stack()` and `get_CRU_df()` functions have been removed.
 
 * New functions `read_cru_rast()` to align with {terra} naming and `read_cru_dt()` to align with {data.table} naming have been added to either download or load data from local files using a single unified function.
 
 * Caching is no longer supported, this is both to simplify the package and to avoid issues with CRAN policies.
-Users are encouraged to manage their own caching solutions if needed or save the data locally after downloading using their preferred format and methods.
+Users are encouraged to manage their own caching solutions if needed, *e.g.*, {targets} or save the data locally after downloading using their preferred format and methods.
+
+## Minor changes
+
+* Update documentation to reflect new functionality.
+
+# getCRUCLdata 1.0.3
 
 ## Major Changes
 
