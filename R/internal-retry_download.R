@@ -13,7 +13,7 @@
   # Ensure destination directory exists
   fs::dir_create(fs::path_dir(dest))
 
-  # Build request
+  # Build request with caching + retry + safe error handling
   req <- httr2::request(url) |>
     httr2::req_user_agent("getCRUCLdata") |>
     httr2::req_headers(
@@ -22,18 +22,17 @@
     ) |>
     httr2::req_retry(max_tries = .max_tries) |>
     httr2::req_cache(path = fs::path_temp()) |>
-    httr2::req_error(is_error = function(resp) FALSE)
-
-  # Apply conditional options (progress, etc.)
-  req <- httr2::req_options(req)
+    httr2::req_error(is_error = function(resp) FALSE) |>
+    httr2::req_options()
 
   # Perform request
   resp <- httr2::req_perform(req)
 
   # Check HTTP status
-  if (httr2::resp_status(resp) >= 400L) {
+  status <- httr2::resp_status(resp)
+  if (status >= 400L) {
     cli::cli_abort(
-      "Failed to download {.url {url}} (HTTP {httr2::resp_status(resp)})."
+      "Failed to download {.url {url}} (HTTP {status})."
     )
   }
 
