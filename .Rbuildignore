@@ -10,6 +10,7 @@
 ^cran-comments\.md$
 ^docs$
 ^codecov\.yml$
+^\.covrignore$
 ^codemeta\.json$
 ^getCRUCLdata.code-workspace$
 ^CRAN-RELEASE$
@@ -17,11 +18,6 @@
 ^tic\.R$
 ^doc$
 ^Meta$
-
-
-# flint files
-^flint$
-
 
 # flir files
 ^flir$
@@ -41,3 +37,4 @@
 ^man/dot-validate_x\.Rd$
 ^man/dot-check_vars\.Rd$
 ^man/dot-normalize_vars\.Rd$
+
