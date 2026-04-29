@@ -10,7 +10,7 @@
 
 .check_gzip_support <- function(files) {
   # Only relevant for character vectors containing .gz files
-  if (!is.character(files) || !any(grepl("\\.gz$", files))) {
+  if (!is.character(files) || !is.na(endsWith(".gz$", files))) {
     return(invisible(TRUE))
   }
 
