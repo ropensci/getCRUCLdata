@@ -16,8 +16,8 @@
   # Drop tmp/dtr if not requested
   tidy_dt <- .drop_source_vars_dt(tidy_dt, vars)
 
-  tidy_dt[, month := factor(month)]
   data.table::setorder(tidy_dt, month)
+  tidy_dt[, month := factor(month, levels = 1:12)]
 
   tidy_dt[]
 }
@@ -28,10 +28,12 @@
   has_inputs <- all(c("tmp", "dtr") %in% names(dt))
 
   if (has_inputs) {
-    if (vars["tmx"]) {
+    if (isTRUE(vars["tmx"])) {
       dt[, tmx := tmp + 0.5 * dtr]
     }
-    if (vars["tmn"]) dt[, tmn := tmp - 0.5 * dtr]
+    if (isTRUE(vars["tmn"])) {
+      dt[, tmn := tmp - 0.5 * dtr]
+    }
   }
 
   dt
