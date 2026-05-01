@@ -7,12 +7,6 @@
 #' @dev
 
 .dt_to_rast <- function(dt, varname) {
-  # Ensure required columns exist
-  required <- c("lat", "lon", "month", "value")
-  if (!all(required %in% names(dt))) {
-    cli::cli_abort("`.dt_to_rast()` requires columns: {required}.")
-  }
-
   # Base raster template (CRU 10-minute grid)
   wrld <- terra::rast(
     nrows = 930L,
