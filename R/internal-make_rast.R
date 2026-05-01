@@ -57,7 +57,8 @@
 
   # --- Case 3: elevation (3 columns) ---
   if (n == 3L) {
-    return(build_single(3L, "elv"))
+    r <- build_single(3L, "elv")
+    return(r * 1000L) # ensure km converted to m
   }
 
   cli::cli_abort("Unexpected file format in {.var file}.")
