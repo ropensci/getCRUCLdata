@@ -22,12 +22,12 @@
     )
   }
 
-  dir <- fs::path_dir(x)
+  dir_path <- fs::path_dir(x)
 
   # Directory must exist
-  if (!fs::dir_exists(dir)) {
+  if (!fs::dir_exists(dir_path)) {
     cli::cli_abort(
-      "The directory for {.var x} does not exist: {dir}.",
+      "The directory for {.var x} does not exist: {dir_path}.",
       call = rlang::caller_env()
     )
   }
@@ -38,7 +38,7 @@
       c(
         "You supplied a single file {.var x} but requested multiple variables.",
         "Interpreting the path at the directory level instead.",
-        "All matching files in {dir} will be considered."
+        "All matching files in {dir_path} will be considered."
       ),
       call = rlang::caller_env()
     )
