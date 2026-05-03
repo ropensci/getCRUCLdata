@@ -42,7 +42,7 @@
       ),
       call = rlang::caller_env()
     )
-    return(dir)
+    return(dir_path)
   }
 
   # Valid single .gz file
