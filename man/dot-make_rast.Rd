@@ -4,14 +4,12 @@
 \alias{.make_rast}
 \title{Internal helper for creating terra layers}
 \usage{
-.make_rast(file, wrld, month_names, vars, varname)
+.make_rast(file, wrld, vars, varname)
 }
 \arguments{
 \item{file}{CRU .dat.gz file path.}
 
 \item{wrld}{Empty \code{terra::rast} template.}
-
-\item{month_names}{Character vector of month names.}
 
 \item{vars}{Named logical vector of CRU variable selections.}
 }
