@@ -22,8 +22,8 @@ intended swap.~~
 Bare `vars["x"]` in `if` conditions and `||` expressions will error if the
 element is `NA`. Affects:
 
-- `.normalize_vars` (`internal-vars.R`)
-- `.drop_source_vars_dt` (`internal-create_dt.R`)
+- ~~`.normalize_vars` (`internal-vars.R`)~~
+- ~~`.drop_source_vars_dt` (`internal-create_dt.R`)~~
 - `.read_local_files` — `pre_cv` branch (`internal-read_local_files.R`)
 - `.create_rast` — derived variable and drop blocks (`internal-create_rast.R`)
 
