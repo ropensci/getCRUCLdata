@@ -9,33 +9,17 @@
 .dt_to_rast <- function(dt, varname) {
   # Base raster template (CRU 10-minute grid)
   wrld <- terra::rast(
-    nrows = 930L,
-    ncols = 2160L,
-    ymin = -65L,
-    ymax = 90L,
-    xmin = -180L,
-    xmax = 180L
+    nrows = 930,
+    ncols = 2160,
+    ymin = -65,
+    ymax = 90,
+    xmin = -180,
+    xmax = 180
   )
   wrld[] <- NA_real_
 
-  # Month order
-  month_names <- c(
-    "jan",
-    "feb",
-    "mar",
-    "apr",
-    "may",
-    "jun",
-    "jul",
-    "aug",
-    "sep",
-    "oct",
-    "nov",
-    "dec"
-  )
-
   # Build 12 layers
-  rast_list <- lapply(month_names, function(m) {
+  rast_list <- lapply(.cru_month_names, function(m) {
     dtm <- dt[month == m]
 
     r <- wrld
@@ -47,7 +31,7 @@
   })
 
   # Use varname here — this is the only place it matters
-  names(rast_list) <- paste0(varname, "_", month_names)
+  names(rast_list) <- paste0(varname, "_", .cru_month_names)
 
   terra::rast(rast_list)
 }

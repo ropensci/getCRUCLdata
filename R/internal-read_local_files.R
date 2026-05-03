@@ -18,27 +18,14 @@
   }
 
   # 2. Single file → parse into tidy dt
-  month_names <- c(
-    "jan",
-    "feb",
-    "mar",
-    "apr",
-    "may",
-    "jun",
-    "jul",
-    "aug",
-    "sep",
-    "oct",
-    "nov",
-    "dec"
-  )
 
   x <- data.table::fread(file, header = FALSE)
   n <- ncol(x)
 
   # 14‑column monthly variable
   if (n == 14L) {
-    data.table::setnames(x, c("lat", "lon", month_names))
+    # .cru_month_names defined in constants.R
+    data.table::setnames(x, c("lat", "lon", .cru_month_names))
     dtx <- data.table::melt(
       x,
       id.vars = c("lat", "lon"),
@@ -51,7 +38,7 @@
   # 26‑column pre + pre_cv
   if (n == 26L) {
     pre_dt <- x[, 1:14]
-    data.table::setnames(pre_dt, c("lat", "lon", month_names))
+    data.table::setnames(pre_dt, c("lat", "lon", .cru_month_names))
     pre_dt <- data.table::melt(
       pre_dt,
       id.vars = c("lat", "lon"),
@@ -59,12 +46,12 @@
     )
     data.table::setnames(pre_dt, c("lat", "lon", "month", "pre"))
 
-    if (ifFALSE(vars["pre_cv"])) {
+    if (isFALSE(vars["pre_cv"])) {
       return(pre_dt[])
     }
 
     cv_dt <- x[, c(1, 2, 15:26)]
-    data.table::setnames(cv_dt, c("lat", "lon", month_names))
+    data.table::setnames(cv_dt, c("lat", "lon", .cru_month_names))
     cv_dt <- data.table::melt(
       cv_dt,
       id.vars = c("lat", "lon"),

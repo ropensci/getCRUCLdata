@@ -2,13 +2,17 @@
 #'
 #' @param file CRU .dat.gz file path.
 #' @param wrld Empty `terra::rast` template.
-#' @param month_names Character vector of month names.
 #' @param vars Named logical vector of CRU variable selections.
 #'
 #' @returns A [terra::rast] object for one variable.
 #' @dev
 
-.make_rast <- function(file, wrld, month_names, vars, varname) {
+.make_rast <- function(
+  file,
+  wrld,
+  vars,
+  varname
+) {
   wvar <- data.table::fread(file, header = FALSE)
   cells <- terra::cellFromXY(wrld, wvar[, c(2L, 1L)])
   n <- ncol(wvar)
@@ -21,9 +25,9 @@
       r
     })
     names(layers) <- if (is.null(prefix)) {
-      month_names
+      .cru_month_names
     } else {
-      paste0(prefix, month_names)
+      paste0(prefix, .cru_month_names)
     }
     layers
   }
@@ -39,7 +43,7 @@
   # --- Case 1: Standard 12‑month variables (14 columns) ---
   if (n == 14L) {
     layers <- build_monthly(3:14)
-    names(layers) <- paste0(varname, "_", month_names)
+    names(layers) <- paste0(varname, "_", .cru_month_names)
     return(terra::rast(layers))
   }
 

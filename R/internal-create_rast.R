@@ -33,28 +33,12 @@
   # 4. Build rasters from raw CRU files
   wrld <- .cru_template_rast()
 
-  month_names <- c(
-    "jan",
-    "feb",
-    "mar",
-    "apr",
-    "may",
-    "jun",
-    "jul",
-    "aug",
-    "sep",
-    "oct",
-    "nov",
-    "dec"
-  )
-
   varnames <- .cru_varname(files)
 
   rast_list <- lapply(seq_along(files), function(i) {
     .make_rast(
       file = files[[i]],
       wrld = wrld,
-      month_names = month_names,
       vars = vars,
       varname = varnames[[i]]
     )
