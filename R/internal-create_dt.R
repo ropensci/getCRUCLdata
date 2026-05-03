@@ -41,7 +41,7 @@
 
 #' @autoglobal
 .drop_source_vars_dt <- function(dt, vars) {
-  if ((vars["tmn"] || vars["tmx"])) {
+  if ((isTRUE(vars["tmn"]) || isTRUE(vars["tmx"]))) {
     if (!vars["tmp"]) {
       dt[, tmp := NULL]
     }
