@@ -24,25 +24,25 @@ element is `NA`. Affects:
 
 - ~~`.normalize_vars` (`internal-vars.R`)~~
 - ~~`.drop_source_vars_dt` (`internal-create_dt.R`)~~
-- `.read_local_files` — `pre_cv` branch (`internal-read_local_files.R`)
-- `.create_rast` — derived variable and drop blocks (`internal-create_rast.R`)
+- ~~`.read_local_files` — `pre_cv` branch (`internal-read_local_files.R`)~~
+- ~~.create_rast` — derived variable and drop blocks (`internal-create_rast.R`)~~
 
-Fix: replace `vars["x"]` with `isTRUE(vars["x"])` throughout, consistent with
-the fix already applied in `.add_derived_dt`.
+~~Fix: replace `vars["x"]` with `isTRUE(vars["x"])` throughout, consistent with
+the fix already applied in `.add_derived_dt`.~~
 
 ---
 
-## 4. `month_names` defined four times
+~~## 4. `month_names` defined four times~~
 
-The same 12-element character vector is duplicated in:
+~~The same 12-element character vector is duplicated in:~~
 
-- `.read_local_files`
-- `.dt_to_rast`
-- `.make_rast`
-- `.create_rast`
+- ~~`.read_local_files`~~
+- ~~`.dt_to_rast`~~
+- ~~`.make_rast`~~
+- ~~`.create_rast`~~
 
-Extract to a single package-level constant (e.g. `.CRU_MONTH_NAMES`) in
-`globals.R` or a new `constants.R`.
+~~Extract to a single package-level constant (e.g. `.CRU_MONTH_NAMES`) in
+`globals.R` or a new `constants.R`.~~
 
 ---
 
@@ -74,16 +74,16 @@ it.
 
 ## Additional notes (lower priority)
 
-- **`CRU_FILES` lookup table** is reallocated on every call to `.filter_files`.
-  Move it to package-level scope.
+- ~~**`CRU_FILES` lookup table** is reallocated on every call to `.filter_files`.
+  Move it to package-level scope.~~
 - **`.validate_filter_files` `x` arg** — `fs::path_ext(x) == "gz"` in
   `.file_handling` will also match `.tar.gz`; `endsWith(x, ".dat.gz")` is more
   precise.
 - **`Map(.retry_download, ...)` swallows per-file errors** — a failed download
   returns silently and the caller proceeds with a missing file. Consider
   propagating errors explicitly.
-- **`.tidy_dt` regex** makes `.gz` optional (`(\\.gz)?`) but no uncompressed
-  code path exists. Drop the `?` or add the path.
+- ~~**`.tidy_dt` regex** makes `.gz` optional (`(\\.gz)?`) but no uncompressed
+  code path exists. Drop the `?` or add the path.~~
 - **`req_cache(path = fs::path_temp())`** — cache is cleared on session restart,
   so cross-session re-downloads get no benefit. Add a comment if this is
   intentional.
