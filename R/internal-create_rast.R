@@ -16,8 +16,9 @@
   # 2. If files are character paths → check gzip support
   if (is.character(files)) {
     .check_gzip_support(files)
-  }
 
+    if (!length(files)) cli::cli_abort("No CRU raster files found.")
+  }
   # 3. Handle different input types
   if (all(vapply(files, inherits, logical(1), what = "SpatRaster"))) {
     return(terra::rast(files))
@@ -27,8 +28,6 @@
       .dt_to_rast(files[[v]], varname = v)
     })
     return(terra::rast(rast_list))
-  } else if (!is.character(files) || !length(files)) {
-    cli::cli_abort("No CRU raster files found.")
   }
 
   # 4. Build rasters from raw CRU files
@@ -69,18 +68,18 @@
   }
 
   # 5. Derived variables
-  if (vars["tmn"] && all(c("tmp", "dtr") %in% names(rast_list))) {
+  if (isTRUE(vars["tmn"]) && all(c("tmp", "dtr") %in% names(rast_list))) {
     rast_list$tmn <- rast_list$tmp - 0.5 * rast_list$dtr
   }
-  if (vars["tmx"] && all(c("tmp", "dtr") %in% names(rast_list))) {
+  if (isTRUE(vars["tmx"]) && all(c("tmp", "dtr") %in% names(rast_list))) {
     rast_list$tmx <- rast_list$tmp + 0.5 * rast_list$dtr
   }
 
   # Drop tmp/dtr if not requested
-  if ((vars["tmn"] || vars["tmx"]) && !vars["tmp"]) {
+  if ((isTRUE(vars["tmn"]) || isTRUE(vars["tmx"])) && isFALSE(vars["tmp"])) {
     rast_list$tmp <- NULL
   }
-  if ((vars["tmn"] || vars["tmx"]) && !vars["dtr"]) {
+  if ((isTRUE(vars["tmn"]) || isTRUE(vars["tmx"])) && isFALSE(vars["dtr"])) {
     rast_list$dtr <- NULL
   }
 
@@ -90,12 +89,12 @@
 
 .cru_template_rast <- function() {
   r <- terra::rast(
-    nrows = 930L,
-    ncols = 2160L,
-    ymin = -65L,
-    ymax = 90L,
-    xmin = -180L,
-    xmax = 180L
+    nrows = 930,
+    ncols = 2160,
+    ymin = -65,
+    ymax = 90,
+    xmin = -180,
+    xmax = 180
   )
   r[] <- NA_real_
   r
