@@ -59,7 +59,7 @@
     )
     data.table::setnames(pre_dt, c("lat", "lon", "month", "pre"))
 
-    if (!vars["pre_cv"]) {
+    if (ifFALSE(vars["pre_cv"])) {
       return(pre_dt[])
     }
 
