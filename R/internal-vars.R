@@ -7,7 +7,7 @@
 
 .check_vars <- function(vars) {
   if (is.null(vars) || !is.logical(vars)) {
-    cli::cli_abort("Internal error: vars must be a logical vector.")
+    cli::cli_abort("Internal error: {.arg vars} must be a logical vector.")
   }
 
   if (!any(vars)) {
