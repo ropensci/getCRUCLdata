@@ -1,19 +1,19 @@
 # getCRUCLdata code review — priority fixes
 
-## 1. Elevation unit asymmetry (likely data correctness bug)
+~~## 1. Elevation unit asymmetry (likely data correctness bug)
 
-`read_cru_dt` applies a km → m conversion (`elv * 1000L`) in `.read_local_files`,
+~~`read_cru_dt` applies a km → m conversion (`elv * 1000L`) in `.read_local_files`,
 but the raster path in `.make_rast` does not. `read_cru_dt` and `read_cru_rast`
-therefore return elevation in different units for the same source data.
+therefore return elevation in different units for the same source data.~~
 
 ---
 
-## 2. Dead code — `.resolve_cru_inputs` never called
+~~## 2. Dead code — `.resolve_cru_inputs` never called~~
 
-`.resolve_cru_inputs` exists in `internal-resolve_cru_inputs.R` but is never
+~~`.resolve_cru_inputs` exists in `internal-resolve_cru_inputs.R` but is never
 called anywhere. `.file_handling` does the same job and is what the public
 functions actually use. Either remove `.resolve_cru_inputs` or complete the
-intended swap.
+intended swap.~~
 
 ---
 
