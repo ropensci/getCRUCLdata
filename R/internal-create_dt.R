@@ -10,18 +10,14 @@
 .create_dt <- function(vars, files) {
   tidy_dt <- if (is.character(files)) .tidy_dt(vars, files) else files
 
-  # Compute derived variables (tmn, tmx)
   tidy_dt <- .add_derived_dt(tidy_dt, vars)
-
-  # Drop tmp/dtr if not requested
   tidy_dt <- .drop_source_vars_dt(tidy_dt, vars)
 
+  tidy_dt[, month := factor(month, levels = .cru_month_names, ordered = TRUE)]
   data.table::setorder(tidy_dt, month)
-  tidy_dt[, month := factor(month, levels = 1:12)]
 
   tidy_dt[]
 }
-
 
 #' @autoglobal
 .add_derived_dt <- function(dt, vars) {
