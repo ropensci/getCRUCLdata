@@ -1,7 +1,7 @@
 ---
 title: "getCRUCLdata"
 author: "Adam H. Sparks"
-date: "2026-04-13"
+date: "2026-05-12"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -87,32 +87,19 @@ CRU_data <- read_cru_dt(
 )
 
 CRU_data
-#>             lat     lon  month   pre pre_cv grid_10min_rd0.dat.gz   tmp   dtr   reh  sunp
-#>           <num>   <num> <fctr> <num>  <num>                 <num> <num> <num> <num> <num>
-#>       1: 30.917  35.417   <NA>    NA     NA                    NA    NA    NA    NA    NA
-#>       2: 31.083  35.417   <NA>    NA     NA                    NA    NA    NA    NA    NA
-#>       3: 31.250  35.417   <NA>    NA     NA                    NA    NA    NA    NA    NA
-#>       4: 31.417  35.417   <NA>    NA     NA                    NA    NA    NA    NA    NA
-#>       5: 31.750  35.583   <NA>    NA     NA                    NA    NA    NA    NA    NA
-#>      ---                                                                                 
-#> 6795146: 83.583 -30.083    dec   0.1   72.7                   5.1 -31.3   8.7  70.6     0
-#> 6795147: 83.583 -29.917    dec   0.1   72.8                   4.9 -30.7   8.6  70.6     0
-#> 6795148: 83.583 -29.750    dec   0.1   72.9                   4.9 -30.8   8.6  70.6     0
-#> 6795149: 83.583 -29.583    dec   0.1   73.0                   5.0 -31.2   8.6  70.6     0
-#> 6795150: 83.583 -29.417    dec   0.1   73.1                   5.1 -31.5   8.6  70.6     0
-#>            frs   wnd   elv    tmx    tmn
-#>          <num> <num> <num>  <num>  <num>
-#>       1:    NA    NA  -260     NA     NA
-#>       2:    NA    NA  -361     NA     NA
-#>       3:    NA    NA  -336     NA     NA
-#>       4:    NA    NA  -284     NA     NA
-#>       5:    NA    NA  -248     NA     NA
-#>      ---                                
-#> 6795146:    31   5.6   283 -26.95 -35.65
-#> 6795147:    31   5.6   186 -26.40 -35.00
-#> 6795148:    31   5.6   195 -26.50 -35.10
-#> 6795149:    31   5.6   268 -26.90 -35.50
-#> 6795150:    31   5.6   328 -27.20 -35.80
+#>             lat     lon month   pre pre_cv grid_10min_rd0.dat.gz   tmp   dtr   reh  sunp   frs   wnd   elv    tmx    tmn
+#>           <num>   <num> <ord> <num>  <num>                 <num> <num> <num> <num> <num> <num> <num> <num>  <num>  <num>
+#>       1: 30.917  35.417  <NA>    NA     NA                    NA    NA    NA    NA    NA    NA    NA  -260     NA     NA
+#>       2: 31.083  35.417  <NA>    NA     NA                    NA    NA    NA    NA    NA    NA    NA  -361     NA     NA
+#>       3: 31.250  35.417  <NA>    NA     NA                    NA    NA    NA    NA    NA    NA    NA  -336     NA     NA
+#>       4: 31.417  35.417  <NA>    NA     NA                    NA    NA    NA    NA    NA    NA    NA  -284     NA     NA
+#>       5: 31.750  35.583  <NA>    NA     NA                    NA    NA    NA    NA    NA    NA    NA  -248     NA     NA
+#>      ---                                                                                                                
+#> 6795146: 83.583 -30.083   dec   0.1   72.7                   5.1 -31.3   8.7  70.6     0    31   5.6   283 -26.95 -35.65
+#> 6795147: 83.583 -29.917   dec   0.1   72.8                   4.9 -30.7   8.6  70.6     0    31   5.6   186 -26.40 -35.00
+#> 6795148: 83.583 -29.750   dec   0.1   72.9                   4.9 -30.8   8.6  70.6     0    31   5.6   195 -26.50 -35.10
+#> 6795149: 83.583 -29.583   dec   0.1   73.0                   5.0 -31.2   8.6  70.6     0    31   5.6   268 -26.90 -35.50
+#> 6795150: 83.583 -29.417   dec   0.1   73.1                   5.1 -31.5   8.6  70.6     0    31   5.6   328 -27.20 -35.80
 ```
 
 Perhaps you only need one or two elements, it is easy to create a data frame of mean temperature only.
@@ -122,19 +109,19 @@ Perhaps you only need one or two elements, it is easy to create a data frame of 
 t <- read_cru_dt(tmp = TRUE)
 
 t
-#>              lat     lon  month   tmp
-#>            <num>   <num> <fctr> <num>
-#>       1: -59.083 -26.583    jan   0.2
-#>       2: -58.417 -26.250    jan   0.6
-#>       3: -58.417 -26.417    jan   0.4
-#>       4: -55.917 -67.250    jan   8.0
-#>       5: -55.750 -67.250    jan   8.2
-#>      ---                             
-#> 6795140:  83.583 -36.083    dec -32.6
-#> 6795141:  83.583 -36.250    dec -33.0
-#> 6795142:  83.583 -36.417    dec -33.4
-#> 6795143:  83.583 -36.583    dec -33.3
-#> 6795144:  83.583 -36.750    dec -33.3
+#>              lat     lon month   tmp
+#>            <num>   <num> <ord> <num>
+#>       1: -59.083 -26.583   jan   0.2
+#>       2: -58.417 -26.250   jan   0.6
+#>       3: -58.417 -26.417   jan   0.4
+#>       4: -55.917 -67.250   jan   8.0
+#>       5: -55.750 -67.250   jan   8.2
+#>      ---                            
+#> 6795140:  83.583 -36.083   dec -32.6
+#> 6795141:  83.583 -36.250   dec -33.0
+#> 6795142:  83.583 -36.417   dec -33.4
+#> 6795143:  83.583 -36.583   dec -33.3
+#> 6795144:  83.583 -36.750   dec -33.3
 ```
 
 #### Plotting data from the data frame
@@ -215,14 +202,14 @@ CRU_rast <- read_cru_rast(
 )
 
 CRU_rast
-#> class       : SpatRaster 
+#> class       : SpatRaster
 #> size        : 930, 2160, 133  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
 #> extent      : -180, 180, -65, 90  (xmin, xmax, ymin, ymax)
-#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
+#> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84)
 #> source(s)   : memory
-#> names       : pre_1, pre_2, pre_3, pre_4, pre_5,  pre_6, ... 
-#> min values  :   0.0,   0.0,   0.0,   0.0,     0,    0.0, ... 
+#> names       : pre_1, pre_2, pre_3, pre_4, pre_5,  pre_6, ...
+#> min values  :     0,     0,     0,     0,     0,      0, ...
 #> max values  : 910.1, 824.3, 727.3, 741.3,  1100, 2512.6, ...
 ```
 
