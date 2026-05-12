@@ -10,37 +10,50 @@
 #' @returns Invisibly returns `dest` for convenience.
 #' @dev Internal function, not user-facing.
 .retry_download <- function(url, dest, .max_tries = 3L) {
-  # Ensure destination directory exists
-  fs::dir_create(fs::path_dir(dest))
+  fs_dir_create(fs_path_dir(dest))
 
-  # Build request with caching + retry + safe error handling
-  req <- httr2::request(url) |>
-    httr2::req_user_agent("getCRUCLdata") |>
-    httr2::req_headers(
+  req <- req_request(url) |>
+    req_user_agent("getCRUCLdata") |>
+    req_headers(
       "Accept-Encoding" = "identity",
       "Connection" = "Keep-Alive"
     ) |>
-    httr2::req_retry(max_tries = .max_tries) |>
-    httr2::req_cache(path = fs::path_temp()) |>
-    httr2::req_error(is_error = function(resp) FALSE) |>
-    httr2::req_options()
+    req_retry(max_tries = .max_tries) |>
+    req_cache(path = fs_path_temp()) |>
+    req_error(is_error = function(resp) FALSE) |>
+    req_options()
 
-  # Perform request
-  resp <- httr2::req_perform(req)
+  resp <- req_perform(req)
 
-  # Check HTTP status
-  status <- httr2::resp_status(resp)
+  status <- resp_status(resp)
   if (status >= 400L) {
-    cli::cli_abort(
+    cli_abort(
       "Failed to download {.url {url}} (HTTP {status})."
     )
   }
 
-  # Write raw body to disk
-  brio::write_file_raw(
-    httr2::resp_body_raw(resp),
+  write_file_raw(
+    resp_body_raw(resp),
     path = dest
   )
 
   invisible(dest)
 }
+
+fs_dir_create <- fs::dir_create
+fs_path_dir <- fs::path_dir
+fs_path_temp <- fs::path_temp
+
+req_request <- httr2::request
+req_user_agent <- httr2::req_user_agent
+req_headers <- httr2::req_headers
+req_retry <- httr2::req_retry
+req_cache <- httr2::req_cache
+req_error <- httr2::req_error
+req_options <- httr2::req_options
+req_perform <- httr2::req_perform
+resp_status <- httr2::resp_status
+resp_body_raw <- httr2::resp_body_raw
+
+write_file_raw <- brio::write_file_raw
+cli_abort <- cli::cli_abort
