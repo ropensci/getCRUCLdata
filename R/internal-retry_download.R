@@ -9,6 +9,12 @@
 #'
 #' @returns Invisibly returns `dest` for convenience.
 #' @dev Internal function, not user-facing.
+#' @importFrom fs dir_create path_dir path_temp
+#' @importFrom httr2 request req_user_agent req_headers req_retry req_cache
+#' @importFrom httr2 req_error req_options req_perform resp_status resp_body_raw
+#' @importFrom brio write_file_raw
+#' @importFrom cli cli_abort
+
 .retry_download <- function(url, dest, .max_tries = 3L) {
   fs_dir_create(fs_path_dir(dest))
 
@@ -40,20 +46,20 @@
   invisible(dest)
 }
 
-fs_dir_create <- fs::dir_create
-fs_path_dir <- fs::path_dir
-fs_path_temp <- fs::path_temp
+fs_dir_create <- dir_create
+fs_path_dir <- path_dir
+fs_path_temp <- path_temp
 
-req_request <- httr2::request
-req_user_agent <- httr2::req_user_agent
-req_headers <- httr2::req_headers
-req_retry <- httr2::req_retry
-req_cache <- httr2::req_cache
-req_error <- httr2::req_error
-req_options <- httr2::req_options
-req_perform <- httr2::req_perform
-resp_status <- httr2::resp_status
-resp_body_raw <- httr2::resp_body_raw
+req_request <- request
+req_user_agent <- req_user_agent
+req_headers <- req_headers
+req_retry <- req_retry
+req_cache <- req_cache
+req_error <- req_error
+req_options <- req_options
+req_perform <- req_perform
+resp_status <- resp_status
+resp_body_raw <- resp_body_raw
 
-write_file_raw <- brio::write_file_raw
-cli_abort <- cli::cli_abort
+write_file_raw <- write_file_raw
+cli_abort <- cli_abort
