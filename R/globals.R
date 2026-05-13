@@ -20,5 +20,13 @@ utils::globalVariables(c(
   "pre_cv", # <.read_local_files>
   "i.pre_cv", # <.read_local_files>
   "elv", # <.read_local_files>
+  "lat", # <.tidy_dt>
+  "lon", # <.tidy_dt>
+  "lat", # <.read_local_files>
+  "lon", # <.read_local_files>
+  "month", # <.read_local_files>
+  "pre_cv", # <.read_local_files>
+  "i.pre_cv", # <.read_local_files>
+  "elv", # <.read_local_files>
   NULL
 ))

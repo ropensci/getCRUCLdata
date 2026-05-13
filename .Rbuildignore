@@ -34,6 +34,7 @@
 ^man/dot-read_local_files\.Rd$
 ^man/dot-retry_download\.Rd$
 ^man/dot-tidy_dt\.Rd$
+^man/dot-read_local_files\.Rd$
 ^man/dot-validate_x\.Rd$
 ^man/dot-check_vars\.Rd$
 ^man/dot-normalize_vars\.Rd$

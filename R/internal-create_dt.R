@@ -22,7 +22,7 @@
   )]
 
   # remove a few coordinates from elevation that do not appear in climate data
-  if (vars["elv"]) {
+  if (isTRUE(vars["elv"])) {
     tidy_dt <- tidy_dt[!.bad_coords, on = list(lat, lon)]
   }
 
