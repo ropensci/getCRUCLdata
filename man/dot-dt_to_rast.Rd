@@ -4,17 +4,24 @@
 \alias{.dt_to_rast}
 \title{Convert a tidy CRU data.table to a terra SpatRaster}
 \usage{
-.dt_to_rast(dt, varname)
+.dt_to_rast(dt, varname, bad_coords = NULL)
 }
 \arguments{
-\item{dt}{A tidy data.table with columns: lat, lon, month, value.}
+\item{dt}{A tidy data.table with columns: lat, lon, value, and (for
+non-elv variables) month.}
 
-\item{varname}{Character scalar: name of the variable (e.g., "tmp", "pre").}
+\item{varname}{Character scalar: variable identifier (e.g. "tmp", "pre",
+"elv").}
+
+\item{bad_coords}{data.table with columns lon/lat of cells to mask (used
+only for elv).}
 }
 \value{
-A terra::rast with 12 layers (one per month).
+A terra::rast — one layer for elv, 12 layers for all others.
 }
 \description{
-Convert a tidy CRU data.table to a terra SpatRaster
+For \code{elv}: produces a single-layer raster with bad coordinates masked to NA.
+For all other variables: produces 12 layers (one per month), named
+\verb{<varname>_<month>}.
 }
 \keyword{internal}
