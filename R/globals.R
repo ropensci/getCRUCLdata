@@ -11,6 +11,7 @@ utils::globalVariables(c(
   "tmp", # <.drop_source_vars_dt>
   "dtr", # <.drop_source_vars_dt>
   "month", # <.dt_to_rast>
+  "value", # <.dt_to_rast>
   "lon", # <.remove_bad_cells_rast>
   "lat", # <.remove_bad_cells_rast>
   "lat", # <.read_local_files>
