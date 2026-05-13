@@ -5,7 +5,6 @@
 #'
 #' @returns A merged data.table.
 #' @dev
-#'
 
 .tidy_dt <- function(vars, files) {
   .check_gzip_support(files)
@@ -38,14 +37,18 @@
   # Merge monthly variables
   monthly <- Filter(function(dt) "month" %in% names(dt), dt_list)
 
-  merged <- Reduce(
-    function(x, y) merge(x, y, by = c("lat", "lon", "month")),
-    monthly
-  )
+  if (length(monthly) == 0L) {
+    merged <- if (!is.null(elv_dt)) elv_dt else data.table::data.table()
+    return(merged[])
+  }
+
+  lapply(monthly, data.table::setkey, lat, lon, month)
+  merged <- Reduce(function(x, y) x[y], monthly)
 
   # Add elevation
   if (!is.null(elv_dt)) {
-    merged <- merged[elv_dt, on = c("lat", "lon")]
+    data.table::setkey(elv_dt, lat, lon)
+    merged <- elv_dt[merged, on = c("lat", "lon")]
   }
 
   return(merged[])
