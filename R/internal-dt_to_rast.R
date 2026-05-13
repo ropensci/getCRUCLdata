@@ -12,26 +12,29 @@
 #' @return A terra::rast - one layer for elv, 12 layers for all others.
 #' @autoglobal
 #' @dev
+
 .dt_to_rast <- function(dt, varname) {
   wrld <- .cru_template_rast()
 
   # --- elevation: single layer, bad coordinates masked ----------------------
   if (varname == "elv") {
+    value_col <- if ("elv" %in% names(dt)) "elv" else "value"
     xy <- cbind(dt$lon, dt$lat)
     cell <- terra::cellFromXY(wrld, xy)
-    wrld[cell] <- dt$value
+    wrld[cell] <- dt[[value_col]]
     wrld <- .remove_bad_cells_rast(wrld)
     names(wrld) <- "elv"
     return(wrld)
   }
 
   # --- all other variables: 12 monthly layers -------------------------------
+  value_col <- if ("value" %in% names(dt)) "value" else varname
+
   rast_list <- lapply(.cru_month_names, function(m) {
-    dtm <- dt[month == m]
     r <- wrld
-    xy <- cbind(dtm$lon, dtm$lat)
-    cell <- terra::cellFromXY(r, xy)
-    r[cell] <- dtm$value
+    dtm <- dt[month == m]
+    cells <- terra::cellFromXY(r, cbind(dtm$lon, dtm$lat))
+    r[cells] <- dtm[[value_col]]
     r
   })
 
