@@ -21,6 +21,7 @@
 
 ^man/dot-check_gzip_support\.Rd$
 ^man/dot-create_dt\.Rd$
+^man/dot-make_rast\.Rd$
 ^man/dot-create_rast\.Rd$
 ^man/dot-cru_template_rast\.Rd$
 ^man/dot-cru_varname\.Rd$
