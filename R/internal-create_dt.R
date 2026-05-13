@@ -16,6 +16,16 @@
   tidy_dt[, month := factor(month, levels = .cru_month_names, ordered = TRUE)]
   data.table::setorder(tidy_dt, month)
 
+  tidy_dt[, `:=`(
+    lat = round(lat, 3),
+    lon = round(lon, 3)
+  )]
+
+  # remove a few coordinates from elevation that do not appear in climate data
+  if (vars["elv"]) {
+    tidy_dt <- tidy_dt[!.bad_coords, on = list(lat, lon)]
+  }
+
   tidy_dt[]
 }
 
