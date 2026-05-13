@@ -4,18 +4,16 @@
 \alias{.remove_bad_cells_rast}
 \title{Mask bad cells in a SpatRaster}
 \usage{
-.remove_bad_cells_rast(r, bad_coords)
+.remove_bad_cells_rast(r)
 }
 \arguments{
 \item{r}{A terra::rast to modify.}
-
-\item{bad_coords}{data.table with columns lon and lat.}
 }
 \value{
 The modified terra::rast.
 }
 \description{
-Sets cells at the supplied coordinates to NA. Used exclusively for the
+Sets the package-level \code{.bad_coords} cells to NA. Used exclusively for the
 elevation layer.
 }
 \keyword{internal}
