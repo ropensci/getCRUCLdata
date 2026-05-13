@@ -1,37 +1,58 @@
 #' Convert a tidy CRU data.table to a terra SpatRaster
 #'
-#' @param dt A tidy data.table with columns: lat, lon, month, value.
-#' @param varname Character scalar: name of the variable (e.g., "tmp", "pre").
+#' For `elv`: produces a single-layer raster with bad coordinates masked to NA.
+#' For all other variables: produces 12 layers (one per month), named
+#' `<varname>_<month>`.
 #'
-#' @return A terra::rast with 12 layers (one per month).
+#' @param dt      A tidy data.table with columns: lat, lon, value, and (for
+#'                non-elv variables) month.
+#' @param varname Character scalar: variable identifier (e.g. "tmp", "pre",
+#'                "elv").
+#'
+#' @return A terra::rast - one layer for elv, 12 layers for all others.
+#' @autoglobal
 #' @dev
-
 .dt_to_rast <- function(dt, varname) {
-  # Base raster template (CRU 10-minute grid)
-  wrld <- terra::rast(
-    nrows = 930,
-    ncols = 2160,
-    ymin = -65,
-    ymax = 90,
-    xmin = -180,
-    xmax = 180
-  )
-  wrld[] <- NA_real_
+  wrld <- .cru_template_rast()
 
-  # Build 12 layers
+  # --- elevation: single layer, bad coordinates masked ----------------------
+  if (varname == "elv") {
+    xy <- cbind(dt$lon, dt$lat)
+    cell <- terra::cellFromXY(wrld, xy)
+    wrld[cell] <- dt$value
+    wrld <- .remove_bad_cells_rast(wrld)
+    names(wrld) <- "elv"
+    return(wrld)
+  }
+
+  # --- all other variables: 12 monthly layers -------------------------------
   rast_list <- lapply(.cru_month_names, function(m) {
     dtm <- dt[month == m]
-
     r <- wrld
     xy <- cbind(dtm$lon, dtm$lat)
     cell <- terra::cellFromXY(r, xy)
     r[cell] <- dtm$value
-
     r
   })
 
-  # Use varname here — this is the only place it matters
   names(rast_list) <- paste0(varname, "_", .cru_month_names)
-
   terra::rast(rast_list)
+}
+
+
+#' Mask bad cells in a SpatRaster
+#'
+#' Sets the package-level `.bad_coords` cells to NA. Used exclusively for the
+#' elevation layer.
+#'
+#' @param r A terra::rast to modify.
+#'
+#' @return The modified terra::rast.
+#' @autoglobal
+#' @dev
+.remove_bad_cells_rast <- function(r) {
+  cells <- terra::cellFromXY(r, as.matrix(.bad_coords[, list(lon, lat)]))
+  cells <- unique(stats::na.omit(cells))
+  r[cells] <- NA
+  r
 }

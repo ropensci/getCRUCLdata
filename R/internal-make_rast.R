@@ -62,7 +62,9 @@
   # --- Case 3: elevation (3 columns) ---
   if (n == 3L) {
     r <- build_single(3L, "elv")
-    return(r * 1000L) # ensure km converted to m
+    r <- .remove_bad_cells_rast(r)
+    r <- r * 1000L
+    return(r)
   }
 
   cli::cli_abort("Unexpected file format in {.var file}.")
