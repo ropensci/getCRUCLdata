@@ -1,4 +1,4 @@
-.bad_coords <- data.table(
+.bad_coords <- data.table::data.table(
   lat = c(30.917, 31.083, 31.250, 31.417, 31.750, 31.917),
   lon = c(35.417, 35.417, 35.417, 35.417, 35.583, 35.583)
 )
