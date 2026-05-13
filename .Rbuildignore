@@ -22,8 +22,10 @@
 ^man/dot-check_gzip_support\.Rd$
 ^man/dot-create_dt\.Rd$
 ^man/dot-create_rast\.Rd$
+^man/dot-cru_template_rast\.Rd$
 ^man/dot-cru_varname\.Rd$
 ^man/dot-dt_to_rast\.Rd$
+^man/dot-remove_bad_cells_rast\.Rd$
 ^man/dot-file_handling\.Rd$
 ^man/dot-filter_files\.Rd$
 ^man/dot-validate_filter_files\.Rd$
