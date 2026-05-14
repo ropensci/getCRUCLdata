@@ -70,9 +70,6 @@ The `read_cru_dt()` function automates the download process and creates data.tab
 
 ``` r
 library(getCRUCLdata)
-#> Registered S3 method overwritten by 'data.table':
-#>   method           from   
-#>   print.data.table colorDF
 
 CRU_data <- read_cru_dt(
   pre = TRUE,
@@ -88,15 +85,34 @@ CRU_data <- read_cru_dt(
   wnd = TRUE,
   elv = TRUE
 )
-#> Error in `httr2::req_perform()`:
-#> ! Failed to perform HTTP request.
-#> Caused by error in `curl::curl_fetch_memory()`:
-#> ! Failure when receiving data from the peer [crudata.uea.ac.uk]:
-#> LibreSSL SSL_read: LibreSSL/3.3.6: error:06FFF064:digital envelope routines:CRYPTO_internal:bad decrypt, errno 0
 
 CRU_data
-#> Error:
-#> ! object 'CRU_data' not found
+#>              lat     lon   elv month   pre pre_cv   rd0   tmp   dtr   reh  sunp   frs   wnd
+#>            <num>   <num> <num> <ord> <num>  <num> <num> <num> <num> <num> <num> <num> <num>
+#>       1: -59.083 -26.583   193   jan 105.4   35.2  17.1   0.2   2.3  88.6   9.4  18.7   6.4
+#>       2: -58.417 -26.417   239   jan 106.6   36.2  17.2   0.4   2.5  88.5   9.9  18.5   6.4
+#>       3: -58.417 -26.250   194   jan 106.3   36.2  17.1   0.6   2.4  88.5  10.0  18.4   6.4
+#>       4: -55.917 -67.250    64   jan  73.1   44.1  13.3   8.0   7.6  80.7  34.3   8.0   5.0
+#>       5: -55.750 -67.583    32   jan  71.7   44.6  13.2   8.4   7.7  80.5  34.7   7.6   4.9
+#>      ---                                                                                   
+#> 6796688:  83.583 -30.083   283   dec   0.1   72.7   5.1 -31.3   8.7  70.6   0.0  31.0   5.6
+#> 6796689:  83.583 -29.917   186   dec   0.1   72.8   4.9 -30.7   8.6  70.6   0.0  31.0   5.6
+#> 6796690:  83.583 -29.750   195   dec   0.1   72.9   4.9 -30.8   8.6  70.6   0.0  31.0   5.6
+#> 6796691:  83.583 -29.583   268   dec   0.1   73.0   5.0 -31.2   8.6  70.6   0.0  31.0   5.6
+#> 6796692:  83.583 -29.417   328   dec   0.1   73.1   5.1 -31.5   8.6  70.6   0.0  31.0   5.6
+#>             tmx    tmn
+#>           <num>  <num>
+#>       1:   1.35  -0.95
+#>       2:   1.65  -0.85
+#>       3:   1.80  -0.60
+#>       4:  11.80   4.20
+#>       5:  12.25   4.55
+#>      ---              
+#> 6796688: -26.95 -35.65
+#> 6796689: -26.40 -35.00
+#> 6796690: -26.50 -35.10
+#> 6796691: -26.90 -35.50
+#> 6796692: -27.20 -35.80
 ```
 
 Perhaps you only need one or two elements, it is easy to create a data frame of mean temperature only.
