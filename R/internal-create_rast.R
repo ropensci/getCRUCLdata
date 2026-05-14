@@ -21,7 +21,7 @@
     names(layers) <- if (is.null(prefix)) {
       .cru_month_names
     } else {
-      paste0(prefix, .cru_month_names)
+      sprintf("%s%s", prefix, .cru_month_names)
     }
     layers
   }
@@ -37,7 +37,7 @@
   # --- Case 1: Standard 12-month variables (14 columns) ---
   if (n == 14L) {
     layers <- build_monthly(3:14)
-    names(layers) <- paste0(varname, "_", .cru_month_names)
+    names(layers) <- sprintf("%s%s", varname, "_", .cru_month_names)
     return(terra::rast(layers))
   }
 
