@@ -70,6 +70,9 @@ The `read_cru_dt()` function automates the download process and creates data.tab
 
 ``` r
 library(getCRUCLdata)
+#> Registered S3 method overwritten by 'data.table':
+#>   method           from   
+#>   print.data.table colorDF
 
 CRU_data <- read_cru_dt(
   pre = TRUE,
