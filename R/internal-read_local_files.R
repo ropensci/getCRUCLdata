@@ -8,87 +8,78 @@
 #' @dev
 
 .read_local_files <- function(file, vars) {
-  # 1. Directory → find all matching files
+  # 1. Directory -> read and merge all matching files within
   if (fs::is_dir(file)) {
-    cat("DEBUG: Searching in directory:", file, "\n")
-
-    files <- fs::dir_ls(
+    paths <- fs::dir_ls(
       file,
       regexp = "grid_10min_.*\\.dat\\.gz$",
-      recurse = TRUE
+      recurse = FALSE
     )
-
-    cat("DEBUG: Files found:", length(files), "\n")
-    if (length(files) > 0) {
-      print(files)
+    if (!length(paths)) {
+      cli::cli_abort("No CRU .dat.gz files found in {.path {file}}.")
     }
-    cat("DEBUG: Files vector:", class(files), "\n")
-    if (length(files) == 0L) {
-      cli::cli_abort("No CRU files matching pattern found in {.var file}.")
-    }
-
-    dt_list <- lapply(files, function(f) {
-      x <- data.table::fread(f, header = FALSE)
-      .process_cru_file(x, vars)
-    })
-
-    return(data.table::rbindlist(dt_list, use.names = TRUE, fill = TRUE))
+    return(.tidy_dt(vars, paths))
   }
 
-  # 2. Single file → parse into tidy dt
+  # 2. Single file -> parse into tidy dt
   x <- data.table::fread(file, header = FALSE)
-  return(.process_cru_file(x, vars))
-}
-
-# Helper function to avoid code duplication
-.process_cru_file <- function(x, vars) {
   n <- ncol(x)
 
-  # 14‑column monthly variable
+  # Derive varname from filename
+  varname <- sub(
+    "^grid_10min_([a-z0-9_]+)\\.dat\\.gz$",
+    "\\1",
+    fs::path_file(file)
+  )
+
+  # 14-column monthly variable
   if (n == 14L) {
     data.table::setnames(x, c("lat", "lon", .cru_month_names))
-    return(data.table::melt(
+    x <- data.table::melt(
       x,
       id.vars = c("lat", "lon"),
       variable.name = "month",
-      value.name = "value"
-    ))
+      value.name = varname
+    )
+    return(x[])
   }
 
-  # 26‑column pre + pre_cv
+  # 26-column pre + pre_cv
   if (n == 26L) {
-    pre_names <- .cru_month_names
-    cv_names <- paste0(.cru_month_names, "_cv")
-    data.table::setnames(x, c("lat", "lon", pre_names, cv_names))
-
+    pre_dt <- x[, 1:14]
+    data.table::setnames(pre_dt, c("lat", "lon", .cru_month_names))
     pre_dt <- data.table::melt(
-      x[, c("lat", "lon", pre_names), with = FALSE],
+      pre_dt,
       id.vars = c("lat", "lon"),
       variable.name = "month",
       value.name = "pre"
     )
 
     if (isFALSE(vars["pre_cv"])) {
-      return(pre_dt)
+      return(pre_dt[])
     }
 
+    cv_dt <- x[, c(1L, 2L, 15:26)]
+    data.table::setnames(cv_dt, c("lat", "lon", .cru_month_names))
     cv_dt <- data.table::melt(
-      x[, c("lat", "lon", cv_names), with = FALSE],
+      cv_dt,
       id.vars = c("lat", "lon"),
       variable.name = "month",
       value.name = "pre_cv"
     )
-    data.table::setnames(cv_dt, "month", "month")
 
-    return(pre_dt[cv_dt, on = .(lat, lon, month)])
+    data.table::setkey(pre_dt, lat, lon, month)
+    data.table::setkey(cv_dt, lat, lon, month)
+    pre_dt[cv_dt, pre_cv := i.pre_cv]
+    return(pre_dt[])
   }
 
-  # 3‑column elevation
+  # 3-column elevation
   if (n == 3L) {
     data.table::setnames(x, c("lat", "lon", "elv"))
     x[, elv := elv * 1000L]
-    return(x)
+    return(x[])
   }
 
-  cli::cli_abort("Unexpected file format in {.var file}.")
+  cli::cli_abort("Unexpected file format in {.path {file}}.")
 }

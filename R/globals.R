@@ -11,17 +11,8 @@ utils::globalVariables(c(
   "tmp", # <.drop_source_vars_dt>
   "dtr", # <.drop_source_vars_dt>
   "month", # <.dt_to_rast>
-  "value", # <.dt_to_rast>
   "lon", # <.remove_bad_cells_rast>
   "lat", # <.remove_bad_cells_rast>
-  "lat", # <.read_local_files>
-  "lon", # <.read_local_files>
-  "month", # <.read_local_files>
-  "pre_cv", # <.read_local_files>
-  "i.pre_cv", # <.read_local_files>
-  "elv", # <.read_local_files>
-  "lat", # <.tidy_dt>
-  "lon", # <.tidy_dt>
   "lat", # <.read_local_files>
   "lon", # <.read_local_files>
   "month", # <.read_local_files>

@@ -7,12 +7,7 @@
 #' @returns A [terra::rast] object for one variable.
 #' @dev
 
-.make_rast <- function(
-  file,
-  wrld,
-  vars,
-  varname
-) {
+.make_rast <- function(file, wrld, vars, varname) {
   wvar <- data.table::fread(file, header = FALSE)
   cells <- terra::cellFromXY(wrld, wvar[, c(2L, 1L)])
   n <- ncol(wvar)
@@ -62,10 +57,10 @@
   # --- Case 3: elevation (3 columns) ---
   if (n == 3L) {
     r <- build_single(3L, "elv")
-    r <- .remove_bad_cells_rast(r)
-    r <- r * 1000L
+    r <- r * 1000L # km -> m first
+    r <- .remove_bad_cells_rast(r) # then mask
     return(r)
   }
 
-  cli::cli_abort("Unexpected file format in {.var file}.")
+  cli::cli_abort("Unexpected file format in {.path {file}}.")
 }
