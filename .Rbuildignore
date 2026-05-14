@@ -24,6 +24,7 @@
 ^man/dot-make_rast\.Rd$
 ^man/dot-create_rast\.Rd$
 ^man/dot-cru_template_rast\.Rd$
+^man/dot-cru_extent\.Rd$
 ^man/dot-cru_varname\.Rd$
 ^man/dot-dt_to_rast\.Rd$
 ^man/dot-remove_bad_cells_rast\.Rd$
