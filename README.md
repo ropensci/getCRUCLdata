@@ -8,15 +8,20 @@
 
 ## Introduction to {getCRUCLdata}
 
-The {getCRUCLdata} package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitates the calculation of minimum temperature and maximum temperature, and formats the data into a [data.table](https://CRAN.R-project.org/package=data.table) or a list of [terra::rast](https://CRAN.R-project.org/package=terra) objects for use.
+The {getCRUCLdata} package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitates the calculation of minimum temperature and maximum temperature, and formats the data into a [data.table](https://CRAN.R-project.org/package=data.table) or a [terra::rast](https://CRAN.R-project.org/package=terra) object.
 
-CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc minutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
+CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc minutes (0.1666667 degree) resolution.
+ For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
+
 
 ## Changes to original CRU CL v. 2.0 data
 
 This package automatically converts elevation values from kilometres to metres.
 
-This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xmin = -180, xmax = 180. Note that the original wind data include land area for parts of Antarctica.
+This package crops all spatial outputs to an extent of ymin = -60, ymax = 85, xmin = -180, xmax = 180.
+Note that the original wind data include land area for parts of Antarctica, and so these are omitted.
+There are also some elevation values around the Dead Sea area that do not have corresponding climate values and so these are removed.
+What is left is a complete suite of data for climate and elevation data in all grid cells that are provided, but not *all* the data that are in the original datasets.
 
 ## Quick Start
 
