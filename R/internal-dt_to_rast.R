@@ -1,59 +1,59 @@
-#' Convert a tidy CRU data.table to a terra SpatRaster
+#' For `elv`: produces a single-layer raster with bad coordinates masked to NA.
+#' For all other variables: produces 12 layers (one per month), named
+#' `<varname>_<month>`.
 #'
-#' @param dt A tidy data.table with columns: lat, lon, month, value.
-#' @param varname Character scalar: name of the variable (e.g., "tmp", "pre").
+#' @param dt      A tidy data.table with columns: lat, lon, value, and (for
+#'                non-elv variables) month.
+#' @param varname Character scalar: variable identifier (e.g. "tmp", "pre",
+#'                "elv").
 #'
-#' @return A terra::rast with 12 layers (one per month).
+#' @return A terra::rast - one layer for elv, 12 layers for all others.
+#' @autoglobal
 #' @dev
 
 .dt_to_rast <- function(dt, varname) {
-  # Ensure required columns exist
-  required <- c("lat", "lon", "month", "value")
-  if (!all(required %in% names(dt))) {
-    cli::cli_abort("`.dt_to_rast()` requires columns: {required}.")
+  wrld <- .cru_template_rast()
+
+  # --- elevation: single layer, bad coordinates masked ----------------------
+  if (varname == "elv") {
+    value_col <- if ("elv" %in% names(dt)) "elv" else "value"
+    xy <- cbind(dt$lon, dt$lat)
+    cell <- terra::cellFromXY(wrld, xy)
+    wrld[cell] <- dt[[value_col]]
+    wrld <- .remove_bad_cells_rast(wrld)
+    names(wrld) <- "elv"
+    return(wrld)
   }
 
-  # Base raster template (CRU 10-minute grid)
-  wrld <- terra::rast(
-    nrows = 930L,
-    ncols = 2160L,
-    ymin = -65L,
-    ymax = 90L,
-    xmin = -180L,
-    xmax = 180L
-  )
-  wrld[] <- NA_real_
+  # --- all other variables: 12 monthly layers -------------------------------
+  value_col <- if ("value" %in% names(dt)) "value" else varname
 
-  # Month order
-  month_names <- c(
-    "jan",
-    "feb",
-    "mar",
-    "apr",
-    "may",
-    "jun",
-    "jul",
-    "aug",
-    "sep",
-    "oct",
-    "nov",
-    "dec"
-  )
-
-  # Build 12 layers
-  rast_list <- lapply(month_names, function(m) {
-    dtm <- dt[month == m]
-
+  rast_list <- lapply(.cru_month_names, function(m) {
     r <- wrld
-    xy <- cbind(dtm$lon, dtm$lat)
-    cell <- terra::cellFromXY(r, xy)
-    r[cell] <- dtm$value
-
+    dtm <- dt[month == m]
+    cells <- terra::cellFromXY(r, cbind(dtm$lon, dtm$lat))
+    r[cells] <- dtm[[value_col]]
     r
   })
 
-  # Use varname here — this is the only place it matters
-  names(rast_list) <- paste0(varname, "_", month_names)
-
+  names(rast_list) <- sprintf("%s_%s", varname, .cru_month_names)
   terra::rast(rast_list)
+}
+
+
+#' Mask bad cells in a SpatRaster
+#'
+#' Sets the package-level `.bad_coords` cells to NA. Used exclusively for the
+#' elevation layer.
+#'
+#' @param r A terra::rast to modify.
+#'
+#' @return The modified terra::rast.
+#' @autoglobal
+#' @dev
+.remove_bad_cells_rast <- function(r) {
+  cells <- terra::cellFromXY(r, as.matrix(.bad_coords[, list(lon, lat)]))
+  cells <- unique(stats::na.omit(cells))
+  r[cells] <- NA
+  r
 }

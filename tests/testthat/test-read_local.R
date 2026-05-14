@@ -1,12 +1,4 @@
 test_that(".read_local_files lists local files", {
-  local_d <- withr::local_tempdir()
-  fs::dir_create(local_d)
-
-  fs::file_copy(
-    fs::dir_ls(test_path("fixtures"), glob = "*.dat.gz"),
-    local_d
-  )
-
   vars <- c(
     pre = TRUE,
     pre_cv = FALSE,
@@ -21,11 +13,15 @@ test_that(".read_local_files lists local files", {
     elv = FALSE
   )
 
-  files <- .read_local_files(local_d, vars)
-
-  pre_file <- test_path("fixtures", "grid_10min_pre.dat.gz")
-
-  dtvar <- .read_local_files(file = pre_file, vars = vars)
+  # Test 1: Directory with files (test_path already points to fixtures)
+  fixture_dir <- test_path("fixtures")
+  dtvar <- .read_local_files(fixture_dir, vars)
   expect_s3_class(dtvar, "data.table")
-  expect_true(all(c("lat", "lon", "month", "pre") %in% names(dtvar)))
+  expect_true(all(c("lat", "lon", "month") %in% names(dtvar)))
+
+  # Test 2: Single file directly
+  pre_file <- test_path("fixtures", "grid_10min_pre.dat.gz")
+  dtvar2 <- .read_local_files(file = pre_file, vars = vars)
+  expect_s3_class(dtvar2, "data.table")
+  expect_true(all(c("lat", "lon", "month", "pre") %in% names(dtvar2)))
 })

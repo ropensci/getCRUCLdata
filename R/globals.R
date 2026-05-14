@@ -2,12 +2,17 @@
 
 utils::globalVariables(c(
   "month", # <.create_dt>
+  "lat", # <.create_dt>
+  "lon", # <.create_dt>
   "tmx", # <.add_derived_dt>
   "tmp", # <.add_derived_dt>
   "dtr", # <.add_derived_dt>
   "tmn", # <.add_derived_dt>
   "tmp", # <.drop_source_vars_dt>
   "dtr", # <.drop_source_vars_dt>
+  "month", # <.dt_to_rast>
+  "lon", # <.remove_bad_cells_rast>
+  "lat", # <.remove_bad_cells_rast>
   "lat", # <.read_local_files>
   "lon", # <.read_local_files>
   "month", # <.read_local_files>

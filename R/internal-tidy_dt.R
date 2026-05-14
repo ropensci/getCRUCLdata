@@ -5,48 +5,42 @@
 #'
 #' @returns A merged data.table.
 #' @dev
-#'
 
 .tidy_dt <- function(vars, files) {
   .check_gzip_support(files)
+
+  dt_list <- lapply(files, .read_local_files, vars = vars)
+
   varnames <- sub(
-    "^grid_10min_([a-z_]+)\\.dat(\\.gz)?$",
+    "^grid_10min_([a-z0-9_]+)\\.dat\\.gz$",
     "\\1",
     fs::path_file(files)
   )
-
-  dt_list <- lapply(seq_along(files), function(i) {
-    dtv <- .read_local_files(files[[i]], vars)
-    v <- varnames[[i]]
-
-    if ("value" %in% names(dtv)) {
-      data.table::setnames(dtv, "value", v)
-    }
-
-    return(dtv)
-  })
-
   names(dt_list) <- varnames
 
-  # Separate elevation
+  # Separate elevation (no month column)
   elv_dt <- NULL
   if ("elv" %in% names(dt_list)) {
     elv_dt <- dt_list[["elv"]]
     dt_list[["elv"]] <- NULL
   }
 
-  # Merge monthly variables
   monthly <- Filter(function(dt) "month" %in% names(dt), dt_list)
 
-  merged <- Reduce(
-    function(x, y) merge(x, y, by = c("lat", "lon", "month")),
-    monthly
-  )
-
-  # Add elevation
-  if (!is.null(elv_dt)) {
-    merged <- merged[elv_dt, on = c("lat", "lon")]
+  if (length(monthly) == 0L) {
+    return(if (!is.null(elv_dt)) elv_dt[] else data.table::data.table())
   }
 
-  return(merged[])
+  # All monthly tables share identical lat/lon/month rows — key and join
+  lapply(monthly, data.table::setkey, lat, lon, month)
+  merged <- Reduce(function(x, y) x[y], monthly)
+
+  # Join elevation
+  if (!is.null(elv_dt)) {
+    data.table::setkey(elv_dt, lat, lon)
+    data.table::setkey(merged, lat, lon)
+    merged <- elv_dt[merged]
+  }
+
+  merged[]
 }

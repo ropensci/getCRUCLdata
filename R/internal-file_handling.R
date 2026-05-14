@@ -6,24 +6,18 @@
 #'
 #' @returns List with vars and files.
 #' @dev
-#'
 
 .file_handling <- function(vars, files, x) {
   vars <- .normalize_vars(vars)
 
-  # --- Case 1: remote (x is NULL) ---
+  # --- Case 1: remote download ---
   if (is.null(x)) {
     base <- "https://crudata.uea.ac.uk/cru/data/hrg/tmc"
     urls <- fs::path(base, files)
     dest <- fs::path_temp(fs::path_file(files))
 
-    mapply(
-      FUN = .retry_download,
-      url = urls,
-      dest = dest,
-      SIMPLIFY = TRUE,
-      USE.NAMES = FALSE
-    )
+    # side effects only
+    invisible(Map(.retry_download, urls, dest))
 
     return(list(vars = vars, files = dest))
   }
@@ -47,7 +41,7 @@
   }
 
   # Case 3: single .gz file
-  if (fs::path_ext(x) == "gz") {
+  if (identical(fs::path_ext(x), "gz")) {
     if (!fs::file_exists(x)) {
       cli::cli_abort(
         "The file {.var x} does not exist: {x}.",

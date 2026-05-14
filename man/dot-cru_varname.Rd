@@ -10,12 +10,10 @@
 \item{files}{Character vector of CRU \code{.dat.gz} file paths.}
 }
 \value{
-A character vector of variable names with the \code{grid_10min_}
-prefix and file extension removed.
+Character vector of variable names.
 }
 \description{
-Internal helper that converts full CRU file paths such as
-\code{grid_10min_pre.dat.gz} or \code{grid_10min_pre_cv.dat.gz} into their
-corresponding variable identifiers (\code{"pre"}, \code{"pre_cv"}, \code{"tmp"}, etc.).
+Strips the \code{grid_10min_} prefix and \code{.dat.gz} suffix from CRU filenames,
+returning the bare variable identifier (e.g. "pre", "pre_cv", "elv").
 }
 \keyword{internal}

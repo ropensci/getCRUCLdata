@@ -10,7 +10,7 @@
 
 .check_gzip_support <- function(files) {
   # Only relevant for character vectors containing .gz files
-  if (!is.character(files) || !any(grepl("\\.gz$", files))) {
+  if (!is.character(files) || !any(endsWith(files, ".gz"))) {
     return(invisible(TRUE))
   }
 
@@ -24,7 +24,7 @@
         x = "Cannot read compressed `.gz` files.",
         i = "Package {.pkg R.utils} is not installed.",
         i = "System {.code gzip} command not found.",
-        "Install {.pkg R.utils} with {.code install.packages('R.utils')}."
+        i = "Install {.pkg R.utils} with {.code install.packages('R.utils')}."
       )
     )
   }
