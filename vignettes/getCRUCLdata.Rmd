@@ -1,7 +1,7 @@
 ---
 title: "getCRUCLdata"
 author: "Adam H. Sparks"
-date: "2026-05-12"
+date: "2026-05-14"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -70,6 +70,9 @@ The `read_cru_dt()` function automates the download process and creates data.tab
 
 ``` r
 library(getCRUCLdata)
+#> Registered S3 method overwritten by 'data.table':
+#>   method           from   
+#>   print.data.table colorDF
 
 CRU_data <- read_cru_dt(
   pre = TRUE,
@@ -87,19 +90,32 @@ CRU_data <- read_cru_dt(
 )
 
 CRU_data
-#>             lat     lon month   pre pre_cv grid_10min_rd0.dat.gz   tmp   dtr   reh  sunp   frs   wnd   elv    tmx    tmn
-#>           <num>   <num> <ord> <num>  <num>                 <num> <num> <num> <num> <num> <num> <num> <num>  <num>  <num>
-#>       1: 30.917  35.417  <NA>    NA     NA                    NA    NA    NA    NA    NA    NA    NA  -260     NA     NA
-#>       2: 31.083  35.417  <NA>    NA     NA                    NA    NA    NA    NA    NA    NA    NA  -361     NA     NA
-#>       3: 31.250  35.417  <NA>    NA     NA                    NA    NA    NA    NA    NA    NA    NA  -336     NA     NA
-#>       4: 31.417  35.417  <NA>    NA     NA                    NA    NA    NA    NA    NA    NA    NA  -284     NA     NA
-#>       5: 31.750  35.583  <NA>    NA     NA                    NA    NA    NA    NA    NA    NA    NA  -248     NA     NA
-#>      ---                                                                                                                
-#> 6795146: 83.583 -30.083   dec   0.1   72.7                   5.1 -31.3   8.7  70.6     0    31   5.6   283 -26.95 -35.65
-#> 6795147: 83.583 -29.917   dec   0.1   72.8                   4.9 -30.7   8.6  70.6     0    31   5.6   186 -26.40 -35.00
-#> 6795148: 83.583 -29.750   dec   0.1   72.9                   4.9 -30.8   8.6  70.6     0    31   5.6   195 -26.50 -35.10
-#> 6795149: 83.583 -29.583   dec   0.1   73.0                   5.0 -31.2   8.6  70.6     0    31   5.6   268 -26.90 -35.50
-#> 6795150: 83.583 -29.417   dec   0.1   73.1                   5.1 -31.5   8.6  70.6     0    31   5.6   328 -27.20 -35.80
+#>              lat     lon   elv month   pre pre_cv   rd0   tmp   dtr   reh  sunp   frs   wnd
+#>            <num>   <num> <num> <ord> <num>  <num> <num> <num> <num> <num> <num> <num> <num>
+#>       1: -59.083 -26.583   193   jan 105.4   35.2  17.1   0.2   2.3  88.6   9.4  18.7   6.4
+#>       2: -58.417 -26.417   239   jan 106.6   36.2  17.2   0.4   2.5  88.5   9.9  18.5   6.4
+#>       3: -58.417 -26.250   194   jan 106.3   36.2  17.1   0.6   2.4  88.5  10.0  18.4   6.4
+#>       4: -55.917 -67.250    64   jan  73.1   44.1  13.3   8.0   7.6  80.7  34.3   8.0   5.0
+#>       5: -55.750 -67.583    32   jan  71.7   44.6  13.2   8.4   7.7  80.5  34.7   7.6   4.9
+#>      ---                                                                                   
+#> 6796688:  83.583 -30.083   283   dec   0.1   72.7   5.1 -31.3   8.7  70.6   0.0  31.0   5.6
+#> 6796689:  83.583 -29.917   186   dec   0.1   72.8   4.9 -30.7   8.6  70.6   0.0  31.0   5.6
+#> 6796690:  83.583 -29.750   195   dec   0.1   72.9   4.9 -30.8   8.6  70.6   0.0  31.0   5.6
+#> 6796691:  83.583 -29.583   268   dec   0.1   73.0   5.0 -31.2   8.6  70.6   0.0  31.0   5.6
+#> 6796692:  83.583 -29.417   328   dec   0.1   73.1   5.1 -31.5   8.6  70.6   0.0  31.0   5.6
+#>             tmx    tmn
+#>           <num>  <num>
+#>       1:   1.35  -0.95
+#>       2:   1.65  -0.85
+#>       3:   1.80  -0.60
+#>       4:  11.80   4.20
+#>       5:  12.25   4.55
+#>      ---              
+#> 6796688: -26.95 -35.65
+#> 6796689: -26.40 -35.00
+#> 6796690: -26.50 -35.10
+#> 6796691: -26.90 -35.50
+#> 6796692: -27.20 -35.80
 ```
 
 Perhaps you only need one or two elements, it is easy to create a data frame of mean temperature only.
@@ -112,16 +128,16 @@ t
 #>              lat     lon month   tmp
 #>            <num>   <num> <ord> <num>
 #>       1: -59.083 -26.583   jan   0.2
-#>       2: -58.417 -26.250   jan   0.6
-#>       3: -58.417 -26.417   jan   0.4
+#>       2: -58.417 -26.417   jan   0.4
+#>       3: -58.417 -26.250   jan   0.6
 #>       4: -55.917 -67.250   jan   8.0
-#>       5: -55.750 -67.250   jan   8.2
+#>       5: -55.750 -67.583   jan   8.4
 #>      ---                            
-#> 6795140:  83.583 -36.083   dec -32.6
-#> 6795141:  83.583 -36.250   dec -33.0
-#> 6795142:  83.583 -36.417   dec -33.4
-#> 6795143:  83.583 -36.583   dec -33.3
-#> 6795144:  83.583 -36.750   dec -33.3
+#> 6795140:  83.583 -30.083   dec -31.3
+#> 6795141:  83.583 -29.917   dec -30.7
+#> 6795142:  83.583 -29.750   dec -30.8
+#> 6795143:  83.583 -29.583   dec -31.2
+#> 6795144:  83.583 -29.417   dec -31.5
 ```
 
 #### Plotting data from the data frame
@@ -142,7 +158,7 @@ ggplot(data = t, aes(x = lon, y = lat, fill = tmp)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="plot_t-1.png" alt="Maps of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."  />
+<img src="vignettes/plot_t-1.png" alt="Maps of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."  />
 <p class="caption">Maps of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991.</p>
 </div>
 
@@ -160,7 +176,7 @@ ggplot(data = t, aes(x = month, y = tmp)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="violin_plot-1.png" alt="Monthly values of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."  />
+<img src="vignettes/violin_plot-1.png" alt="Monthly values of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."  />
 <p class="caption">Monthly values of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991.</p>
 </div>
 
@@ -203,9 +219,9 @@ CRU_rast <- read_cru_rast(
 
 CRU_rast
 #> class       : SpatRaster
-#> size        : 930, 2160, 133  (nrow, ncol, nlyr)
+#> size        : 870, 2160, 133  (nrow, ncol, nlyr)
 #> resolution  : 0.1666667, 0.1666667  (x, y)
-#> extent      : -180, 180, -65, 90  (xmin, xmax, ymin, ymax)
+#> extent      : -180, 180, -60, 85  (xmin, xmax, ymin, ymax)
 #> coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84)
 #> source(s)   : memory
 #> names       : pre_1, pre_2, pre_3, pre_4, pre_5,  pre_6, ...
