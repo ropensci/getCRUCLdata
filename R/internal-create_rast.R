@@ -21,7 +21,7 @@
     names(layers) <- if (is.null(prefix)) {
       .cru_month_names
     } else {
-      sprintf("%s%s", prefix, .cru_month_names)
+      paste0(prefix, .cru_month_names)
     }
     layers
   }
@@ -37,7 +37,7 @@
   # --- Case 1: Standard 12-month variables (14 columns) ---
   if (n == 14L) {
     layers <- build_monthly(3:14)
-    names(layers) <- sprintf("%s%s", varname, "_", .cru_month_names)
+    names(layers) <- paste0(varname, "_", .cru_month_names)
     return(terra::rast(layers))
   }
 
@@ -85,14 +85,14 @@
 
   # 3. Handle pre-built SpatRaster or tidy data.table list inputs
   if (all(vapply(files, inherits, logical(1), what = "SpatRaster"))) {
-    return(terra::rast(files))
+    return(terra::crop(terra::rast(files), .cru_extent()))
   }
 
   if (is.list(files) && !is.character(files)) {
     rast_list <- lapply(names(files), function(v) {
       .dt_to_rast(files[[v]], varname = v)
     })
-    return(terra::rast(rast_list))
+    return(terra::crop(terra::rast(rast_list), .cru_extent()))
   }
 
   # 4. Build rasters from raw CRU files
@@ -129,7 +129,8 @@
     rast_list$dtr <- NULL
   }
 
-  terra::rast(rast_list)
+  # Crop to CRU CL 2.0 extent: ymin = -60, ymax = 85
+  terra::crop(terra::rast(rast_list), .cru_extent())
 }
 
 
@@ -151,6 +152,19 @@
   )
   r[] <- NA_real_
   r
+}
+
+
+#' CRU CL 2.0 output crop extent
+#'
+#' Crops all raster outputs to ymin = -60, ymax = 85, xmin = -180, xmax = 180,
+#' matching the stated coverage of the CRU CL 2.0 dataset in the package's
+#' README. This crops the wind data that cover the Antarctic region.
+#'
+#' @return A terra::ext object.
+#' @dev
+.cru_extent <- function() {
+  terra::ext(-180, 180, -60, 85)
 }
 
 
