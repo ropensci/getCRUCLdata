@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_cru_rast.R
 \name{read_cru_rast}
 \alias{read_cru_rast}
-\title{Create a terra rast object of CRU CL v. 2.0 climatology elements}
+\title{Create a terra SpatRaster object of CRU CL v. 2.0 climatology elements}
 \source{
 \describe{
 \item{pre}{\url{https://crudata.uea.ac.uk/cru/data/hrg/tmc/grid_10min_pre.dat.gz}}
@@ -80,11 +80,11 @@ data.table, \code{TRUE}. Defaults to \code{FALSE}.}
 automatically be downloaded from the server.}
 }
 \value{
-A list object of \link[terra:rast]{terra::rast} objects.
+A \link[terra:SpatRaster]{terra::SpatRaster} object.
 }
 \description{
-Create a \link[terra:rast]{terra::rast} object or list of objects from \acronym{CRU} CL 2.0
-data.
+Create a \link[terra:SpatRaster]{terra::SpatRaster} object or list of objects from \acronym{CRU} CL
+2.0 data.
 }
 \section{Nomenclature and Units}{
 

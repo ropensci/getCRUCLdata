@@ -7,10 +7,10 @@
 .remove_bad_cells_rast(r)
 }
 \arguments{
-\item{r}{A terra::rast to modify.}
+\item{r}{A \link[terra:rast]{terra::rast} to modify.}
 }
 \value{
-The modified terra::rast.
+The modified \link[terra:rast]{terra::rast}.
 }
 \description{
 Sets the package-level \code{.bad_coords} cells to NA. Used exclusively for the

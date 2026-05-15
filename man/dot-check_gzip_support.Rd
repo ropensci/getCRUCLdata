@@ -9,6 +9,9 @@
 \arguments{
 \item{files}{Character vector of file paths.}
 }
+\value{
+An invisible \code{TRUE} if support is found.
+}
 \description{
 Internal helper used by both .tidy_dt() and .create_rast().
 }

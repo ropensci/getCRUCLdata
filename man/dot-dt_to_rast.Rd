@@ -12,11 +12,11 @@ For all other variables: produces 12 layers (one per month), named
 \item{dt}{A tidy data.table with columns: lat, lon, value, and (for
 non-elv variables) month.}
 
-\item{varname}{Character scalar: variable identifier (e.g. "tmp", "pre",
+\item{varname}{Character scalar: variable identifier (e.g., "tmp", "pre",
 "elv").}
 }
 \value{
-A terra::rast - one layer for elv, 12 layers for all others.
+A \link[terra:rast]{terra::rast} - one layer for elv, 12 layers for all others.
 }
 \description{
 For \code{elv}: produces a single-layer raster with bad coordinates masked to NA.
