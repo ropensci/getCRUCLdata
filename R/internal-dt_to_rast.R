@@ -2,12 +2,12 @@
 #' For all other variables: produces 12 layers (one per month), named
 #' `<varname>_<month>`.
 #'
-#' @param dt      A tidy data.table with columns: lat, lon, value, and (for
-#'                non-elv variables) month.
-#' @param varname Character scalar: variable identifier (e.g. "tmp", "pre",
-#'                "elv").
+#' @param dt A tidy data.table with columns: lat, lon, value, and (for
+#'   non-elv variables) month.
+#' @param varname Character scalar: variable identifier (e.g., "tmp", "pre",
+#'  "elv").
 #'
-#' @return A terra::rast - one layer for elv, 12 layers for all others.
+#' @return A [terra::rast] - one layer for elv, 12 layers for all others.
 #' @autoglobal
 #' @dev
 
@@ -46,14 +46,14 @@
 #' Sets the package-level `.bad_coords` cells to NA. Used exclusively for the
 #' elevation layer.
 #'
-#' @param r A terra::rast to modify.
+#' @param r A [terra::rast] to modify.
 #'
-#' @return The modified terra::rast.
+#' @return The modified [terra::rast].
 #' @autoglobal
 #' @dev
 .remove_bad_cells_rast <- function(r) {
   cells <- terra::cellFromXY(r, as.matrix(.bad_coords[, list(lon, lat)]))
   cells <- unique(stats::na.omit(cells))
   r[cells] <- NA
-  r
+  return(r)
 }

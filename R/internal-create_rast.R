@@ -54,7 +54,7 @@
   # --- Case 3: elevation (3 columns) ---
   if (n == 3L) {
     r <- build_single(3L, "elv")
-    r <- r * 1000L
+    r <- r * 1000L # convert from km to m
     r <- .remove_bad_cells_rast(r)
     return(r)
   }
@@ -151,7 +151,7 @@
     xmax = 180
   )
   r[] <- NA_real_
-  r
+  return(r)
 }
 
 

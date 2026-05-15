@@ -21,10 +21,14 @@
   }
   # Crop to CRU CL 2.0 extent: ymin = -60, ymax = 85
   tidy_dt <- tidy_dt[lat >= -60 & lat <= 85]
-  tidy_dt[]
+  return(tidy_dt[])
 }
 
-
+#' Add derived temperature values for TMAX and TMIN
+#' @param dt A data.table object of CRU data containing `tmp` and `dtr` in order
+#'  to calculate tmin and tmxax.
+#' @param vars A named logical vector.
+#' @returns A data.table with tmin and or tmax cols.
 #' @autoglobal
 .add_derived_dt <- function(dt, vars) {
   has_inputs <- all(c("tmp", "dtr") %in% names(dt))
@@ -32,12 +36,22 @@
     if (isTRUE(vars["tmx"])) {
       dt[, tmx := tmp + 0.5 * dtr]
     }
-    if (isTRUE(vars["tmn"])) dt[, tmn := tmp - 0.5 * dtr]
+    if (isTRUE(vars["tmn"])) {
+      dt[, tmn := tmp - 0.5 * dtr]
+    }
   }
-  dt
+  return(dt)
 }
 
 
+#' Remove source vars if not requested
+#'
+#' If `tmin` or `tmax` are requested but `tmp` or `dtr` are not requested, this
+#'  function drops the unrequested vars.
+#' @param dt A data.table object of CRU data containing `tmp` and `dtr` in order
+#'  to calculate tmin and tmxax.
+#' @param vars A named logical vector.
+#' @returns A data.table with the unrequested var columns removed.
 #' @autoglobal
 .drop_source_vars_dt <- function(dt, vars) {
   if (isTRUE(vars["tmn"]) || isTRUE(vars["tmx"])) {
@@ -46,5 +60,5 @@
     }
     if (!vars["dtr"]) dt[, dtr := NULL]
   }
-  dt
+  return(dt)
 }

@@ -18,7 +18,7 @@
   "dec"
 )
 
-CRU_FILES <- c(
+.cru_files <- c(
   pre = "grid_10min_pre.dat.gz",
   rd0 = "grid_10min_rd0.dat.gz",
   tmp = "grid_10min_tmp.dat.gz",

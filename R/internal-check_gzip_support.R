@@ -6,15 +6,14 @@
 #' is available.
 #'
 #' @param files Character vector of file paths.
+#' @returns An invisible `TRUE` if support is found.
 #' @dev
 
 .check_gzip_support <- function(files) {
-  # Only relevant for character vectors containing .gz files
   if (!is.character(files) || !any(endsWith(files, ".gz"))) {
     return(invisible(TRUE))
   }
 
-  # Check for either R.utils or system gzip
   if (
     !requireNamespace("R.utils", quietly = TRUE) &&
       Sys.which("gzip") == ""
