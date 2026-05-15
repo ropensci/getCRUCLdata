@@ -37,7 +37,7 @@
   })
 
   names(rast_list) <- sprintf("%s_%s", varname, .cru_month_names)
-  terra::rast(rast_list)
+  return(terra::rast(rast_list))
 }
 
 
