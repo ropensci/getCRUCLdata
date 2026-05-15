@@ -28,8 +28,7 @@ knitr::opts_chunk$set(
 
 ## Introduction to {getCRUCLdata}
 
-The {getCRUCLdata} package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a [base::data.frame()] object or a [base::list()]
-of [terra::rast()] objects.
+The {getCRUCLdata} package provides functions that automate importing CRU CL v. 2.0 climatology data into R, facilitate the calculation of minimum temperature and maximum temperature, and formats the data into a [data.table::data.table] object or a [terra:SpatRaster].
 
 CRU CL v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arcminutes (0.1666667 arc degree) resolution.
 For more information see the description of the data provided by the University of East Anglia Climate Research Unit (CRU), <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.
@@ -100,7 +99,7 @@ CRU_data <- read_cru_dt(
 CRU_data
 ```
 
-Perhaps you only need one or two elements, it is easy to create a data frame of mean temperature only.
+Perhaps you only need one or two elements, it is easy to create a data.table of mean temperature only.
 
 ```{r get_t_only, eval=TRUE}
 t <- read_cru_dt(tmp = TRUE)
@@ -136,24 +135,13 @@ ggplot(data = t, aes(x = month, y = tmp)) +
   )
 ```
 
-#### Saving the `data.frame` as a CSV (comma separated values file) locally
-
-Save the resulting `data.frame` to local disk as a comma separated (CSV)
-file to local disk, using `fwrite()` from {data.table}.
-
-```{r save_t, eval=FALSE}
-library(data.table)
-fwrite(x = t, file = "~/CRU_tmp.csv")
-```
 
 ### Creating terra raster stacks for use in R and saving for use in another GIS
 
-For working with spatial data, {getCRUCLdata} provides a function that create lists of {terra} stacks of the data.
+For working with spatial data, {getCRUCLdata} provides a function that create a [terra::SpatRaster] object of the data.
 
-The `read_cru_rast()` functions provide similar functionality to `get_CRU_df()`, but rather than returning a data frame, it returns a list of `terra::rast()` objects for use in an R session.
-
-The `get_CRU_stack()` function automates the download process and creates a `terra::rast()` object of the CRU CL v. 2.0 climatology elements.
-Illustrated here is creating a `terra::rast()` of all CRU CL v. 2.0 climatology elements available.
+The `read_cru_rast()` functions provide similar functionality to `read_cru_dt()`, but rather than returning a data frame, it returns a `terra::SpatRaster()` object with n layers for use in an R session.
+Illustrated here is creating a `terra::SpatRaster()` of all CRU CL v. 2.0 climatology elements available.
 
 ```{r read_cru_rast, eval = TRUE}
 CRU_rast <- read_cru_rast(
@@ -174,28 +162,18 @@ CRU_rast <- read_cru_rast(
 CRU_rast
 ```
 
-The `create_CRU_stack()` function works in the same way with only one minor difference.
-You must supply the location of the files on the local disk (`dsn`) that you wish to import.
+#### Plotting SpatRaster objects of tmin and tmax
 
-```{r read_cru_rast_t, eval=FALSE}
-t <- read_cru_rast(tmp = TRUE, x = "~/Downloads")
-```
-
-#### Plotting terra::rast objects of tmin and tmax
-
-Because the stacks are in a `list()`, we need to access each element of the list individually to plot them, that's what the `[[1]]` or `[[2]]` is, the first or second element of the list.
-Here using `[[7]]` we will plot the monthly average minimum temperature for all twelve months.
-
-```{r plot_cru_stack_tmn, eval=FALSE}
+```{r plot_cru_stack_tmn, eval=true}
 library(terra)
-
-plot(CRU_rast[[7]])
+library(tidyterra)
 ```
 
-To plot only one month from the stack is also possible. Here we plot maximum temperature for July.
+To plot only one month from the stack is also possible.
+Here we plot maximum temperature for July.
 Note that we use indexing `[[2]]` as before but append a `$jul` to the object.
-This is the name of the layer in the `terra::rast()`.
-So, we are telling R to plot the second object in the `CRU_stack` list, which is `tmx` and from that `rast`, plot only the layer for July.
+This is the name of the layer in the `terra::SpatRaster()`.
+So, we are telling R to plot the second object in the `CRU_rast` object, which is `tmx` and from that `rast`, plot only the layer for July.
 
 ```{r plot_cru_rast_tmx, eval=FALSE}
 plot(t[[8]]$jul)
