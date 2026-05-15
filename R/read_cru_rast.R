@@ -1,9 +1,10 @@
-#' Create a terra rast object of CRU CL v. 2.0 climatology elements
+#' Create a terra SpatRaster object of CRU CL v. 2.0 climatology elements
 #'
-#' Create a [terra::rast] object or list of objects from \acronym{CRU} CL 2.0
-#'  data.
+#' Create a [terra::SpatRaster] object or list of objects from \acronym{CRU} CL
+#'  2.0 data.
 #'
 #' @inherit read_cru_dt
+#'
 #' @examplesIf interactive()
 #' # Create a data frame of temperature from locally available files in the
 #' # tempdir() directory.
@@ -27,8 +28,9 @@
 #'
 #' cru_tmp
 #'
-#' @returns A list object of [terra::rast] objects.
+#' @returns A [terra::SpatRaster] object.
 #' @export
+
 read_cru_rast <- function(
   pre = FALSE,
   pre_cv = FALSE,
