@@ -19,6 +19,8 @@ Users are encouraged to manage their own caching solutions if needed, *e.g.*, {t
 
 * Update documentation to reflect new functionality.
 
+* Improvements to the file handling and object creation to be more efficient and faster.
+
 # getCRUCLdata 1.0.3
 
 ## Major Changes
