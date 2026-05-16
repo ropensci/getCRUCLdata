@@ -25,33 +25,31 @@
 #' For more information see the description of the data provided by
 #' \acronym{CRU}, <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>
 #'
-#' @param pre Reads precipitation (millimetres/month) and returns in the
-#'  data.table, `TRUE`. Defaults to `FALSE`.
-#' @param pre_cv Reads cv of precipitation (percent) and returns in the
-#'  data.table, `TRUE`. Defaults to `FALSE`. NOTE. Setting this
-#'  to `TRUE` will always results in `pre` being set to `TRUE` and
-#'  returned as well.
-#' @param rd0 Reads wet-days (number days with >0.1 millimetres rain per
-#'  month) and returns in the data.table, `TRUE`. Defaults to `FALSE`.
-#' @param dtr Reads mean diurnal temperature range (degrees Celsius)
-#'  and returns it in the data frame, `TRUE`. Defaults to `FALSE`.
-#' @param tmp Reads temperature (degrees Celsius) and returns it in the
-#'  data.table, `TRUE`. Defaults to `FALSE`.
-#' @param tmn Calculate minimum temperature values (degrees Celsius)
-#'  and returns it in the data.table, `TRUE`. Defaults to `FALSE`.
-#' @param tmx Calculate maximum temperature (degrees Celsius) and returns it in
-#'  the data.table, `TRUE`. Defaults to `FALSE`.
-#' @param reh Reads relative humidity and returns it in the data.table, `TRUE`.
+#' @param pre Read precipitation (millimetres/month) and return it, `TRUE`.
 #'  Defaults to `FALSE`.
-#' @param sunp Reads sunshine, percent of maximum possible (percent of
-#'  day length) and returns it in the data.table, `TRUE`. Defaults to `FALSE`.
-#' @param frs Reads ground-frost records (number of days with ground-
-#'  frost per month) and returns it in the data.table, `TRUE`. Defaults to
+#' @param pre_cv Read cv of precipitation (percent) and return it, `TRUE`.
+#'  Defaults to `FALSE`. NOTE. Setting this to `TRUE` will always results in
+#'  `pre` being set to `TRUE` and returned as well.
+#' @param rd0 Read wet-days (number days with >0.1 millimetres rain per
+#'  month) and return it, `TRUE`. Defaults to `FALSE`.
+#' @param dtr Read mean diurnal temperature range (degrees Celsius)
+#'  and return it, `TRUE`. Defaults to `FALSE`.
+#' @param tmp Reads temperature (degrees Celsius) and return it, TRUE`.
+#'  Defaults to `FALSE`.
+#' @param tmn Calculate minimum temperature values (degrees Celsius)
+#'  and return it, `TRUE`. Defaults to `FALSE`.
+#' @param tmx Calculate maximum temperature (degrees Celsius) and return it,
+#'  `TRUE`. Defaults to `FALSE`.
+#' @param reh Read relative humidity and return it, `TRUE`. Defaults to
 #'  `FALSE`.
-#' @param wnd Load 10 m wind speed (metres/second) and returns it in the
-#'  data.table, `TRUE`. Defaults to `FALSE`.
-#' @param elv Reads elevation (converted to metres) and returns it in the
-#'  data.table, `TRUE`. Defaults to `FALSE`.
+#' @param sunp Read sunshine, percent of maximum possible (percent of
+#'  day length) and return it, `TRUE`. Defaults to `FALSE`.
+#' @param frs Read ground-frost records (number of days with ground-
+#'  frost per month) and return it, `TRUE`. Defaults to `FALSE`.
+#' @param wnd Read 10 m wind speed (metres/second) and return it, `TRUE`.
+#'  Defaults to `FALSE`.
+#' @param elv Read elevation (converted to metres) and return it, `TRUE`.
+#'  Defaults to `FALSE`.
 #' @param x An optional local file path where \acronym{CRU} \acronym{CL} v.2.0
 #'  .dat.gz files are located.  If this is empty, the requested data will
 #'  automatically be downloaded from the server.
