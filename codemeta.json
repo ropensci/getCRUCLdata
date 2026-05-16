@@ -2,7 +2,7 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "getCRUCLdata",
-  "description": "Provides functions that automate downloading and importing University of East Anglia Climate Research Unit ('CRU') 'CL' v. 2.0 climatology data, facilitates the calculation of minimum temperature and maximum temperature and formats the data into a data.table object or a list of 'terra' 'rast' objects for use. 'CRU' 'CL' v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc minutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit, <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.",
+  "description": "Provides functions that automate downloading and importing University of East Anglia Climate Research Unit ('CRU') 'CL' v. 2.0 climatology data, facilitates the calculation of minimum temperature and maximum temperature and formats the data into a data.table object or a 'terra' 'SpatRaster' object. 'CRU' 'CL' v. 2.0 data are a gridded climatology of 1961-1990 monthly means released in 2002 and cover all land areas (excluding Antarctica) at 10 arc minutes (0.1666667 degree) resolution. For more information see the description of the data provided by the University of East Anglia Climate Research Unit, <https://crudata.uea.ac.uk/cru/data/hrg/tmc/readme.txt>.",
   "name": "getCRUCLdata: 'CRU' 'CL' v. 2.0 Climatology Client",
   "relatedLink": "https://docs.ropensci.org/getCRUCLdata/",
   "codeRepository": "https://codeberg.org/ropensci/getCRUCLdata",
@@ -34,18 +34,6 @@
     }
   ],
   "softwareSuggestions": [
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "ggplot2",
-      "name": "ggplot2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
-    },
     {
       "@type": "SoftwareApplication",
       "identifier": "knitr",
@@ -129,18 +117,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "viridis",
-      "name": "viridis",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=viridis"
     },
     {
       "@type": "SoftwareApplication",
@@ -251,7 +227,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["anglia-cru", "climate-data", "cru-cl2", "temperature", "rainfall", "elevation", "data-access", "wind", "relative-humidity", "solar-radiation", "diurnal-temperature", "frost"],
-  "fileSize": "831.533KB",
+  "fileSize": "822.8KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
