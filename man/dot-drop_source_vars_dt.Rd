@@ -8,7 +8,7 @@
 }
 \arguments{
 \item{dt}{A data.table object of CRU data containing \code{tmp} and \code{dtr} in order
-to calculate tmin and tmxax.}
+to calculate tmin and tmax.}
 
 \item{vars}{A named logical vector.}
 }
