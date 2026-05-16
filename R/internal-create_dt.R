@@ -26,7 +26,7 @@
 
 #' Add derived temperature values for TMAX and TMIN
 #' @param dt A data.table object of CRU data containing `tmp` and `dtr` in order
-#'  to calculate tmin and tmxax.
+#'  to calculate tmin and tmax.
 #' @param vars A named logical vector.
 #' @returns A data.table with tmin and or tmax cols.
 #' @autoglobal
@@ -49,7 +49,7 @@
 #' If `tmin` or `tmax` are requested but `tmp` or `dtr` are not requested, this
 #'  function drops the unrequested vars.
 #' @param dt A data.table object of CRU data containing `tmp` and `dtr` in order
-#'  to calculate tmin and tmxax.
+#'  to calculate tmin and tmax.
 #' @param vars A named logical vector.
 #' @returns A data.table with the unrequested var columns removed.
 #' @autoglobal
