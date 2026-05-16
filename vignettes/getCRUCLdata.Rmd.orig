@@ -9,10 +9,8 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown_notangle}
   %\VignetteIndexEntry{getCRUCLdata}
   %\VignetteEncoding{UTF-8}
-  %\VignetteDepends{terra}
-  %\VignetteDepends{ggplot2}
-  %\VignetteDepends{viridis}
   %\VignetteDepends{data.table}
+  %\VignetteDepends{terra}
 ---
 
 ```{r setup, include=FALSE}
@@ -45,34 +43,34 @@ What is left is a complete suite of data for climate and elevation data in all g
 # Using {getCRUCLdata}
 
 Logical arguments are used to specify the climatology elements to retrieve and parse.
-All arguments default to `FALSE`.
+All data arguments default to `FALSE`.
 The arguments for selecting the climatology elements for importing are:
 
-- **pre** Logical. Fetch precipitation (millimetres/month) from server and return in the data?
+- **pre** Logical. Read precipitation (millimetres/month) from server and return in the data?
 
-- **pre_cv** Logical. Fetch cv of precipitation (percent) from server and return in the data?
+- **pre_cv** Logical. Read cv of precipitation (percent) from server and return in the data?
 
-- **rd0** Logical. Fetch wet-days (number days with >0.1 millimetres rain per month) and return in the data?
+- **rd0** Logical. Read wet-days (number days with >0.1 millimetres rain per month) and return in the data?
 
-- **dtr** Logical. Fetch mean diurnal temperature range (degrees Celsius) and return it in the data?
+- **dtr** Logical. Read mean diurnal temperature range (degrees Celsius) and return it in the data?
 
-- **tmp** Logical. Fetch temperature (degrees Celsius) and return it in the data?
+- **tmp** Logical. Read temperature (degrees Celsius) and return it in the data?
 
 - **tmn** Logical. Calculate minimum temperature values (degrees Celsius) and return it in the data?
 
 - **tmx** Logical. Calculate maximum temperature (degrees Celsius) and return it in the data?
 
-- **reh** Logical. Fetch relative humidity and return it in the data?
+- **reh** Logical. Read relative humidity and return it in the data?
 
-- **sunp** Logical. Fetch sunshine, percent of maximum possible (percent of day length) and return it in data?
+- **sunp** Logical. Read sunshine, percent of maximum possible (percent of day length) and return it in data?
 
-- **frs** Logical. Fetch ground-frost records (number of days with ground-frost per month) and return it in data?
+- **frs** Logical. Read ground-frost records (number of days with ground-frost per month) and return it in data?
 
-- **wnd** Logical. Fetch 10m wind speed (metres/second) and return it in the data?
+- **wnd** Logical. Read 10m wind speed (metres/second) and return it in the data?
 
-- **elv** Logical. Fetch elevation (and convert to metres from kilometres) and return it in the data?
+- **elv** Logical. Read elevation (and convert to metres from kilometres) and return it in the data?
 
-- **x** Local file path where CRU CL v. 2.0 .dat.gz files are located.
+- **x** String. Local file path where CRU CL v. 2.0 .dat.gz files are located.
 
 ### Creating data frames for use in R
 
@@ -107,36 +105,7 @@ t <- read_cru_dt(tmp = TRUE)
 t
 ```
 
-#### Plotting data from the data frame
-
-Now that we have the data, we can plot it easily using {ggplot2} and the {viridis} package for the colour scale.
-
-```{r plot_t, eval=TRUE, message=FALSE, fig.cap="Maps of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."}
-library(ggplot2)
-library(viridis)
-
-ggplot(data = t, aes(x = lon, y = lat, fill = tmp)) +
-  geom_tile() +
-  scale_fill_viridis(option = "inferno") +
-  coord_quickmap() +
-  ggtitle("Global Mean Monthly Temperatures 1961-1990") +
-  facet_wrap(~month, nrow = 4)
-```
-
-We can also generate a violin plot of the same data to visualise how the temperatures change throughout the year.
-
-```{r violin_plot, eval=TRUE, fig.cap = "Monthly values of global temperatures from CRU CL v. 2.0 climatology covering the Earth's surface from ymin = -60, ymax = 85, xmin = -180, xmax = 180 degrees from 1960 to 1991."}
-ggplot(data = t, aes(x = month, y = tmp)) +
-  geom_violin() +
-  ylab("Temperature (˚C)") +
-  labs(
-    title = "Global Monthly Mean Land Surface Temperatures From 1960-1991",
-    subtitle = "Excludes Antarctica"
-  )
-```
-
-
-### Creating terra raster stacks for use in R and saving for use in another GIS
+### Creating terra SpatRaster objects
 
 For working with spatial data, {getCRUCLdata} provides a function that create a [terra::SpatRaster] object of the data.
 
@@ -162,55 +131,15 @@ CRU_rast <- read_cru_rast(
 CRU_rast
 ```
 
-#### Plotting SpatRaster objects of tmin and tmax
-
-```{r plot_cru_stack_tmn, eval=true}
-library(terra)
-library(tidyterra)
-```
-
-To plot only one month from the stack is also possible.
-Here we plot maximum temperature for July.
-Note that we use indexing `[[2]]` as before but append a `$jul` to the object.
-This is the name of the layer in the `terra::SpatRaster()`.
-So, we are telling R to plot the second object in the `CRU_rast` object, which is `tmx` and from that `rast`, plot only the layer for July.
-
-```{r plot_cru_rast_tmx, eval=FALSE}
-plot(t[[8]]$jul)
-```
-
-#### Saving {terra} objects to local disk
-
-The [terra::rast()] objects can be saved to disk as geotiff files (others are available, see help for `terra::writeRaster()` for more options) on the `Data` directory with a tmn or tmx prefix to the month for a file name.
-
-```{r save_stack, eval=FALSE}
-library(terra)
-
-dir.create(file.path("~/Data"), showWarnings = FALSE)
-writeRaster(
-  t$tmn,
-  filename = file.path("~/Data/tmn_", names(t$tmn)),
-  bylayer = TRUE,
-  format = "GTiff"
-)
-
-writeRaster(
-  t$tmx,
-  filename = file.path("~/Data/tmx_", names(t$tmn)),
-  bylayer = TRUE,
-  format = "GTiff"
-)
-```
-
-## Handling files downloaded outside R
+## Reading files downloaded outside R
 
 Both `read_cru_dt()` and `read_cru_rast` provide capability for users that may have connectivity issues or simply wish to use something other than R to download the data files.
 You may supply the location of the files on the local disk, `x`, that you wish to import.
-That is, the CRU CL v. 2.0 data files *must* be downloaded prior to the use of these functions using a program external to R when supplying `x`.
 
 ```{r, eval=FALSE}
 t <- create_CRU_df(tmp = TRUE, x = "~/Downloads")
 ```
+
 
 
 # CRU CL v. 2.0 reference and abstract
@@ -236,6 +165,6 @@ are compared to an earlier data set at 0.5 degrees latitude/longitude resolution
 and show added value over most regions. The data will have many applications in
 applied climatology, biogeochemical modelling, hydrology and agricultural
 meteorology and are available through the School of Geography Oxford
-(https://www.geog.ox.ac.uk), the International Water Management Institute
+(<https://www.geog.ox.ac.uk>), the International Water Management Institute
 "World Water and Climate Atlas" (<https://www.iwmi.org/>) and the Climatic
-Research Unit (<ttps://www.uea.ac.uk/groups-and-centres/climatic-research-unit>).
+Research Unit (<https://www.uea.ac.uk/groups-and-centres/climatic-research-unit>).
