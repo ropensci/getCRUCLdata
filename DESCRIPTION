@@ -31,7 +31,6 @@ Imports:
     rlang,
     terra
 Suggests:
-    ggplot2,
     knitr,
     R.utils,
     rmarkdown,
@@ -39,7 +38,6 @@ Suggests:
     roxyglobals,
     spelling,
     testthat,
-    viridis,
     withr
 VignetteBuilder: 
     knitr
