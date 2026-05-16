@@ -30,3 +30,4 @@
 ^man/dot-validate_x\.Rd$
 ^man/dot-check_vars\.Rd$
 ^man/dot-normalize_vars\.Rd$
+^\.github$
