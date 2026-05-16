@@ -36,44 +36,41 @@ read_cru_dt(
 )
 }
 \arguments{
-\item{pre}{Reads precipitation (millimetres/month) and returns in the
-data.table, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{pre_cv}{Reads cv of precipitation (percent) and returns in the
-data.table, \code{TRUE}. Defaults to \code{FALSE}. NOTE. Setting this
-to \code{TRUE} will always results in \code{pre} being set to \code{TRUE} and
-returned as well.}
-
-\item{rd0}{Reads wet-days (number days with >0.1 millimetres rain per
-month) and returns in the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{tmp}{Reads temperature (degrees Celsius) and returns it in the
-data.table, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{dtr}{Reads mean diurnal temperature range (degrees Celsius)
-and returns it in the data frame, \code{TRUE}. Defaults to \code{FALSE}.}
-
-\item{reh}{Reads relative humidity and returns it in the data.table, \code{TRUE}.
+\item{pre}{Read precipitation (millimetres/month) and return it, \code{TRUE}.
 Defaults to \code{FALSE}.}
 
-\item{tmn}{Calculate minimum temperature values (degrees Celsius)
-and returns it in the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
+\item{pre_cv}{Read cv of precipitation (percent) and return it, \code{TRUE}.
+Defaults to \code{FALSE}. NOTE. Setting this to \code{TRUE} will always results in
+\code{pre} being set to \code{TRUE} and returned as well.}
 
-\item{tmx}{Calculate maximum temperature (degrees Celsius) and returns it in
-the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
+\item{rd0}{Read wet-days (number days with >0.1 millimetres rain per
+month) and return it, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{sunp}{Reads sunshine, percent of maximum possible (percent of
-day length) and returns it in the data.table, \code{TRUE}. Defaults to \code{FALSE}.}
+\item{tmp}{Reads temperature (degrees Celsius) and return it, TRUE\verb{. Defaults to }FALSE`.}
 
-\item{frs}{Reads ground-frost records (number of days with ground-
-frost per month) and returns it in the data.table, \code{TRUE}. Defaults to
+\item{dtr}{Read mean diurnal temperature range (degrees Celsius)
+and return it, \code{TRUE}. Defaults to \code{FALSE}.}
+
+\item{reh}{Read relative humidity and return it, \code{TRUE}. Defaults to
 \code{FALSE}.}
 
-\item{wnd}{Load 10 m wind speed (metres/second) and returns it in the
-data.table, \code{TRUE}. Defaults to \code{FALSE}.}
+\item{tmn}{Calculate minimum temperature values (degrees Celsius)
+and return it, \code{TRUE}. Defaults to \code{FALSE}.}
 
-\item{elv}{Reads elevation (converted to metres) and returns it in the
-data.table, \code{TRUE}. Defaults to \code{FALSE}.}
+\item{tmx}{Calculate maximum temperature (degrees Celsius) and return it,
+\code{TRUE}. Defaults to \code{FALSE}.}
+
+\item{sunp}{Read sunshine, percent of maximum possible (percent of
+day length) and return it, \code{TRUE}. Defaults to \code{FALSE}.}
+
+\item{frs}{Read ground-frost records (number of days with ground-
+frost per month) and return it, \code{TRUE}. Defaults to \code{FALSE}.}
+
+\item{wnd}{Read 10 m wind speed (metres/second) and return it, \code{TRUE}.
+Defaults to \code{FALSE}.}
+
+\item{elv}{Read elevation (converted to metres) and return it, \code{TRUE}.
+Defaults to \code{FALSE}.}
 
 \item{x}{An optional local file path where \acronym{CRU} \acronym{CL} v.2.0
 .dat.gz files are located.  If this is empty, the requested data will
