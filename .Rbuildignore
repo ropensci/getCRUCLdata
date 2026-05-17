@@ -1,6 +1,6 @@
 ^README\.Rmd$
 ^README-.*\.png$
-^CONDUCT\.md$
+^CONTRIBUTING\.md$
 ^cran-comments\.md$
 ^docs$
 ^codecov\.yml$
