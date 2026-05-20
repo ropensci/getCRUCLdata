@@ -27,8 +27,13 @@ What is left is a complete suite of data for climate and elevation data in all g
 
 ### Install
 
-{getCRUCLdata} is not available from CRAN.
-You can install it from the rOpenSci Universe as follows.
+{getCRUCLdata} is available from CRAN.
+
+```r 
+install.packages("getCRUCLdata")
+```
+
+You can also install it from the rOpenSci Universe as follows.
 
 ``` r
 # Enable the rOpenSci R-universe
