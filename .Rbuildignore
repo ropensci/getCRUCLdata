@@ -11,6 +11,7 @@
 ^Meta$
 
 ^\.github$
+^CRAN-SUBMISSION$
 ^man/dot-check_gzip_support\.Rd$
 ^man/dot-create_dt\.Rd$
 ^man/dot-make_rast\.Rd$
@@ -31,4 +32,3 @@
 ^man/dot-validate_x\.Rd$
 ^man/dot-check_vars\.Rd$
 ^man/dot-normalize_vars\.Rd$
-^CRAN-SUBMISSION$
